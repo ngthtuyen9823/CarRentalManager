@@ -1,0 +1,65 @@
+@startuml Car Rental Manager Entity Relationship Diagram
+
+entity "Car" as car {
+  *id: string
+  --
+  *name: string
+  *brand: string
+  *model: string
+  *year: int
+  *color: string
+  *price: string
+  +createdAt: date
+  +updatedAt: date
+  *status: ECarStatus
+  ' enum ECarStatus {
+    '   ONRENT = 'on-rent',
+    '   AVAILABLE = 'available'
+  '}
+  *type: ECarType
+  ' enum ECarType {
+    ' BICYCLE = 'bicycle',
+    ' MOTORBIKE = 'motorbike',
+    ' CAR = 'car',
+  '}
+}
+
+entity "RentalInformation" as rental {
+  *id: int
+  --
+  *carId: string
+  *userId: string
+  --
+  *startDate: date
+  *endDate: date
+  *totalFee: string
+  +createdAt: date
+  +updatedAt: date
+  *status: ERentalInformationStatus
+  'enum ERentalInformationStatus {
+    ' COMPLETED = 'COMPLETED',
+    ' PENDING = 'PENDING',
+    '}
+}
+
+entity "User" as user {
+  *id: string
+  --
+  *name: string
+  *email: string
+  *phoneNumber: string
+  *address: string
+  *password: string
+  *role: EUserRole
+  +createdAt: date
+  +updatedAt: date
+  ' enum EUserRole {
+    ' USER = 'USER',
+    ' ADMIN = 'ADMIN'
+  '}
+}
+
+car ||..|| rental
+user ||..|| rental
+
+@enduml
