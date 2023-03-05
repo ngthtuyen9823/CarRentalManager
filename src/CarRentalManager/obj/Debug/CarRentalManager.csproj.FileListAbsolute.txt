@@ -1,0 +1,114 @@
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\CarRentalManager.exe.config
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\CarRentalManager.exe
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\CarRentalManager.pdb
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\MaterialDesignColors.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\MaterialDesignColors.pdb
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.csproj.AssemblyReference.cache
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.csproj.SuggestedBindingRedirects.cache
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\MainWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\App.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager_MarkupCompile.cache
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager_MarkupCompile.lref
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\App.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\MainWindow.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.g.resources
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.Properties.Resources.resources
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.csproj.GenerateResource.cache
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.csproj.CoreCompileInputs.cache
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.csproj.CopyComplete
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.exe
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CarRentalManager.pdb
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\ResourceXAML\MainResource.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\LoginWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\LoginWindow.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\UserControlCRM\ControlBarUC.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\UserControlCRM\ControlBarUC.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CustomerWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\wproject\CarRentalManager\obj\Debug\CustomerWindow.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\CarRentalManager.exe.config
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\CarRentalManager.exe
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\CarRentalManager.pdb
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\MaterialDesignColors.dll
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\MaterialDesignColors.pdb
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\phung\Downloads\Update\CarRentalManager\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.csproj.AssemblyReference.cache
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.csproj.SuggestedBindingRedirects.cache
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CustomerWindow.g.cs
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\LoginWindow.g.cs
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\MainWindow.g.cs
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\UserControlCRM\ControlBarUC.g.cs
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\App.g.cs
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager_MarkupCompile.cache
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager_MarkupCompile.lref
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\App.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CustomerWindow.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\LoginWindow.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\MainWindow.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\ResourceXAML\MainResource.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\UserControlCRM\ControlBarUC.baml
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.g.resources
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.Properties.Resources.resources
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.csproj.GenerateResource.cache
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.csproj.CoreCompileInputs.cache
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.csproj.CopyComplete
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.exe
+C:\Users\phung\Downloads\Update\CarRentalManager\obj\Debug\CarRentalManager.pdb
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\CarRentalManager.exe.config
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\CarRentalManager.exe
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\CarRentalManager.pdb
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\MaterialDesignColors.dll
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\MaterialDesignColors.pdb
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.AssemblyReference.cache
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.SuggestedBindingRedirects.cache
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CustomerWindow.g.cs
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\LoginWindow.g.cs
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\MainWindow.g.cs
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\UserControlCRM\ControlBarUC.g.cs
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\App.g.cs
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager_MarkupCompile.cache
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager_MarkupCompile.lref
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\App.baml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CustomerWindow.baml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\LoginWindow.baml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\MainWindow.baml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\ResourceXAML\MainResource.baml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\UserControlCRM\ControlBarUC.baml
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.g.resources
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.Properties.Resources.resources
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.GenerateResource.cache
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.CoreCompileInputs.cache
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.CopyComplete
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.exe
+C:\Users\phung\Documents\School\Window\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.pdb
