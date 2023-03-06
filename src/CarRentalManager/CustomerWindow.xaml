@@ -20,7 +20,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         
-        Name="mainWindow"
+        x:Name="window"
         
         Title="Customer Manager" Height="500" Width="525">
     
@@ -30,7 +30,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -48,13 +48,13 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="400" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding DisplayName}" materialDesign:HintAssist.Hint="Tên"
+                        <TextBox Margin="5" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" materialDesign:HintAssist.Hint="Địa chỉ"
+                        <TextBox Margin="5" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" materialDesign:HintAssist.Hint="Số điện thoại"
+                        <TextBox Margin="5" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" materialDesign:HintAssist.Hint="CMND"
+                        <TextBox Margin="5" Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </StackPanel>
 
@@ -68,17 +68,19 @@
             </materialDesign:Card>
                 
             <materialDesign:Card Grid.Row="1" VerticalAlignment="Stretch">
-                <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                            <GridViewColumn Header="Tên" DisplayMemberBinding="{Binding Ten}"></GridViewColumn>
-                            <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding DiaChi}"></GridViewColumn>
-                            <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding Sdt}"></GridViewColumn>
-                            <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding CMND}"></GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                <GridViewColumn Header="Tên" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
+                                <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
+                                <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding Phone}"></GridViewColumn>
+                                <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding CMND}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
             </materialDesign:Card>
 
 
