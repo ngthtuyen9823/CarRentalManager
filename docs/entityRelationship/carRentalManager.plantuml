@@ -1,16 +1,15 @@
 @startuml Car Rental Manager Entity Relationship Diagram
 
 entity "Car" as car {
-  *id: string
+  *id: int
   --
   *name: string
   *brand: string
   *model: string
-  *year: int
+  *publishYear: int
   *color: string
-  *price: string
-  +createdAt: date
-  +updatedAt: date
+  *price: int
+  *licensePlate: string
   *status: ECarStatus
   ' enum ECarStatus {
     '   ONRENT = 'on-rent',
@@ -18,48 +17,92 @@ entity "Car" as car {
   '}
   *type: ECarType
   ' enum ECarType {
-    ' BICYCLE = 'bicycle',
+    ' BIKE = 'bike',
     ' MOTORBIKE = 'motorbike',
     ' CAR = 'car',
   '}
+  *image: string
+  +createdAt: date
+  +updatedAt: date
 }
 
-entity "RentalInformation" as rental {
+entity "Order" as order {
   *id: int
   --
   *carId: string
-  *userId: string
+  *customerId: string
   --
   *startDate: date
   *endDate: date
+  *bookingPlace: string
   *totalFee: string
+  *status: EOrderStatus
+  ' enum EOrderStatus {
+    ' COMPLETED = 'completed',
+    ' PENDING = 'pending',
+    ' CANCELLED = 'cancelled',
+  '}
   +createdAt: date
   +updatedAt: date
-  *status: ERentalInformationStatus
-  'enum ERentalInformationStatus {
-    ' COMPLETED = 'COMPLETED',
-    ' PENDING = 'PENDING',
-    '}
+}
+
+entity "Contract" as contract {
+  *id: int
+  --
+  *orderId: string
+  *userId: string
+  --
+  *makingDay: date
+  +createdAt: date
+  +updatedAt: date
+}
+
+entity "Receipt" as receipt {
+  *id: int
+  --
+  *contractId: string
+  --
+  *makingDay: date
+  *price: int
+  +createdAt: date
+  +updatedAt: date
+}
+
+entity "Customer" as customer {
+  *id: int
+	--
+  *phoneNumber: string
+	*name: string
+	*email: string
+	*cmnd: string
+	*address: string
+	+createdAt date
+	+updatedAt date
 }
 
 entity "User" as user {
-  *id: string
-  --
-  *name: string
-  *email: string
-  *phoneNumber: string
-  *address: string
+  *id: int
+	--
+	*email: string
   *password: string
+	*name: string
+  *phoneNumber: string
+	*address: string
   *role: EUserRole
-  +createdAt: date
-  +updatedAt: date
-  ' enum EUserRole {
-    ' USER = 'USER',
-    ' ADMIN = 'ADMIN'
-  '}
+  'enum EUserRole {
+    ' ADMIN = 'admin',
+    ' MANAGER = 'manager',
+    ' STAFF = 'staff',
+  '
+	+cmnd: string
+	+createdAt date
+	+updatedAt date
 }
 
-car ||..|| rental
-user ||..|| rental
+car ||..|| order
+contract ||..|| order
+user ||..|| contract
+receipt }o..|| contract
+customer ||..|{ order
 
 @enduml
