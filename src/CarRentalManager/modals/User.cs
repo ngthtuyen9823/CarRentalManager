@@ -9,21 +9,19 @@ namespace CarRentalManager.modals
 {
     public class User
     {
-        string id;
+        int id;
         string name;
         string email;
         string phoneNumber;
-        string addresss;
         string password;
         EUserRole role;
         DateTime createdAt;
         DateTime updatedAt;
 
-        public User(string id,
+        public User(int id,
             string name,
             string email,
             string phoneNumber,
-            string addresss,
             string password,
             EUserRole role)
         {
@@ -32,19 +30,19 @@ namespace CarRentalManager.modals
             this.name = name;
             this.email = email;
             this.phoneNumber = phoneNumber;
-            this.addresss = addresss;
             this.password = password;
             this.role = role;
             this.createdAt = new DateTime();
             this.updatedAt = new DateTime();
         }
        
-        public string ID { get { return id; } }
+        public int ID { get { return id; } }
         public string Name { get { return name; } }
         public string Email { get { return email; } }
         public string PhoneNumber { get { return phoneNumber; } }
-        public string Addresss { get { return addresss; } }
         public string Password { get { return password; } }
-
+        public EUserRole Role { get { return role; } }
+        public DateTime CreatedAt { get { return createdAt; } }
+        public DateTime UpdatedAt { get { return updatedAt; } }
     }
 }

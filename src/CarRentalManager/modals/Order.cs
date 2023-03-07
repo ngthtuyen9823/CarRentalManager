@@ -7,31 +7,34 @@ using CarRentalManager.enums;
 
 namespace CarRentalManager.modals
 {
-    public class RentalInformation
+    public class Order
     {
-        string id;
-        string carId;
-        string userId;
+        int id;
+        int carId;
+        int customerId;
+        string bookingPlace;
         DateTime startDate;
         DateTime endDate;
-        string totalFee;
-        ERentalInformationStatus status;
+        int totalFee;
+        EOrderStatus status;
         DateTime createdAt;
         DateTime updatedAt;
 
-        public RentalInformation(string id,
-        string carId,
-        string userId,
+        public Order(int id,
+        int carId,
+        int customerId,
+        string bookingPlace,
         DateTime startDate,
         DateTime endDate,
-        string totalFee,
-        ERentalInformationStatus status,
+        int totalFee,
+        EOrderStatus status,
         DateTime createdAt,
         DateTime updatedAt)
         {
             this.id = id;
             this.carId = carId;
-            this.userId = userId;
+            this.customerId = customerId;
+            this.bookingPlace = bookingPlace;
             this.startDate = startDate;
             this.endDate = endDate;
             this.totalFee = totalFee;
@@ -40,13 +43,14 @@ namespace CarRentalManager.modals
             this.updatedAt = updatedAt;
         }
 
-        public string ID { get { return id; } }
-        public string CarId { get { return carId; } }
-        public string UserId { get { return userId; } }
+        public int ID { get { return id; } }
+        public int CarId { get { return carId; } }
+        public int CustomerId { get { return customerId; } }
+        public string BookingPlace { get { return bookingPlace; } }
         public DateTime StartDate { get { return startDate; } }
         public DateTime EndDate { get { return endDate; } }
-        public string TotalFee { get { return totalFee; } }
-        public ERentalInformationStatus Status { get { return status; } }
+        public int TotalFee { get { return totalFee; } }
+        public EOrderStatus Status { get { return status; } }
         public DateTime CreatedAt { get { return createdAt; } }
         public DateTime UpdatedAt { get { return updatedAt; } }
 

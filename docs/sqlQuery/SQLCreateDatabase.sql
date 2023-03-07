@@ -78,3 +78,8 @@ CREATE TABLE [dbo].[Receipt] (
 	updatedAt date,
 )
 
+INSERT INTO Car VALUES (1, 'Honda Wave Alpha', 'Honda', 'Black', '2019', 'BIKE', 'AVAILABLE', 'SELF_DRIVING', 2, '29A-12345', 100000, 'https://cdn.tgdd.vn/Products/Images/42/200533/honda-wave-alpha-2019-600x600.jpg', 'https://www.youtube.com/watch?v=Z9Z9Z9Z9Z9Z9', '2020-01-01', '2020-01-01')
+INSERT INTO Car VALUES (2, 'Honda Wave Alpha', 'Honda', 'Black', '2019', 'BIKE', 'AVAILABLE', 'SELF_DRIVING', 2, '29A-12345', 100000, 'https://cdn.tgdd.vn/Products/Images/42/200533/honda-wave-alpha-2019-600x600.jpg', 'https://www.youtube.com/watch?v=Z9Z9Z9Z9Z9Z9', '2020-01-01', '2020-01-01')
+INSERT INTO Car VALUES (3, 'VinFast Lux SA2.0', 'VinFast', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, '29A-12345', 100000, 'https://cdn.tgdd.vn/Products/Images/42/200533/honda-wave-alpha-2019-600x600.jpg', 'https://www.youtube.com/watch?v=Z9Z9Z9Z9Z9Z9', '2020-01-01', '2020-01-01')
+
+INSERT INTO User VALUES (1, 'carrental@gmail.com', 'staff@123456', '0123456789', 'Staff', 'ADMIN', '2022-03-08', '2022-03-08')

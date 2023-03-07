@@ -12,14 +12,14 @@ namespace CarRentalManager.dao
     {
         public RentalInformationDAO() { }
 
-        public static RentalInformation[] getListRecords()
+        public static Order[] getListRecords()
         {
             string queryString = SqlQueryService.getListRecords();
             //*TODO: Update call database later
             return null;
         }
 
-        public static void updateRecord(string id, RentalInformation updatedRecord)
+        public static void updateRecord(string id, Order updatedRecord)
         {
             string queryString = SqlQueryService.updateRecord(id, updatedRecord);
             //*TODO: Update call database later

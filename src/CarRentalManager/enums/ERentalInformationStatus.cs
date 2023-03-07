@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarRentalManager.enums
 {
-    public enum ERentalInformationStatus
+    public enum EOrderStatus
     {
         PENDING,
-        COMPLETE
+        COMPLETE,
+        CANCEL
     }
 }
