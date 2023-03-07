@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8539713a61844ef9bbfcae51e62c2f43" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="CARRENTALMANGERModel.Car" PointX="0.75" PointY="1.125" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARRENTALMANGERModel.Contract" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARRENTALMANGERModel.Customer" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARRENTALMANGERModel.Order" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARRENTALMANGERModel.Receipt" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARRENTALMANGERModel.User" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector ManuallyRouted="false" Association="CARRENTALMANGERModel.FK__Order__carId__3D5E1FD2" />
+        <AssociationConnector Association="CARRENTALMANGERModel.FK__Contract__orderI__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="CARRENTALMANGERModel.FK__Contract__userId__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="CARRENTALMANGERModel.FK__Receipt__contrac__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="CARRENTALMANGERModel.FK__Order__customerI__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

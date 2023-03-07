@@ -35,10 +35,13 @@ CREATE TABLE [dbo].[Car] (
 	--BIKE, MOTOBIKE, CAR
 	status char(50) NULL,
 	-- ONRENT, AVAILABLE
-	seater int,
+	drivingType  char(50) NULL, 
+	--SELF_DRIVING, MANNED
+	seats int,
 	licensePlate char(20) NULL,
 	price int,
-	image char(100) NULL,
+	imagePath char(100) NULL,
+	tutorialPath char(100) NULL,
 	createdAt date,
 	updatedAt date,
 )
