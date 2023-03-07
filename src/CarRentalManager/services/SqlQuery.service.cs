@@ -22,7 +22,7 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM {0} WHERE email = '{0}'", ETableName.RENTALINFORMATION);
         }
 
-        public static string updateRecord(string id, RentalInformation record)
+        public static string updateRecord(string id, Order record)
         {
             //*TODO: UPDATE query later
             return string.Format("UPDATE * FROM {0} WHERE email = '{1}'", ETableName.RENTALINFORMATION, record);

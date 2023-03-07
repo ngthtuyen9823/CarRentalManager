@@ -9,7 +9,7 @@ namespace CarRentalManager.modals
 {
     public class Car
     {
-        string id;
+        int id;
         string name;
         string branch;
         string model;
@@ -24,7 +24,7 @@ namespace CarRentalManager.modals
         string tutorialPath;
         DateTime createdAt;
         DateTime updatedAt;
-        public Car(string id,
+        public Car(int id,
         string name,
             string branch,
             string model,
@@ -57,7 +57,7 @@ namespace CarRentalManager.modals
             this.updatedAt = new DateTime();
         }
 
-        public string ID { get { return id; } }
+        public int ID { get { return id; } }
         public string Name { get { return name; } }
         public string Branch { get { return branch; } }
         public string Model { get { return model; } }
