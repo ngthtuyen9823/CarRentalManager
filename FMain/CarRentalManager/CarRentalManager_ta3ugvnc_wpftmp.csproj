@@ -35,47 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Compile Include="customcontrols\CustomCard.xaml.cs">
       <DependentUpon>CustomCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="ViewModels\CardViewModels.cs" />
-    <Page Include="Assets\icons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="customcontrols\CustomCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="customcontrols\MenuBottons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -115,64 +81,66 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="br.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="h2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\4.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\p1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\p2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\p3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\p4.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\p5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\6.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\7.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\8.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="brg.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bkg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\FMain\CarRentalManager\obj\Debug\customcontrols\CustomCard.g.cs" />
+    <Compile Include="D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\FMain\CarRentalManager\obj\Debug\customcontrols\MenuBottons.g.cs" />
+    <Compile Include="D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\FMain\CarRentalManager\obj\Debug\MainWindow.g.cs" />
+    <Compile Include="D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\FMain\CarRentalManager\obj\Debug\App.g.cs" />
+    <Compile Include="D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\FMain\CarRentalManager\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
 </Project>
