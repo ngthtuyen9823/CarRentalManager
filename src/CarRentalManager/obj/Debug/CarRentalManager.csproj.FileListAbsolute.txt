@@ -150,3 +150,14 @@ C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalMa
 C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.CopyComplete
 C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.exe
 C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.pdb
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager_Content.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.baml

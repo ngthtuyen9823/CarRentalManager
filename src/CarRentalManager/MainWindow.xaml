@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        
         xmlns:local="clr-namespace:CarRentalManager"
-        
-        
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -21,11 +21,12 @@
         
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
-        Title="Phần mềm quản lý cho thuê xe" Height="500" Width="525">
+        
+        Title="Phần mềm quản lý cho thuê xe" Height="800" Width="800">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -41,8 +42,8 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--menu-->
@@ -51,7 +52,7 @@
                     <Grid.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Margin" Value="2 4 2 4"></Setter>
-                            <Setter Property="Background" Value="LightCyan"></Setter>
+                            <Setter Property="Background" Value="#9AECDB"></Setter>
                         </Style>
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
@@ -62,7 +63,7 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" ToolTip="Cửa hàng">
+                    <Button Grid.Column="0" ToolTip="Cửa hàng" Background="#58B19F">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
@@ -76,7 +77,7 @@
                             </Grid>
                         </Grid>
                     </Button>
-                    <Button Grid.Column="1" ToolTip="Xe thuê">
+                    <Button Grid.Column="1" ToolTip="Xe thuê" Command="{Binding CarCommand}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
@@ -90,7 +91,21 @@
                             </Grid>
                         </Grid>
                     </Button>
-                    <Button Grid.Column="2" ToolTip="Hợp đồng">
+                    <Button Grid.Column="2" ToolTip="Đơn hàng" Command="{Binding OrderCommand}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Đơn hàng" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="FileDocument" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Grid.Column="3" ToolTip="Hợp đồng" Command="{Binding ContractCommand}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
@@ -101,20 +116,6 @@
                             </Grid>
                             <Grid Grid.Row="1">
                                 <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="FileDocument" />
-                            </Grid>
-                        </Grid>
-                    </Button>
-                    <Button Grid.Column="3" ToolTip="Doanh thu">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <TextBlock Text="Doanh thu" HorizontalAlignment="Center"></TextBlock>
-                            </Grid>
-                            <Grid Grid.Row="1">
-                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Cash100" />
                             </Grid>
                         </Grid>
                     </Button>
@@ -146,9 +147,9 @@
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <!--Text-->
@@ -165,21 +166,23 @@
 
                 <!--list-->
                 <Grid Grid.Row="1" Height="auto">
-                    <ListView ItemsSource="{Binding Items1}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Maxe}" Header="Mã xe" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Hang}" Header="Hãng" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Loai}" Header="Loại" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Bienso}" Header="Biển số" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Giathue}" Header="Giá thuê" />
+                    <materialDesign:Card MaxWidth="1500">
+                        <ListView ItemsSource="{Binding Items1}" Name="lvCarss">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Ma}" Header="Mã  xe" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Hang}" Header="Hãng" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Loai}" Header="Loại" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Bienso}" Header="Biển số" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Giathue}" Header="Giá thuê" />
 
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </materialDesign:Card>
 
                 </Grid>
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" Height="auto">
                     <TextBlock Text="Danh sách xe sẵn sàng cho thuê"
                                FontSize="20"
                                Padding="10"
@@ -189,19 +192,21 @@
                 </Grid>
 
                 <!--list-->
-                <Grid Grid.Row="4" Height="auto">
-                    <ListView ItemsSource="{Binding Items1}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Maxe}" Header="Mã xe" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Hang}" Header="Hãng" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Loai}" Header="Loại" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Bienso}" Header="Biển số" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Giathue}" Header="Giá thuê" />
+                <Grid Grid.Row="3" Height="auto">
+                    <materialDesign:Card MaxWidth="1500">
+                        <ListView ItemsSource="{Binding Items1}" Name = "lvCar">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Ma}" Header="Mã xe" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Hang}" Header="Hãng" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Loai}" Header="Loại" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Bienso}" Header="Biển số" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Giathue}" Header="Giá thuê" />
 
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </materialDesign:Card>
 
                 </Grid>
             </Grid>

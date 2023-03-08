@@ -23,6 +23,26 @@ namespace CarRentalManager
         public MainWindow()
         {
             InitializeComponent();
+
+            List<Car> items = new List<Car>();
+            items.Add(new Car() {Ma = "CAR01", Hang = "Ford", Loai = "7 seats", Bienso = "MX8342", Giathue = 183223 });
+            items.Add(new Car() { Ma = "CAR01", Hang = "Ford", Loai = "7 seats", Bienso = "MX8342", Giathue = 183223 });
+            items.Add(new Car() { Ma = "CAR01", Hang = "Ford", Loai = "7 seats", Bienso = "MX8342", Giathue = 183223 });
+            items.Add(new Car() { Ma = "CAR01", Hang = "Ford", Loai = "7 seats", Bienso = "MX8342", Giathue = 183223 });
+            items.Add(new Car() { Ma = "CAR01", Hang = "Ford", Loai = "7 seats", Bienso = "MX8342", Giathue = 183223 });
+            items.Add(new Car() { Ma = "CAR01", Hang = "Ford", Loai = "7 seats", Bienso = "MX8342", Giathue = 183223 });
+            lvCarss.ItemsSource= items;
+            lvCar.ItemsSource = items;
+
         }
+    }
+    public class Car
+    {
+        public string Ma { get; set; }    
+        public string Hang { get; set; }
+        public string Loai { get; set; }    
+        public string Bienso { get; set; }
+        public int Giathue { get; set; }    
+        
     }
 }
