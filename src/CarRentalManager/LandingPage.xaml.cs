@@ -10,23 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarRentalManager.customcontrols;
 
 namespace CarRentalManager
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for landingPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LandingPage : Window
     {
-        public MainWindow()
+        public LandingPage()
         {
             InitializeComponent();
         }
+
         private void Polygon_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.ChangedButton== MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
             }

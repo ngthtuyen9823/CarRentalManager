@@ -12,7 +12,31 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/ResourceXAML/MainResource.xaml" />
+                <ResourceDictionary Source="/assets/icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <!--#Window Brushes color-->
+            <!--#region Brushes-->
+            <SolidColorBrush x:Key="DefaultBackgroundBrush" 
+                            Color="#ffffff"/>
+
+            <SolidColorBrush x:Key="CanvasBrush" 
+                            Color="#e6ffcc"/>
+
+            <SolidColorBrush x:Key="PrimaryBrush" 
+                            Color="#009933"/>
+
+            <SolidColorBrush x:Key="SecondaryBrush" 
+                            Color="#16181E"/>
+
+            <SolidColorBrush x:Key="TertiaryBrush" 
+                            Color="#ff9933"/>
+
+            <SolidColorBrush x:Key="HeaderBrush"
+                             Color="#71da71"/>
+
+            <SolidColorBrush x:Key="FormBrush"
+                             Color="#d2e0e0"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
