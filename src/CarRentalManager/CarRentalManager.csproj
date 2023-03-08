@@ -80,6 +80,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="customcontrols\CustomCard.xaml.cs">
+      <DependentUpon>CustomCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customcontrols\MenuBottons.xaml.cs">
+      <DependentUpon>MenuBottons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -91,31 +97,44 @@
     <Compile Include="enums\ERentalInformationStatus.cs" />
     <Compile Include="enums\ETableName.cs" />
     <Compile Include="enums\EUserRole.cs" />
+    <Compile Include="LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="modals\Car.cs" />
-    <Compile Include="modals\RentalInformation.cs" />
+    <Compile Include="modals\Contract.cs" />
+    <Compile Include="modals\Order.cs" />
+    <Compile Include="modals\Receipt.cs" />
     <Compile Include="modals\User.cs" />
-    <Compile Include="Model\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\CardModel.cs" />
     <Compile Include="services\SqlQuery.service.cs" />
     <Compile Include="services\User.service.cs" />
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CardViewModels.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="Assets\icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="customcontrols\CustomCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="customcontrols\MenuBottons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LandingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,13 +181,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,18 +190,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Model\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </Content>
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\1.jpg" />
+    <Resource Include="Assets\1.png" />
+    <Resource Include="Assets\2.jpg" />
+    <Resource Include="Assets\3.jpg" />
+    <Resource Include="Assets\4.jpg" />
+    <Resource Include="Assets\4.png" />
+    <Resource Include="Assets\5.jpg" />
+    <Resource Include="Assets\6.jpg" />
+    <Resource Include="Assets\7.jpg" />
+    <Resource Include="Assets\8.jpg" />
+    <Resource Include="Assets\br.jpg" />
+    <Resource Include="Assets\h2.jpg" />
+    <Resource Include="Assets\p1.png" />
+    <Resource Include="Assets\p2.jpg" />
+    <Resource Include="Assets\p3.jpg" />
+    <Resource Include="Assets\p4.jpg" />
+    <Resource Include="Assets\p5.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bkg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />
