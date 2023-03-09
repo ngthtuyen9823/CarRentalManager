@@ -9,7 +9,7 @@ using System.Windows.Input;
 // 
 namespace CarRentalManager.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged 
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
