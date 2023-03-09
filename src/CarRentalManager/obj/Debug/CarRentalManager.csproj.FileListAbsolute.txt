@@ -195,3 +195,20 @@ D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\Car
 D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.GenerateResource.cache
 D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.CoreCompileInputs.cache
 D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarRentalManager.csproj.CopyComplete
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\Assets\icons.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\customcontrols\CustomCard.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\customcontrols\MenuBottons.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\LandingPage.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\customcontrols\CustomCard.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\customcontrols\MenuBottons.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\LandingPage.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.g.cs
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.baml
+C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.baml
