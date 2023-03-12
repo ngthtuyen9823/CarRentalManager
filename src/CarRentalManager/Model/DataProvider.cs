@@ -24,11 +24,11 @@ namespace CarRentalManager.Model
                 ins = value;
             }
         }
-        //public CARRENTALMANGEREntities1 DB { get; set; }
-        //private DataProvider()
-        //{
-        //    DB = new CARRENTALMANGEREntities1();
-        //}
+        public CARRENTALMANGERentities DB { get; set; }
+        private DataProvider()
+        {
+            DB = new CARRENTALMANGERentities();
+        }
 
     }
 }

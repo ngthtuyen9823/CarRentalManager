@@ -78,6 +78,30 @@ CREATE TABLE [dbo].[Receipt] (
 	updatedAt date,
 )
 
+CREATE TABLE UserRole
+(
+	id int primary key,
+	displayName char(100),
+)
+
+INSERT INTO UserRole VALUES(1,'Admin')
+INSERT INTO UserRole VALUES(2,'Staff')
+
+CREATE TABLE Users
+(
+	id int primary key,
+	displayName char(100),
+	userName char(100),
+	pass_Word char(100),
+	idRole int references UserRole(id)
+)
+	
+INSERT INTO Users VALUES(1, 'Nguyen Van A', 'vananguyen', 'anv@123', 2)
+INSERT INTO Users VALUES(2, 'Nguyen Van B', 'vanbnguyen', 'anv@123', 1)
+INSERT INTO Users VALUES(3, 'Nguyen Van C', 'vancnguyen', 'anv@123', 1)
+INSERT INTO Users VALUES(4, 'Nguyen Van D', 'vandnguyen', 'anv@123', 1)
+
+
 INSERT INTO [dbo].[Car] VALUES (1, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', 'undefined', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7606', 1300, '/Assets/1.jpg', '/assets/p3.jpg', '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (2, 'MAZDA CX5 2020', 'MAZDA', 'Black', 'undefined', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7553', 1050, '/assets/2.jpg', '/assets/p2.jpg', '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (3, 'TOYOTA RUSH 2019', 'TOYOTA', 'Black', 'undefined', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8095', 900, '/assets/3.jpg', '/assets/p3.jpg', '2022-01-01', '2022-01-01')
@@ -106,4 +130,3 @@ INSERT INTO [dbo].[User] VALUES (1, 'carrental@gmail.com', 'staff@123456', '0123
 INSERT INTO [dbo].[User] VALUES (2, 'carrental@gmail.com', 'staff1@123456', '0558967523', 'Staff1', 'ADMIN', '2022-03-08', '2022-03-08')
 INSERT INTO [dbo].[User] VALUES (3, 'carrental@gmail.com', 'staff2@123456', '0526489756', 'Staff2', 'ADMIN', '2022-03-08', '2022-03-08')
 INSERT INTO [dbo].[User] VALUES (4, 'carrental@gmail.com', 'staff3@123456', '0447896321', 'Staff3', 'ADMIN', '2022-03-08', '2022-03-08')
-

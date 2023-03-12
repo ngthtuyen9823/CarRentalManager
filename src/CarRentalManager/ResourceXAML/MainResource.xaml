@@ -5,5 +5,11 @@
 
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    <viewmodel:CarViewModel x:Key="CarVM"></viewmodel:CarViewModel>
+    <viewmodel:OrderViewModel x:Key="OrderVM"></viewmodel:OrderViewModel>
+    <viewmodel:CustomerViewModel x:Key="CustomerVM"></viewmodel:CustomerViewModel>
+
+
+
 
 </ResourceDictionary>

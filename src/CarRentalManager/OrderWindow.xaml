@@ -19,6 +19,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource OrderVM}"
         
         x:Name="window"
         

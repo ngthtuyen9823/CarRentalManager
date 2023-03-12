@@ -1,4 +1,5 @@
-﻿using CarRentalManager.Model;
+﻿using CarRentalManager.dao;
+using CarRentalManager.Model;
 using CarRentalManager.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace CarRentalManager.ViewModel
@@ -49,14 +51,14 @@ namespace CarRentalManager.ViewModel
                     p.Close();
                 }
             });
-          
+
             CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ContractWindow wd = new ContractWindow(); wd.ShowDialog(); });
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
 
 
-            //var a = DataProvider.Ins.DB.Cars.ToList();
+            //var a = DataProvider.Ins.DB.Cars.ToList();        }
         }
     }
 }
