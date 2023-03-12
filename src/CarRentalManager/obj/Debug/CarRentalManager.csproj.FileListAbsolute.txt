@@ -212,3 +212,15 @@ C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalMa
 C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.baml
 C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.baml
 C:\Users\THANH TUYEN\OneDrive\Documents\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.baml
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.dll
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.SqlServer.dll
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.xml
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\bin\Debug\EntityFramework.SqlServer.xml
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.g.cs
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.g.cs
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.g.cs
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\CarWindow.baml
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\ContractWindow.baml
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\OrderWindow.baml
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\RegisterForm.g.cs
+D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\obj\Debug\RegisterForm.baml

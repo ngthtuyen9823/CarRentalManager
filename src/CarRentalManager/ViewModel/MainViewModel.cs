@@ -17,6 +17,7 @@ namespace CarRentalManager.ViewModel
         public ICommand ContractCommand { get; set; }
         public ICommand CarCommand { get; set; }
         public ICommand OrderCommand { get; set; }
+        public ICommand RegisterFormCommand { get; set; }
 
 
 
@@ -53,7 +54,7 @@ namespace CarRentalManager.ViewModel
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ContractWindow wd = new ContractWindow(); wd.ShowDialog(); });
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
-
+            RegisterFormCommand = new RelayCommand<object>((p) => { return true; }, (p) => { RegisterForm wd = new RegisterForm(); wd.ShowDialog(); });
 
             //var a = DataProvider.Ins.DB.Cars.ToList();
         }
