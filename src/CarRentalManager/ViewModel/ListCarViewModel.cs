@@ -10,12 +10,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using CarRentalManager.enums;
 using static System.Net.Mime.MediaTypeNames;
+using CarRentalManager.services;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListCarViewModel
     {
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        SqlQueryService sqlService = new SqlQueryService();
 
         private ObservableCollection<Car> list;
         //public ObservableCollection<Car> List { get => list; set { list = value; OnPropertyChanged(); } }
@@ -23,7 +25,7 @@ namespace CarRentalManager.ViewModel
 
         public ListCarViewModel()
         {
-            getListObservableCar();
+            List = getListObservableCar();
         }
         //public void Load()
         //{
@@ -47,81 +49,45 @@ namespace CarRentalManager.ViewModel
         //        conn.Close();
         //    }
         //}
-        public List<Car> getListCar()
+        public ObservableCollection<Car> getListObservableCar()
         {
-
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT *FROM Car", conn);
-
+            string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
             DataTable dataTableCar = new DataTable();
             adapter.Fill(dataTableCar);
-            List<Car> carList = new List<Car>();
+
+            ObservableCollection<Car> carList = new ObservableCollection<Car>();
             for (int i = 0; i < dataTableCar.Rows.Count; i++)
             {
+                int id, publishYear, price, seats;
                 var row = dataTableCar.Rows[i];
                 ECarStatus status;
-                Enum.TryParse<ECarStatus>(row["status"].ToString(), out status);
                 ECarType type;
-                Enum.TryParse<ECarType>(row["type"].ToString(), out type);
                 EDrivingType drivingType;
+                Enum.TryParse<ECarStatus>(row["status"].ToString(), out status);
+                Enum.TryParse<ECarType>(row["type"].ToString(), out type);
                 Enum.TryParse<EDrivingType>(row["drivingType"].ToString(), out drivingType);
+                int.TryParse(row["id"].ToString(), out id);
+                int.TryParse(row["publishYear"].ToString(), out publishYear);
+                int.TryParse(row["price"].ToString(), out price);
+                int.TryParse(row["seats"].ToString(), out seats);
 
-                Car car = new Car(
-                    Convert.ToInt32(row["id"]),
+                carList.Add(
+                    new Car(id,
                     row["name"].ToString(),
                     row["branch"].ToString(),
-                    Convert.ToInt32(row["publishYear"]),
+                    publishYear,
                     row["color"].ToString(),
-                    Convert.ToInt32(row["price"]),
-                   status,
-                   type,
-                   drivingType,
-                    Convert.ToInt32(row["seats"]),
+                    price,
+                    status,
+                    type,
+                    drivingType,
+                    seats,
                     row["licensePlate"].ToString(),
                     row["imagePath"].ToString(),
-                    row["tutorialPath"].ToString());
-
-                carList.Add(car);
-               
+                    row["tutorialPath"].ToString()));
             }
             return carList;
-        }
-        public void  getListObservableCar()
-        {
-
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT *FROM Car", conn);
-            DataTable dataTableCar = new DataTable();
-            adapter.Fill(dataTableCar);
-            List<Car> carList = new List<Car>();
-            for (int i = 0; i < dataTableCar.Rows.Count; i++)
-            {
-                var row = dataTableCar.Rows[i];
-                ECarStatus status;
-                Enum.TryParse<ECarStatus>(row["status"].ToString(), out status);
-                ECarType type;
-                Enum.TryParse<ECarType>(row["type"].ToString(), out type);
-                EDrivingType drivingType;
-                Enum.TryParse<EDrivingType>(row["drivingType"].ToString(), out drivingType);
-
-                Car car = new Car(
-                    Convert.ToInt32(row["id"]),
-                    row["name"].ToString(),
-                    row["branch"].ToString(),
-                    Convert.ToInt32(row["publishYear"]),
-                    row["color"].ToString(),
-                    Convert.ToInt32(row["price"]),
-                   status,
-                   type,
-                   drivingType,
-                    Convert.ToInt32(row["seats"]),
-                    row["licensePlate"].ToString(),
-                    row["imagePath"].ToString(),
-                    row["tutorialPath"].ToString());
-
-                carList.Add(car);
-
-            }
-            List = new ObservableCollection<Car>(carList);
-
         }
     }
 }

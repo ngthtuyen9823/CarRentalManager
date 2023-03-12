@@ -12,6 +12,10 @@ namespace CarRentalManager.services
     {
         public SqlQueryService() { }
 
+        public string getListTableData(ETableName tableName)
+        {
+            return string.Format("SELECT * FROM {0}", tableName);
+        }
         public static string getUserWithEmail(string email)
         {
             return string.Format("SELECT * FROM {0} WHERE email = '{1}'", ETableName.USER, email);
