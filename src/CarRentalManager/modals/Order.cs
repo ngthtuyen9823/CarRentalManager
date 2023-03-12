@@ -19,7 +19,6 @@ namespace CarRentalManager.modals
         EOrderStatus status;
         DateTime createdAt;
         DateTime updatedAt;
-
         public Order(int id,
         int carId,
         int customerId,
@@ -27,9 +26,7 @@ namespace CarRentalManager.modals
         DateTime startDate,
         DateTime endDate,
         int totalFee,
-        EOrderStatus status,
-        DateTime createdAt,
-        DateTime updatedAt)
+        EOrderStatus status)
         {
             this.id = id;
             this.carId = carId;
@@ -39,8 +36,8 @@ namespace CarRentalManager.modals
             this.endDate = endDate;
             this.totalFee = totalFee;
             this.status = status;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
+            this.createdAt = new DateTime();
+            this.updatedAt = new DateTime();
         }
 
         public int ID { get { return id; } set { id = value; } }

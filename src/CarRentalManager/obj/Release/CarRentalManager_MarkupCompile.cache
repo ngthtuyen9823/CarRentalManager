@@ -10,11 +10,11 @@ none
 false
 TRACE
 D:\KI 2 - NAM 2\WIPR\Project\CarRentalManager\src\CarRentalManager\App.xaml
-9-1219610151
+131708133480
 
-31-1002331238
-18-1720925174
-Assets\icons.xaml;customcontrols\CustomCard.xaml;customcontrols\MenuBottons.xaml;CustomerWindow.xaml;LandingPage.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;UserControlCRM\ControlBarUC.xaml;
+38158334095
+20-1187423785
+Assets\icons.xaml;CarWindow.xaml;ContractWindow.xaml;customcontrols\CustomCard.xaml;customcontrols\MenuBottons.xaml;CustomerWindow.xaml;LandingPage.xaml;LoginWindow.xaml;MainWindow.xaml;OrderWindow.xaml;RegisterForm.xaml;ResourceXAML\MainResource.xaml;UserControlCRM\ControlBarUC.xaml;
 
 True
 
