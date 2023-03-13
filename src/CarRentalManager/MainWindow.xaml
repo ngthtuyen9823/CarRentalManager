@@ -23,7 +23,7 @@
         Name="mainWindow"
         DataContext="{StaticResource MainVM}"
         
-        Title="Phần mềm quản lý cho thuê xe" Height="800" Width="800">
+        Title="Phần mềm quản lý cho thuê xe" Height="750" Width="1000">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

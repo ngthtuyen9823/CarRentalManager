@@ -22,7 +22,7 @@
         
         x:Name="window"
         
-        Title="Order Manager" Height="700" Width="600">
+        Title="Order Manager" Height="750" Width="1000">
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -40,8 +40,8 @@
 				<RowDefinition Height="auto"></RowDefinition>
 			</Grid.RowDefinitions>
 
-			<materialDesign:Card>
-				<Grid Grid.Row="0">
+            <materialDesign:Card Margin="0 0 0 10" Padding="0 0 0 20">
+                <Grid Grid.Row="0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="auto"></ColumnDefinition>
 						<ColumnDefinition Width="auto"></ColumnDefinition>
@@ -73,26 +73,23 @@
 				</Grid>
 			</materialDesign:Card>
 
-			<materialDesign:Card Grid.Row="1" VerticalAlignment="Stretch">
-				<ScrollViewer VerticalScrollBarVisibility="Auto">
-					<ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
-						<ListView.View>
-							<GridView>
-								<GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding CarID}"></GridViewColumn>
-								<GridViewColumn Header="Mã khách hàng" DisplayMemberBinding="{Binding CustomerID}"></GridViewColumn>
-								<GridViewColumn Header="Địa điểm nhận xe" DisplayMemberBinding="{Binding PickUpLocation}"></GridViewColumn>
-								<GridViewColumn Header="Địa điểm trả xe" DisplayMemberBinding="{Binding DropOffLocation}"></GridViewColumn>
-								<GridViewColumn Header="Ngày giao" DisplayMemberBinding="{Binding BookingDate}"></GridViewColumn>
-								<GridViewColumn Header="Ngày trả" DisplayMemberBinding="{Binding PaymentDate}"></GridViewColumn>
-								<GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
-							</GridView>
-						</ListView.View>
-					</ListView>
-				</ScrollViewer>
-			</materialDesign:Card>
-
-
-		</Grid>
-
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
+                <Grid>
+                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding CarID}"></GridViewColumn>
+                                <GridViewColumn Header="Mã khách hàng" DisplayMemberBinding="{Binding CustomerID}"></GridViewColumn>
+                                <GridViewColumn Header="Địa điểm nhận xe" DisplayMemberBinding="{Binding PickUpLocation}"></GridViewColumn>
+                                <GridViewColumn Header="Địa điểm trả xe" DisplayMemberBinding="{Binding DropOffLocation}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày giao" DisplayMemberBinding="{Binding BookingDate}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày trả" DisplayMemberBinding="{Binding PaymentDate}"></GridViewColumn>
+                                <GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
 	</Grid>
 </Window>

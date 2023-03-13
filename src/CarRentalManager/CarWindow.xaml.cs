@@ -26,8 +26,6 @@ namespace CarRentalManager
         public CarWindow()
         {
             InitializeComponent();
-
-
         }
     
     }
