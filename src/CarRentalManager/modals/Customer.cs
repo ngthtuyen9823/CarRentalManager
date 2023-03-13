@@ -16,7 +16,7 @@ namespace CarRentalManager.modals
 		string idCard;
 		string address;
 		DateTime createdAt;
-		DateTime updateedAt;
+		DateTime updatedAt;
 
 		public Customer(int id, 
             string name, 
@@ -25,7 +25,7 @@ namespace CarRentalManager.modals
             string idCard, 
             string address, 
             DateTime createdAt, 
-            DateTime updateedAt)
+            DateTime updatedAt)
         {
             this.id = id;
             this.name = name;
@@ -34,16 +34,20 @@ namespace CarRentalManager.modals
             this.idCard = idCard;
             this.address = address;
             this.createdAt = createdAt;
-            this.updateedAt = updateedAt;
+            this.updatedAt = updatedAt;
         }
 
-        public int ID { get { return id; } }
-        public string Name { get { return name; } }
-        public string PhoneNumber { get { return phoneNumber; } }
-        public string Email { get { return email; } }
-        public string IDCard { get { return idCard; } }
-        public string Address { get { return address; } }
-        public DateTime CreatedAt { get { return createdAt; } }
-        public DateTime UpdatedAt { get { return updateedAt; } }
+        public int ID { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+
+        public string Email { get { return email; } set { email =  value; } }
+
+        public string IDCard { get { return idCard; } set { idCard = value; } }
+
+        public string Address { get { return address; } set { address= value; } }
+
+        public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public DateTime UpdatedAt { get { return updatedAt; }set { UpdatedAt = value; } }
     }
 }

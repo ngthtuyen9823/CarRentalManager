@@ -54,8 +54,6 @@ namespace CarRentalManager.ViewModel
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
 
-
-            //var a = DataProvider.Ins.DB.Cars.ToList();
         }
     }
 }

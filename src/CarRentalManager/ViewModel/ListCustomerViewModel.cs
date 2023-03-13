@@ -41,19 +41,18 @@ namespace CarRentalManager.ViewModel
                 DateTime createdAt, updatedAt;
                 var row = dataTableCustomer.Rows[i];
                 int.TryParse(row["id"].ToString(), out id);
-                createdAt = DateTime.ParseExact(row["createdAt"].ToString(), "ddMMyyyy", CultureInfo.InvariantCulture);
-                updatedAt = DateTime.ParseExact(row["updateddAt"].ToString(), "ddMMyyyy", CultureInfo.InvariantCulture);
+                createdAt = DateTime.Parse(row["createdAt"].ToString());
+                updatedAt = DateTime.Parse(row["updatedAt"].ToString());
 
                 customerList.Add(
                     new Customer(id,
                     row["name"].ToString(),
                     row["phoneNumber"].ToString(),
                     row["email"].ToString(),
-                    row["idCard"].ToString(),
+                    row["cmnd"].ToString(),
                     row["address"].ToString(),
                     createdAt,
                     updatedAt));
-                    
             }
             return customerList;
         }
