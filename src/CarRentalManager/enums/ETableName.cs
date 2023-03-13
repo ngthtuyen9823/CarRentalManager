@@ -10,6 +10,9 @@ namespace CarRentalManager.enums
     {
         CAR,
         USER,
-        RENTALINFORMATION
+        CUSTOMER,
+        RENTALINFORMATION,
+        ORDER,
+        CONTRACT
     }
 }

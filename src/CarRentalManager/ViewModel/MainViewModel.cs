@@ -1,5 +1,4 @@
-﻿using CarRentalManager.Model;
-using CarRentalManager.ViewModel;
+﻿using CarRentalManager.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,8 +54,6 @@ namespace CarRentalManager.ViewModel
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
 
-
-            //var a = DataProvider.Ins.DB.Cars.ToList();
         }
     }
 }
