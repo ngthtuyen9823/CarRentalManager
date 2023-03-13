@@ -569,9 +569,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <local:CustomCard Width="305"/>
-                                </Grid>
+                                <local:CustomCard Width="305"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

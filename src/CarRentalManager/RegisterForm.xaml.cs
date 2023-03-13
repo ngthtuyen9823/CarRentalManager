@@ -19,15 +19,16 @@ namespace CarRentalManager
     /// </summary>
     public partial class RegisterForm : Window
     {
-        public RegisterForm()
+        public RegisterForm(string id)
         {
+            MessageBox.Show(id);
             InitializeComponent();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Close();
         }
     }
 }

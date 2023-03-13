@@ -78,9 +78,9 @@
 				<Run Text="k/ngày" />
 			</TextBlock>
 
-            <Button Style="{StaticResource PlayButtons}"
-                    Command="{Binding RegisterFormCommand}"
-                    CommandParameter="{Binding ElementName=registerForm}"/>
+            <Button Tag="{Binding ID}"
+                    Style="{StaticResource PlayButtons}"
+                    Click="btn_OpenForm"/>
 
             <!--Tutor pic-->
             <Ellipse Stroke="White"
