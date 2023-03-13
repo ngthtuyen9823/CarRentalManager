@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="modals\Car.cs" />
     <Compile Include="modals\Contract.cs" />
+    <Compile Include="modals\Customer.cs" />
     <Compile Include="modals\Order.cs" />
     <Compile Include="modals\Receipt.cs" />
     <Compile Include="modals\User.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\ListCarViewModel.cs" />
+    <Compile Include="ViewModel\ListCustomerViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Assets\icons.xaml">

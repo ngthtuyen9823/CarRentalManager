@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:CarRentalManager"
         mc:Ignorable="d"
         
-        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"

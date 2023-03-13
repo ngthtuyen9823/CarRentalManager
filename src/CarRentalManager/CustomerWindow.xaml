@@ -22,7 +22,7 @@
         WindowStartupLocation="CenterScreen"
         
         x:Name="window"
-        
+        DataContext="CustomerVM"
         Title="Customer Manager" Height="750" Width="1000">
     
     <Grid>
@@ -77,7 +77,8 @@
                                 <GridViewColumn Header="Tên" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
                                 <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                                 <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding Phone}"></GridViewColumn>
-                                <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding CMND}"></GridViewColumn>
+                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
+                                <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding IDCard}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

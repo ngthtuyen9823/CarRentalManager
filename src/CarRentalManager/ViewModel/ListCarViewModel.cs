@@ -14,41 +14,17 @@ using CarRentalManager.services;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListCarViewModel
+    public class ListCarViewModel : BaseViewModel
     {
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         SqlQueryService sqlService = new SqlQueryService();
-
         private ObservableCollection<Car> list;
-        //public ObservableCollection<Car> List { get => list; set { list = value; OnPropertyChanged(); } }
         public ObservableCollection<Car> List {get; set;}
 
         public ListCarViewModel()
         {
             List = getListObservableCar();
         }
-        //public void Load()
-        //{
-        //    try
-        //    {
-        //        conn.Open();
-        //        string sqlStr = string.Format("SELECT *FROM HocSinh");
-
-
-        //        SqlDataAdapter adapter = new SqlDataAdapter(sqlStr, conn);
-        //        DataTable dtSinhVien = new DataTable();
-        //        adapter.Fill(dtSinhVien);
-        //        gvHsinh.DataSource = dtSinhVien;
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        MessageBox.Show(exc.Message);
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
-        //}
         public ObservableCollection<Car> getListObservableCar()
         {
             string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
