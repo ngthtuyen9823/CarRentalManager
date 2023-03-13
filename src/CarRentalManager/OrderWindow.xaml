@@ -19,77 +19,84 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        
+       
         x:Name="window"
+        DataContext="{StaticResource OrderVM}"
         
         Title="Order Manager" Height="750" Width="1000">
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"></RowDefinition>
-			<RowDefinition></RowDefinition>
-		</Grid.RowDefinitions>
-		<Grid Grid.Row="0">
-			<uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
-		</Grid>
-
-		<Grid Grid.Row="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="auto"></RowDefinition>
-				<RowDefinition Height="auto"></RowDefinition>
-				<RowDefinition Height="auto"></RowDefinition>
-			</Grid.RowDefinitions>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
             <materialDesign:Card Margin="0 0 0 10" Padding="0 0 0 20">
                 <Grid Grid.Row="0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto"></ColumnDefinition>
-						<ColumnDefinition Width="auto"></ColumnDefinition>
-					</Grid.ColumnDefinitions>
-
-					<StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-						<TextBox Margin="5" Text="{Binding CarID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
+                        <TextBox Margin="5" Text="{Binding ID}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
+                        <TextBox Margin="5" Text="{Binding CarID}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding PickUpLocation, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa điểm nhận xe"
+                        <TextBox Margin="5" Text="{Binding CustomerID}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding DropOffLocation, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa điểm trả xe"
+                        <TextBox Margin="5" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding BookingDate, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Ngày giao"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding PaymentDate, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Ngày trả"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tình trạng"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-					</StackPanel>
-
+                        <ComboBox SelectedValue="{Binding Status}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem>
+                                COMPLETE
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                CANCELLED
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                PENDING
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <DatePicker Margin="5" Text="{Binding StartDate}" materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                        <DatePicker Margin="5" Text="{Binding EndDate}" materialDesign:HintAssist.Hint="Ngày kết thúc"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    </StackPanel>
                     <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
                         <Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
                         <Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
                     </StackPanel>
-
                 </Grid>
-			</materialDesign:Card>
-
+            </materialDesign:Card>
             <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
                 <Grid>
-                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView ItemsSource="{Binding List}"
+                              SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding CarID}"></GridViewColumn>
-                                <GridViewColumn Header="Mã khách hàng" DisplayMemberBinding="{Binding CustomerID}"></GridViewColumn>
-                                <GridViewColumn Header="Địa điểm nhận xe" DisplayMemberBinding="{Binding PickUpLocation}"></GridViewColumn>
-                                <GridViewColumn Header="Địa điểm trả xe" DisplayMemberBinding="{Binding DropOffLocation}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày giao" DisplayMemberBinding="{Binding BookingDate}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày trả" DisplayMemberBinding="{Binding PaymentDate}"></GridViewColumn>
-                                <GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                                <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                                <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding CarId}"></GridViewColumn>
+                                <GridViewColumn Header="Mã khách hàng" DisplayMemberBinding="{Binding CustomerId}"></GridViewColumn>
+                                <GridViewColumn Header="Phí thanh toán" DisplayMemberBinding="{Binding TotalFee}"></GridViewColumn>
+                                <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày bắt đầu" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày kết thúc" DisplayMemberBinding="{Binding EndDate}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày cập nhật" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
             </ScrollViewer>
         </Grid>
-	</Grid>
+    </Grid>
 </Window>

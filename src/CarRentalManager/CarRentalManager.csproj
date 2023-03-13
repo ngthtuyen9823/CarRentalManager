@@ -129,6 +129,7 @@
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\ListCarViewModel.cs" />
     <Compile Include="ViewModel\ListCustomerViewModel.cs" />
+    <Compile Include="ViewModel\ListOrderViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Assets\icons.xaml">

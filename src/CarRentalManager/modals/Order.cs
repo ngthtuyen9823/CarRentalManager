@@ -43,16 +43,16 @@ namespace CarRentalManager.modals
             this.updatedAt = updatedAt;
         }
 
-        public int ID { get { return id; } }
-        public int CarId { get { return carId; } }
-        public int CustomerId { get { return customerId; } }
-        public string BookingPlace { get { return bookingPlace; } }
-        public DateTime StartDate { get { return startDate; } }
-        public DateTime EndDate { get { return endDate; } }
-        public int TotalFee { get { return totalFee; } }
-        public EOrderStatus Status { get { return status; } }
-        public DateTime CreatedAt { get { return createdAt; } }
-        public DateTime UpdatedAt { get { return updatedAt; } }
+        public int ID { get { return id; } set { id = value; } }
+        public int CarId { get { return carId; } set { carId = value; } }
+        public int CustomerId { get { return customerId; } set { customerId = value; } }
+        public string BookingPlace { get { return bookingPlace; } set { bookingPlace = value; } }
+        public DateTime StartDate { get { return startDate; } set { startDate = value; } }
+        public DateTime EndDate { get { return endDate; } set { endDate = value; } }
+        public int TotalFee { get { return totalFee; } set { totalFee = value; } }
+        public EOrderStatus Status { get { return status; } set { status = value; } }
+        public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
 
 
     }

@@ -14,28 +14,28 @@ namespace CarRentalManager.services
 
         public string getListTableData(ETableName tableName)
         {
-            return string.Format("SELECT * FROM {0}", tableName);
+            return string.Format("SELECT * FROM [{0}]", tableName);
         }
         public static string getUserWithEmail(string email)
         {
-            return string.Format("SELECT * FROM {0} WHERE email = '{1}'", ETableName.USER, email);
+            return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", ETableName.USER, email);
         }
 
         public static string getListRecords()
         {
-            return string.Format("SELECT * FROM {0} WHERE email = '{0}'", ETableName.RENTALINFORMATION);
+            return string.Format("SELECT * FROM [{0}] WHERE email = '{0}'", ETableName.RENTALINFORMATION);
         }
 
         public static string updateRecord(string id, Order record)
         {
             //*TODO: UPDATE query later
-            return string.Format("UPDATE * FROM {0} WHERE email = '{1}'", ETableName.RENTALINFORMATION, record);
+            return string.Format("UPDATE * FROM [{0}] WHERE email = '{1}'", ETableName.RENTALINFORMATION, record);
         }
 
         public static string deleteRecord(string id)
         {
             //*TODO: UPDATE query later
-            return string.Format("DELETE FROM {0} WHERE id = '{1}'", ETableName.RENTALINFORMATION, id);
+            return string.Format("DELETE FROM [{0}] WHERE id = '{1}'", ETableName.RENTALINFORMATION, id);
         }
     }
 }
