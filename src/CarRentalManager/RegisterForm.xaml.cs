@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,20 @@ namespace CarRentalManager
     /// </summary>
     public partial class RegisterForm : Window
     {
-        public RegisterForm(string id)
+        public RegisterForm()
         {
-            MessageBox.Show(id);
             InitializeComponent();
+        }
+        public RegisterForm(string id)
+        {           
+            InitializeComponent();
+            lblIDXe.Content = "ID XE : " + id;
+        }
+
+        public string ID { get; set; }
+        private void RegisterForm_Load(object sender, EventArgs e)
+        {
+            lblIDXe.Content = ID;
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
 

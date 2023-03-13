@@ -13,7 +13,7 @@ using System.Security.Policy;
 using System.Xml.Linq;
 using CarRentalManager.enums;
 
-namespace CarRentalManager.ViewModels
+namespace CarRentalManager.ViewModel
 {
     class CardViewModels
     {
@@ -32,10 +32,10 @@ namespace CarRentalManager.ViewModels
 
             _course = new ObservableCollection<Car>()
             {
-                new Car(1, "VINFAST LUX A 2.0 2021", "VinFast", "Modal", 2020, "white", 1300, ECarStatus.AVAILABLE, ECarType.CAR, EDrivingType.SELF_DRIVING, "1234323", "/Assets/1.jpg", "/Assets/1.jpg"),
+                new Car(1, "VINFAST LUX A 2.0 2021", "VinFast", 2020, "white", 1300, ECarStatus.AVAILABLE, ECarType.CAR, EDrivingType.SELF_DRIVING, 4, "1234323", "/Assets/1.jpg", "/Assets/1.jpg"),
 
-                new Car(2, "VINFAST LUX A 2.0 2021", "VinFast", "Modal", 2020, "white", 1300, ECarStatus.AVAILABLE, ECarType.CAR, EDrivingType.SELF_DRIVING, "1234323", "/Assets/1.jpg", "/Assets/2.jpg"),
-            
+                new Car(2, "VINFAST LUX A 2.0 2021", "VinFast", 2020, "white", 1300, ECarStatus.AVAILABLE, ECarType.CAR, EDrivingType.SELF_DRIVING, 4, "1234323", "/Assets/1.jpg", "/Assets/2.jpg"),
+
             };
         }
     }
