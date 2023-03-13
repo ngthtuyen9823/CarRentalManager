@@ -41,24 +41,41 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="400" HorizontalAlignment="Left">
+                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
                         <TextBox Margin="5" Text="{Binding ID}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Branch}" materialDesign:HintAssist.Hint="Nhà sản xuất"
+                        <TextBox Margin="5" Text="{Binding Branch}" materialDesign:HintAssist.Hint="Hãng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Type}" materialDesign:HintAssist.Hint="Loại(5 chỗ, 7 chỗ)"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding PublishYear}" materialDesign:HintAssist.Hint="Năm sản xuất"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <ComboBox SelectedValue="{Binding Type}" Margin="5" materialDesign:HintAssist.Hint="Loại xe" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem>
+                                CAR
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                BYCYCLE
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                MOTOBIKE 
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox SelectedValue="{Binding Status}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem>
+                                AVAILABLE
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                UNAVAILABLE
+                            </ComboBoxItem>
+                        </ComboBox>
                         <TextBox Margin="5" Text="{Binding LicensePlate}" materialDesign:HintAssist.Hint="Biển số xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                         <TextBox Margin="5" Text="{Binding Price}" materialDesign:HintAssist.Hint="Giá thuê"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
-						<Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="5"></Button>
-						<Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="5"></Button>
-						<Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="5"></Button>
+                    <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+						<Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+						<Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
 					</StackPanel>
 				</Grid>
 			</materialDesign:Card>
@@ -66,17 +83,12 @@
                     <Grid>
                         <ListView ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
                         <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                                     <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Branch}"></GridViewColumn>
                                     <GridViewColumn Header="Loại xe" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
-                                    <GridViewColumn Header="Năm sản xuất" DisplayMemberBinding="{Binding PublishYear}"></GridViewColumn>
+                                    <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                     <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
                                     <GridViewColumn Header="Giá thuê" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
                                 </GridView>

@@ -46,7 +46,7 @@
 						<ColumnDefinition Width="auto"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 
-					<StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="400" HorizontalAlignment="Left">
+					<StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
 						<TextBox Margin="5" Text="{Binding ContractID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 						<TextBox Margin="5" Text="{Binding OrderID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
@@ -57,13 +57,13 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 					</StackPanel>
 
-					<StackPanel Grid.Column="1" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
-						<Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="5"></Button>
-						<Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="5"></Button>
-						<Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="5"></Button>
-					</StackPanel>
+                    <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                        <Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+                        <Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                    </StackPanel>
 
-				</Grid>
+                </Grid>
 			</materialDesign:Card>
 
             <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
