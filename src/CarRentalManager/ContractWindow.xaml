@@ -20,69 +20,63 @@
         WindowStartupLocation="CenterScreen"
         BorderBrush="Black"
         x:Name="window"
+        DataContext="{StaticResource ContractVM}"
         
         Title="Contract Manager" Height="750" Width="1000">
 
     <Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"></RowDefinition>
-			<RowDefinition></RowDefinition>
-		</Grid.RowDefinitions>
-		<Grid Grid.Row="0">
-			<uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
-		</Grid>
-
-		<Grid Grid.Row="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="auto"></RowDefinition>
-				<RowDefinition Height="auto"></RowDefinition>
-				<RowDefinition Height="auto"></RowDefinition>
-			</Grid.RowDefinitions>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
             <materialDesign:Card Margin="0 0 0 10" Padding="0 0 0 20">
                 <Grid Grid.Row="0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto"></ColumnDefinition>
-						<ColumnDefinition Width="auto"></ColumnDefinition>
-					</Grid.ColumnDefinitions>
-
-					<StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-						<TextBox Margin="5" Text="{Binding ContractID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
+                        <TextBox Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding OrderID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                        <TextBox Margin="5" Text="{Binding OrderId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding ContractDate, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Ngày hợp đồng"
+                        <TextBox Margin="5" Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-						<TextBox Margin="5" Text="{Binding ContractValue, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá hợp đồng"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-					</StackPanel>
-
+                        <DatePicker Margin="5" Text="{Binding MakingDay}" materialDesign:HintAssist.Hint="Making Day"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    </StackPanel>
                     <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
                         <Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
                         <Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
                     </StackPanel>
-
                 </Grid>
-			</materialDesign:Card>
-
+            </materialDesign:Card>
             <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
                 <Grid>
-                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView ItemsSource="{Binding List}"
+                              SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding IContractIDd}"></GridViewColumn>
-                                <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderID}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày hợp đồng" DisplayMemberBinding="{Binding ContractDate}"></GridViewColumn>
-                                <GridViewColumn Header="Trị giá hợp đồng" DisplayMemberBinding="{Binding ContractValue}"></GridViewColumn>
+                                <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                                <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
+                                <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                                <GridViewColumn Header="Making Day" DisplayMemberBinding="{Binding MakingDay}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày cập nhật" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
             </ScrollViewer>
-
-
-		</Grid>
-
-	</Grid>
+        </Grid>
+    </Grid>
 </Window>

@@ -12,6 +12,7 @@ namespace CarRentalManager.enums
         USER,
         CUSTOMER,
         RENTALINFORMATION,
-        ORDER
+        ORDER,
+        CONTRACT
     }
 }

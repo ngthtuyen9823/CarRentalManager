@@ -8,5 +8,7 @@
     <viewmodel:ListCarViewModel x:Key="CarVM"></viewmodel:ListCarViewModel>
     <viewmodel:ListCustomerViewModel x:Key="CustomerVM"></viewmodel:ListCustomerViewModel>
     <viewmodel:ListOrderViewModel x:Key="OrderVM"></viewmodel:ListOrderViewModel>
+    <viewmodel:ListContractViewModel x:Key="ContractVM"></viewmodel:ListContractViewModel>
+
 
 </ResourceDictionary>

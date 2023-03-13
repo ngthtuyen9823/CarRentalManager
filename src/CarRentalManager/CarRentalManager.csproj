@@ -128,6 +128,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\ListCarViewModel.cs" />
+    <Compile Include="ViewModel\ListContractViewModel.cs" />
     <Compile Include="ViewModel\ListCustomerViewModel.cs" />
     <Compile Include="ViewModel\ListOrderViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

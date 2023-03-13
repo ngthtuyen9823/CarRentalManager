@@ -25,12 +25,12 @@ namespace CarRentalManager.modals
             this.updatedAt = updatedAt;
         }
 
-        public int ID { get { return id; } }
-        public int OrderId { get { return orderId; } }
-        public int UserId { get { return userId; } }
-        public DateTime MakingDay { get { return makingDay; } }
-        public DateTime CreatedAt { get { return createdAt; } }
-        public DateTime UpdatedAt { get { return updatedAt; } }
+        public int ID { get { return id; } set { id = value; } }
+        public int OrderId { get { return orderId; } set { orderId = value; } }
+        public int UserId { get { return userId; } set { userId = value; } }
+        public DateTime MakingDay { get { return makingDay; } set { makingDay = value; } }
+        public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
 
     }
 }

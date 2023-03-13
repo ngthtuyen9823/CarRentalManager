@@ -127,3 +127,9 @@ insert into [Order] Values(5,7,5,'Ho Chi Minh City', '2022-12-20', '2022-12-20',
 insert into [Order] Values(6,6,6,'Ho Chi Minh City', '2022-12-20', '2022-12-20', 80000, 'CANCELLED', '2022-12-20', '2022-12-20')
 insert into [Order] Values(7,5,7,'Ho Chi Minh City', '2022-12-20', '2022-12-20', 90000, 'COMPLETE', '2022-12-20', '2022-12-20')
 insert into [Order] Values(8,4,8,'Ho Chi Minh City', '2022-12-20', '2022-12-20', 100000, 'PENDING', '2022-12-20', '2022-12-20')
+
+
+insert into Contract values(1,8,1,'2022-12-12', '2022-12-12', '2022-12-12')
+insert into Contract values(2,7,2,'2022-12-12', '2022-12-12', '2022-12-12')
+insert into Contract values(3,6,3,'2022-12-12', '2022-12-12', '2022-12-12')
+insert into Contract values(4,5,4,'2022-12-12', '2022-12-12', '2022-12-12')
