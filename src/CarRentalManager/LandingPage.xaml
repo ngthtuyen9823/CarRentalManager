@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRentalManager"
-        xmlns:customcontrols="clr-namespace:CarRentalManager.customcontrols" xmlns:viewmodels="clr-namespace:CarRentalManager.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:customcontrols="clr-namespace:CarRentalManager.customcontrols" 
+        xmlns:viewmodel="clr-namespace:CarRentalManager.ViewModel" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1400"
         ResizeMode="CanResizeWithGrip">
@@ -560,7 +562,7 @@
                         VerticalContentAlignment="Center"
                         ItemsSource="{Binding Courses}" Width="1300">
                         <ItemsControl.DataContext>
-                            <viewmodels:CardViewModels/>
+                            <viewmodel:CardViewModels/>
                         </ItemsControl.DataContext>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>

@@ -92,6 +92,7 @@
     <Compile Include="customcontrols\MenuBottons.xaml.cs">
       <DependentUpon>MenuBottons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="customcontrols\MyTagInfo.cs" />
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -128,7 +129,7 @@
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CardViewModels.cs" />
+    <Compile Include="ViewModel\CardViewModels.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\ListCarViewModel.cs" />
@@ -265,6 +266,7 @@
   <ItemGroup>
     <Resource Include="Assets\user.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

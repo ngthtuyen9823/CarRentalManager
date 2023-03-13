@@ -46,7 +46,9 @@
     </UserControl.Resources>
     <Border>
         <Border.Background>
-            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="UniformToFill"/>
+            <ImageBrush
+                ImageSource="{Binding ImagePath}" 
+                Stretch="UniformToFill"/>
         </Border.Background>
         <Grid>
             <TextBlock
@@ -78,10 +80,9 @@
 				<Run Text="k/ngày" />
 			</TextBlock>
 
-            <Button Tag="{Binding ID}"
-                    Style="{StaticResource PlayButtons}"
-                    Click="btn_OpenForm"/>
-
+            <Button x:Name="btnLoadRegister" 
+                    Tag="{Binding ID}"
+                    Style="{StaticResource PlayButtons}" Click="btnLoadRegister_Click" Cursor="Hand"/>
             <!--Tutor pic-->
             <Ellipse Stroke="White"
                      StrokeThickness="2"
