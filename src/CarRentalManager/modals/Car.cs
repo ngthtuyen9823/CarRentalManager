@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,8 +36,7 @@ namespace CarRentalManager.modals
             int seats,
             string licensePlate,
             string imagePath,
-            string tutorialPath
-            )
+            string tutorialPath)
         {
             this.id = id;
             this.name = name;

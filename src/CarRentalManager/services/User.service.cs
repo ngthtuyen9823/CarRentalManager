@@ -9,13 +9,14 @@ namespace CarRentalManager.services
 {
     public class UserService
     {
+        readonly SqlQueryService sqlQueryService = new SqlQueryService();
         public UserService() { }
 
-        public static void signUp(string email, string password)
+        public void signUp(string email, string password)
         {
             try
             {
-                string queryString = SqlQueryService.getUserWithEmail(email);
+                string queryString = sqlQueryService.getUserWithEmail(email);
             }
             catch(Exception exc) {
                MessageBox.Show("services/User.service.cs", exc.Message);

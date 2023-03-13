@@ -15,14 +15,14 @@ namespace CarRentalManager.modals
         DateTime createdAt;
         DateTime updatedAt;
 
-        public Contract(int id, int orderId, int userId, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
+        public Contract(int id, int orderId, int userId, DateTime makingDay)
         {
             this.id = id;
             this.orderId = orderId;
             this.userId = userId;
             this.makingDay = makingDay;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
+            this.createdAt = new DateTime();
+            this.updatedAt = new DateTime();
         }
 
         public int ID { get { return id; } set { id = value; } }

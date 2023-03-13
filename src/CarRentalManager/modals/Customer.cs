@@ -23,9 +23,7 @@ namespace CarRentalManager.modals
             string phoneNumber, 
             string email, 
             string idCard, 
-            string address, 
-            DateTime createdAt, 
-            DateTime updatedAt)
+            string address)
         {
             this.id = id;
             this.name = name;
@@ -33,8 +31,6 @@ namespace CarRentalManager.modals
             this.email = email;
             this.idCard = idCard;
             this.address = address;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
         }
 
         public int ID { get { return id; } set { id = value; } }

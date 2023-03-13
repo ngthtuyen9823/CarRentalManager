@@ -74,7 +74,7 @@
                             Background="Black"
                             ToolTip="Resource name: MaterialDesignRaisedButton" Content="Đăng nhập"
                             Command="{Binding LoginCommand}"
-                         CommandParameter="{Binding ElementName=loginWindow}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
                             ></Button>
                     <Button Grid.Column="1"    
                             Style="{StaticResource  MaterialDesignRaisedDarkButton}"    

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CarRentalManager"
+             xmlns:local="clr-namespace:CarRentalManager" xmlns:viewmodel="clr-namespace:CarRentalManager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -46,7 +46,9 @@
     </UserControl.Resources>
     <Border>
         <Border.Background>
-            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="UniformToFill"/>
+            <ImageBrush
+                ImageSource="{Binding ImagePath}" 
+                Stretch="UniformToFill"/>
         </Border.Background>
         <Grid>
             <TextBlock
@@ -57,27 +59,30 @@
                 Margin="9,9,0,0">
                 <Run Foreground="Black"
                      Background="WhiteSmoke"
-                     Text="{Binding CarName}"/>
+                     Text="{Binding Name}"/>
                 <LineBreak/>
                 <Run 
                      Background="White"
                      Foreground="Gray" 
-                     FontSize="15"
-                     Text="{Binding Seats}"/>
+                     FontSize="15"					 
+                     Text="{Binding DrivingType}"/>
             </TextBlock>
 
-            <TextBlock
-                Background="{StaticResource PrimaryBrush}"
-                Foreground="WhiteSmoke"
-                HorizontalAlignment="Right" 
-                FontWeight="Bold"
-                VerticalAlignment="Top"
-                FontSize="20"
-                Margin="0,40,10,0"
-                Text="{Binding Money}"/>
+			<TextBlock
+				Background="{StaticResource PrimaryBrush}"
+				Foreground="WhiteSmoke"
+				HorizontalAlignment="Right"
+				FontWeight="Bold"
+				VerticalAlignment="Top"
+				FontSize="20"
+				Margin="0,40,10,0">
+				<Run Text="{Binding Price}" />
+				<Run Text="k/ngày" />
+			</TextBlock>
 
-            <Button Style="{StaticResource PlayButtons}"/>
-
+            <Button x:Name="btnLoadRegister" 
+                    Tag="{Binding ID}"
+                    Style="{StaticResource PlayButtons}" Click="btnLoadRegister_Click" Cursor="Hand"/>
             <!--Tutor pic-->
             <Ellipse Stroke="White"
                      StrokeThickness="2"
@@ -87,7 +92,7 @@
                      Width="92"
                      Margin="0,0,10,10">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="{Binding TutorImagePath}" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="{Binding TutorialPath}" Stretch="UniformToFill"/>
                 </Ellipse.Fill>
             </Ellipse>
         </Grid>

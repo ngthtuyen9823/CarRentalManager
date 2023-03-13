@@ -23,6 +23,7 @@ namespace CarRentalManager.ViewModel
         SqlQueryService sqlService = new SqlQueryService();
         private ObservableCollection<Customer> list;
         public ObservableCollection<Customer> List { get; set; }
+        readonly CustomerDataService customerDataService = new CustomerDataService();
         public ListCustomerViewModel() 
         {
             List = getListObservableCustomer();
@@ -37,22 +38,9 @@ namespace CarRentalManager.ViewModel
             ObservableCollection<Customer> customerList = new ObservableCollection<Customer>();
             for (int i = 0; i < dataTableCustomer.Rows.Count; i++)
             {
-                int id;
-                DateTime createdAt, updatedAt;
                 var row = dataTableCustomer.Rows[i];
-                int.TryParse(row["id"].ToString(), out id);
-                createdAt = DateTime.Parse(row["createdAt"].ToString());
-                updatedAt = DateTime.Parse(row["updatedAt"].ToString());
-
-                customerList.Add(
-                    new Customer(id,
-                    row["name"].ToString(),
-                    row["phoneNumber"].ToString(),
-                    row["email"].ToString(),
-                    row["cmnd"].ToString(),
-                    row["address"].ToString(),
-                    createdAt,
-                    updatedAt));
+                Customer newCustomer = customerDataService.craeteCustomerByRowData(row);
+                customerList.Add(newCustomer);
             }
             return customerList;
         }

@@ -100,6 +100,7 @@
     <Compile Include="enums\ECarStatus.cs" />
     <Compile Include="enums\ECarType.cs" />
     <Compile Include="enums\EDrivingType.cs" />
+    <Compile Include="enums\EnumDescriptionTypeConverter.cs" />
     <Compile Include="enums\ERentalInformationStatus.cs" />
     <Compile Include="enums\ETableName.cs" />
     <Compile Include="enums\EUserRole.cs" />
@@ -119,12 +120,20 @@
     <Compile Include="OrderWindow.xaml.cs">
       <DependentUpon>OrderWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegisterForm.xaml.cs">
+      <DependentUpon>RegisterForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="services\CustomerData.service.cs" />
+    <Compile Include="services\CarData.service.cs" />
+    <Compile Include="services\ContractData.service.cs" />
+    <Compile Include="services\OrderData.service.cs" />
     <Compile Include="services\SqlQuery.service.cs" />
     <Compile Include="services\User.service.cs" />
+    <Compile Include="services\Variable.service.cs" />
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CardViewModels.cs" />
+    <Compile Include="ViewModel\CardViewModels.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\ListCarViewModel.cs" />
@@ -181,6 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RegisterForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceXAML\MainResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,10 +230,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\1.jpg" />
-    <Resource Include="Assets\1.png" />
     <Resource Include="Assets\2.jpg" />
     <Resource Include="Assets\3.jpg" />
     <Resource Include="Assets\4.jpg" />
@@ -243,6 +254,23 @@
   <ItemGroup>
     <Resource Include="bkg.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\hightolow.jpg" />
+    <Resource Include="Assets\lowtohigh.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\car_type.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\bicycle_type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\motobike_type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\user.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
