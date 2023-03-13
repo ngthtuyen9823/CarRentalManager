@@ -12,6 +12,9 @@ using CarRentalManager.modals;
 using System.Security.Policy;
 using System.Xml.Linq;
 using CarRentalManager.enums;
+using CarRentalManager.services;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CarRentalManager.ViewModel
 {
@@ -19,8 +22,12 @@ namespace CarRentalManager.ViewModel
     {
         readonly ResourceDictionary dictionary = Application.LoadComponent(new Uri("/CarRentalManager;component/Assets/icons.xaml", 
             UriKind.RelativeOrAbsolute)) as ResourceDictionary;
-//        ResourceDictionary dictionary = new ResourceDictionary();
-        ObservableCollection<Car> _course { get; set; }
+        //        ResourceDictionary dictionary = new ResourceDictionary();
+        readonly SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        readonly SqlQueryService sqlService = new SqlQueryService();
+        readonly CarDataService carDataService = new CarDataService();
+        public ObservableCollection<Car> _course { get; set; }
+
         public ObservableCollection<Car> Courses
         {
             get { return _course; }
@@ -30,13 +37,23 @@ namespace CarRentalManager.ViewModel
         public CardViewModels()
         {
 
-            _course = new ObservableCollection<Car>()
+            _course = this.getListObservableCar();
+        }
+        public ObservableCollection<Car> getListObservableCar()
+        {
+            string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+            DataTable dataTableCar = new DataTable();
+            adapter.Fill(dataTableCar);
+
+            ObservableCollection<Car> carList = new ObservableCollection<Car>();
+            for (int i = 0; i < dataTableCar.Rows.Count; i++)
             {
-                new Car(1, "VINFAST LUX A 2.0 2021", "VinFast", 2020, "white", 1300, ECarStatus.AVAILABLE, ECarType.CAR, EDrivingType.SELF_DRIVING, 4, "1234323", "/Assets/1.jpg", "/Assets/1.jpg"),
-
-                new Car(2, "VINFAST LUX A 2.0 2021", "VinFast", 2020, "white", 1300, ECarStatus.AVAILABLE, ECarType.CAR, EDrivingType.SELF_DRIVING, 4, "1234323", "/Assets/1.jpg", "/Assets/2.jpg"),
-
-            };
+                var row = dataTableCar.Rows[i];
+                Car newCar = carDataService.craeteCarByRowData(row);
+                carList.Add(newCar);
+            }
+            return carList;
         }
     }
 }
