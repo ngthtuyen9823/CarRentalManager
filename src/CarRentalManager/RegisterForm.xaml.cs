@@ -1,7 +1,13 @@
-﻿using System;
+﻿using CarRentalManager.enums;
+using CarRentalManager.modals;
+using CarRentalManager.services;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +26,9 @@ namespace CarRentalManager
     /// </summary>
     public partial class RegisterForm : Window
     {
+        readonly SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        readonly SqlQueryService sqlService = new SqlQueryService();
+        readonly CarDataService carDataService = new CarDataService();
         public RegisterForm()
         {
             InitializeComponent();
@@ -27,7 +36,14 @@ namespace CarRentalManager
         public RegisterForm(string id)
         {           
             InitializeComponent();
-            lblIDXe.Content = "ID XE : " + id;
+            Car currentCar = this.getCarInformation(id);
+            this.loadViewModel(currentCar);
+        }
+
+        private void loadViewModel(Car car)
+        {
+            lblIDXe.Content = "ID XE : " + car.ID;
+            describeIMG.Source = new BitmapImage(new Uri(car.ImagePath, UriKind.Relative));
         }
 
         public string ID { get; set; }
@@ -40,6 +56,15 @@ namespace CarRentalManager
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+        private Car getCarInformation(string id)
+        {
+            string sqlStringGetTable = sqlService.getValueWithId(id, ETableName.CAR);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+            DataTable dataTableCar = new DataTable();
+            adapter.Fill(dataTableCar);
+
+            return carDataService.craeteCarByRowData(dataTableCar.Rows[0]);
         }
     }
 }

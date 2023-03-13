@@ -92,7 +92,6 @@
     <Compile Include="customcontrols\MenuBottons.xaml.cs">
       <DependentUpon>MenuBottons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="customcontrols\MyTagInfo.cs" />
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -124,8 +123,13 @@
     <Compile Include="RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="services\CustomerData.service.cs" />
+    <Compile Include="services\CarData.service.cs" />
+    <Compile Include="services\ContractData.service.cs" />
+    <Compile Include="services\OrderData.service.cs" />
     <Compile Include="services\SqlQuery.service.cs" />
     <Compile Include="services\User.service.cs" />
+    <Compile Include="services\Variable.service.cs" />
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>

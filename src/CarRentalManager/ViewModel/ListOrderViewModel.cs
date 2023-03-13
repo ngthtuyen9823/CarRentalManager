@@ -20,6 +20,8 @@ namespace CarRentalManager.ViewModel
         SqlQueryService sqlService = new SqlQueryService();
         private ObservableCollection<Order> list;
         public ObservableCollection<Order> List { get; set; }
+        readonly VariableService variableService = new VariableService();
+        readonly OrderDataService orderDataService = new OrderDataService();
         public ListOrderViewModel()
         {
             List = getListObservableOrder();
@@ -34,41 +36,9 @@ namespace CarRentalManager.ViewModel
             ObservableCollection<Order> orderList = new ObservableCollection<Order>();
             for (int i = 0; i < dataTableOrder.Rows.Count; i++)
             {
-                int id;
-                int carId;
-                int customerId;
-                int totalFee;
-
-                EOrderStatus status;
-                DateTime startDate;
-                DateTime endDate;
-                DateTime createdAt;
-                DateTime updatedAt;
-
                 var row = dataTableOrder.Rows[i];
-                int.TryParse(row["id"].ToString(), out id);
-                int.TryParse(row["carId"].ToString(), out carId);
-                int.TryParse(row["customerId"].ToString(), out customerId);
-                int.TryParse(row["totalFee"].ToString(), out totalFee);
-
-                Enum.TryParse<EOrderStatus>(row["status"].ToString(), out status);
-
-                createdAt = DateTime.Parse(row["createdAt"].ToString());
-                updatedAt = DateTime.Parse(row["updatedAt"].ToString());
-                startDate = DateTime.Parse(row["startDate"].ToString());
-                endDate = DateTime.Parse(row["endDate"].ToString());
-
-                orderList.Add(
-                    new Order(id,
-                    carId,
-                    customerId,
-                    row["bookingPlace"].ToString(),
-                    startDate,
-                    endDate,
-                    totalFee,
-                    status,
-                    createdAt, 
-                    updatedAt));
+                Order newOrder = orderDataService.craeteOrderByRowData(row);
+                orderList.Add(newOrder);
             }
             return orderList;
         }

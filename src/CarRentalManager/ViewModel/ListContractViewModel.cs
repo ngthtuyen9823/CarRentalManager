@@ -20,6 +20,8 @@ namespace CarRentalManager.ViewModel
         SqlQueryService sqlService = new SqlQueryService();
         private ObservableCollection<Contract> list;
         public ObservableCollection<Contract> List { get; set; }
+        readonly VariableService variableService = new VariableService();
+        readonly ContractDataService contractDataService = new ContractDataService();
         public ListContractViewModel()
         {
             List = getListObservableContract();
@@ -34,30 +36,9 @@ namespace CarRentalManager.ViewModel
             ObservableCollection<Contract> contractList = new ObservableCollection<Contract>();
             for (int i = 0; i < dataTableContract.Rows.Count; i++)
             {
-                int id;
-                int orderId;
-                int userId;
-
-                DateTime makingDay;
-                DateTime createdAt;
-                DateTime updatedAt;
-
                 var row = dataTableContract.Rows[i];
-                int.TryParse(row["id"].ToString(), out id);
-                int.TryParse(row["orderId"].ToString(), out orderId);
-                int.TryParse(row["userId"].ToString(), out userId);
-
-                makingDay = DateTime.Parse(row["makingDay"].ToString());
-                createdAt = DateTime.Parse(row["createdAt"].ToString());
-                updatedAt = DateTime.Parse(row["updatedAt"].ToString());
-
-                contractList.Add(
-                    new Contract(id,
-                    orderId,
-                    userId,
-                    makingDay,
-                    createdAt,
-                    updatedAt));
+                Contract newContract = contractDataService.craeteContractByRowData(row);
+                contractList.Add(newContract);
             }
             return contractList;
         }

@@ -1,0 +1,32 @@
+﻿using CarRentalManager.enums;
+using CarRentalManager.modals;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CarRentalManager.modals;
+using System.Data;
+using System.Windows.Controls;
+using System.Data.Entity.Core.Metadata.Edm;
+
+namespace CarRentalManager.services
+{
+    public class CustomerDataService
+    {
+        private readonly VariableService variableService = new VariableService();
+        public CustomerDataService() { }
+
+        public Customer craeteCustomerByRowData(DataRow row) {
+            int id = variableService.parseStringToInt(row["id"].ToString());
+            int.TryParse(row["id"].ToString(), out id);
+
+            return new Customer(id,
+                row["name"].ToString(),
+                row["phoneNumber"].ToString(),
+                row["email"].ToString(),
+                row["cmnd"].ToString(),
+                row["address"].ToString());
+        }
+    }
+}

@@ -12,30 +12,61 @@ namespace CarRentalManager.services
     {
         public SqlQueryService() { }
 
+        //*INFO: COMMON
         public string getListTableData(ETableName tableName)
         {
             return string.Format("SELECT * FROM [{0}]", tableName);
         }
-        public static string getUserWithEmail(string email)
+        public string getValueWithId(string id, ETableName tableName)
+        {
+            return string.Format("SELECT * FROM {0} WHERE id='{1}'", tableName, id);
+        }
+
+
+
+        //*INFO: CAR
+
+
+
+        //*INFO: USER
+        public string getUserWithEmail(string email)
         {
             return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", ETableName.USER, email);
         }
 
-        public static string getListRecords()
+
+
+        //*INFO: CUSTOMER
+
+
+
+        //*INFO: CONTRACT
+
+
+
+        //*INFO: RECORD
+        public string getListRecords()
         {
             return string.Format("SELECT * FROM [{0}] WHERE email = '{0}'", ETableName.RENTALINFORMATION);
         }
 
-        public static string updateRecord(string id, Order record)
+        public string updateRecord(string id, Order record)
         {
             //*TODO: UPDATE query later
             return string.Format("UPDATE * FROM [{0}] WHERE email = '{1}'", ETableName.RENTALINFORMATION, record);
         }
 
-        public static string deleteRecord(string id)
+        public string deleteRecord(string id)
         {
             //*TODO: UPDATE query later
             return string.Format("DELETE FROM [{0}] WHERE id = '{1}'", ETableName.RENTALINFORMATION, id);
         }
+
+
+        //*INFO: RECEIPT
+
+
+
+        
     }
 }

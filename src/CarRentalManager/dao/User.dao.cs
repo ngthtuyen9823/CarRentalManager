@@ -10,11 +10,12 @@ namespace CarRentalManager.dao
 {
     public class UserDao
     {
+        readonly SqlQueryService sqlQueryService = new SqlQueryService();
         public UserDao() { }
 
-        public static User getUserWithEmail(string email)
+        public User getUserWithEmail(string email)
         {
-            string queryString = SqlQueryService.getUserWithEmail(email);
+            string queryString = sqlQueryService.getUserWithEmail(email);
             //*TODO: Update call database later
             return null;
         } 
