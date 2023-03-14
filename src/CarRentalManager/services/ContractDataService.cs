@@ -14,7 +14,11 @@ namespace CarRentalManager.services
         private readonly VariableService variableService = new VariableService();
         public ContractDataService() { }
 
+<<<<<<< CRM-18:src/CarRentalManager/services/ContractDataService.cs
         public Contract createContractByRowData(DataRow row)
+=======
+        public Contract craeteContractByRowData(DataRow row) 
+>>>>>>> CRM-19 | Add addcomand to customer table:src/CarRentalManager/services/ContractData.service.cs
         {
             DateTime makingDay = DateTime.Parse(row["makingDay"].ToString());
             int id = variableService.parseStringToInt(row["id"].ToString());

@@ -31,6 +31,8 @@ namespace CarRentalManager.modals
             this.email = email;
             this.idCard = idCard;
             this.address = address;
+            this.createdAt = new DateTime();
+            this.updatedAt = new DateTime();
         }
 
         public int ID { get { return id; } set { id = value; } }

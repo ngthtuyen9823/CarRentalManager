@@ -51,6 +51,9 @@ namespace CarRentalManager.modals
             this.updatedAt = new DateTime();
         }
 
+        public Car() {  }
+
+
         public int ID { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string Brand { get { return brand; } set { brand = value; } }

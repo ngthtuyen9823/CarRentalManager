@@ -19,10 +19,6 @@ namespace CarRentalManager.ViewModel
         public ICommand OrderCommand { get; set; }
         public ICommand RegisterFormCommand { get; set; }
 
-
-
-
-        // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -54,9 +50,6 @@ namespace CarRentalManager.ViewModel
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ContractWindow wd = new ContractWindow(); wd.ShowDialog(); });
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
-/*            RegisterFormCommand = new RelayCommand<object>((p) => { return true; }, (p) => { RegisterForm wd = new RegisterForm(p); wd.ShowDialog(); });
-*/
-            //var a = DataProvider.Ins.DB.Cars.ToList();
         }
     }
 }
