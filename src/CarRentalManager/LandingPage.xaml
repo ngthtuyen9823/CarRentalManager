@@ -550,7 +550,7 @@
                                                     </MenuItem>
                                                     <MenuItem Header="MOTOBIKE" Command="{Binding SortByMotoBikeCommand}">
                                                         <MenuItem.Icon>
-                                                            <Image Source="Assets/bicycle_type.png"
+                                                            <Image Source="Assets/motobike_type.png"
                                                                Stretch="Uniform"
                                                                Height="80"/>
                                                         </MenuItem.Icon>
