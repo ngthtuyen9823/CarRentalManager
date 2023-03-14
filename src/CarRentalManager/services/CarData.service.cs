@@ -17,7 +17,7 @@ namespace CarRentalManager.services
         private readonly VariableService variableService = new VariableService();
         public CarDataService() { }
 
-        public Car craeteCarByRowData(DataRow row) {
+        public Car createCarByRowData(DataRow row) {
             ECarStatus status = variableService.parseStringToEnum<ECarStatus>(row["status"].ToString());
             ECarType type = variableService.parseStringToEnum<ECarType>(row["type"].ToString());
             EDrivingType drivingType = variableService.parseStringToEnum<EDrivingType>(row["drivingType"].ToString());

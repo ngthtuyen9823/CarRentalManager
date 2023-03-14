@@ -15,44 +15,64 @@ using CarRentalManager.enums;
 using CarRentalManager.services;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Input;
+using CarRentalManager.dao;
 
 namespace CarRentalManager.ViewModel
 {
-    class CardViewModels
+    class CardViewModels: BaseViewModel
     {
         readonly ResourceDictionary dictionary = Application.LoadComponent(new Uri("/CarRentalManager;component/Assets/icons.xaml", 
             UriKind.RelativeOrAbsolute)) as ResourceDictionary;
         //        ResourceDictionary dictionary = new ResourceDictionary();
         readonly SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
+        readonly CarDAO carDao = new CarDAO();
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly CarDataService carDataService = new CarDataService();
-        public ObservableCollection<Car> _course { get; set; }
+        public ObservableCollection<Car> carList { get; set; }
 
-        public ObservableCollection<Car> Courses
+        public ICommand SortByAscCommand { get; set; }
+
+        public ObservableCollection<Car> CarList
         {
-            get { return _course; }
-            set { _course = value; }
+            get { return carList; }
+            set {
+                if (carList != value)
+                {
+                    carList = value;
+                    OnPropertyChanged(nameof(CarList));
+                }
+            }
         }
 
         public CardViewModels()
         {
+            carList = this.getListObservableCar();
+            SortByAscCommand = new RelayCommand<object>((p) => {
+                return true;
+            }, (p) => changeCardViewModels(false));
 
-            _course = this.getListObservableCar();
         }
+        public void changeCardViewModels(bool isSortedDesc)
+        {
+            MessageBox.Show(isSortedDesc.ToString());
+            MessageBox.Show(carList[0].Name);
+            carList = this.getListObservableCarSortByDescOrAsc(isSortedDesc, "price");
+            MessageBox.Show(carList[0].Name);
+            OnPropertyChanged(nameof(CarList));
+        }
+
         public ObservableCollection<Car> getListObservableCar()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-            DataTable dataTableCar = new DataTable();
-            adapter.Fill(dataTableCar);
+            List<Car> cars = carDao.getListCar();
+            ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
+            return carList;
+        }
 
-            ObservableCollection<Car> carList = new ObservableCollection<Car>();
-            for (int i = 0; i < dataTableCar.Rows.Count; i++)
-            {
-                var row = dataTableCar.Rows[i];
-                Car newCar = carDataService.craeteCarByRowData(row);
-                carList.Add(newCar);
-            }
+        public ObservableCollection<Car> getListObservableCarSortByDescOrAsc(bool isDescrease, string fieldName)
+        {
+            List<Car> cars = carDao.getListCarByDescOrAsc(isDescrease, fieldName);
+            ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
         }
     }

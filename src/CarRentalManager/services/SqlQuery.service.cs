@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using CarRentalManager.enums;
@@ -17,15 +18,20 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}]", tableName);
         }
+
         public string getValueWithId(string id, ETableName tableName)
         {
             return string.Format("SELECT * FROM {0} WHERE id='{1}'", tableName, id);
         }
 
+        public string getSortByDescOrAsc(bool isDecrease, string fielddName, ETableName tableName)
+        {
+            string stringIsDesc = isDecrease ? "DESC" : "ASC";
+            return string.Format("SELECT * FROM {0} ORDER BY {1} {2}", tableName, fielddName, stringIsDesc);
+        }
 
 
         //*INFO: CAR
-
 
 
         //*INFO: USER

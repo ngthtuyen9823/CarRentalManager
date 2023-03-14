@@ -95,6 +95,8 @@
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="dao\Car.dao.cs" />
+    <Compile Include="dao\Contract.dao.cs" />
     <Compile Include="dao\RentalInformation.dao.cs" />
     <Compile Include="dao\User.dao.cs" />
     <Compile Include="enums\ECarStatus.cs" />

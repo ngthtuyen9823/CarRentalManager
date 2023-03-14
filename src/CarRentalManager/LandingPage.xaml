@@ -9,6 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1400"
+        DataContext="{StaticResource CarViewModel}"
         ResizeMode="CanResizeWithGrip">
     <Window.Resources>
         <ResourceDictionary>
@@ -512,14 +513,19 @@
                                                       Height="44" Width="207"
                                                       Margin="5"
                                                       >
-                                                <MenuItem Header ="Giá cao đến thấp">
+                                                <MenuItem 
+                                                    Header ="Giá cao đến thấp"
+                                                      Command="{Binding SortByAscCommand, Mode=TwoWay}"   
+                                                     >
                                                     <MenuItem.Icon>
                                                         <Image Source="Assets/hightolow.jpg"
                                                                Stretch="Uniform"
                                                                Height="60"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Header="Giá thấp đến cao">
+                                                <MenuItem 
+                                                    Header="Giá thấp đến cao"
+                                                    Command="{Binding SortByDscCommand}">
                                                     <MenuItem.Icon>
                                                         <Image Source="Assets/lowtohigh.jpg"
                                                                Stretch="Uniform"
@@ -527,21 +533,22 @@
                                                     </MenuItem.Icon>
                                                 </MenuItem>
                                                 <MenuItem Header="Loại xe">
-                                                    <MenuItem Header="CAR">
+                                                    <MenuItem Header="CAR"
+                                                              Command="{Binding SortByCarCommand}">
                                                         <MenuItem.Icon>
                                                             <Image Source="Assets/car_type.jpg"
                                                                Stretch="Uniform"
                                                                Height="80"/>
                                                         </MenuItem.Icon>
                                                     </MenuItem>
-                                                    <MenuItem Header="BYCYCLE">
+                                                    <MenuItem Header="BYCYCLE" Command="{Binding SortByBikeCommand}">
                                                         <MenuItem.Icon>
                                                             <Image Source="Assets/bicycle_type.png"
                                                                Stretch="Uniform"
                                                                Height="80"/>
                                                         </MenuItem.Icon>
                                                     </MenuItem>
-                                                    <MenuItem Header="MOTOBIKE">
+                                                    <MenuItem Header="MOTOBIKE" Command="{Binding SortByMotoBikeCommand}">
                                                         <MenuItem.Icon>
                                                             <Image Source="Assets/bicycle_type.png"
                                                                Stretch="Uniform"
@@ -560,7 +567,7 @@
                     <ItemsControl x:Name="itemsCotrolCards"
                         Margin="0,230"
                         VerticalContentAlignment="Center"
-                        ItemsSource="{Binding Courses}" Width="1300">
+                        ItemsSource="{Binding CarList, UpdateSourceTrigger=PropertyChanged}" Width="1300">
                         <ItemsControl.DataContext>
                             <viewmodel:CardViewModels/>
                         </ItemsControl.DataContext>

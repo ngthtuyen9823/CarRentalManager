@@ -37,7 +37,7 @@ namespace CarRentalManager.ViewModel
             for (int i = 0; i < dataTableContract.Rows.Count; i++)
             {
                 var row = dataTableContract.Rows[i];
-                Contract newContract = contractDataService.craeteContractByRowData(row);
+                Contract newContract = contractDataService.createContractByRowData(row);
                 contractList.Add(newContract);
             }
             return contractList;
