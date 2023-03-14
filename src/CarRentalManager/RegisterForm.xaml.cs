@@ -29,14 +29,20 @@ namespace CarRentalManager
 
         private void loadViewModel(Car car)
         {
-            lblIDXe.Content = "ID XE : " + car.ID;
+            lblIDCar.Content = "ID XE : " + car.ID;
             describeIMG.Source = new BitmapImage(new Uri(car.ImagePath, UriKind.Relative));
+            lblNameCar.Content = "Name : "+ car.Name;
+            lblBranchCar.Content = "Brand : " + car.Branch;
+            lblPublishYear.Content = "Publish Year : " + car.PublishYear;
+            lblColorCar.Content = "Color : " + car.Color;
+            lblPriceCar.Content = "Price : " + car.Price;
+            lblSeats.Content = "Seats : " + car.Seats;
         }
 
         public string ID { get; set; }
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-            lblIDXe.Content = ID;
+            lblIDCar.Content = ID;
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
 

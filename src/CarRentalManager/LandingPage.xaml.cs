@@ -51,5 +51,11 @@ namespace CarRentalManager
         {
             Close();
         }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+        }
     }
 }

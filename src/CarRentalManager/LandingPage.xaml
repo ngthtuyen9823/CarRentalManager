@@ -266,7 +266,7 @@
                                          Icon="D"
                                          IsDeletable="True"
                                          IconBackground="{DynamicResource PrimaryHueLightBrush}"
-                                         IconForeground="{DynamicResource PrimaryBrush}" Width="152" />
+                                         IconForeground="{DynamicResource PrimaryBrush}" Width="152" Click="Chip_Click" />
                 </Grid>
 
             </StackPanel>

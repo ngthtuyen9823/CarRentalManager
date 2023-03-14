@@ -19,10 +19,34 @@
         </Border>
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
-                <Image x:Name="describeIMG"  Width="300" Height="300" VerticalAlignment="Top" Margin="10" Stretch="Fill" />
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <Image x:Name="describeIMG"  Width="250" Height="170" VerticalAlignment="Top" Margin="10" Stretch="Fill" />
+                <StackPanel Orientation="Horizontal" Margin="1">
                     <materialDesign:PackIcon Kind="IdCard" Width="25" Height="25" Foreground="White"/>
-                    <Label x:Name="lblIDXe" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                    <Label x:Name="lblIDCar" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="1">
+                    <materialDesign:PackIcon Kind="Rename" Width="25" Height="25" Foreground="White"/>
+                    <Label x:Name="lblNameCar" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="1">
+                    <materialDesign:PackIcon Kind="BrandingWatermark" Width="25" Height="25" Foreground="White"/>
+                    <Label x:Name="lblBranchCar" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="1">
+                    <materialDesign:PackIcon Kind="DateRange" Width="25" Height="25" Foreground="White"/>
+                    <Label x:Name="lblPublishYear" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="1">
+                    <materialDesign:PackIcon Kind="Color" Width="25" Height="25" Foreground="White"/>
+                    <Label x:Name="lblColorCar" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="1">
+                    <materialDesign:PackIcon Kind="Money" Width="25" Height="25" Foreground="White"/>
+                    <Label x:Name="lblPriceCar" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="1">
+                    <materialDesign:PackIcon Kind="Chair" Width="25" Height="25" Foreground="White"/>
+                    <Label x:Name="lblSeats" Margin="10 0" Foreground="White" Width="250" BorderBrush="White"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="350">

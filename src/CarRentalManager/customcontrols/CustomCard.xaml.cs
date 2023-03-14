@@ -24,14 +24,6 @@ namespace CarRentalManager
             InitializeComponent();
         }
 
-        /*private void btn_OpenForm(object sender, RoutedEventArgs e)
-        {
-            var myValue1 = ((Button)sender).Tag;
-            var myValue2 = ((Image)sender).Tag;
-            RegisterForm win2 = new RegisterForm(myValue.ToString());
-            win2.Show();
-        }*/
-
         private void btnLoadRegister_Click(object sender, RoutedEventArgs e)
         {
             var myValue = ((Button)sender).Tag;
