@@ -25,7 +25,7 @@ namespace CarRentalManager.services
                 row["name"].ToString(),
                 row["phoneNumber"].ToString(),
                 row["email"].ToString(),
-                row["cmnd"].ToString(),
+                row["idCard"].ToString(),
                 row["address"].ToString());
         }
     }

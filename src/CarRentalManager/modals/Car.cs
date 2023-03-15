@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarRentalManager.enums;
 
 namespace CarRentalManager.modals
@@ -11,7 +7,7 @@ namespace CarRentalManager.modals
     {
         int id;
         string name;
-        string branch;
+        string brand;
         int publishYear;
         string color;
         int price;
@@ -26,7 +22,7 @@ namespace CarRentalManager.modals
         DateTime updatedAt;
         public Car(int id,
         string name,
-            string branch,
+            string brand,
             int publishYear,
             string color,
             int price,
@@ -40,7 +36,7 @@ namespace CarRentalManager.modals
         {
             this.id = id;
             this.name = name;
-            this.branch = branch;
+            this.brand = brand;
             this.publishYear = publishYear;
             this.color = color;
             this.price = price;
@@ -57,7 +53,7 @@ namespace CarRentalManager.modals
 
         public int ID { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
-        public string Branch { get { return branch; } set { branch = value; } }
+        public string Brand { get { return brand; } set { brand = value; } }
         public int PublishYear { get { return publishYear; } set { publishYear = value; } }
         public string Color { get { return color; } set { color = value; } }
         public int Price { get { return price; } set { price = value; } }

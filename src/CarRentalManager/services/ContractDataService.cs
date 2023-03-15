@@ -14,7 +14,7 @@ namespace CarRentalManager.services
         private readonly VariableService variableService = new VariableService();
         public ContractDataService() { }
 
-        public Contract craeteContractByRowData(DataRow row)
+        public Contract createContractByRowData(DataRow row)
         {
             DateTime makingDay = DateTime.Parse(row["makingDay"].ToString());
             int id = variableService.parseStringToInt(row["id"].ToString());

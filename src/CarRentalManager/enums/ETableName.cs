@@ -11,7 +11,7 @@ namespace CarRentalManager.enums
         CAR,
         USER,
         CUSTOMER,
-        RENTALINFORMATION,
+        RECEIPT,
         ORDER,
         CONTRACT
     }

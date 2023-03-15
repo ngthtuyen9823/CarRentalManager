@@ -14,34 +14,24 @@ using CarRentalManager.services;
 using System.Diagnostics;
 using System.Security.Policy;
 using System.Globalization;
+using CarRentalManager.dao;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListCustomerViewModel : BaseViewModel
     {
-        SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        SqlQueryService sqlService = new SqlQueryService();
         private ObservableCollection<Customer> list;
         public ObservableCollection<Customer> List { get; set; }
-        readonly CustomerDataService customerDataService = new CustomerDataService();
+        readonly CustomerDAO customerDAO = new CustomerDAO();
+
         public ListCustomerViewModel() 
         {
             List = getListObservableCustomer();
         }
         public ObservableCollection<Customer> getListObservableCustomer()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.CUSTOMER); ////
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-            DataTable dataTableCustomer = new DataTable();
-            adapter.Fill(dataTableCustomer);
-
-            ObservableCollection<Customer> customerList = new ObservableCollection<Customer>();
-            for (int i = 0; i < dataTableCustomer.Rows.Count; i++)
-            {
-                var row = dataTableCustomer.Rows[i];
-                Customer newCustomer = customerDataService.craeteCustomerByRowData(row);
-                customerList.Add(newCustomer);
-            }
+            List<Customer> customers = customerDAO.getListCustomer();
+            ObservableCollection<Customer> customerList = new ObservableCollection<Customer>(customers);
             return customerList;
         }
     }

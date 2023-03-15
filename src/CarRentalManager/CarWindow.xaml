@@ -44,7 +44,7 @@
                     <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
                         <TextBox Margin="5" Text="{Binding ID}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Branch}" materialDesign:HintAssist.Hint="Hãng"
+                        <TextBox Margin="5" Text="{Binding Brand}" materialDesign:HintAssist.Hint="Hãng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                         <ComboBox SelectedValue="{Binding Type}" Margin="5" materialDesign:HintAssist.Hint="Loại xe" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -86,7 +86,7 @@
                         <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                                    <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Branch}"></GridViewColumn>
+                                    <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
                                     <GridViewColumn Header="Loại xe" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
                                     <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                     <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
