@@ -5,12 +5,9 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CarRentalManager.dao;
+using System.Windows.Input;
 using System.Windows;
-using CarRentalManager.enums;
-using static System.Net.Mime.MediaTypeNames;
-using CarRentalManager.services;
 
 namespace CarRentalManager.ViewModel
 {
@@ -21,6 +18,9 @@ namespace CarRentalManager.ViewModel
         public ICommand AddCommand { get; set; }
         readonly CarDAO cardDao = new CarDAO();
 
+
+        //CALL CONN IN Class DAO
+
         public ListCarViewModel()
         {
             List = getListObservableCar();
@@ -29,27 +29,27 @@ namespace CarRentalManager.ViewModel
                 return true;
             }, (p) =>
             {
-            try
-            {
+                try
+                {
                     //MessageBox.Show(string.Format("Da vao: {0}", Name));
                     //MessageBox.Show(string.Format("Da vao: {0}", ID));
                     //MessageBox.Show(string.Format("Da vao: {0}", Branch));
-                    conn.Open();
-                    string SQL = string.Format("INSERT INTO Car(id, name, branch) VALUES ('{0}', '{1}', '{2}')",ID, Name, Branch);
+                    /*conn.Open();
+                    string SQL = string.Format("INSERT INTO Car(id, name, branch) VALUES ('{0}', '{1}', '{2}')", ID, Name, Branch);
                     SqlCommand cmd = new SqlCommand(SQL, conn);
                     if (cmd.ExecuteNonQuery() > 0)
                     {
                         MessageBox.Show("them thanh cong");
-                    }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("them that bai" + ex);
-            }
-            finally
-            {
-                    conn.Close();
-            }
+                    }*/
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("them that bai" + ex);
+                }
+                finally
+                {
+                    /*conn.Close();*/
+                }
 
             });
         }

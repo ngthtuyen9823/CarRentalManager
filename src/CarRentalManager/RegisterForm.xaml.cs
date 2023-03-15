@@ -46,16 +46,7 @@ namespace CarRentalManager
         }
         private Car getCarInformation(string id)
         {
-<<<<<<< CRM-18
             return carDAO.getCarById(id);
-=======
-            string sqlStringGetTable = sqlService.getValueWithId(id, ETableName.CAR);
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-            DataTable dataTableCar = new DataTable();
-            adapter.Fill(dataTableCar);
-
-            return carDataService.createCarByRowData(dataTableCar.Rows[0]);
->>>>>>> CRM-19 | Add addcomand to customer table
         }
     }
 }
