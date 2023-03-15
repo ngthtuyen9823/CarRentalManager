@@ -5,26 +5,23 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CarRentalManager.dao
 {
-    public class ContractDao
+    public class ContractDAO
     {
-        private SqlConnection conn;
+        private SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly ContractDataService contractDataService = new ContractDataService();
-        public ContractDao() { }
+        public ContractDAO() { }
 
         public Contract getContractById(string id)
         {
             try
             {
-                conn = new SqlConnection(Properties.Settings.Default.connStr);
-                string sqlStringGetTable = sqlService.getValueWithId(id, ETableName.CAR);
+                conn.Open(); 
+                string sqlStringGetTable = sqlService.getValueById(id, ETableName.CONTRACT);
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                 DataTable dataTableCar = new DataTable();
                 adapter.Fill(dataTableCar);
@@ -43,12 +40,12 @@ namespace CarRentalManager.dao
             }
         }
 
-        public List<Contract> getListCar()
+        public List<Contract> getListContract()
         {
             try
             {
                 conn.Open();
-                string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+                string sqlStringGetTable = sqlService.getListTableData(ETableName.CONTRACT);
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                 DataTable dataTableCar = new DataTable();
                 adapter.Fill(dataTableCar);

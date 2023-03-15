@@ -19,7 +19,7 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM [{0}]", tableName);
         }
 
-        public string getValueWithId(string id, ETableName tableName)
+        public string getValueById(string id, ETableName tableName)
         {
             return string.Format("SELECT * FROM {0} WHERE id='{1}'", tableName, id);
         }
@@ -50,22 +50,22 @@ namespace CarRentalManager.services
 
 
 
-        //*INFO: RECORD
-        public string getListRecords()
+        //*INFO: ORDER
+        public string getListOrder()
         {
-            return string.Format("SELECT * FROM [{0}] WHERE email = '{0}'", ETableName.RENTALINFORMATION);
+            return string.Format("SELECT * FROM [{0}] WHERE email = '{0}'", ETableName.ORDER);
         }
 
-        public string updateRecord(string id, Order record)
+        public string updateOrder(string id, Order record)
         {
             //*TODO: UPDATE query later
-            return string.Format("UPDATE * FROM [{0}] WHERE email = '{1}'", ETableName.RENTALINFORMATION, record);
+            return string.Format("UPDATE * FROM [{0}] WHERE email = '{1}'", ETableName.ORDER, record);
         }
 
-        public string deleteRecord(string id)
+        public string deleteOrder(string id)
         {
             //*TODO: UPDATE query later
-            return string.Format("DELETE FROM [{0}] WHERE id = '{1}'", ETableName.RENTALINFORMATION, id);
+            return string.Format("DELETE FROM [{0}] WHERE id = '{1}'", ETableName.ORDER, id);
         }
 
 

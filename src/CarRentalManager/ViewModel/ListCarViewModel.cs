@@ -17,10 +17,9 @@ namespace CarRentalManager.ViewModel
 {
     public class ListCarViewModel : BaseViewModel
     {
-        SqlQueryService sqlService = new SqlQueryService();
-        readonly CarDAO cardDao = new CarDAO();
         private ObservableCollection<Car> list;
         public ObservableCollection<Car> List {get; set;}
+        readonly CarDAO cardDao = new CarDAO();
 
         public ListCarViewModel()
         {

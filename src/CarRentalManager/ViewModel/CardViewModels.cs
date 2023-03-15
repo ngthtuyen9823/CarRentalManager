@@ -25,11 +25,8 @@ namespace CarRentalManager.ViewModel
         readonly ResourceDictionary dictionary = Application.LoadComponent(new Uri("/CarRentalManager;component/Assets/icons.xaml", 
             UriKind.RelativeOrAbsolute)) as ResourceDictionary;
         //        ResourceDictionary dictionary = new ResourceDictionary();
-        readonly SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        readonly CarDAO carDao = new CarDAO();
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CarDataService carDataService = new CarDataService();
         public ObservableCollection<Car> carList { get; set; }
+        readonly CarDAO carDao = new CarDAO();
 
         public ICommand SortByAscCommand { get; set; }
 

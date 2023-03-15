@@ -95,10 +95,12 @@
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="dao\Car.dao.cs" />
-    <Compile Include="dao\Contract.dao.cs" />
-    <Compile Include="dao\RentalInformation.dao.cs" />
-    <Compile Include="dao\User.dao.cs" />
+    <Compile Include="dao\OrderDAO.cs" />
+    <Compile Include="dao\ReceiptDAO.cs" />
+    <Compile Include="dao\CustomerDAO.cs" />
+    <Compile Include="dao\CarDAO.cs" />
+    <Compile Include="dao\ContractDAO.cs" />
+    <Compile Include="dao\UserDAO.cs" />
     <Compile Include="enums\ECarStatus.cs" />
     <Compile Include="enums\ECarType.cs" />
     <Compile Include="enums\EDrivingType.cs" />
@@ -125,13 +127,15 @@
     <Compile Include="RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="services\CustomerData.service.cs" />
-    <Compile Include="services\CarData.service.cs" />
-    <Compile Include="services\ContractData.service.cs" />
-    <Compile Include="services\OrderData.service.cs" />
-    <Compile Include="services\SqlQuery.service.cs" />
-    <Compile Include="services\User.service.cs" />
-    <Compile Include="services\Variable.service.cs" />
+    <Compile Include="services\CustomerDataService.cs" />
+    <Compile Include="services\CarDataService.cs" />
+    <Compile Include="services\ContractDataService.cs" />
+    <Compile Include="services\OrderDataService.cs" />
+    <Compile Include="services\ReceiptDataService.cs" />
+    <Compile Include="services\SqlQueryService.cs" />
+    <Compile Include="services\UserService.cs" />
+    <Compile Include="services\UserDataService.cs" />
+    <Compile Include="services\VariableService.cs" />
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
@@ -233,22 +237,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\1.jpg" />
-    <Resource Include="Assets\2.jpg" />
-    <Resource Include="Assets\3.jpg" />
-    <Resource Include="Assets\4.jpg" />
-    <Resource Include="Assets\4.png" />
-    <Resource Include="Assets\5.jpg" />
-    <Resource Include="Assets\6.jpg" />
-    <Resource Include="Assets\7.jpg" />
-    <Resource Include="Assets\8.jpg" />
+    <Resource Include="Assets\images\cars\1.jpg" />
+    <Resource Include="Assets\images\cars\2.jpg" />
+    <Resource Include="Assets\images\cars\3.jpg" />
+    <Resource Include="Assets\images\cars\4.jpg" />
+    <Resource Include="Assets\images\cars\4.png" />
+    <Resource Include="Assets\images\cars\5.jpg" />
+    <Resource Include="Assets\images\cars\6.jpg" />
+    <Resource Include="Assets\images\cars\7.jpg" />
+    <Resource Include="Assets\images\cars\8.jpg" />
     <Resource Include="Assets\br.jpg" />
     <Resource Include="Assets\h2.jpg" />
-    <Resource Include="Assets\p1.png" />
-    <Resource Include="Assets\p2.jpg" />
-    <Resource Include="Assets\p3.jpg" />
-    <Resource Include="Assets\p4.jpg" />
-    <Resource Include="Assets\p5.jpg" />
+    <Resource Include="Assets\images\avatar\p1.png" />
+    <Resource Include="Assets\images\avatar\p2.jpg" />
+    <Resource Include="Assets\images\avatar\p3.jpg" />
+    <Resource Include="Assets\images\avatar\p4.jpg" />
+    <Resource Include="Assets\images\avatar\p5.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

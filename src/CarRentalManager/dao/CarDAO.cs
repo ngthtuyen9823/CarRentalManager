@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using CarRentalManager.modals;
 
@@ -83,7 +80,7 @@ namespace CarRentalManager.dao
             try
             {
                 conn.Open();
-                string sqlStringGetTable = sqlService.getValueWithId(id, ETableName.CAR);
+                string sqlStringGetTable = sqlService.getValueById(id, ETableName.CAR);
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                 DataTable dataTableCar = new DataTable();
                 adapter.Fill(dataTableCar);

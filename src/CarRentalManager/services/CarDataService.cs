@@ -28,7 +28,7 @@ namespace CarRentalManager.services
 
             return new Car(id,
                 row["name"].ToString(),
-                row["branch"].ToString(),
+                row["brand"].ToString(),
                 publishYear,
                 row["color"].ToString(),
                 price,
