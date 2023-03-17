@@ -16,6 +16,7 @@ namespace CarRentalManager
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly CarDataService carDataService = new CarDataService();
         readonly CarDAO carDAO = new CarDAO();
+        readonly OrderDAO orderDAO = new OrderDAO();
         public RegisterForm()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace CarRentalManager
             lblIDCar.Content = "ID XE : " + car.ID;
             describeIMG.Source = new BitmapImage(new Uri(car.ImagePath, UriKind.Relative));
             lblNameCar.Content = "Name : "+ car.Name;
-            lblBranchCar.Content = "Brand : " + car.Branch;
+            lblBranchCar.Content = "Brand : " + car.Brand;
             lblPublishYear.Content = "Publish Year : " + car.PublishYear;
             lblColorCar.Content = "Color : " + car.Color;
             lblPriceCar.Content = "Price : " + car.Price;
