@@ -8,15 +8,16 @@ using System.Linq;
 using CarRentalManager.dao;
 using System.Windows.Input;
 using System.Windows;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListCarViewModel : BaseViewModel
     {
-        private ObservableCollection<Car> list;
         public ObservableCollection<Car> List {get; set;}
         public ICommand AddCommand { get; set; }
-        readonly CarDAO cardDao = new CarDAO();
+        readonly CarDAO carDao = new CarDAO();
 
 
         //CALL CONN IN Class DAO
@@ -29,28 +30,9 @@ namespace CarRentalManager.ViewModel
                 return true;
             }, (p) =>
             {
-                try
-                {
-                    //MessageBox.Show(string.Format("Da vao: {0}", Name));
-                    //MessageBox.Show(string.Format("Da vao: {0}", ID));
-                    //MessageBox.Show(string.Format("Da vao: {0}", Branch));
-                    /*conn.Open();
-                    string SQL = string.Format("INSERT INTO Car(id, name, branch) VALUES ('{0}', '{1}', '{2}')", ID, Name, Branch);
-                    SqlCommand cmd = new SqlCommand(SQL, conn);
-                    if (cmd.ExecuteNonQuery() > 0)
-                    {
-                        MessageBox.Show("them thanh cong");
-                    }*/
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("them that bai" + ex);
-                }
-                finally
-                {
-                    /*conn.Close();*/
-                }
-
+                carDao.addCarToList(ID, Name, Brand, Type, Status, LicensePlate, Price);
+                List = getListObservableCar();
+                OnPropertyChanged(nameof(List));
             });
         }
         private string name;
@@ -81,23 +63,79 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
-        private string branch;
+        private string brand;
 
-        public string Branch
+        public string Brand
         {
-            get { return branch; }
+            get { return brand; }
             set
             {
-                if (value != branch)
+                if (value != brand)
                 {
-                    branch = value;
-                    OnPropertyChanged("Branch");
+                    brand = value;
+                    OnPropertyChanged("Brand");
+                }
+            }
+        }
+        private string type;
+
+        public string Type
+        {
+            get { return type; }
+            set
+            {
+                if (value != type)
+                {
+                    type = value;
+                    OnPropertyChanged("Type");
+                }
+            }
+        }
+        private string status;
+
+        public string Status
+        {
+            get { return status; }
+            set
+            {
+                if (value != status)
+                {
+                    status = value;
+                    OnPropertyChanged("Status");
+                }
+            }
+        }
+        private string licensePlate;
+
+        public string LicensePlate
+        {
+            get { return licensePlate; }
+            set
+            {
+                if (value != licensePlate)
+                {
+                    licensePlate = value;
+                    OnPropertyChanged("LicensePlate");
+                }
+            }
+        }
+        private int price;
+
+        public int Price
+        {
+            get { return price; }
+            set
+            {
+                if (value != price)
+                {
+                    price = value;
+                    OnPropertyChanged("Price");
                 }
             }
         }
         public ObservableCollection<Car> getListObservableCar()
         {
-            List<Car> cars = cardDao.getListCar();
+            List<Car> cars = carDao.getListCar();
             ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
         }

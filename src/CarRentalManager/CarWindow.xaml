@@ -84,7 +84,7 @@
 			</materialDesign:Card>
 				<ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
                     <Grid>
-                        <ListView ItemsSource="{Binding List}"
+                        <ListView x:Name="lsvCar" ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                                 <GridView>

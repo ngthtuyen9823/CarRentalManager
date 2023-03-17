@@ -25,8 +25,8 @@ namespace CarRentalManager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=CARENTALMANAGER;Integrated Sec" +
-            "urity=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=CARRENTALMANAGER;Integrated Se" +
+            "curity=True")]
         public string connStr {
             get {
                 return ((string)(this["connStr"]));
