@@ -39,13 +39,17 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <materialDesign:Card Grid.Row="0" Margin="5">
+            <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox Width="120" Margin="5 5 15 5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="120" Margin="5 5 15 5" Text="{Binding Name , UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="120" Margin="5 5 15 5" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width="120" Margin="5 5 15 5" Text="{Binding Color, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width="120" Margin="5 5 15 5" Text="{Binding PublishYear, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox  Width="120" Margin="5 5 15 5" SelectedValue="{Binding Type, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại xe" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -68,10 +72,40 @@
                             UNAVAILABLE
                         </ComboBoxItem>
                     </ComboBox>
+                    <TextBox  Width="120" Margin="5 5 15 5" Text="{Binding Seats}" materialDesign:HintAssist.Hint="Seats"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox  Width="120" Margin="5 5 15 5" Text="{Binding LicensePlate}" materialDesign:HintAssist.Hint="Biển số xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox  Width="120" Margin="5 5 15 5" Text="{Binding Price}" materialDesign:HintAssist.Hint="Giá thuê"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <!--<Label Content="Image" Width="60" Margin="0 0 0 0" materialDesign:HintAssist.Hint="ImagePath"/>
+                    <Label Name="ImagePath" Width="60" Margin="5 5 15 5" materialDesign:HintAssist.Hint="ImagePath"/>-->
+                    <TextBox Name ="ImagePath"  Width="120" Margin="0 5 15 5" Text="{Binding ImagePath}" materialDesign:HintAssist.Hint="Browse a image"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ToggleButton
+                        Margin="-25,0,0,-15"
+                        Name="BrowseButton"
+                        Click="BrowseButton_Click"
+                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                        ToolTip="MaterialDesignFlatToggleButton">
+                        <materialDesign:PackIcon
+                            Kind="Paperclip"
+                            Height="21"
+                            Width="21" />
+                    </ToggleButton>
+                    <TextBox  Width="120" Margin="5 5 15 5" Text="{Binding TutorialPath}" materialDesign:HintAssist.Hint="TutorialPath"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <DatePicker Margin="5" Text="{Binding CreatedAt}" 
+                                    Name="CreatedAt"
+                                    SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày tạo"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <DatePicker Margin="5" Text="{Binding UpdatedAt}"
+                                    Name="UpdatedAt"
+                                    SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày cập nhật"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                   
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -83,7 +117,7 @@
                 </WrapPanel>
             </materialDesign:Card>
 
-            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch" Padding="10">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ListView x:Name="lsvCar" ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">

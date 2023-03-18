@@ -144,73 +144,7 @@
                 </Grid>
             </Grid>
 
-            <!--main-->
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <!--Text-->
-                <Grid Grid.Row="0">
-
-                    <TextBlock Text="Danh sách xe đang cho thuê"
-                               FontSize="20"
-                               Padding="10"
-                               Margin="0 20 0 0"
-                               HorizontalAlignment="Center"
-                               ></TextBlock>
-
-                </Grid>
-
-                <!--list-->
-                <Grid Grid.Row="1" Height="auto">
-                    <materialDesign:Card MaxWidth="1500">
-                        <ListView ItemsSource="{Binding Items1}" Name="lvCarss">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Ma}" Header="Mã  xe" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Hang}" Header="Hãng" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Loai}" Header="Loại" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Bienso}" Header="Biển số" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Giathue}" Header="Giá thuê" />
-
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </materialDesign:Card>
-
-                </Grid>
-                <Grid Grid.Row="2" Height="auto">
-                    <TextBlock Text="Danh sách xe sẵn sàng cho thuê"
-                               FontSize="20"
-                               Padding="10"
-                               Margin="0 20 0 0"
-                               HorizontalAlignment="Center"
-                               ></TextBlock>
-                </Grid>
-
-                <!--list-->
-                <Grid Grid.Row="3" Height="auto">
-                    <materialDesign:Card MaxWidth="1500">
-                        <ListView ItemsSource="{Binding Items1}" Name = "lvCar">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding Ma}" Header="Mã xe" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Hang}" Header="Hãng" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Loai}" Header="Loại" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Bienso}" Header="Biển số" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding Giathue}" Header="Giá thuê" />
-
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </materialDesign:Card>
-
-                </Grid>
-            </Grid>
+           
         </Grid>
     </Grid>
 </Window>
