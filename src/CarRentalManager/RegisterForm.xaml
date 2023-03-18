@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:CarRentalManager" 
         mc:Ignorable="d"
         Title="RegisterForm" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
-        DataContext="{StaticResource OrderVM}"
+        DataContext="{StaticResource RegistrationVM}"
         Name="registerForm">
 
     <Grid MouseDown="Border_MouseDown">
@@ -25,6 +25,7 @@
                 <StackPanel Orientation="Horizontal" Margin="1">
                     <materialDesign:PackIcon Kind="IdCard" Width="25" Height="25" Foreground="Black"/>
                     <Label
+                        Content="{Binding CarId, UpdateSourceTrigger=PropertyChanged}"
                         x:Name="lblIDCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="1">
@@ -58,11 +59,15 @@
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="Black"/>
                         <TextBox
+                            Text="{Binding Name, 
+                            UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtTen" Margin="10 0" materialDesign:HintAssist.Hint="Họ tên" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="Black"/>
                         <TextBox
+                            Text="{Binding PhoneNumber, 
+                            UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtSdt" Margin="10 0" materialDesign:HintAssist.Hint="Số điện thoại" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -75,12 +80,15 @@
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="TimerStart" Width="25" Height="25" Foreground="Black"/>
                         <DatePicker
+                            SelectedDate="{Binding StartDate, 
+                            UpdateSourceTrigger=PropertyChanged}"
                             x:Name="dpBatdau" Margin="10 0" materialDesign:HintAssist.Hint="Thời gian bắt đầu" Foreground="Black" Width="250" BorderBrush="Black" SelectedDateFormat="Short"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="TimelineClock" Width="25" Height="25" Foreground="Black"/>
                         <DatePicker 
-                            
+                            SelectedDate="{Binding EndDate, 
+                            UpdateSourceTrigger=PropertyChanged}"
                             x:Name="dpKetThuc" Margin="10 0" materialDesign:HintAssist.Hint="Thời gian kết thúc" Foreground="Black" Width="250" BorderBrush="Black"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="7">
@@ -93,12 +101,14 @@
                             Background="#D94448"
                             Click="Button_Click"/>
                         <Label
+                            Content="{Binding TotalFee, 
+                            UpdateSourceTrigger=PropertyChanged}"
                             x:Name="lblTotalFee" Margin="10 0" materialDesign:HintAssist.Hint="Tổng tiền" Foreground="#D94448" Width="150" Height="25" BorderBrush="Black" FontWeight="Bold" HorizontalContentAlignment="Right"/>
                     </StackPanel>
 
                     <StackPanel Margin="30" HorizontalAlignment="Center">
                         <Button
-                            Command="{Binding AddCommand}"
+                            Command="{Binding RegisterCommand}"
                             Width="100" Height="30"
                          Background="#D94448" Foreground="White" x:Name="btnLogin" Content="Đặt xe">
                         </Button>

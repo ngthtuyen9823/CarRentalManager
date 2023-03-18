@@ -18,6 +18,8 @@ namespace CarRentalManager
         readonly CarDataService carDataService = new CarDataService();
         readonly CarDAO carDAO = new CarDAO();
         readonly OrderDAO orderDAO = new OrderDAO();
+        readonly VariableService variableService = new VariableService();
+
         private int priceCar;
         public RegisterForm()
         {
@@ -41,6 +43,8 @@ namespace CarRentalManager
             lblColorCar.Content = "Color : " + car.Color;
             lblPriceCar.Content = "Price : " + car.Price;
             lblSeats.Content = "Seats : " + car.Seats;
+
+            ((dynamic)this.DataContext).CarId = car.ID.ToString();
         }
 
         public string ID { get; set; }
@@ -69,7 +73,11 @@ namespace CarRentalManager
             DateTime start = dpBatdau.SelectedDate.Value.Date;
             DateTime end = dpKetThuc.SelectedDate.Value.Date;
             TimeSpan timeSpan = end.Subtract(start);
-            lblTotalFee.Content = (timeSpan.TotalDays * priceCar).ToString() + "000 VNĐ" ;
+            string totalFee = (timeSpan.TotalDays * priceCar).ToString();
+            lblTotalFee.Content = totalFee + "000 VNĐ";
+
+            ((dynamic)this.DataContext).TotalFee = variableService.parseStringToInt(totalFee);
+
         }
     }
 }
