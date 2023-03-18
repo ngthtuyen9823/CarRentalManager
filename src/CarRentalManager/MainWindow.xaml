@@ -41,10 +41,14 @@
         </Grid>
 
         <Grid Grid.Row="1">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+
             </Grid.RowDefinitions>
 
             <!--menu-->
@@ -143,8 +147,538 @@
                                          IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
                 </Grid>
             </Grid>
+            <Grid Grid.Row="3">
+                <materialDesign:Card Grid.ColumnSpan="2">
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" Padding="10" Text="Thanks for using our service"></TextBlock>
+                </materialDesign:Card>
+            </Grid>
+            <Grid Grid.Row="4">
 
-           
+                <WrapPanel>
+
+                    <materialDesign:Card
+    
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="140" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image
+                                Source="Assets\images\avatar\p2.jpg"
+                                Height="140"
+                                Width="196"
+                                Stretch="UniformToFill" />
+                            <Button
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0 0 16 -20">
+                                <materialDesign:PackIcon
+                                    Kind="Bike" />
+                            </Button>
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="8 24 8 0">
+                                <TextBlock
+                                    FontWeight="Bold">
+                                    Cycling
+                                </TextBlock>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center">
+                                    A great way to keep fit and forget about the constant grind of IT.
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                Grid.Row="2"
+                                Orientation="Horizontal"
+                                Margin="8">
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="ShareVariant" />
+                                </Button>
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="Heart" />
+                                </Button>
+                                <Viewbox
+                                    Margin="0 4 0 8"
+                                    Height="16"
+                                    HorizontalAlignment="Left">
+                                    <materialDesign:RatingBar
+                                        Value="3"
+                                        Orientation="Horizontal"
+                                        Foreground="Gold"
+                                        Margin="0" />
+                                </Viewbox>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+    
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="140" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image
+                                Source="Assets\images\avatar\p2.jpg"
+                                Height="140"
+                                Width="196"
+                                Stretch="UniformToFill" />
+                            <Button
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0 0 16 -20">
+                                <materialDesign:PackIcon
+                                    Kind="Bike" />
+                            </Button>
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="8 24 8 0">
+                                <TextBlock
+                                    FontWeight="Bold">
+                                    Cycling
+                                </TextBlock>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center">
+                                    A great way to keep fit and forget about the constant grind of IT.
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                Grid.Row="2"
+                                Orientation="Horizontal"
+                                Margin="8">
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="ShareVariant" />
+                                </Button>
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="Heart" />
+                                </Button>
+                                <Viewbox
+                                    Margin="0 4 0 8"
+                                    Height="16"
+                                    HorizontalAlignment="Left">
+                                    <materialDesign:RatingBar
+                                        Value="3"
+                                        Orientation="Horizontal"
+                                        Foreground="Gold"
+                                        Margin="0" />
+                                </Viewbox>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+    
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="140" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image
+                                Source="Assets\images\avatar\p2.jpg"
+                                Height="140"
+                                Width="196"
+                                Stretch="UniformToFill" />
+                            <Button
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0 0 16 -20">
+                                <materialDesign:PackIcon
+                                    Kind="Bike" />
+                            </Button>
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="8 24 8 0">
+                                <TextBlock
+                                    FontWeight="Bold">
+                                    Cycling
+                                </TextBlock>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center">
+                                    A great way to keep fit and forget about the constant grind of IT.
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                Grid.Row="2"
+                                Orientation="Horizontal"
+                                Margin="8">
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="ShareVariant" />
+                                </Button>
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="Heart" />
+                                </Button>
+                                <Viewbox
+                                    Margin="0 4 0 8"
+                                    Height="16"
+                                    HorizontalAlignment="Left">
+                                    <materialDesign:RatingBar
+                                        Value="3"
+                                        Orientation="Horizontal"
+                                        Foreground="Gold"
+                                        Margin="0" />
+                                </Viewbox>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+    
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="140" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image
+                                Source="Assets\images\avatar\p2.jpg"
+                                Height="140"
+                                Width="196"
+                                Stretch="UniformToFill" />
+                            <Button
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0 0 16 -20">
+                                <materialDesign:PackIcon
+                                    Kind="Bike" />
+                            </Button>
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="8 24 8 0">
+                                <TextBlock
+                                    FontWeight="Bold">
+                                    Cycling
+                                </TextBlock>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center">
+                                    A great way to keep fit and forget about the constant grind of IT.
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                Grid.Row="2"
+                                Orientation="Horizontal"
+                                Margin="8">
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="ShareVariant" />
+                                </Button>
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="Heart" />
+                                </Button>
+                                <Viewbox
+                                    Margin="0 4 0 8"
+                                    Height="16"
+                                    HorizontalAlignment="Left">
+                                    <materialDesign:RatingBar
+                                        Value="3"
+                                        Orientation="Horizontal"
+                                        Foreground="Gold"
+                                        Margin="0" />
+                                </Viewbox>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+    
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="140" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image
+                                Source="Assets\images\avatar\p2.jpg"
+                                Height="140"
+                                Width="196"
+                                Stretch="UniformToFill" />
+                            <Button
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0 0 16 -20">
+                                <materialDesign:PackIcon
+                                    Kind="Bike" />
+                            </Button>
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="8 24 8 0">
+                                <TextBlock
+                                    FontWeight="Bold">
+                                    Cycling
+                                </TextBlock>
+                                <TextBlock
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center">
+                                    A great way to keep fit and forget about the constant grind of IT.
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                Grid.Row="2"
+                                Orientation="Horizontal"
+                                Margin="8">
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="ShareVariant" />
+                                </Button>
+                                <Button
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    Width="30"
+                                    Padding="2 0 2 0"
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                    <materialDesign:PackIcon
+                                        Kind="Heart" />
+                                </Button>
+                                <Viewbox
+                                    Margin="0 4 0 8"
+                                    Height="16"
+                                    HorizontalAlignment="Left">
+                                    <materialDesign:RatingBar
+                                        Value="3"
+                                        Orientation="Horizontal"
+                                        Foreground="Gold"
+                                        Margin="0" />
+                                </Viewbox>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+
+                </WrapPanel>
+
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <materialDesign:Card Grid.ColumnSpan="2">
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" Padding="10" Text="Thống kê hoạt động của cửa hàng"></TextBlock>
+                </materialDesign:Card>
+            </Grid>
+            <Grid Grid.Row="2">
+                <WrapPanel>
+                    <materialDesign:Card
+                        Margin="10"
+                        Background="#00b894"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0"
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Margin="16 16 16 4"
+                                Text="Tổng số đơn hàng đã đặt"
+                                FontSize="15"
+                                >
+                            </TextBlock>
+                            <Separator
+                                Grid.Row="1"
+                                Style="{StaticResource MaterialDesignLightSeparator}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="16 0 16 8"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Text="22000"
+                                FontSize="40"
+                                Style="{StaticResource MaterialDesignBody2TextBlock}">
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+                        Margin="10"
+                        Background="#00b894"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0"
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Margin="16 16 16 4"
+                                Text="Tổng số đơn hàng đã hủy"
+                                FontSize="15"
+                                >
+                            </TextBlock>
+                            <Separator
+                                Grid.Row="1"
+                                Style="{StaticResource MaterialDesignLightSeparator}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="16 0 16 8"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Text="220"
+                                FontSize="40"
+                                Style="{StaticResource MaterialDesignBody2TextBlock}">
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+                        Margin="10"
+                        Background="#00b894"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0"
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Margin="16 16 16 4"
+                                Text="Tổng số đơn hàng ..."
+                                FontSize="15"
+                                >
+                            </TextBlock>
+                            <Separator
+                                Grid.Row="1"
+                                Style="{StaticResource MaterialDesignLightSeparator}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="16 0 16 8"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Text="0"
+                                FontSize="40"
+                                Style="{StaticResource MaterialDesignBody2TextBlock}">
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card
+                        Margin="10"
+                        Background="#00b894"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0"
+                        Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Margin="16 16 16 4"
+                                Text="Tổng số đơn hàng ......"
+                                FontSize="15"
+                                >
+                            </TextBlock>
+                            <Separator
+                                Grid.Row="1"
+                                Style="{StaticResource MaterialDesignLightSeparator}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="16 0 16 8"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Text="0"
+                                FontSize="40"
+                                Style="{StaticResource MaterialDesignBody2TextBlock}">
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                </WrapPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
