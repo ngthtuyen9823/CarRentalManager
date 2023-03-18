@@ -48,6 +48,35 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
+        public void addOrderToList(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, DateTime EndDate, int TotalFee)
+        {
+            try
+            {
+                conn.Open();
+                string SQL = string.Format("INSERT INTO [Order](id, carId, customerId, bookingPlace, startDate, endDate, totalFee) " +
+                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Success!");
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.ORDER);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTableOrder = new DataTable();
+                    adapter.Fill(dataTableOrder);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
 
         public List<Order> getListOrderByDescOrAsc(bool isDescrease, string fieldName)
         {

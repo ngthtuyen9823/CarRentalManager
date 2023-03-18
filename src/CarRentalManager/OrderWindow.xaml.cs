@@ -22,6 +22,8 @@ namespace CarRentalManager
         public OrderWindow()
         {
             InitializeComponent();
+            StartDate.SelectedDate = DateTime.Today;
+            EndDate.SelectedDate = DateTime.Today;
         }
     }
 }

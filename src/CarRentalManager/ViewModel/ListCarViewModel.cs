@@ -20,8 +20,6 @@ namespace CarRentalManager.ViewModel
         readonly CarDAO carDao = new CarDAO();
 
 
-        //CALL CONN IN Class DAO
-
         public ListCarViewModel()
         {
             List = getListObservableCar();
