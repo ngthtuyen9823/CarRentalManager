@@ -10,6 +10,6 @@
     <viewmodel:ListOrderViewModel x:Key="OrderVM"></viewmodel:ListOrderViewModel>
     <viewmodel:ListContractViewModel x:Key="ContractVM"></viewmodel:ListContractViewModel>
     <viewmodel:CardViewModels x:Key="CarViewModel"></viewmodel:CardViewModels>
-
+    <viewmodel:RegistrationVM x:Key="RegistrationVM"></viewmodel:RegistrationVM>
 
 </ResourceDictionary>

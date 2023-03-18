@@ -266,7 +266,7 @@
                                          Icon="D"
                                          IsDeletable="True"
                                          IconBackground="{DynamicResource PrimaryHueLightBrush}"
-                                         IconForeground="{DynamicResource PrimaryBrush}" Width="152" />
+                                         IconForeground="{DynamicResource PrimaryBrush}" Width="152" Click="Chip_Click" />
                 </Grid>
 
             </StackPanel>
@@ -550,7 +550,7 @@
                                                     </MenuItem>
                                                     <MenuItem Header="MOTOBIKE" Command="{Binding SortByMotoBikeCommand}">
                                                         <MenuItem.Icon>
-                                                            <Image Source="Assets/bicycle_type.png"
+                                                            <Image Source="Assets/motobike_type.png"
                                                                Stretch="Uniform"
                                                                Height="80"/>
                                                         </MenuItem.Icon>

@@ -17,7 +17,17 @@ namespace CarRentalManager.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        protected virtual bool OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (EqualityComparer<T>.Default.Equals(backingField, value))
+                return false;
+
+            backingField = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
     }
+
     class RelayCommand<T> : ICommand // hỗ trợ thực hiện mấy cái command cho binding
     {
         private readonly Predicate<T> _canExecute;

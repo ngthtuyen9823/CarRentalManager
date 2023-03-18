@@ -48,53 +48,43 @@
         <Border.Background>
             <ImageBrush
                 ImageSource="{Binding ImagePath}" 
-                Stretch="UniformToFill"/>
+                Stretch="UniformToFill"
+                />
         </Border.Background>
         <Grid>
             <TextBlock
+
                 HorizontalAlignment="Left"
-                FontWeight="SemiBold"
-                VerticalAlignment="Top"
-                FontSize="20"
-                Margin="9,9,0,0">
-                <Run Foreground="Black"
-                     Background="WhiteSmoke"
+                FontWeight="Bold"
+                VerticalAlignment="Bottom"
+                Foreground="White"
+                Background="Black"
+                FontSize="15"
+                >
+                <Run 
+                     FontSize="20"
                      Text="{Binding Name}"/>
                 <LineBreak/>
                 <Run 
-                     Background="White"
-                     Foreground="Gray" 
-                     FontSize="15"					 
                      Text="{Binding DrivingType}"/>
-            </TextBlock>
-
-			<TextBlock
+                <TextBlock
 				Background="{StaticResource PrimaryBrush}"
-				Foreground="WhiteSmoke"
+				Foreground="Black"
 				HorizontalAlignment="Right"
 				FontWeight="Bold"
 				VerticalAlignment="Top"
-				FontSize="20"
-				Margin="0,40,10,0">
+				FontSize="15"
+				Margin="0,0,0,0">
 				<Run Text="{Binding Price}" />
-				<Run Text="k/ngày" />
-			</TextBlock>
-
-            <Button x:Name="btnLoadRegister" 
+				<Run Text="K/NGÀY" />
+			    </TextBlock>
+            </TextBlock>
+            <Button 
+                    HorizontalAlignment="Right"
+                    Margin="0,205,0,0"
+                    x:Name="btnLoadRegister" 
                     Tag="{Binding ID}"
                     Style="{StaticResource PlayButtons}" Click="btnLoadRegister_Click" Cursor="Hand"/>
-            <!--Tutor pic-->
-            <Ellipse Stroke="White"
-                     StrokeThickness="2"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Bottom"
-                     Height="92"
-                     Width="92"
-                     Margin="0,0,10,10">
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="{Binding TutorialPath}" Stretch="UniformToFill"/>
-                </Ellipse.Fill>
-            </Ellipse>
         </Grid>
     </Border>
 </UserControl>

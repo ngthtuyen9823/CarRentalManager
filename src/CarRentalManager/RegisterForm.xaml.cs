@@ -3,6 +3,7 @@ using CarRentalManager.modals;
 using CarRentalManager.services;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -16,6 +17,10 @@ namespace CarRentalManager
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly CarDataService carDataService = new CarDataService();
         readonly CarDAO carDAO = new CarDAO();
+        readonly OrderDAO orderDAO = new OrderDAO();
+        readonly VariableService variableService = new VariableService();
+
+        private int priceCar;
         public RegisterForm()
         {
             InitializeComponent();
@@ -23,20 +28,31 @@ namespace CarRentalManager
         public RegisterForm(string id)
         {           
             InitializeComponent();
+            dpBatdau.SelectedDate = DateTime.Today;
+            dpKetThuc.SelectedDate= DateTime.Today;
             Car currentCar = this.getCarInformation(id);
             this.loadViewModel(currentCar);
         }
 
         private void loadViewModel(Car car)
         {
-            lblIDXe.Content = "ID XE : " + car.ID;
+            priceCar = car.Price;
+            lblIDCar.Content = "ID XE : " + car.ID;
             describeIMG.Source = new BitmapImage(new Uri(car.ImagePath, UriKind.Relative));
+            lblNameCar.Content = "Name : "+ car.Name;
+            lblBranchCar.Content = "Brand : " + car.Brand;
+            lblPublishYear.Content = "Publish Year : " + car.PublishYear;
+            lblColorCar.Content = "Color : " + car.Color;
+            lblPriceCar.Content = "Price : " + car.Price;
+            lblSeats.Content = "Seats : " + car.Seats;
+
+            ((dynamic)this.DataContext).CarId = car.ID.ToString();
         }
 
         public string ID { get; set; }
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-            lblIDXe.Content = ID;
+            lblIDCar.Content = ID;
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
 
@@ -47,6 +63,23 @@ namespace CarRentalManager
         private Car getCarInformation(string id)
         {
             return carDAO.getCarById(id);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (!dpBatdau.SelectedDate.HasValue || !dpKetThuc.SelectedDate.HasValue)
+            {
+                lblTotalFee.Content = "Select dates";
+                return;
+            }
+            DateTime start = dpBatdau.SelectedDate.Value.Date;
+            DateTime end = dpKetThuc.SelectedDate.Value.Date;
+            TimeSpan timeSpan = end.Subtract(start);
+            string totalFee = (timeSpan.TotalDays * priceCar).ToString();
+            lblTotalFee.Content = totalFee + "000 VNĐ";
+
+            ((dynamic)this.DataContext).TotalFee = variableService.parseStringToInt(totalFee);
+
         }
     }
 }

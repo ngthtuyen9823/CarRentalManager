@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,11 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM {0} ORDER BY {1} {2}", tableName, fielddName, stringIsDesc);
         }
 
+        public string getLastId(ETableName tableName)
+        {
+
+            return string.Format("SELECT TOP 1 id FROM [dbo].[{0}] ORDER BY id DESC", tableName);
+        }
 
         //*INFO: CAR
 
@@ -68,9 +74,13 @@ namespace CarRentalManager.services
             return string.Format("DELETE FROM [{0}] WHERE id = '{1}'", ETableName.ORDER, id);
         }
 
-
+        public string createOrder(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, DateTime EndDate, int TotalFee)
+        {
+            return string.Format("INSERT INTO [dbo].[Order](id, carId, customerId, bookingPlace, startDate, endDate, totalFee) " +
+                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,ETableName.ORDER);
+        }
         //*INFO: RECEIPT
-
 
 
         

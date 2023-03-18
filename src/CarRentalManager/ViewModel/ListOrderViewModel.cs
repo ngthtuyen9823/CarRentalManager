@@ -1,4 +1,4 @@
-﻿using CarRentalManager.modals;
+using CarRentalManager.modals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +15,6 @@ namespace CarRentalManager.ViewModel
 {
     public class ListOrderViewModel : BaseViewModel, IDataErrorInfo
     {
-        private ObservableCollection<Order> list;
         public ObservableCollection<Order> List { get; set; }
         public ICommand AddCommand { get; set; }
 

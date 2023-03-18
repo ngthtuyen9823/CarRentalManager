@@ -1,4 +1,4 @@
-﻿using CarRentalManager.enums;
+using CarRentalManager.enums;
 using CarRentalManager.services;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace CarRentalManager.dao
         private SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly OrderDataService orderDataService= new OrderDataService();
+        readonly VariableService variableService = new VariableService();
         public OrderDAO() { }
 
         public List<Order> getListOrder()
@@ -53,18 +54,15 @@ namespace CarRentalManager.dao
             try
             {
                 conn.Open();
-                string SQL = string.Format("INSERT INTO [Order](id, carId, customerId, bookingPlace, startDate, endDate, totalFee) " +
-                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
-                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
+                string SQL = sqlService.createOrder( ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {
-                    MessageBox.Show("Success!");
                     string sqlStringGetTable = sqlService.getListTableData(ETableName.ORDER);
                     SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                     DataTable dataTableOrder = new DataTable();
                     adapter.Fill(dataTableOrder);
-
+                    MessageBox.Show("Success");
                 }
             }
             catch (Exception ex)
@@ -76,6 +74,30 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
 
+        }
+        public int getLastId(ETableName eTableName)
+        {
+            try
+            {
+                conn.Open();
+                
+                string sqlStringGetTable = sqlService.getLastId(eTableName);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                DataTable dataTableOrder = new DataTable();
+                adapter.Fill(dataTableOrder);
+
+                int id = variableService.parseStringToInt(dataTableOrder.Rows[0]["id"].ToString());
+                return id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+                return 0;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public List<Order> getListOrderByDescOrAsc(bool isDescrease, string fieldName)
