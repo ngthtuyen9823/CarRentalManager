@@ -26,6 +26,7 @@
         
         Title="Order Manager" Height="750" Width="1000">
 
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -46,16 +47,16 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding ID}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                        <TextBox Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CarId}" materialDesign:HintAssist.Hint="Mã xe"
+                        <TextBox Margin="5" Text="{Binding CarId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CustomerId}" materialDesign:HintAssist.Hint="Mã khách hàng"
+                        <TextBox Margin="5" Text="{Binding CustomerId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding BookingPlace}" materialDesign:HintAssist.Hint="Booking Place"
+                        <TextBox Margin="5" Text="{Binding BookingPlace, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Booking Place"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    
-                        <ComboBox SelectedValue="{Binding Status}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+
+                        <ComboBox SelectedValue="{Binding Status, ValidatesOnDataErrors=True}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBoxItem>
                                 COMPLETE

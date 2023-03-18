@@ -13,41 +13,39 @@ using System.Windows.Data;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListOrderViewModel : BaseViewModel
+    public class ListOrderViewModel : BaseViewModel, IDataErrorInfo
     {
         private ObservableCollection<Order> list;
         public ObservableCollection<Order> List { get; set; }
         public ICommand AddCommand { get; set; }
+
         readonly OrderDAO orderDao = new OrderDAO();
 
-
+        public void InvalidateRequerySuggested();
         public ListOrderViewModel()
         {
             List = getListObservableOrder();
             AddCommand = new RelayCommand<object>((p) =>
             {
-                return true;
+                if (ID == 0 || CarId == 0 || CustomerId == 0 || BookingPlace == null || Status == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }, (p) =>
             {
                 orderDao.addOrderToList(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
                 List = getListObservableOrder();
                 OnPropertyChanged(nameof(List));
-                //MessageBox.Show(String.Format("Da vao: {0}", ID));
-                //MessageBox.Show(String.Format("Da vao: {0}", CustomerId));
-                //MessageBox.Show(String.Format("Da vao: {0}", CarId));
-                //MessageBox.Show(String.Format("Da vao: {0}", Status));
-                //MessageBox.Show(String.Format("Da vao: {0}", BookingPlace));
-
-                //MessageBox.Show(String.Format("Da vao: {0}", StartDate.ToString()));
-                //MessageBox.Show(String.Format("Da vao: {0}", EndDate.ToString()));
-
-
-
-
-
             });
         }
- 
+
+
+
+
         private int id;
 
         public int ID
@@ -58,7 +56,8 @@ namespace CarRentalManager.ViewModel
                 if (value != id)
                 {
                     id = value;
-                    OnPropertyChanged("ID");
+
+
                 }
             }
         }
@@ -73,6 +72,7 @@ namespace CarRentalManager.ViewModel
                 {
                     carId = value;
                     OnPropertyChanged("CarId");
+
                 }
             }
         }
@@ -87,6 +87,7 @@ namespace CarRentalManager.ViewModel
                 {
                     customerId = value;
                     OnPropertyChanged("CustomerId");
+
                 }
             }
         }
@@ -101,6 +102,7 @@ namespace CarRentalManager.ViewModel
                 {
                     totalFee = value;
                     OnPropertyChanged("TotalFee");
+
                 }
             }
         }
@@ -116,6 +118,7 @@ namespace CarRentalManager.ViewModel
                 {
                     status = value;
                     OnPropertyChanged("Status");
+
                 }
             }
         }
@@ -129,6 +132,8 @@ namespace CarRentalManager.ViewModel
                 {
                     bookingPlace = value;
                     OnPropertyChanged("BookingPlace");
+                    OnPropertyChanged("ID");
+                    
                 }
             }
         }
@@ -143,6 +148,7 @@ namespace CarRentalManager.ViewModel
                 {
                     startDate = value;
                     OnPropertyChanged("StartDate");
+
                 }
             }
         }
@@ -160,8 +166,82 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+        private string error;
+        public string Error
+        {
+            get => error;
+            set
+            {
+                if (error != value)
+                {
+                    error = value;
+                    RaisePropertyChanged("Error");
+                }
+            }
+        }
 
+        private void RaisePropertyChanged(string v)
+        {
 
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                return OnValidate(columnName);
+            }
+        }
+
+        private string OnValidate(string columnName)
+        {
+            string result = string.Empty;
+            if (columnName == "BookingPlace")
+            {
+                if (string.IsNullOrEmpty(BookingPlace))
+                {
+                    result = "BookingPlace is Required";
+                }
+            }
+            if (columnName == "Status")
+            {
+                if (string.IsNullOrEmpty(BookingPlace))
+                {
+                    result = "Status is Required";
+                }
+            }
+            if (columnName == "ID")
+            {
+                if (ID == 0 || string.IsNullOrEmpty(ID.ToString()))
+                {
+                    result = "ID invalid";
+                }
+            }
+            if (columnName == "CarId")
+            {
+                if (CarId == 0 || string.IsNullOrEmpty(CarId.ToString()))
+                {
+                    result = "CarID invalid";
+                }
+            }
+
+            if (columnName == "CustomerId")
+            {
+                if (CustomerId == 0 || string.IsNullOrEmpty(CustomerId.ToString()))
+                {
+                    result = "CustomerID invalid";
+                }
+            }
+            if (result == null)
+            {
+                Error = null;
+            }
+            else
+            {
+                Error = "Error";
+            }
+            return result;
+        }
         public ObservableCollection<Order> getListObservableOrder()
         {
             List<Order> Orders = orderDao.getListOrder();
@@ -170,10 +250,3 @@ namespace CarRentalManager.ViewModel
         }
     }
 }
-
-
-// cmd.CommandText="INSERT INTO person (birthdate) VALUES('"+dateTimePicker.Value.Date.ToString("yyyyMMdd")+"')";
-
-
-//SqlCommand com = new SqlCommand("insert into Test values(@DtValue, con);
-//com.Parameters.AddWithValue("DtValue", dateTimePicker1.Value.Date);
