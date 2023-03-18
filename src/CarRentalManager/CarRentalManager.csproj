@@ -113,6 +113,7 @@
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="dao\CommonDAO.cs" />
     <Compile Include="dao\OrderDAO.cs" />
     <Compile Include="dao\ReceiptDAO.cs" />
     <Compile Include="dao\CustomerDAO.cs" />
