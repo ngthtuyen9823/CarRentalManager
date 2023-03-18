@@ -19,44 +19,38 @@ namespace CarRentalManager.ViewModel
         public ICommand OrderCommand { get; set; }
         public ICommand RegisterFormCommand { get; set; }
 
-
-
-
-        // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                isLoaded = true;
-                if (p == null)
-                {
-                    return;
-                }
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-                if (loginWindow.DataContext == null)
-                {
-                    return;
-                }
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-                if (loginVM.isLogin)
-                {
-                    p.Show();
-                }
-                else
-                {
-                    p.Close();
-                }
+                //isLoaded = true;
+                //if (p == null)
+                //{
+                //    return;
+                //}
+                //p.Hide();
+                //LoginWindow loginWindow = new LoginWindow();
+                //loginWindow.ShowDialog();
+                //if (loginWindow.DataContext == null)
+                //{
+                //    return;
+                //}
+                //var loginVM = loginWindow.DataContext as LoginViewModel;
+                //if (loginVM.isLogin)
+                //{
+                //    p.Show();
+                //}
+                //else
+                //{
+                //    p.Close();
+                //}
+                p.Show();
             });
           
             CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ContractWindow wd = new ContractWindow(); wd.ShowDialog(); });
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
-/*            RegisterFormCommand = new RelayCommand<object>((p) => { return true; }, (p) => { RegisterForm wd = new RegisterForm(p); wd.ShowDialog(); });
-*/
-            //var a = DataProvider.Ins.DB.Cars.ToList();
         }
     }
 }

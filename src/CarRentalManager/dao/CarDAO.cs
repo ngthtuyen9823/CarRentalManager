@@ -6,6 +6,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using CarRentalManager.modals;
+using System.Diagnostics;
+using System.Xml.Linq;
+using System.Collections.ObjectModel;
 
 namespace CarRentalManager.dao
 {
@@ -43,6 +46,34 @@ namespace CarRentalManager.dao
             finally { 
                 conn.Close();
             }
+        }
+        public void addCarToList(int ID, string Name, string Brand, string Type, string Status, string LicensePlate, int Price)
+        {
+            try
+            {
+                conn.Open();
+                string SQL = string.Format("INSERT INTO Car(id, name, brand, type, status, licensePlate, price) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                    ID, Name, Brand, Type, Status, LicensePlate, Price);
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Success!");
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTableCar = new DataTable();
+                    adapter.Fill(dataTableCar);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
         }
 
         public List<Car> getListCarByDescOrAsc(bool isDescrease, string fieldName)
@@ -98,5 +129,6 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
+
     }
 }

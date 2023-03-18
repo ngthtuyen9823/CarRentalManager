@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CarRentalManager"
         mc:Ignorable="d"
         
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -24,6 +25,7 @@
         DataContext="{StaticResource OrderVM}"
         
         Title="Order Manager" Height="750" Width="1000">
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -45,15 +47,16 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding ID}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                        <TextBox Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CarID}" materialDesign:HintAssist.Hint="Mã xe"
+                        <TextBox Margin="5" Text="{Binding CarId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CustomerID}" materialDesign:HintAssist.Hint="Mã khách hàng"
+                        <TextBox Margin="5" Text="{Binding CustomerId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
+                        <TextBox Margin="5" Text="{Binding BookingPlace, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Booking Place"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <ComboBox SelectedValue="{Binding Status}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+
+                        <ComboBox SelectedValue="{Binding Status, ValidatesOnDataErrors=True}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBoxItem>
                                 COMPLETE
@@ -65,10 +68,18 @@
                                 PENDING
                             </ComboBoxItem>
                         </ComboBox>
-                        <DatePicker Margin="5" Text="{Binding StartDate}" materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                        <DatePicker Margin="5" Text="{Binding StartDate}" 
+                                    Name="StartDate"
+                                    SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                        <DatePicker Margin="5" Text="{Binding EndDate}"
+                                    Name="EndDate"
+                                    SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày kết thúc"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <DatePicker Margin="5" Text="{Binding EndDate}" materialDesign:HintAssist.Hint="Ngày kết thúc"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                        <TextBox Margin="5" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </StackPanel>
                     <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
@@ -86,6 +97,7 @@
                                 <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                                 <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding CarId}"></GridViewColumn>
                                 <GridViewColumn Header="Mã khách hàng" DisplayMemberBinding="{Binding CustomerId}"></GridViewColumn>
+                                <GridViewColumn Header="Booking Place" DisplayMemberBinding="{Binding BookingPlace}"></GridViewColumn>
                                 <GridViewColumn Header="Phí thanh toán" DisplayMemberBinding="{Binding TotalFee}"></GridViewColumn>
                                 <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày bắt đầu" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>

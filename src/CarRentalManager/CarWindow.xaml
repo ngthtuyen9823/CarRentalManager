@@ -1,4 +1,4 @@
-﻿<Window x:Class="CarRentalManager.CarWindow"
+<Window x:Class="CarRentalManager.CarWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,6 +20,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource CarVM}"
+        
         x:Name="window" 
         Title="Car Manager" Height="750" Width="1000">
     <Grid>
@@ -42,11 +43,13 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding ID}" materialDesign:HintAssist.Hint="Mã xe"
+                        <TextBox Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Brand}" materialDesign:HintAssist.Hint="Hãng"
+                        <TextBox Margin="5" Text="{Binding Name , UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <ComboBox SelectedValue="{Binding Type}" Margin="5" materialDesign:HintAssist.Hint="Loại xe" 
+                        <TextBox Margin="5" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <ComboBox SelectedValue="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Loại xe" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBoxItem>
                                 CAR
@@ -73,7 +76,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </StackPanel>
                     <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-						<Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                        <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
 						<Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
 						<Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
 					</StackPanel>
@@ -81,12 +84,13 @@
 			</materialDesign:Card>
 				<ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
                     <Grid>
-                        <ListView ItemsSource="{Binding List}"
+                        <ListView x:Name="lsvCar" ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                                    <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                                    <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                    <GridViewColumn Header="Tên xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
                                     <GridViewColumn Header="Loại xe" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
                                     <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                     <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
