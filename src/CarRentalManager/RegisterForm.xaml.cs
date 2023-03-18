@@ -28,6 +28,8 @@ namespace CarRentalManager
         public RegisterForm(string id)
         {           
             InitializeComponent();
+            dpBatdau.SelectedDate = DateTime.Today;
+            dpKetThuc.SelectedDate= DateTime.Today;
             Car currentCar = this.getCarInformation(id);
             this.loadViewModel(currentCar);
         }

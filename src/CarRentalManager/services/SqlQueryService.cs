@@ -76,7 +76,7 @@ namespace CarRentalManager.services
 
         public string createOrder(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, DateTime EndDate, int TotalFee)
         {
-            return string.Format("INSERT INTO {7}(id, carId, customerId, bookingPlace, startDate, endDate, totalFee) " +
+            return string.Format("INSERT INTO [dbo].[Order](id, carId, customerId, bookingPlace, startDate, endDate, totalFee) " +
                     "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
                     ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,ETableName.ORDER);
         }

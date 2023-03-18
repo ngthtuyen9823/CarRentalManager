@@ -62,7 +62,7 @@ namespace CarRentalManager.dao
                     SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                     DataTable dataTableOrder = new DataTable();
                     adapter.Fill(dataTableOrder);
-
+                    MessageBox.Show("Success");
                 }
             }
             catch (Exception ex)
@@ -81,7 +81,6 @@ namespace CarRentalManager.dao
             {
                 conn.Open();
                 
-                MessageBox.Show("inside");
                 string sqlStringGetTable = sqlService.getLastId(eTableName);
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                 DataTable dataTableOrder = new DataTable();
@@ -89,7 +88,6 @@ namespace CarRentalManager.dao
 
                 int id = variableService.parseStringToInt(dataTableOrder.Rows[0]["id"].ToString());
                 return id;
-
             }
             catch (Exception ex)
             {

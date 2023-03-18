@@ -11,38 +11,49 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using CarRentalManager.enums;
-
+using CarRentalManager.services;
+using System.Collections.ObjectModel;
 
 namespace CarRentalManager.ViewModel
 {
     public class RegistrationVM : BaseViewModel, IDataErrorInfo
     {
+        public ObservableCollection<Order> List { get; set; }
         public string Error { get { return null; } }
         private string _username;
+        readonly VariableService variableService = new VariableService();
         public ICommand RegisterCommand { get; set; }
         readonly OrderDAO orderDAO= new OrderDAO();
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
 
         public RegistrationVM() 
         {
+            List = getListObservableOrder();
             RegisterCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             {
-
                 int lastOrderId = orderDAO.getLastId(ETableName.ORDER);
-                MessageBox.Show(String.Format("Da vao: {0}", lastOrderId.ToString()));
+                int lastOrderIdCustomer = orderDAO.getLastId(ETableName.CUSTOMER);
 
-                MessageBox.Show(String.Format("Da vao: {0}", BookingPlace));
+                orderDAO.addOrderToList(lastOrderId+1, variableService.parseStringToInt(CarId), lastOrderIdCustomer, BookingPlace, StartDate, EndDate, TotalFee);
 
-                MessageBox.Show(String.Format("Da vao: {0}", StartDate.ToString()));
-                MessageBox.Show(String.Format("Da vao: {0}", EndDate.ToString()));
 
-                MessageBox.Show(String.Format("Da vao: {0}", Name));
-                MessageBox.Show(String.Format("Da vao: {0}", PhoneNumber));
-                MessageBox.Show(String.Format("Da vao: {0}", TotalFee));
-                MessageBox.Show(String.Format("CarID: {0}", CarId));
+
+                //int lastOrderId = orderDAO.getLastId(ETableName.ORDER);
+                //MessageBox.Show(String.Format("Da vao: {0}", lastOrderIdCustomer.ToString()));
+
+
+                //MessageBox.Show(String.Format("Da vao: {0}", BookingPlace));
+
+                //MessageBox.Show(String.Format("Da vao: {0}", StartDate.ToString()));
+                //MessageBox.Show(String.Format("Da vao: {0}", EndDate.ToString()));
+
+                //MessageBox.Show(String.Format("Da vao: {0}", Name));
+                //MessageBox.Show(String.Format("Da vao: {0}", PhoneNumber));
+                //MessageBox.Show(String.Format("Da vao: {0}", TotalFee));
+                //MessageBox.Show(String.Format("CarID: {0}", CarId));
 
 
 
@@ -180,6 +191,12 @@ namespace CarRentalManager.ViewModel
             {
                 OnPropertyChanged(ref _username, value);
             }
+        }
+        public ObservableCollection<Order> getListObservableOrder()
+        {
+            List<Order> Orders = orderDAO.getListOrder();
+            ObservableCollection<Order> OrderList = new ObservableCollection<Order>(Orders);
+            return OrderList;
         }
     }
 }
