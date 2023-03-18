@@ -18,7 +18,7 @@
             </i:Interaction.Triggers>
 
     <Grid>
-        <materialDesign:ColorZone   Mode="Inverted" >
+        <materialDesign:ColorZone   Mode="Dark" >
             <DockPanel>
                 <StackPanel DockPanel.Dock="Right"  Background="Transparent" Orientation="Horizontal">
                     <StackPanel.Resources>
@@ -29,17 +29,17 @@
                     </StackPanel.Resources>
                     <Button Command="{Binding MinimizeWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}"
-                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="ForestGreen">
+                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="#636e72">
                         <materialDesign:PackIcon Kind="WindowMinimize" />
                     </Button>
                     <Button Command="{Binding MaximizeWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}"
-                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="ForestGreen">
+                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="#00b894">
                         <materialDesign:PackIcon Kind="WindowMaximize" />
                     </Button>
                     <Button Command="{Binding CloseWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}"
-                            ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="OrangeRed">
+                            ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="#ee5253">
                         <materialDesign:PackIcon Kind="WindowClose" />
                     </Button>
                 </StackPanel>

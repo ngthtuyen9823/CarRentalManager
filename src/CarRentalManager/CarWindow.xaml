@@ -111,9 +111,9 @@
 
             <materialDesign:Card Grid.Row="1" Margin="5">
                 <WrapPanel>
-                    <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
-                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
-                    <Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                    <Button Background="#4b4b4b" Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                    <Button Background="#4b4b4b" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+                    <Button Background="#4b4b4b" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
                 </WrapPanel>
             </materialDesign:Card>
 
