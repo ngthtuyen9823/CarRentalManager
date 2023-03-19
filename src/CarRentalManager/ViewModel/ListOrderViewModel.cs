@@ -20,7 +20,7 @@ namespace CarRentalManager.ViewModel
 
         readonly OrderDAO orderDao = new OrderDAO();
 
-        public void InvalidateRequerySuggested();
+        /*public void InvalidateRequerySuggested();*/
         public ListOrderViewModel()
         {
             List = getListObservableOrder();

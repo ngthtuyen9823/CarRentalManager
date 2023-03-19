@@ -54,15 +54,14 @@ namespace CarRentalManager.dao
             try
             {
                 conn.Open();
-                string SQL = sqlService.createOrder( ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
+                string SQL = sqlService.createOrder(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     string sqlStringGetTable = sqlService.getListTableData(ETableName.ORDER);
                     SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                    DataTable dataTableOrder = new DataTable();
-                    adapter.Fill(dataTableOrder);
-                    MessageBox.Show("Success");
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
                 }
             }
             catch (Exception ex)
@@ -74,30 +73,6 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
 
-        }
-        public int getLastId(ETableName eTableName)
-        {
-            try
-            {
-                conn.Open();
-                
-                string sqlStringGetTable = sqlService.getLastId(eTableName);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTableOrder = new DataTable();
-                adapter.Fill(dataTableOrder);
-
-                int id = variableService.parseStringToInt(dataTableOrder.Rows[0]["id"].ToString());
-                return id;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fail!" + ex);
-                return 0;
-            }
-            finally
-            {
-                conn.Close();
-            }
         }
 
         public List<Order> getListOrderByDescOrAsc(bool isDescrease, string fieldName)

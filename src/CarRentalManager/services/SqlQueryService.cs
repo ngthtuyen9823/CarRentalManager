@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using CarRentalManager.enums;
 using CarRentalManager.modals;
 
@@ -22,22 +24,32 @@ namespace CarRentalManager.services
 
         public string getValueById(string id, ETableName tableName)
         {
-            return string.Format("SELECT * FROM {0} WHERE id='{1}'", tableName, id);
+            return string.Format("SELECT * FROM [{0}] WHERE id='{1}'", tableName, id);
         }
 
         public string getSortByDescOrAsc(bool isDecrease, string fielddName, ETableName tableName)
         {
             string stringIsDesc = isDecrease ? "DESC" : "ASC";
-            return string.Format("SELECT * FROM {0} ORDER BY {1} {2}", tableName, fielddName, stringIsDesc);
+            return string.Format("SELECT * FROM [{0}] ORDER BY {1} {2}", tableName, fielddName, stringIsDesc);
         }
 
         public string getLastId(ETableName tableName)
         {
 
-            return string.Format("SELECT TOP 1 id FROM [dbo].[{0}] ORDER BY id DESC", tableName);
+            return string.Format("SELECT TOP 1 id FROM [{0}] ORDER BY id DESC", tableName);
         }
 
         //*INFO: CAR
+        
+        public string getListCarByType(ECarType eCarType)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE type = '{1}'", ETableName.CAR, eCarType);
+        }
+        public string createNewCar(int id, string name, string brand, string type, string status, string licensePlate, int price)
+        {
+            return string.Format("INSERT INTO [{9}](id, name, brand, type, status, licensePlate, price, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
+                    id, name, brand, type, status, licensePlate, price, DateTime.Now, DateTime.Now, ETableName.CAR);
+        }
 
 
         //*INFO: USER
@@ -50,7 +62,11 @@ namespace CarRentalManager.services
 
         //*INFO: CUSTOMER
 
-
+        public string createNewCustomer(int id, string phoneNumber, string name, string email, string idCard, string address)
+        {
+            return string.Format("INSERT INTO [{8}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
+                    id, phoneNumber, name, email, idCard, address, DateTime.Now, DateTime.Now, ETableName.CUSTOMER);
+        }
 
         //*INFO: CONTRACT
 
@@ -76,9 +92,9 @@ namespace CarRentalManager.services
 
         public string createOrder(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, DateTime EndDate, int TotalFee)
         {
-            return string.Format("INSERT INTO [dbo].[Order](id, carId, customerId, bookingPlace, startDate, endDate, totalFee) " +
-                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
-                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,ETableName.ORDER);
+            return string.Format("INSERT INTO [{10}]" +
+                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee, EOrderStatus.PENDING, DateTime.Now, DateTime.Now, ETableName.ORDER);
         }
         //*INFO: RECEIPT
 

@@ -79,7 +79,7 @@ namespace CarRentalManager.dao
             }
         }
 
-        public Customer getCarById(string id)
+        public Customer getCustomerById(string id)
         {
             try
             {
@@ -96,6 +96,32 @@ namespace CarRentalManager.dao
             {
                 MessageBox.Show(ex.Message);
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void createNewCustomer(int id, string phoneNumber, string name, string email, string idCard, string address)
+        {
+            try
+            {
+                conn.Open();
+                string sqlQuery = sqlService.createNewCustomer(id, phoneNumber, name, email, idCard, address);
+                SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CUSTOMER);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             finally
             {

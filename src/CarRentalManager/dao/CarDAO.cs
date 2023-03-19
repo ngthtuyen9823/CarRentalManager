@@ -19,6 +19,18 @@ namespace CarRentalManager.dao
         readonly CarDataService carDataService= new CarDataService();
         public CarDAO() { }
 
+        public List<Car> getListCarFromDataTable(DataTable dataTable)
+        {
+            List<Car> carList = new List<Car>();
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                var row = dataTable.Rows[i];
+                Car newCar = carDataService.createCarByRowData(row);
+                carList.Add(newCar);
+            }
+            return carList;
+        }
+
         public List<Car> getListCar()
         {
             try
@@ -29,14 +41,7 @@ namespace CarRentalManager.dao
                 DataTable dataTableCar = new DataTable();
                 adapter.Fill(dataTableCar);
 
-                List<Car> carList = new List<Car>();
-                for (int i = 0; i < dataTableCar.Rows.Count; i++)
-                {
-                    var row = dataTableCar.Rows[i];
-                    Car newCar = carDataService.createCarByRowData(row);
-                    carList.Add(newCar);
-                }
-                return carList;
+                return getListCarFromDataTable(dataTableCar);
             }
             catch (Exception ex)
             {
@@ -52,8 +57,7 @@ namespace CarRentalManager.dao
             try
             {
                 conn.Open();
-                string SQL = string.Format("INSERT INTO Car(id, name, brand, type, status, licensePlate, price) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
-                    ID, Name, Brand, Type, Status, LicensePlate, Price);
+                string SQL = sqlService.createNewCar(ID, Name, Brand, Type, Status, LicensePlate, Price);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {
@@ -86,14 +90,7 @@ namespace CarRentalManager.dao
                 DataTable dataTableCar = new DataTable();
                 adapter.Fill(dataTableCar);
 
-                List<Car> carList = new List<Car>();
-                for (int i = 0; i < dataTableCar.Rows.Count; i++)
-                {
-                    var row = dataTableCar.Rows[i];
-                    Car newCar = carDataService.createCarByRowData(row);
-                    carList.Add(newCar);
-                }
-                return carList;
+                return getListCarFromDataTable(dataTableCar);
             }
             catch (Exception ex)
             {
@@ -130,5 +127,28 @@ namespace CarRentalManager.dao
             }
         }
 
+        public List<Car> getListCarByType(ECarType eCarType)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStringGetTable = sqlService.getListCarByType(eCarType);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                DataTable dataTableCar = new DataTable();
+                adapter.Fill(dataTableCar);
+
+                return getListCarFromDataTable(dataTableCar);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        
     }
 }
