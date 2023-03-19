@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CarRentalManager.modals;
 using System.Data;
 using System.Windows.Controls;
 using System.Data.Entity.Core.Metadata.Edm;

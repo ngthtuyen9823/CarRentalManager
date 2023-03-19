@@ -79,7 +79,7 @@
                     <Button Grid.Column="1"    
                             Style="{StaticResource  MaterialDesignRaisedDarkButton}"    
                             Width="110"    
-                            Background="BlueViolet"
+                            Background="#16a085"
                             ToolTip="Resource name: MaterialDesignRaisedButton" Content="Đăng kí"></Button>
                 </Grid>
             </Grid>

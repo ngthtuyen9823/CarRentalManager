@@ -82,9 +82,9 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </StackPanel>
                     <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
-                        <Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
-                        <Button Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                        <Button Background="#4b4b4b" Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                        <Button Background="#4b4b4b" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+                        <Button Background="#4b4b4b" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
                     </StackPanel>
                 </Grid>
             </materialDesign:Card>
