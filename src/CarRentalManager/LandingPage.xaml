@@ -148,7 +148,7 @@
     <Border>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/bkg.jpg">
+                <ImageBrush>
                     <ImageBrush.RelativeTransform>
                         <TransformGroup>
                             <ScaleTransform CenterY="0.5" CenterX="0.5"/>
@@ -420,17 +420,20 @@
                                         Background="{StaticResource FormBrush}"
                                         BorderThickness="0"
                                         Foreground="DarkGray"
-                                        Width="120"
+                                        Width="150"
                                         FontSize="20"
-                                        Content="Start"
+                                        Content="Hãng xe"
                                         VerticalAlignment="Center"
                                         FontWeight="SemiBold" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
-                                        <DatePicker x:Name="dtStart" 
+                                        <TextBox 
+                                        Foreground="DarkGray"
+                                        FontWeight="SemiBold"
+                                        x:Name="dtStart" 
                                         Grid.Column="2"
-                                        IsTodayHighlighted="True"
+                                        Margin="35,0,0,0"
                                         VerticalAlignment="Center"
                                         FontSize="20">
-                                        </DatePicker>
+                                        </TextBox>
                                     </Grid>
 
                                 </Border>
@@ -445,7 +448,8 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="50"/>
                                             <!--for icon-->
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="18*"/>
+                                            <ColumnDefinition Width="155*"/>
                                             <!--describe-->
                                         </Grid.ColumnDefinitions>
                                         <!--Icon-->
@@ -455,15 +459,18 @@
                                         Foreground="DarkGray"
                                         Width="120"
                                         FontSize="20"
-                                        Content="End"
+                                        Content="Số chỗ ngồi"
                                         VerticalAlignment="Center"
-                                        FontWeight="SemiBold" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
-                                        <DatePicker x:Name="dtEnd" 
-                                        Grid.Column="2"
-                                        IsTodayHighlighted="True"
+                                        FontWeight="SemiBold" Grid.ColumnSpan="3" HorizontalAlignment="Left"/>
+                                        <TextBox 
+                                        x:Name="txtSeats" 
+                                        Margin="70,0,0,0"
+                                        Foreground="DarkGray"
+                                        FontWeight="SemiBold"
+                                        Grid.Column="1"
+                                        FontSize="20" 
                                         VerticalAlignment="Center"
-                                        FontSize="20">
-                                        </DatePicker>
+                                        Grid.ColumnSpan="2"/>
                                     </Grid>
                                 </Border>
 
@@ -513,6 +520,23 @@
                                                       Height="44" Width="207"
                                                       Margin="5"
                                                       >
+                                                <MenuItem 
+                                                    Header ="Khoảng giá"  
+                                                     >
+                                                    <MenuItem.Icon>
+                                                        <Image Source="Assets/level-up.png"
+                                                               Stretch="Uniform"
+                                                               Height="60"/>
+                                                    </MenuItem.Icon>
+                                                    <MenuItem 
+                                                        Header="100 - 200"/>
+                                                    <MenuItem
+                                                        Header="200 - 500"/>
+                                                    <MenuItem
+                                                        Header="500 - 1000"/>
+                                                    <MenuItem
+                                                        Header=">1000"/>
+                                                </MenuItem>
                                                 <MenuItem 
                                                     Header ="Giá cao đến thấp"
                                                       Command="{Binding SortByAscCommand}"   
