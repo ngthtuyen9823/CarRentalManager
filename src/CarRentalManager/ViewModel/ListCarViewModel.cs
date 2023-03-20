@@ -10,11 +10,17 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Collections;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListCarViewModel : BaseViewModel
+    public class ListCarViewModel : BaseViewModel, IDataErrorInfo
     {
+        public string Error { get { return null; } }
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+
         public ObservableCollection<Car> List {get; set;}
         public ICommand AddCommand { get; set; }
         readonly CarDAO carDao = new CarDAO();
@@ -25,7 +31,10 @@ namespace CarRentalManager.ViewModel
             List = getListObservableCar();
             AddCommand = new RelayCommand<object>((p) =>
             {
-                return true;
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
             }, (p) =>
             {
                 carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type, Status, DrivingType, Seats, LicensePlate, Price, ImagePath, CreatedAt, UpdatedAt);
@@ -230,6 +239,72 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                switch (name)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            result = "Name cannot be empty";
+                        break;
+                    case "Brand":
+                        if (string.IsNullOrEmpty(Brand))
+                            result = "Brand cannot be empty";
+                        break;
+                    case "Color":
+                        if (string.IsNullOrEmpty(Color))
+                            result = "Color cannot be empty";
+                        break;
+                    case "PublishYear":
+                        if (string.IsNullOrEmpty(PublishYear))
+                            result = "Publish year cannot be empty";
+                        break;
+                    case "Type":
+                        if (string.IsNullOrEmpty(Type))
+                            result = "Type cannot be empty";
+                        break;
+                    case "Status":
+                        if (string.IsNullOrEmpty(Status))
+                            result = "Status cannot be empty";
+                        break;
+                    case "DrivingType":
+                        if (string.IsNullOrEmpty(Type))
+                            result = "Driving type cannot be empty";
+                        break;
+                    case "Seats":
+                        if (seats <= 0)
+                            result = "Seats invalid";
+                        break;
+                    case "LicensePlate":
+                        if (string.IsNullOrEmpty(LicensePlate))
+                            result = "License plate can not be empty";
+                        break;
+                    case "Price":
+                        if (price <= 0)
+                            result = "Price invalid";
+                        break;
+                    case "ImagePath":
+                        if (string.IsNullOrEmpty(ImagePath))
+                            result = "Please choose a image";
+                        break;
+                }
+                if (ErrorCollection.ContainsKey(name))
+                {
+                    ErrorCollection[name] = result;
+                    ErrorCollection.Remove(name);
+                }
+                else if (result != null)
+                    ErrorCollection.Add(name, result);
+
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }    
+
         public ObservableCollection<Car> getListObservableCar()
         {
             List<Car> cars = carDao.getListCar();
