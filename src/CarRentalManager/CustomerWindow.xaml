@@ -25,7 +25,7 @@
 
         DataContext="{StaticResource CustomerVM}"
         Title="Customer Manager" Height="750" Width="1000">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -38,42 +38,37 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <materialDesign:Card Margin="0 0 0 10" Padding="0 0 0 20">
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
+            <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Width="150" Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
+                    <TextBox Width=" 150" Margin="5" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
+                    <TextBox Width="150" Margin="5" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
+                    <TextBox Width="150" Margin="5" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
+                    <TextBox Width="150" Margin="5" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
+                    <TextBox Width="150" Margin="5" Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </StackPanel>
-
-                    <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Background="#4b4b4b" Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
-                        <Button Background="#4b4b4b" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
-                        <Button Background="#4b4b4b" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
-                    </StackPanel>
-
-                </Grid>
+                </WrapPanel>
             </materialDesign:Card>
 
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
-                <Grid>
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button Background="#218c74" Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                    <Button Background="#218c74" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+                    <Button Background="#218c74" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch" Padding="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
@@ -86,9 +81,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                 </Grid>
                 </ScrollViewer>
+            </materialDesign:Card>
         </Grid>
-        
     </Grid>
 </Window>
