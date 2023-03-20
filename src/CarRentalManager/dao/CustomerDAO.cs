@@ -1,4 +1,4 @@
-﻿using CarRentalManager.enums;
+using CarRentalManager.enums;
 using CarRentalManager.services;
 using System;
 using System.Collections.Generic;
@@ -48,6 +48,34 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
+        public void addCustomerToList(int id, string name, string phoneNumber, string email, string idCard, string address, DateTime createdAt, DateTime updatedAt)
+        {
+            try
+            {
+                conn.Open();
+                string SQL = sqlService.createNewCustomer(id, name, phoneNumber, email, idCard, address, createdAt, updatedAt);
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Success!");
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTableCar = new DataTable();
+                    adapter.Fill(dataTableCar);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
 
         public List<Customer> getListCustomerByDescOrAsc(bool isDescrease, string fieldName)
         {

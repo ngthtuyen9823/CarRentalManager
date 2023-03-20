@@ -117,7 +117,6 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
-        // updated at
         private DateTime updatedAt;
 
         public DateTime UpdatedAt

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Xml.Linq;
 using CarRentalManager.enums;
 using CarRentalManager.modals;
@@ -77,7 +78,11 @@ namespace CarRentalManager.services
 
         //*INFO: CONTRACT
 
-
+        public string createNewContract(int id, int orderId, int userId, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
+        {
+            return string.Format("INSERT INTO [{6}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                   id, orderId, userId, DateTime.Now, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
+        }
 
         //*INFO: ORDER
         public string getListOrder()

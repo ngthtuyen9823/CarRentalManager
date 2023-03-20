@@ -48,8 +48,22 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width=" 150" Margin="5" Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <DatePicker Width="150" Margin="5" Text="{Binding MakingDay}" materialDesign:HintAssist.Hint="Making Day"
+                    <DatePicker Width="120" Margin="5" Text="{Binding MakingDay}" 
+                                    Name ="MakingDay"
+                                    SelectedDate="{Binding MakingDay, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Making Day"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
+                                    Name="CreatedAt"
+                                    SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày tạo"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <DatePicker Width="120" Margin="5" Text="{Binding UpdatedAt}"
+                                    Name="UpdatedAt"
+                                    SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày cập nhật"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
                 </WrapPanel>
             </materialDesign:Card>
             <materialDesign:Card Grid.Row="1" Margin="5">

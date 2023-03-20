@@ -1,4 +1,4 @@
-﻿using CarRentalManager.dao;
+using CarRentalManager.dao;
 using CarRentalManager.modals;
 using System;
 using System.Collections.Generic;
@@ -86,6 +86,19 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+        private string address;
+        public string Address
+        {
+            get { return address; }
+            set
+            {
+                if (value != address)
+                {
+                    address = value;
+                    OnPropertyChanged("Address");
+                }
+            }
+        }
         private string bookingPlace;
         public string BookingPlace
         {
@@ -96,6 +109,34 @@ namespace CarRentalManager.ViewModel
                 {
                     bookingPlace = value;
                     OnPropertyChanged("BookingPlace");
+                }
+            }
+        }
+        private DateTime createdAt;
+
+        public DateTime CreatedAt
+        {
+            get { return createdAt; }
+            set
+            {
+                if (value != createdAt)
+                {
+                    createdAt = value;
+                    OnPropertyChanged("CreatedAt");
+                }
+            }
+        }
+        private DateTime updatedAt;
+
+        public DateTime UpdatedAt
+        {
+            get { return updatedAt; }
+            set
+            {
+                if (value !=updatedAt)
+                {
+                    createdAt = value;
+                    OnPropertyChanged("UpdatedAt");
                 }
             }
         }
