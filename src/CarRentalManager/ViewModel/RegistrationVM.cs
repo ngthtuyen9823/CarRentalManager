@@ -13,6 +13,9 @@ using System.Windows.Input;
 using CarRentalManager.enums;
 using CarRentalManager.services;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Collections;
 
 namespace CarRentalManager.ViewModel
 {
@@ -33,7 +36,10 @@ namespace CarRentalManager.ViewModel
             List = getListObservableOrder();
             RegisterCommand = new RelayCommand<object>((p) =>
             {
-                return true;
+                if (ErrorCollection.Count>0)
+                    return false;
+                else
+                    return true;
             }, (p) =>
             {
                 int lastOrderId = commonDAO.getLastId(ETableName.ORDER);
@@ -181,7 +187,6 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
-
         public string this[string name]
         {
             get
@@ -190,16 +195,33 @@ namespace CarRentalManager.ViewModel
 
                 switch (name)
                 {
-                    case "Username":
-                        if (string.IsNullOrWhiteSpace(Username))
-                            result = "Username cannot be empty";
-                        else if (Username.Length < 5)
-                            result = "Username must be a minimum of 5 characters.";
+                    case "PhoneNumber":
+                        if (string.IsNullOrWhiteSpace(PhoneNumber))
+                            result = "Phone Number cannot be empty";
+                        else
+                        {
+                            Regex validatePhoneNumberRegex = new Regex(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$");
+                            if (!validatePhoneNumberRegex.IsMatch(PhoneNumber))
+                                result = "not exist";
+                        }
+                        //ErrorCollection.Remove(name);
+                        break;
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            result = "Name cannot be empty";
+                        //ErrorCollection.Remove(name);
+                        break;
+                    case "BookingPlace":
+                        if (string.IsNullOrEmpty(BookingPlace))
+                            result = "Address cannot be empty";
+                        //ErrorCollection.Remove(name);
                         break;
                 }
-
                 if (ErrorCollection.ContainsKey(name))
+                {
                     ErrorCollection[name] = result;
+                    ErrorCollection.Remove(name);
+                }
                 else if (result != null)
                     ErrorCollection.Add(name, result);
 
@@ -208,14 +230,6 @@ namespace CarRentalManager.ViewModel
             }
         }
 
-        public string Username
-        {
-            get { return _username; }
-            set
-            {
-                OnPropertyChanged(ref _username, value);
-            }
-        }
         public ObservableCollection<Order> getListObservableOrder()
         {
             List<Order> Orders = orderDAO.getListOrder();

@@ -220,6 +220,7 @@
 
             <Grid
                 Margin="269,0,964,0"
+                Width="90"
                 Background="{StaticResource SecondaryBrush}" Grid.Column="1">
                 <Path
                     Fill="{StaticResource PrimaryBrush}"
@@ -529,13 +530,13 @@
                                                                Height="60"/>
                                                     </MenuItem.Icon>
                                                     <MenuItem 
-                                                        Header="100 - 200"/>
+                                                        Header="Từ 100 đến 200"/>
                                                     <MenuItem
-                                                        Header="200 - 500"/>
+                                                        Header="Từ 200 đến 500"/>
                                                     <MenuItem
-                                                        Header="500 - 1000"/>
+                                                        Header="Từ 500 đến 1000"/>
                                                     <MenuItem
-                                                        Header=">1000"/>
+                                                        Header="Trên 1000"/>
                                                 </MenuItem>
                                                 <MenuItem 
                                                     Header ="Giá cao đến thấp"
