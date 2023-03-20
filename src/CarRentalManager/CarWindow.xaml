@@ -93,8 +93,6 @@
                             Height="21"
                             Width="21" />
                     </ToggleButton>
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding TutorialPath}" materialDesign:HintAssist.Hint="TutorialPath"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
                                     Name="CreatedAt"
                                     SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
@@ -124,12 +122,18 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                                <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                                 <GridViewColumn Header="Tên xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
-                                <GridViewColumn Header="Loại xe" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
+                                <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                <GridViewColumn Header="Màu xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
                                 <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                                <GridViewColumn Header="Driving Type" DisplayMemberBinding="{Binding DrivingType}"></GridViewColumn>
+                                <GridViewColumn Header="Seats" DisplayMemberBinding="{Binding Seats}"></GridViewColumn>
                                 <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
                                 <GridViewColumn Header="Giá thuê" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                                <GridViewColumn Header="Hình ảnh" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
+                                <GridViewColumn Header="Created at" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                                <GridViewColumn Header="Updated at" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

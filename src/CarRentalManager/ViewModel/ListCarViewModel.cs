@@ -28,10 +28,110 @@ namespace CarRentalManager.ViewModel
                 return true;
             }, (p) =>
             {
-                carDao.addCarToList(ID, Name, Brand, Type, Status, LicensePlate, Price);
+                carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type, Status, DrivingType, Seats, LicensePlate, Price, ImagePath, CreatedAt, UpdatedAt);
                 List = getListObservableCar();
                 OnPropertyChanged(nameof(List));
             });
+        }
+        private string color;
+
+        public string Color
+        {
+            get { return color; }
+            set
+            {
+                if (value != color)
+                {
+                    color = value;
+                    OnPropertyChanged("Color");
+                }
+            }
+        }
+        private string publishYear;
+
+        public string PublishYear
+        {
+            get { return  publishYear; }
+            set
+            {
+                if (value != publishYear)
+                {
+                    publishYear = value;
+                    OnPropertyChanged("PublishYear");
+                }
+            }
+        }
+        private string drivingType;
+        public string DrivingType
+        {
+            get { return drivingType; }
+            set
+            {
+                if (value != drivingType)
+                {
+                    drivingType = value;
+                    OnPropertyChanged("DrivingType");
+                }
+            }
+        }
+        private int seats;
+
+        public int Seats
+        {
+            get { return seats; }
+            set
+            {
+                if (value != seats)
+                {
+                    seats = value;
+                    OnPropertyChanged("Seats");
+                }
+            }
+        }
+        private string imagePath;
+
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                if (value != imagePath)
+                {
+                    imagePath = value;
+                    OnPropertyChanged("ImagePath");
+                }
+            }
+        }
+        private DateTime createdAt;
+
+        public DateTime CreatedAt
+        {
+            get { return createdAt; }
+            set
+            {
+                if (value != createdAt)
+                {
+                    createdAt = value;
+                    OnPropertyChanged("CreatedAt");
+
+                }
+            }
+        }
+        // updated at
+        private DateTime updatedAt;
+
+        public DateTime UpdatedAt
+        {
+            get { return updatedAt; }
+            set
+            {
+                if (value != updatedAt)
+                {
+                    updatedAt = value;
+                    OnPropertyChanged("UpdatedAt");
+
+                }
+            }
         }
         private string name;
 
