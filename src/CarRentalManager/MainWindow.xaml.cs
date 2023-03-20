@@ -24,5 +24,10 @@ namespace CarRentalManager
         {
             InitializeComponent();
         }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
