@@ -78,8 +78,6 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Price}" materialDesign:HintAssist.Hint="Giá thuê"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <!--<Label Content="Image" Width="60" Margin="0 0 0 0" materialDesign:HintAssist.Hint="ImagePath"/>
-                    <Label Name="ImagePath" Width="60" Margin="5 5 15 5" materialDesign:HintAssist.Hint="ImagePath"/>-->
                     <TextBox Name ="ImagePath"  Width="150" Margin="0 5 15 5" Text="{Binding ImagePath}" materialDesign:HintAssist.Hint="Browse a image"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ToggleButton

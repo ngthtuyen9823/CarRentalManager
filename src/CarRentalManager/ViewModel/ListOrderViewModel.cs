@@ -54,8 +54,7 @@ namespace CarRentalManager.ViewModel
                 if (value != id)
                 {
                     id = value;
-
-
+                    OnPropertyChanged("Id");
                 }
             }
         }

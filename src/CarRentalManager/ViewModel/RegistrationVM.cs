@@ -45,7 +45,7 @@ namespace CarRentalManager.ViewModel
                 int lastOrderId = commonDAO.getLastId(ETableName.ORDER);
                 int lastCustomerId = commonDAO.getLastId(ETableName.CUSTOMER);
 
-                customerDAO.createNewCustomer(lastCustomerId + 1, PhoneNumber, Name, Email != null ? Email : "", IdCard != null ? IdCard : "", BookingPlace);
+                customerDAO.createNewCustomer(lastCustomerId + 1, PhoneNumber, Name, Email != null ? Email : "", IdCard != null ? IdCard : "", Address, createdAt, updatedAt);
 
                 orderDAO.addOrderToList(lastOrderId + 1, variableService.parseStringToInt(CarId), lastCustomerId + 1, BookingPlace, StartDate, EndDate, TotalFee);
 
@@ -73,6 +73,19 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+        private string address;
+        public string Address
+        {
+            get { return address; }
+            set
+            {
+                if (value != address)
+                {
+                    address = value;
+                    OnPropertyChanged("Address");
+                }
+            }
+        }
         private string bookingPlace;
         public string BookingPlace
         {
@@ -83,6 +96,34 @@ namespace CarRentalManager.ViewModel
                 {
                     bookingPlace = value;
                     OnPropertyChanged("BookingPlace");
+                }
+            }
+        }
+        private DateTime createdAt;
+
+        public DateTime CreatedAt
+        {
+            get { return createdAt; }
+            set
+            {
+                if (value != createdAt)
+                {
+                    createdAt = value;
+                    OnPropertyChanged("CreatedAt");
+                }
+            }
+        }
+        private DateTime updatedAt;
+
+        public DateTime UpdatedAt
+        {
+            get { return updatedAt; }
+            set
+            {
+                if (value !=updatedAt)
+                {
+                    createdAt = value;
+                    OnPropertyChanged("UpdatedAt");
                 }
             }
         }

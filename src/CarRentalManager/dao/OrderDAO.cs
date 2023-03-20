@@ -58,6 +58,7 @@ namespace CarRentalManager.dao
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {
+                    MessageBox.Show("Success!");
                     string sqlStringGetTable = sqlService.getListTableData(ETableName.ORDER);
                     SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                     DataTable dataTable = new DataTable();

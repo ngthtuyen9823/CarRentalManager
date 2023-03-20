@@ -46,16 +46,27 @@
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox Width="150" Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width=" 150" Margin="5" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
+                    <TextBox Width=" 150" Margin="5" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
+                    <TextBox Width="150" Margin="5" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
+                    <TextBox Width="150" Margin="5" Text="{Binding IdCard, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
+                                    Name="CreatedAt"
+                                    SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Created At"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <DatePicker Width="120" Margin="5" Text="{Binding UpdatedAt}"
+                                    Name="UpdatedAt"
+                                    SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Updated At"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -77,7 +88,9 @@
                                 <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                                 <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
                                 <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                                <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding IDCard}"></GridViewColumn>
+                                <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding IdCard}"></GridViewColumn>
+                                <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                                <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
