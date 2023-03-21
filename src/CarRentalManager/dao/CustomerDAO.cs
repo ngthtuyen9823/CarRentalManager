@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using CarRentalManager.modals;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using MaterialDesignThemes.Wpf;
+using System.Net;
+using System.Xml.Linq;
 
 namespace CarRentalManager.dao
 {
@@ -34,7 +37,7 @@ namespace CarRentalManager.dao
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     var row = dataTable.Rows[i];
-                    Customer newCustomer = customerDataService.craeteCustomerByRowData(row);
+                    Customer newCustomer = customerDataService.createCustomerByRowData(row);
                     customerList.Add(newCustomer);
                 }
                 return customerList;
@@ -44,7 +47,7 @@ namespace CarRentalManager.dao
                 MessageBox.Show(ex.Message);
                 return null;
             }
-            finally { 
+            finally {
                 conn.Close();
             }
         }
@@ -75,8 +78,32 @@ namespace CarRentalManager.dao
             }
 
         }
-
-
+        public void removeCustomerFromList(int id)
+        {
+            try
+            {
+                conn.Open();
+                string SQL = sqlService.removeCustomer(id);
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Success!");
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTableCar = new DataTable();
+                    adapter.Fill(dataTableCar);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    
         public List<Customer> getListCustomerByDescOrAsc(bool isDescrease, string fieldName)
         {
             try
@@ -91,7 +118,7 @@ namespace CarRentalManager.dao
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     var row = dataTable.Rows[i];
-                    Customer newCustomer = customerDataService.craeteCustomerByRowData(row);
+                    Customer newCustomer = customerDataService.createCustomerByRowData(row);
                     customerList.Add(newCustomer);
                 }
                 return customerList;
@@ -117,7 +144,7 @@ namespace CarRentalManager.dao
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
 
-                Customer newCustomer = customerDataService.craeteCustomerByRowData(dataTable.Rows[0]);
+                Customer newCustomer = customerDataService.createCustomerByRowData(dataTable.Rows[0]);
                 return newCustomer;
             }
             catch (Exception ex)

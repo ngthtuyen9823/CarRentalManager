@@ -16,7 +16,7 @@ namespace CarRentalManager.services
         private readonly VariableService variableService = new VariableService();
         public CustomerDataService() { }
 
-        public Customer craeteCustomerByRowData(DataRow row) {
+        public Customer createCustomerByRowData(DataRow row) {
             int id = variableService.parseStringToInt(row["id"].ToString());
             int.TryParse(row["id"].ToString(), out id);
 

@@ -27,6 +27,8 @@ namespace CarRentalManager.ViewModel
         private ObservableCollection<Customer> list;
         public ObservableCollection<Customer> List { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+
         readonly CustomerDAO customerDAO = new CustomerDAO();
         public ListCustomerViewModel() 
         {
@@ -40,6 +42,19 @@ namespace CarRentalManager.ViewModel
             }, (p) =>
             {
                 customerDAO.addCustomerToList(ID, Name, PhoneNumber, Email, IdCard, Address, CreatedAt, UpdatedAt);
+                List = getListObservableCustomer();
+                OnPropertyChanged(nameof(List));
+                reSetForm();
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
+            }, (p) =>
+            {
+                customerDAO.removeCustomerFromList(ID);
                 List = getListObservableCustomer();
                 OnPropertyChanged(nameof(List));
                 reSetForm();

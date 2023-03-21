@@ -59,6 +59,10 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", ETableName.USER, email);
         }
 
+        public string removeCustomer(int id)
+        {
+            return string.Format("DELETE FROM [{0}] WHERE id = {1}", ETableName.CUSTOMER, id);
+        }
 
 
         //*INFO: CUSTOMER
@@ -76,7 +80,7 @@ namespace CarRentalManager.services
             return string.Format("INSERT INTO [{6}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
                    id, orderId, userId, DateTime.Now, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
         }
-
+       
         //*INFO: ORDER
         public string getListOrder()
         {
