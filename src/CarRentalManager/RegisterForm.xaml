@@ -12,9 +12,9 @@
 
     <Grid MouseDown="Border_MouseDown">
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="Pink" Offset="1" />
-                <GradientStop Color="Brown" Offset="0" />
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#99ff66" Offset="1" />
+                <GradientStop Color="#194d00" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
         <Border Height="410" VerticalAlignment="Top" CornerRadius="0 0 120 0" Background="WhiteSmoke">
@@ -22,65 +22,69 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
                 <Image x:Name="describeIMG"  Width="206" Height="170" Margin="-30,10,5,10" Stretch="Fill" />
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="IdCard" Width="25" Height="25" Foreground="Black"/>
                     <Label
                         Content="{Binding CarId, UpdateSourceTrigger=PropertyChanged}"
-                        x:Name="lblIDCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                        x:Name="lblIDCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="Rename" Width="25" Height="25" Foreground="Black"/>
-                    <Label x:Name="lblNameCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                    <Label x:Name="lblNameCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="BrandingWatermark" Width="25" Height="25" Foreground="Black" />
-                    <Label x:Name="lblBranchCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                    <Label x:Name="lblBranchCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="DateRange" Width="25" Height="25" Foreground="Black" />
-                    <Label x:Name="lblPublishYear" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                    <Label x:Name="lblPublishYear" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="Color" Width="25" Height="25" Foreground="Black"/>
-                    <Label x:Name="lblColorCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                    <Label x:Name="lblColorCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="Money" Width="25" Height="25" Foreground="Black"/>
-                    <Label x:Name="lblPriceCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                    <Label x:Name="lblPriceCar" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="1">
+                <StackPanel Orientation="Horizontal" Margin="2">
                     <materialDesign:PackIcon Kind="Chair" Width="25" Height="25" Foreground="Black"/>
-                    <Label x:Name="lblSeats" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#FFEDE0E0"/>
+                    <Label x:Name="lblSeats" Margin="10 0" Foreground="Black" Width="250" BorderBrush="Black" Background="#daffb3" FontFamily="Bahnschrift SemiBold"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel Margin="20 0" Height="400">
-                    <TextBlock Text="Register" Margin="10" Foreground="Black" TextAlignment="Center" FontSize="30" FontFamily="Great Vibes"></TextBlock>
-                    <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Register" Margin="10" Foreground="Black" Background="#47d147" TextAlignment="Center" FontSize="30" FontFamily="Copperplate Gothic Bold"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="Black"/>
                         <TextBox
+                            
                             Text="{Binding Name, 
+                            ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtTen" Margin="10 0" materialDesign:HintAssist.Hint="Họ tên" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="Black"/>
                         <TextBox
-                            Text="{Binding PhoneNumber, 
+                            Text="{Binding PhoneNumber,
+                            ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtSdt" Margin="10 0" materialDesign:HintAssist.Hint="Số điện thoại" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="Place" Width="25" Height="25" Foreground="Black"/>
                         <TextBox 
-                            Text="{Binding BookingPlace, 
+                            Text="{Binding BookingPlace,
+                            ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtDiachi" Margin="10 0" materialDesign:HintAssist.Hint="Địa chỉ" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <materialDesign:PackIcon Kind="TimerStart" Width="25" Height="25" Foreground="Black"/>
                         <DatePicker
-                            SelectedDate="{Binding StartDate, 
+                            SelectedDate="{Binding StartDate,
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="dpBatdau" Margin="10 0" materialDesign:HintAssist.Hint="Thời gian bắt đầu" Foreground="Black" Width="250" BorderBrush="Black" SelectedDateFormat="Short"/>
                     </StackPanel>
@@ -93,13 +97,13 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="7">
                         <materialDesign:PackIcon Kind="Money" Width="25" Height="32" Foreground="Black"/>
-                        <Button 
+                        <Button x:Name="btnTinhtien" 
                             Content="Tính tiền"
                             FontSize="10"
                             Width="100"
                             Height="25"
                             Background="#D94448"
-                            Click="Button_Click"/>
+                            Click="Button_Tinhtien"/>
                         <Label
                             Content="{Binding TotalFee, 
                             UpdateSourceTrigger=PropertyChanged}"

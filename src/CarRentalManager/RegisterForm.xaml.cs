@@ -37,7 +37,7 @@ namespace CarRentalManager
         private void loadViewModel(Car car)
         {
             priceCar = car.Price;
-            lblIDCar.Content = "ID XE : " + car.ID;
+            lblIDCar.Content = "ID Car : " + car.ID;
             describeIMG.Source = new BitmapImage(new Uri(car.ImagePath, UriKind.Relative));
             lblNameCar.Content = "Name : "+ car.Name;
             lblBranchCar.Content = "Brand : " + car.Brand;
@@ -59,13 +59,17 @@ namespace CarRentalManager
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            txtTen.Clear();
+            txtSdt.Clear();
+            txtDiachi.Clear();
         }
         private Car getCarInformation(string id)
         {
             return carDAO.getCarById(id);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Tinhtien(object sender, RoutedEventArgs e)
         {
             if (!dpBatdau.SelectedDate.HasValue || !dpKetThuc.SelectedDate.HasValue)
             {
@@ -79,7 +83,6 @@ namespace CarRentalManager
             lblTotalFee.Content = totalFee + "000 VNĐ";
 
             ((dynamic)this.DataContext).TotalFee = variableService.parseStringToInt(totalFee);
-
         }
     }
 }
