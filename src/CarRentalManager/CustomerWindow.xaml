@@ -44,17 +44,17 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Width="150" Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
+                    <TextBox Width="150" Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width=" 150" Margin="5" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
+                    <TextBox Width=" 150" Margin="5" Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
+                    <TextBox Width="150" Margin="5" Text="{Binding Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
+                    <TextBox Width="150" Margin="5" Text="{Binding PhoneNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
+                    <TextBox Width="150" Margin="5" Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding IdCard, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
+                    <TextBox Width="150" Margin="5" Text="{Binding IdCard, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
                                     Name="CreatedAt"
@@ -66,7 +66,6 @@
                                     SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Updated At"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-
                 </WrapPanel>
             </materialDesign:Card>
 

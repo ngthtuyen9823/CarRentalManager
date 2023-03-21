@@ -10,11 +10,20 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Collections;
+using CarRentalManager.enums;
+using System.Diagnostics;
+using System.Security.Policy;
+using System.Windows.Media;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListCustomerViewModel : BaseViewModel
+    public class ListCustomerViewModel : BaseViewModel, IDataErrorInfo
     {
+        public string Error { get { return null; } }
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Customer> list;
         public ObservableCollection<Customer> List { get; set; }
         public ICommand AddCommand { get; set; }
@@ -24,12 +33,16 @@ namespace CarRentalManager.ViewModel
             List = getListObservableCustomer();
             AddCommand = new RelayCommand<object>((p) =>
             {
-                return true;
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
             }, (p) =>
             {
                 customerDAO.addCustomerToList(ID, Name, PhoneNumber, Email, IdCard, Address, CreatedAt, UpdatedAt);
                 List = getListObservableCustomer();
                 OnPropertyChanged(nameof(List));
+                reSetForm();
             });
         }
         private string name;
@@ -145,7 +158,59 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+        private void reSetForm()
+        {
+            ID = 0;
+            Name = null;
+            PhoneNumber = null;
+            Email= null;
+            IdCard= null;
+            Address= null;
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                switch (columnName)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            result = "Name cannot be empty";
+                        break;
+                    case "PhoneNumber":
+                        if (string.IsNullOrEmpty(PhoneNumber))
+                            result = "Phone number cannot be empty";
+                        break;
+                    case "Email":
+                        if (string.IsNullOrEmpty(Email))
+                            result = "Email cannot be empty";
+                        break;
+                    case "IdCard":
+                        if (string.IsNullOrEmpty(Email))
+                            result = "IdCard cannot be empty";
+                        break;
+                    case "ID":
+                        if (ID <= 0)
+                            result = "ID invalid";
+                        break;
+                    case "Address":
+                        if (string.IsNullOrEmpty(Address))
+                            result = "Address can not be empty";
+                        break;
+                }
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    ErrorCollection[columnName] = result;
+                    ErrorCollection.Remove(columnName);
+                }
+                else if (result != null)
+                    ErrorCollection.Add(columnName, result);
 
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }
         public ObservableCollection<Customer> getListObservableCustomer()
         {
             List<Customer> customers = customerDAO.getListCustomer();

@@ -41,17 +41,17 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
+                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Name , UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
+                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
+                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Color, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
+                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Color,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding PublishYear, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
+                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding PublishYear, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox  Width="150" Margin="5 5 15 5" SelectedValue="{Binding Type, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại xe" 
+                    <ComboBox  Width="150" Margin="5 5 15 5" SelectedValue="{Binding Type, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại xe" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             CAR
@@ -63,7 +63,7 @@
                             MOTOBIKE
                         </ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Width="150" Margin="5 5 15 5" SelectedValue="{Binding Status}" materialDesign:HintAssist.Hint="Trạng thái" 
+                    <ComboBox Width="150" Margin="5 5 15 5" SelectedValue="{Binding Status,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             AVAILABLE
@@ -72,13 +72,13 @@
                             UNAVAILABLE
                         </ComboBoxItem>
                     </ComboBox>
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Seats}" materialDesign:HintAssist.Hint="Seats"
+                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Seats,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Seats"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding LicensePlate}" materialDesign:HintAssist.Hint="Biển số xe"
+                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding LicensePlate,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Biển số xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Price}" materialDesign:HintAssist.Hint="Giá thuê"
+                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Price,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Giá thuê"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="ImagePath"  Width="150" Margin="0 5 15 5" Text="{Binding ImagePath}" materialDesign:HintAssist.Hint="Browse a image"
+                    <TextBox Name ="ImagePath"  Width="150" Margin="0 5 15 5" Text="{Binding ImagePath,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Browse a image"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ToggleButton
                         Margin="-25,0,0,-15"
