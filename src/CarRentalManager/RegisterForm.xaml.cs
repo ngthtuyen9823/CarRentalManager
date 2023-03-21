@@ -59,9 +59,6 @@ namespace CarRentalManager
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            txtTen.Clear();
-            txtSdt.Clear();
-            txtDiachi.Clear();
         }
         private Car getCarInformation(string id)
         {
@@ -69,7 +66,14 @@ namespace CarRentalManager
         }
 
 
-        private void Button_Tinhtien(object sender, RoutedEventArgs e)
+        //private void btnLogin_Click(object sender, RoutedEventArgs e)
+        //{
+        //    txtTen.Clear();
+        //    txtSdt.Clear();
+        //    txtDiachi.Clear();
+        //}
+
+        private void btnTinhtien_Click(object sender, RoutedEventArgs e)
         {
             if (!dpBatdau.SelectedDate.HasValue || !dpKetThuc.SelectedDate.HasValue)
             {

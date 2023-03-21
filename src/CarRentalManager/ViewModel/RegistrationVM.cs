@@ -62,6 +62,8 @@ namespace CarRentalManager.ViewModel
                     ImageEvidence != null ? ImageEvidence : "",
                     Notes != null ? Notes : "");
 
+                resetForm();
+
             });
         }
 
@@ -70,6 +72,15 @@ namespace CarRentalManager.ViewModel
             //1 Add customer
 
 
+        }
+
+        private void resetForm()
+        {
+            Name = null;
+            PhoneNumber = null;
+            BookingPlace = null;
+            StartDate = DateTime.Today;
+            EndDate = DateTime.Today;
         }
 
         private int totalFee;
