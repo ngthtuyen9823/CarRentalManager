@@ -41,7 +41,9 @@ namespace CarRentalManager.ViewModel
                     return true;
             }, (p) =>
             {
-                customerDAO.addCustomerToList(ID, Name, PhoneNumber, Email, IdCard, Address, CreatedAt, UpdatedAt);
+                customerDAO.addCustomerToList(ID, Name, PhoneNumber, Email, IdCard, Address, 
+                    ImageIdCardFront != null ? ImageIdCardFront : "",
+                    ImageIdCardBack != null ? ImageIdCardBack : "");
                 List = getListObservableCustomer();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
@@ -181,6 +183,34 @@ namespace CarRentalManager.ViewModel
             Email= null;
             IdCard= null;
             Address= null;
+        }
+        private string imageIdCardFront;
+
+        public string ImageIdCardFront
+        {
+            get { return imageIdCardFront; }
+            set
+            {
+                if (value != imageIdCardFront)
+                {
+                    imageIdCardFront = value;
+                    OnPropertyChanged("imageIdCardFront");
+                }
+            }
+        }
+        private string imageIdCardBack;
+
+        public string ImageIdCardBack
+        {
+            get { return imageIdCardBack; }
+            set
+            {
+                if (value != imageIdCardBack)
+                {
+                    imageIdCardBack = value;
+                    OnPropertyChanged("imageIdCardBack");
+                }
+            }
         }
         public string this[string columnName]
         {

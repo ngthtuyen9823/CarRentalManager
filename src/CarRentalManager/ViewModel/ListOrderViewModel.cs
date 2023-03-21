@@ -209,18 +209,6 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
-        private string error;
-        public string Error
-        {
-            get => error;
-            set
-            {
-                if (error != value)
-                {
-                    error = value;
-                    RaisePropertyChanged("Error");
-                }
-            }
         private void reSetForm()
         { 
             ID = 0;
