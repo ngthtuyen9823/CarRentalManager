@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CarRentalManager.dao;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using CarRentalManager.modals;
+using System;
 
 namespace CarRentalManager.ViewModel
 {
     internal class LoginViewModel : BaseViewModel
     {
         public bool isLogin { get; set; }
-        private string userName;
-        public string UserName { get => userName; set { userName = value; OnPropertyChanged(); } }
+        private string email;
+        public string Email { get => email; set { email = value; OnPropertyChanged(); } }
         private string password;
         public string Password { get => password; set { password = value; OnPropertyChanged(); } }
+        readonly UserDAO userDAO = new UserDAO();
 
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
@@ -28,31 +25,44 @@ namespace CarRentalManager.ViewModel
         public LoginViewModel()
         {
             isLogin = false;
-            Password = "";
-            UserName = "";
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
             CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
 
         }
 
+        private bool comparePassword(string currentPassword, string oldPassword)
+        {
+            return currentPassword == oldPassword;
+        }
+
         void Login(Window p)
         {
+            isLogin = false;
             if (p == null)
                 return;
-            var accCount = -1;
-            //var accCount = DataProvider.Ins.DB.Users.Where(x => x.email == UserName && x.password == Password).Count();
 
-            if (!(accCount > 0))
+            User currentUser = userDAO.getUserWithEmail(Email);
+
+            if(currentUser == null)
             {
-                isLogin = true;
-
-                p.Close();
-            }
+                MessageBox.Show("Tài khoản không tồn tại, xin vui lòng đăng ký");
+            } 
             else
             {
-                isLogin = false;
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                //*TODO: DECODE PASSWORD LATER
+                if (comparePassword(Password, currentUser.Password.Trim()))
+                {
+                    isLogin = true;
+
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    MessageBox.Show("Sai mật khẩu!");
+                }
             }
         }
     }
