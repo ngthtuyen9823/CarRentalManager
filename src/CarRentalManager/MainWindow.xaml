@@ -309,7 +309,7 @@
                     <materialDesign:Card></materialDesign:Card>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="4">
+            <!--<Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -781,7 +781,7 @@
                         </StackPanel>
                     </Grid>
                 </materialDesign:Card>
-            </Grid>
+            </Grid>-->
         </Grid>
     </Grid>
 </Window>

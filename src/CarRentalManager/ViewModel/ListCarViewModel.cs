@@ -40,6 +40,7 @@ namespace CarRentalManager.ViewModel
                 carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type, Status, DrivingType, Seats, LicensePlate, Price, ImagePath, CreatedAt, UpdatedAt);
                 List = getListObservableCar();
                 OnPropertyChanged(nameof(List));
+                reSetForm();
             });
         }
         private string color;
@@ -240,12 +241,29 @@ namespace CarRentalManager.ViewModel
             }
         }
 
+        private void reSetForm()
+        {
+            ID = 0;
+            Name = null;
+            Brand = null;
+            Color = null;
+            PublishYear = null;
+            Type = null;
+            Status = null;
+            DrivingType = null;
+            Seats = 0;
+            LicensePlate = null;
+            Price = 0;
+            ImagePath = null;
+            CreatedAt = DateTime.Today;
+            UpdatedAt = DateTime.Today;
+        }
         public string this[string columnName]
         {
             get
             {
                 string result = null;
-                switch (name)
+                switch (columnName)
                 {
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
@@ -292,13 +310,13 @@ namespace CarRentalManager.ViewModel
                             result = "Please choose a image";
                         break;
                 }
-                if (ErrorCollection.ContainsKey(name))
+                if (ErrorCollection.ContainsKey(columnName))
                 {
-                    ErrorCollection[name] = result;
-                    ErrorCollection.Remove(name);
+                    ErrorCollection[columnName] = result;
+                    ErrorCollection.Remove(columnName);
                 }
                 else if (result != null)
-                    ErrorCollection.Add(name, result);
+                    ErrorCollection.Add(columnName, result);
 
                 OnPropertyChanged("ErrorCollection");
                 return result;

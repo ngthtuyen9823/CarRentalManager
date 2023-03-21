@@ -1,21 +1,30 @@
 ﻿using CarRentalManager.modals;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
 using CarRentalManager.dao;
-using System;
 using System.Windows.Input;
+using System.Windows;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Collections;
 using CarRentalManager.enums;
-using MaterialDesignThemes.Wpf;
 using System.Diagnostics;
 using System.Security.Policy;
 using System.Windows.Media;
 using System.Xml.Linq;
-using System.Windows;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListContractViewModel : BaseViewModel
+    public class ListContractViewModel : BaseViewModel, IDataErrorInfo
     {
+        public string Error { get { return null; } }
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Contract> list;
         public ObservableCollection<Contract> List { get; set; }
         public ICommand AddCommand { get; set; }
@@ -31,6 +40,7 @@ namespace CarRentalManager.ViewModel
                 contractDAO.addContractToList(ID, OrderId, UserId, MakingDay, CreatedAt, UpdatedAt);
                 List = getListObservableContract();
                 OnPropertyChanged(nameof(List));
+                reSetForm();
             });
         }
         private int id;
@@ -119,7 +129,45 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
- 
+        private void reSetForm()
+        {
+            ID = 0;
+            OrderId = 0;
+            UserId = 0;
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                switch (columnName)
+                {
+                    case "ID":
+                        if (ID == 0)
+                            result = "Invalid ID";
+                        break;
+                    case "OrderId":
+                        if (OrderId == 0)
+                            result = "Invalid order ID";
+                        break;
+                    case "UserId":
+                        if (UserId == 0)
+                            result = "Invalid user ID";
+                        break;
+                }
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    ErrorCollection[columnName] = result;
+                    ErrorCollection.Remove(columnName);
+                }
+                else if (result != null)
+                    ErrorCollection.Add(columnName, result);
+
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }
+
         public ObservableCollection<Contract> getListObservableContract()
         {
             List<Contract> contracts = contractDAO.getListContract();

@@ -23,8 +23,6 @@ namespace CarRentalManager.ViewModel
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
 
-
-        //mọi thứ xử lý sẽ nằm trong này
         public LoginViewModel()
         {
             isLogin = false;

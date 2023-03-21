@@ -42,11 +42,11 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Width="150" Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
+                    <TextBox Width="150" Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding OrderId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                    <TextBox Width="150" Margin="5" Text="{Binding OrderId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width=" 150" Margin="5" Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
+                    <TextBox Width=" 150" Margin="5" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <DatePicker Width="120" Margin="5" Text="{Binding MakingDay}" 
                                     Name ="MakingDay"
