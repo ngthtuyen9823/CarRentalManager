@@ -21,7 +21,7 @@ namespace CarRentalManager.services
             //*TODO: UPDATE HASH PASSWORD LATER
             return new User(id,
                 row["name"].ToString(),
-                row["eamail"].ToString(),
+                row["email"].ToString(),
                 row["phoneNumber"].ToString(),
                 row["password"].ToString(),
                 role);

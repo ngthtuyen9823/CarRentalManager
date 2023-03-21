@@ -149,6 +149,28 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
+        public List<Car> getListByRange(int fromPrice, int toPrice)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStringGetTable = sqlService.getListByRange(fromPrice, toPrice);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                DataTable dataTableCar = new DataTable();
+                adapter.Fill(dataTableCar);
+
+                return getListCarFromDataTable(dataTableCar);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         
     }
 }

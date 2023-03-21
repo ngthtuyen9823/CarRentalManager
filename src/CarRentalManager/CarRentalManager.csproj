@@ -101,6 +101,7 @@
     <Compile Include="CarWindow.xaml.cs">
       <DependentUpon>CarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="constants\Constant.cs" />
     <Compile Include="ContractWindow.xaml.cs">
       <DependentUpon>ContractWindow.xaml</DependentUpon>
     </Compile>
@@ -122,9 +123,10 @@
     <Compile Include="dao\UserDAO.cs" />
     <Compile Include="enums\ECarStatus.cs" />
     <Compile Include="enums\ECarType.cs" />
+    <Compile Include="enums\EContractStatus.cs" />
     <Compile Include="enums\EDrivingType.cs" />
     <Compile Include="enums\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="enums\ERentalInformationStatus.cs" />
+    <Compile Include="enums\EOrderStatus.cs" />
     <Compile Include="enums\ETableName.cs" />
     <Compile Include="enums\EUserRole.cs" />
     <Compile Include="LandingPage.xaml.cs">
@@ -157,6 +159,7 @@
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="utils\BoundPasswordBox.cs" />
     <Compile Include="ViewModel\CardViewModels.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />

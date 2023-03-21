@@ -18,6 +18,7 @@ namespace CarRentalManager.modals
         string imagePath;
         int seats;
         string tutorialPath;
+        string city;
         DateTime createdAt;
         DateTime updatedAt;
         public Car(int id,
@@ -32,7 +33,8 @@ namespace CarRentalManager.modals
             int seats,
             string licensePlate,
             string imagePath,
-            string tutorialPath)
+            string tutorialPath,
+            string city)
         {
             this.id = id;
             this.name = name;
@@ -47,8 +49,9 @@ namespace CarRentalManager.modals
             this.imagePath = imagePath;
             this.seats = seats;
             this.tutorialPath= tutorialPath;
-            this.createdAt = new DateTime();
-            this.updatedAt = new DateTime();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
+            this.city = city;
         }
 
         public Car() {  }
@@ -67,6 +70,7 @@ namespace CarRentalManager.modals
         public string ImagePath { get { return imagePath; } set { imagePath = value; } }
         public int Seats { get { return seats; } set { seats = value; } }
         public string TutorialPath { get { return tutorialPath; } set { tutorialPath = value; } }
+        public string City { get { return city; } set { city = value; } }
         public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
         public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
     }

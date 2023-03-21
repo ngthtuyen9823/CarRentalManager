@@ -35,7 +35,10 @@ namespace CarRentalManager.ViewModel
                 }
             }, (p) =>
             {
-                orderDao.addOrderToList(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
+                orderDao.addOrderToList(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
+                    DepositAmount.ToString() != null ? DepositAmount : 0,
+                    ImageEvidence != null ? ImageEvidence : "",
+                    Notes != null ? Notes : "");
                 List = getListObservableOrder();
                 OnPropertyChanged(nameof(List));
             });
@@ -161,6 +164,48 @@ namespace CarRentalManager.ViewModel
                 {
                     endDate = value;
                     OnPropertyChanged("EndDate");
+                }
+            }
+        }
+        private int depositAmount;
+
+        public int DepositAmount
+        {
+            get { return depositAmount; }
+            set
+            {
+                if (value != depositAmount)
+                {
+                    depositAmount = value;
+                    OnPropertyChanged("depositAmount");
+                }
+            }
+        }
+        private string imageEvidence;
+
+        public string ImageEvidence
+        {
+            get { return imageEvidence; }
+            set
+            {
+                if (value != imageEvidence)
+                {
+                    imageEvidence = value;
+                    OnPropertyChanged("depositAmount");
+                }
+            }
+        }
+        private string notes;
+
+        public string Notes
+        {
+            get { return notes; }
+            set
+            {
+                if (value != notes)
+                {
+                    notes = value;
+                    OnPropertyChanged("notes");
                 }
             }
         }

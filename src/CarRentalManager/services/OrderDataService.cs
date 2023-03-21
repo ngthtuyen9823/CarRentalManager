@@ -22,6 +22,7 @@ namespace CarRentalManager.services
             int carId = variableService.parseStringToInt(row["carId"].ToString());
             int customerId = variableService.parseStringToInt(row["customerId"].ToString());
             int totalFee = variableService.parseStringToInt(row["totalFee"].ToString());
+            int depositAmount = variableService.parseStringToInt(row["depositAmount"].ToString());
             EOrderStatus status = variableService.parseStringToEnum<EOrderStatus>(row["status"].ToString());
 
             return new Order(id,
@@ -31,7 +32,10 @@ namespace CarRentalManager.services
                 startDate,
                 endDate,
                 totalFee,
-                status);
+                status,
+                depositAmount,
+                row["imageEvidence"].ToString(),
+                row["notes"].ToString());
         }
     }
 }

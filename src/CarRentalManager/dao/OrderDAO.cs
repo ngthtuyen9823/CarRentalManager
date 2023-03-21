@@ -49,12 +49,15 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
-        public void addOrderToList(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, DateTime EndDate, int TotalFee)
+        public void addOrderToList(int ID, int CarId, int CustomerId, 
+            string BookingPlace, DateTime StartDate, DateTime EndDate, 
+            int TotalFee, int depositAmount, string imageEvidence, string notes)
         {
             try
             {
                 conn.Open();
-                string SQL = sqlService.createOrder(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee);
+                string SQL = sqlService.createOrder(ID, CarId, CustomerId, BookingPlace, StartDate, 
+                    EndDate, TotalFee, depositAmount, imageEvidence, notes);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {

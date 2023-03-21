@@ -530,13 +530,17 @@
                                                                Height="60"/>
                                                     </MenuItem.Icon>
                                                     <MenuItem 
-                                                        Header="Từ 100 đến 200"/>
+                                                        Header="Dưới 200"
+                                                        Command="{Binding SortLowerThan200}"/>
                                                     <MenuItem
-                                                        Header="Từ 200 đến 500"/>
+                                                        Header="Từ 200 đến 500"
+                                                        Command="{Binding SortLowerThan500}"/>
                                                     <MenuItem
-                                                        Header="Từ 500 đến 1000"/>
+                                                        Header="Từ 500 đến 1000"
+                                                        Command="{Binding SortLowerThan1000}"/>
                                                     <MenuItem
-                                                        Header="Trên 1000"/>
+                                                        Header="Trên 1000"
+                                                        Command="{Binding SortBiggerThan1000}"/>
                                                 </MenuItem>
                                                 <MenuItem 
                                                     Header ="Giá cao đến thấp"

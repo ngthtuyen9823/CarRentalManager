@@ -23,9 +23,12 @@ namespace CarRentalManager.dao
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
-
-                User currentUser = userDataService.createUserByRowData(dataTable.Rows[0]);
-                return currentUser;
+                if(dataTable.Rows.Count > 0 )
+                {
+                    User currentUser = userDataService.createUserByRowData(dataTable.Rows[0]);
+                    return currentUser;
+                }
+                return null;
             }
             catch (Exception ex)
             {

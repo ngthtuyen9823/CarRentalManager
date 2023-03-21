@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -50,6 +51,11 @@ namespace CarRentalManager.services
             return string.Format("INSERT INTO [{9}](id, name, brand, type, status, licensePlate, price, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
                     id, name, brand, type, status, licensePlate, price, DateTime.Now, DateTime.Now, ETableName.CAR);
         }
+        public string getListByRange(int fromPrice, int toPrice)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE price > {1} and price <= {2}", ETableName.CAR, fromPrice, toPrice);
+        }
+        
 
 
         //*INFO: USER
@@ -62,10 +68,11 @@ namespace CarRentalManager.services
 
         //*INFO: CUSTOMER
 
-        public string createNewCustomer(int id, string phoneNumber, string name, string email, string idCard, string address)
+        public string createNewCustomer(int id, string phoneNumber, string name, string email, 
+            string idCard, string address, string imageIdCardFront, string imageIdCardBack)
         {
-            return string.Format("INSERT INTO [{8}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
-                    id, phoneNumber, name, email, idCard, address, DateTime.Now, DateTime.Now, ETableName.CUSTOMER);
+            return string.Format("INSERT INTO [{10}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+                    id, phoneNumber, name, email, idCard, address, imageIdCardFront, imageIdCardBack, DateTime.Now, DateTime.Now, ETableName.CUSTOMER);
         }
 
         //*INFO: CONTRACT
@@ -90,11 +97,13 @@ namespace CarRentalManager.services
             return string.Format("DELETE FROM [{0}] WHERE id = '{1}'", ETableName.ORDER, id);
         }
 
-        public string createOrder(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, DateTime EndDate, int TotalFee)
+        public string createOrder(int ID, int CarId, int CustomerId, string BookingPlace, DateTime StartDate, 
+                DateTime EndDate, int TotalFee, int depositAmount, string imageEvidence, string notes)
         {
-            return string.Format("INSERT INTO [{10}]" +
-                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
-                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee, EOrderStatus.PENDING, DateTime.Now, DateTime.Now, ETableName.ORDER);
+            return string.Format("INSERT INTO [{13}]" +
+                    "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')",
+                    ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee, 
+                        EOrderStatus.PENDING, depositAmount, imageEvidence, notes, DateTime.Now, DateTime.Now, ETableName.ORDER);
         }
         //*INFO: RECEIPT
 
