@@ -32,36 +32,50 @@
         <Grid Grid.Row="0">
             <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
         </Grid>
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <materialDesign:Card Margin="0 0 0 10" Padding="0 0 0 20">
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
+
+            <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Width="150" Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding OrderId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                    <TextBox Width="150" Margin="5" Text="{Binding OrderId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
+                    <TextBox Width=" 150" Margin="5" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <DatePicker Margin="5" Text="{Binding MakingDay}" materialDesign:HintAssist.Hint="Making Day"
+                    <DatePicker Width="120" Margin="5" Text="{Binding MakingDay}" 
+                                    Name ="MakingDay"
+                                    SelectedDate="{Binding MakingDay, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Making Day"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    </StackPanel>
-                    <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button  Background="#4b4b4b"  Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
-                        <Button Background="#4b4b4b"  Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
-                        <Button  Background="#4b4b4b" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
-                    </StackPanel>
-                </Grid>
+                    <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
+                                    Name="CreatedAt"
+                                    SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày tạo"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <DatePicker Width="120" Margin="5" Text="{Binding UpdatedAt}"
+                                    Name="UpdatedAt"
+                                    SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Ngày cập nhật"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                </WrapPanel>
             </materialDesign:Card>
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
-                <Grid>
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button  Background="#218c74"  Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                    <Button Background="#218c74"  Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+                    <Button  Background="#218c74" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch" Padding="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ListView ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
@@ -75,8 +89,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
-            </ScrollViewer>
+                </ScrollViewer>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </Window>

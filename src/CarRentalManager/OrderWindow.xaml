@@ -27,6 +27,8 @@
         Title="Order Manager" Height="750" Width="1000">
 
 
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -35,61 +37,61 @@
         <Grid Grid.Row="0">
             <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
         </Grid>
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <materialDesign:Card Margin="0 0 0 10" Padding="0 0 0 20">
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="15 5 5 5 " Width="500" HorizontalAlignment="Left">
-                        <TextBox Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+
+            <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Width="150" Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CarId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã xe"
+                    <TextBox Width="150" Margin="5" Text="{Binding CarId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding CustomerId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã khách hàng"
+                    <TextBox Width="150" Margin="5" Text="{Binding CustomerId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã khách hàng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Margin="5" Text="{Binding BookingPlace, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Booking Place"
+                    <TextBox Width="150" Margin="5" Text="{Binding BookingPlace, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Booking Place"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
-                        <ComboBox SelectedValue="{Binding Status, ValidatesOnDataErrors=True}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+                    <ComboBox Width="150" SelectedValue="{Binding Status, ValidatesOnDataErrors=True}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                            <ComboBoxItem>
-                                COMPLETE
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                CANCELLED
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                PENDING
-                            </ComboBoxItem>
-                        </ComboBox>
-                        <DatePicker Margin="5" Text="{Binding StartDate}" 
+                        <ComboBoxItem>
+                            COMPLETE
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            CANCELLED
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            PENDING
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <DatePicker Width="120" Margin="5" Text="{Binding StartDate}" 
                                     Name="StartDate"
                                     SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Ngày bắt đầu"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                        <DatePicker Margin="5" Text="{Binding EndDate}"
+                    <DatePicker Width="120" Margin="5" Text="{Binding EndDate}"
                                     Name="EndDate"
                                     SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Ngày kết thúc"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                        <TextBox Margin="5" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
+                    <TextBox Width="150" Margin="5" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </StackPanel>
-                    <StackPanel Margin="50" Grid.Column="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Background="#4b4b4b" Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
-                        <Button Background="#4b4b4b" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
-                        <Button Background="#4b4b4b" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
-                    </StackPanel>
-                </Grid>
+                </WrapPanel>
             </materialDesign:Card>
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" CanContentScroll="True"  Grid.Row="1">
-                <Grid>
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button Background="#218c74" Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
+                    <Button Background="#218c74" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
+                    <Button Background="#218c74" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch" Padding="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ListView ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
@@ -107,8 +109,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
-            </ScrollViewer>
+                </ScrollViewer>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </Window>

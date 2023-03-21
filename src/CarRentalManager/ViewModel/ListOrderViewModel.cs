@@ -10,6 +10,11 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Data;
+using CarRentalManager.enums;
+using System.Diagnostics;
+using System.Security.Policy;
+using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace CarRentalManager.ViewModel
 {
@@ -19,20 +24,17 @@ namespace CarRentalManager.ViewModel
         public ICommand AddCommand { get; set; }
 
         readonly OrderDAO orderDao = new OrderDAO();
-
+        public string Error { get { return null; } }
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         public ListOrderViewModel()
         {
             List = getListObservableOrder();
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (ID == 0 || CarId == 0 || CustomerId == 0 || BookingPlace == null || Status == null)
-                {
+                if (ErrorCollection.Count > 0)
                     return false;
-                }
                 else
-                {
                     return true;
-                }
             }, (p) =>
             {
                 orderDao.addOrderToList(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
@@ -41,11 +43,10 @@ namespace CarRentalManager.ViewModel
                     Notes != null ? Notes : "");
                 List = getListObservableOrder();
                 OnPropertyChanged(nameof(List));
+                reSetForm();
+
             });
         }
-
-
-
 
         private int id;
 
@@ -57,8 +58,7 @@ namespace CarRentalManager.ViewModel
                 if (value != id)
                 {
                     id = value;
-
-
+                    OnPropertyChanged("Id");
                 }
             }
         }
@@ -209,81 +209,54 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
-        private string error;
-        public string Error
-        {
-            get => error;
-            set
-            {
-                if (error != value)
-                {
-                    error = value;
-                    RaisePropertyChanged("Error");
-                }
-            }
+        private void reSetForm()
+        { 
+            ID = 0;
+            CarId= 0;
+            CustomerId= 0;
+            BookingPlace = null;
+            StartDate= DateTime.Now;
+            EndDate= DateTime.Now;
         }
-
-        private void RaisePropertyChanged(string v)
-        {
-
-        }
-
         public string this[string columnName]
         {
             get
             {
-                return OnValidate(columnName);
-            }
-        }
+                string result = null;
+                switch (columnName)
+                {
+                    case "ID":
+                        if (id <= 0)
+                            result = "ID invalid";
+                        break;
+                    case "CarId":
+                        if (CarId <= 0)
+                            result = "Car ID invalid";
+                        break;
+                    case "CustomerId":
+                        if (CustomerId <= 0)
+                            result = "Customer ID invalid";
+                        break;
+                    case "BookingPlace":
+                        if (string.IsNullOrEmpty(BookingPlace))
+                            result = "Booking place cannot be empty";
+                        break;
+                    case "Status":
+                        if (string.IsNullOrEmpty(BookingPlace))
+                            result = "Status cannot be empty";
+                        break;
+                }
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    ErrorCollection[columnName] = result;
+                    ErrorCollection.Remove(columnName);
+                }
+                else if (result != null)
+                    ErrorCollection.Add(columnName, result);
 
-        private string OnValidate(string columnName)
-        {
-            string result = string.Empty;
-            if (columnName == "BookingPlace")
-            {
-                if (string.IsNullOrEmpty(BookingPlace))
-                {
-                    result = "BookingPlace is Required";
-                }
+                OnPropertyChanged("ErrorCollection");
+                return result;
             }
-            if (columnName == "Status")
-            {
-                if (string.IsNullOrEmpty(BookingPlace))
-                {
-                    result = "Status is Required";
-                }
-            }
-            if (columnName == "ID")
-            {
-                if (ID == 0 || string.IsNullOrEmpty(ID.ToString()))
-                {
-                    result = "ID invalid";
-                }
-            }
-            if (columnName == "CarId")
-            {
-                if (CarId == 0 || string.IsNullOrEmpty(CarId.ToString()))
-                {
-                    result = "CarID invalid";
-                }
-            }
-
-            if (columnName == "CustomerId")
-            {
-                if (CustomerId == 0 || string.IsNullOrEmpty(CustomerId.ToString()))
-                {
-                    result = "CustomerID invalid";
-                }
-            }
-            if (result == null)
-            {
-                Error = null;
-            }
-            else
-            {
-                Error = "Error";
-            }
-            return result;
         }
         public ObservableCollection<Order> getListObservableOrder()
         {
