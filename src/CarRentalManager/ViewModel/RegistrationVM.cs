@@ -45,9 +45,22 @@ namespace CarRentalManager.ViewModel
                 int lastOrderId = commonDAO.getLastId(ETableName.ORDER);
                 int lastCustomerId = commonDAO.getLastId(ETableName.CUSTOMER);
 
-                customerDAO.createNewCustomer(lastCustomerId + 1, PhoneNumber, Name, Email != null ? Email : "", IdCard != null ? IdCard : "", BookingPlace);
+                customerDAO.createNewCustomer(lastCustomerId + 1, 
+                    PhoneNumber, 
+                    Name, 
+                    Email != null ? Email : "", 
+                    IdCard != null ? IdCard : "", 
+                    BookingPlace, 
+                    ImageIdCardFront != null ? ImageIdCardFront : "", 
+                    ImageIdCardBack != null ? ImageIdCardBack : "");
 
-                orderDAO.addOrderToList(lastOrderId + 1, variableService.parseStringToInt(CarId), lastCustomerId + 1, BookingPlace, StartDate, EndDate, TotalFee);
+                orderDAO.addOrderToList(lastOrderId + 1, 
+                    variableService.parseStringToInt(CarId), 
+                    lastCustomerId + 1, 
+                    BookingPlace, StartDate, EndDate, TotalFee,
+                    DepositAmount.ToString() != null ? DepositAmount : 0,
+                    ImageEvidence != null ? ImageEvidence : "",
+                    Notes != null ? Notes : "");
 
             });
         }
@@ -184,6 +197,76 @@ namespace CarRentalManager.ViewModel
                 {
                     idCard = value;
                     OnPropertyChanged("IdCard");
+                }
+            }
+        }
+        private string imageIdCardFront;
+
+        public string ImageIdCardFront
+        {
+            get { return imageIdCardFront; }
+            set
+            {
+                if (value != imageIdCardFront)
+                {
+                    imageIdCardFront = value;
+                    OnPropertyChanged("imageIdCardFront");
+                }
+            }
+        }
+        private string imageIdCardBack;
+
+        public string ImageIdCardBack
+        {
+            get { return imageIdCardBack; }
+            set
+            {
+                if (value != imageIdCardBack)
+                {
+                    imageIdCardBack = value;
+                    OnPropertyChanged("imageIdCardBack");
+                }
+            }
+        }
+        private int depositAmount;
+
+        public int DepositAmount
+        {
+            get { return depositAmount; }
+            set
+            {
+                if (value != depositAmount)
+                {
+                    depositAmount = value;
+                    OnPropertyChanged("depositAmount");
+                }
+            }
+        }
+        private string imageEvidence;
+
+        public string ImageEvidence
+        {
+            get { return imageEvidence; }
+            set
+            {
+                if (value != imageEvidence)
+                {
+                    imageEvidence = value;
+                    OnPropertyChanged("depositAmount");
+                }
+            }
+        }
+        private string notes;
+
+        public string Notes
+        {
+            get { return notes; }
+            set
+            {
+                if (value != notes)
+                {
+                    notes = value;
+                    OnPropertyChanged("notes");
                 }
             }
         }

@@ -1,11 +1,7 @@
 ﻿using CarRentalManager.enums;
 using CarRentalManager.modals;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRentalManager.services
 {
@@ -20,11 +16,13 @@ namespace CarRentalManager.services
             int id = variableService.parseStringToInt(row["id"].ToString());
             int orderId = variableService.parseStringToInt(row["orderId"].ToString());
             int userId = variableService.parseStringToInt(row["userId"].ToString());
+            EContractStatus status = variableService.parseStringToEnum<EContractStatus>(row["status"].ToString());
 
              return new Contract(id,
                 orderId,
                 userId,
-                makingDay);
+                makingDay,
+                status);
         }
     }
 }

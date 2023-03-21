@@ -38,10 +38,9 @@ namespace CarRentalManager.ViewModel
 
         void Login(Window p)
         {
-            isLogin = false;
+
             if (p == null)
                 return;
-
             User currentUser = userDAO.getUserWithEmail(Email);
 
             if(currentUser == null)
@@ -50,14 +49,13 @@ namespace CarRentalManager.ViewModel
             } 
             else
             {
-                //*TODO: DECODE PASSWORD LATER
                 if (comparePassword(Password, currentUser.Password.Trim()))
                 {
-                    isLogin = true;
+                    Application.Current.Windows[0].Close();
 
-                    MainWindow mainWindow = new MainWindow();
+                    var mainWindow = new MainWindow();
                     mainWindow.Show();
-                    Application.Current.Shutdown();
+                    p.Close();
                 }
                 else
                 {

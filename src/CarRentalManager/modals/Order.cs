@@ -17,6 +17,9 @@ namespace CarRentalManager.modals
         DateTime endDate;
         int totalFee;
         EOrderStatus status;
+        int depositAmount;
+        string imageEvidence;
+        string notes;
         DateTime createdAt;
         DateTime updatedAt;
         public Order(int id,
@@ -26,7 +29,10 @@ namespace CarRentalManager.modals
         DateTime startDate,
         DateTime endDate,
         int totalFee,
-        EOrderStatus status)
+        EOrderStatus status,
+        int depositAmount,
+        string imageEvidence,
+        string notes)
         {
             this.id = id;
             this.carId = carId;
@@ -38,6 +44,9 @@ namespace CarRentalManager.modals
             this.status = status;
             this.createdAt = DateTime.Now;
             this.updatedAt = DateTime.Now;
+            this.depositAmount = depositAmount;
+            this.imageEvidence = imageEvidence;
+            this.notes = notes;
         }
 
         public int ID { get { return id; } set { id = value; } }
@@ -48,6 +57,9 @@ namespace CarRentalManager.modals
         public DateTime EndDate { get { return endDate; } set { endDate = value; } }
         public int TotalFee { get { return totalFee; } set { totalFee = value; } }
         public EOrderStatus Status { get { return status; } set { status = value; } }
+        public int DepositAmount { get { return depositAmount; } set { depositAmount = value; } }
+        public string ImageEvidence { get { return imageEvidence; } set { imageEvidence = value; } }
+        public string Notes { get { return notes; } set { notes = value; } }
         public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
         public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
 

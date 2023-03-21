@@ -103,12 +103,12 @@ namespace CarRentalManager.dao
             }
         }
 
-        public void createNewCustomer(int id, string phoneNumber, string name, string email, string idCard, string address)
+        public void createNewCustomer(int id, string phoneNumber, string name, string email, string idCard, string address, string imageIdCardFront, string imageIdCardBack)
         {
             try
             {
                 conn.Open();
-                string sqlQuery = sqlService.createNewCustomer(id, phoneNumber, name, email, idCard, address);
+                string sqlQuery = sqlService.createNewCustomer(id, phoneNumber, name, email, idCard, address, imageIdCardFront, imageIdCardBack);
                 SqlCommand cmd = new SqlCommand(sqlQuery, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {

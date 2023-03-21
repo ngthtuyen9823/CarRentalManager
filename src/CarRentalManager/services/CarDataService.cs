@@ -37,7 +37,8 @@ namespace CarRentalManager.services
                 seats,
                 row["licensePlate"].ToString(),
                 row["imagePath"].ToString(),
-                row["tutorialPath"].ToString());
+                row["tutorialPath"].ToString(),
+                row["city"].ToString());
         }
     }
 }
