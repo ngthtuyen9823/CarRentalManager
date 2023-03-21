@@ -36,8 +36,8 @@ namespace CarRentalManager.modals
             this.endDate = endDate;
             this.totalFee = totalFee;
             this.status = status;
-            this.createdAt = new DateTime();
-            this.updatedAt = new DateTime();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
         }
 
         public int ID { get { return id; } set { id = value; } }

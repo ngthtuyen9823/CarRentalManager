@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -50,6 +51,11 @@ namespace CarRentalManager.services
             return string.Format("INSERT INTO [{9}](id, name, brand, type, status, licensePlate, price, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
                     id, name, brand, type, status, licensePlate, price, DateTime.Now, DateTime.Now, ETableName.CAR);
         }
+        public string getListByRange(int fromPrice, int toPrice)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE price > {1} and price <= {2}", ETableName.CAR, fromPrice, toPrice);
+        }
+        
 
 
         //*INFO: USER

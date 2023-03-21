@@ -7,6 +7,7 @@ using CarRentalManager.enums;
 using System.Windows.Input;
 using CarRentalManager.dao;
 using System.Windows.Documents;
+using CarRentalManager.constants;
 
 namespace CarRentalManager.ViewModel
 {
@@ -17,12 +18,18 @@ namespace CarRentalManager.ViewModel
         //        ResourceDictionary dictionary = new ResourceDictionary();
         
         readonly CarDAO carDao = new CarDAO();
+        readonly Constant constant = new Constant();
 
         public ICommand SortByAscCommand { get; set; }
         public ICommand SortByDscCommand { get; set; }
         public ICommand SortByCarCommand { get; set; }
         public ICommand SortByBikeCommand { get; set; }
         public ICommand SortByMotoBikeCommand { get; set; }
+        public ICommand SortLowerThan200 { get; set; }
+        public ICommand SortLowerThan500{ get; set; }
+        public ICommand SortLowerThan1000{ get; set; }
+        public ICommand SortBiggerThan1000{ get; set; }
+
         public CardViewModels()
         {
             CarList = this.getListObservableCar();
@@ -45,6 +52,22 @@ namespace CarRentalManager.ViewModel
             SortByMotoBikeCommand = new RelayCommand<object>((p) => {
                 return true;
             }, (p) => getListByCarType(ECarType.MOTOBIKE));
+
+            SortLowerThan200 = new RelayCommand<object>((p) => {
+                return true;
+            }, (p) => getListSortByRange(constant.MinPriceOfCar, 200));
+
+            SortLowerThan500 = new RelayCommand<object>((p) => {
+                return true;
+            }, (p) => getListSortByRange(200, 500));
+
+            SortLowerThan1000 = new RelayCommand<object>((p) => {
+                return true;
+            }, (p) => getListSortByRange(500, 1000));
+
+            SortBiggerThan1000 = new RelayCommand<object>((p) => {
+                return true;
+            }, (p) => getListSortByRange(1000, constant.MaxPriceCar));
         }
 
         public ObservableCollection<Car> getListObservableCar()
@@ -67,6 +90,14 @@ namespace CarRentalManager.ViewModel
             CarList = new ObservableCollection<Car>(cars);
             OnPropertyChanged(nameof(CarList));
         }
+
+        public void getListSortByRange(int fromPrice, int toPrice)
+        {
+            List<Car> cars = carDao.getListByRange(fromPrice, toPrice);
+            CarList = new ObservableCollection<Car>(cars);
+            OnPropertyChanged(nameof(CarList));
+        }
+
 
         private ObservableCollection<Car> carList;
 

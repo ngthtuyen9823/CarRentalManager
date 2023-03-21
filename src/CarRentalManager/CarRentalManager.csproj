@@ -101,6 +101,7 @@
     <Compile Include="CarWindow.xaml.cs">
       <DependentUpon>CarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="constants\Constant.cs" />
     <Compile Include="ContractWindow.xaml.cs">
       <DependentUpon>ContractWindow.xaml</DependentUpon>
     </Compile>

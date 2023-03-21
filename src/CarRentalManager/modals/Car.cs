@@ -47,8 +47,8 @@ namespace CarRentalManager.modals
             this.imagePath = imagePath;
             this.seats = seats;
             this.tutorialPath= tutorialPath;
-            this.createdAt = new DateTime();
-            this.updatedAt = new DateTime();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
         }
 
         public Car() {  }

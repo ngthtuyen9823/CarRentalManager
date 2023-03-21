@@ -21,8 +21,8 @@ namespace CarRentalManager.modals
             this.orderId = orderId;
             this.userId = userId;
             this.makingDay = makingDay;
-            this.createdAt = new DateTime();
-            this.updatedAt = new DateTime();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
         }
 
         public int ID { get { return id; } set { id = value; } }

@@ -32,8 +32,8 @@ namespace CarRentalManager.modals
             this.phoneNumber = phoneNumber;
             this.password = password;
             this.role = role;
-            this.createdAt = new DateTime();
-            this.updatedAt = new DateTime();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
         }
        
         public int ID { get { return id; } }
