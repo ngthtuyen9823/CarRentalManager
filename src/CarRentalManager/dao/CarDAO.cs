@@ -52,12 +52,12 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
-        public void addCarToList(int id, string name, string brand, string color, string publishYear, string type, string status,string drivingType, int seats, string licensePlate, int price, string imagePath, DateTime createdAt, DateTime updatedAt)
+        public void addCarToList(int id, string name, string brand, string color, string publishYear, string type, string status,string drivingType, int seats, string licensePlate, int price, string imagePath, int? supplierId, DateTime createdAt, DateTime updatedAt)
         {
             try
             {
                 conn.Open();
-                string SQL = sqlService.createNewCar(id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, createdAt, updatedAt);
+                string SQL = sqlService.createNewCar(id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, createdAt, updatedAt);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {

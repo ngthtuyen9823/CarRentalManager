@@ -24,6 +24,11 @@ namespace CarRentalManager.services
             int publishYear = variableService.parseStringToInt(row["publishYear"].ToString());
             int price = variableService.parseStringToInt(row["price"].ToString());
             int seats = variableService.parseStringToInt(row["seats"].ToString());
+            int? supplierId = null;
+            if (row["supplierId"].ToString() != null)
+            {
+                supplierId = variableService.parseStringToInt(row["supplierId"].ToString());
+            }
 
             return new Car(id,
                 row["name"].ToString(),
@@ -38,7 +43,8 @@ namespace CarRentalManager.services
                 row["licensePlate"].ToString(),
                 row["imagePath"].ToString(),
                 row["tutorialPath"].ToString(),
-                row["city"].ToString());
+                row["city"].ToString(),
+                supplierId);
         }
     }
 }
