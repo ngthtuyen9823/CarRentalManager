@@ -37,7 +37,7 @@ namespace CarRentalManager.ViewModel
                     return true;
             }, (p) =>
             {
-                carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type, Status, DrivingType, Seats, LicensePlate, Price, ImagePath, CreatedAt, UpdatedAt);
+                carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type, Status, DrivingType, Seats, LicensePlate, Price, ImagePath, null, CreatedAt, UpdatedAt);
                 List = getListObservableCar();
                 OnPropertyChanged(nameof(List));
                 reSetForm();

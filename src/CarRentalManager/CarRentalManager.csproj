@@ -140,6 +140,7 @@
     <Compile Include="modals\Customer.cs" />
     <Compile Include="modals\Order.cs" />
     <Compile Include="modals\Receipt.cs" />
+    <Compile Include="modals\Supplier.cs" />
     <Compile Include="modals\User.cs" />
     <Compile Include="OrderWindow.xaml.cs">
       <DependentUpon>OrderWindow.xaml</DependentUpon>

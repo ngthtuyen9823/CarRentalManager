@@ -47,10 +47,10 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}] WHERE type = '{1}'", ETableName.CAR, eCarType);
         }
-        public string createNewCar(int id, string name, string brand, string color, string publishYear, string type, string status, string drivingType, int seats, string licensePlate, int price, string imagePath, DateTime createdAt, DateTime updatedAt)
+        public string createNewCar(int id, string name, string brand, string color, string publishYear, string type, string status, string drivingType, int seats, string licensePlate, int price, string imagePath, int? supplierId, DateTime createdAt, DateTime updatedAt)
         {
-            return string.Format("INSERT INTO [{14}](id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}')",
-                    id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, DateTime.Now, DateTime.Now, ETableName.CAR);
+            return string.Format("INSERT INTO [{15}](id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')",
+                    id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, DateTime.Now, DateTime.Now, ETableName.CAR);
         }
         public string getListByRange(int fromPrice, int toPrice)
         {
