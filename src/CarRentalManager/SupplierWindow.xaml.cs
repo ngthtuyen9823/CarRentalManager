@@ -1,5 +1,4 @@
-﻿using CarRentalManager.modals;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +15,11 @@ using System.Windows.Shapes;
 namespace CarRentalManager
 {
     /// <summary>
-    /// Interaction logic for CustomerWindow.xaml
+    /// Interaction logic for SupplierWindow.xaml
     /// </summary>
-    public partial class CustomerWindow : Window
+    public partial class SupplierWindow : Window
     {
-        public CustomerWindow()
+        public SupplierWindow()
         {
             InitializeComponent();
             CreatedAt.SelectedDate = DateTime.Today;

@@ -20,19 +20,19 @@ using System.Windows.Media;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListCustomerViewModel : BaseViewModel, IDataErrorInfo
+    public class ListSupplierViewModel : BaseViewModel, IDataErrorInfo
     {
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
-        private ObservableCollection<Customer> list;
-        public ObservableCollection<Customer> List { get; set; }
+        private ObservableCollection<Supplier> list;
+        public ObservableCollection<Supplier> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        readonly CustomerDAO customerDAO = new CustomerDAO();
-        public ListCustomerViewModel() 
+        readonly SupplierDAO supplierDAO = new SupplierDAO();
+        public ListSupplierViewModel()
         {
-            List = getListObservableCustomer();
+            List = getListObservableSupplier();
             AddCommand = new RelayCommand<object>((p) =>
             {
                 if (ErrorCollection.Count > 0)
@@ -41,23 +41,8 @@ namespace CarRentalManager.ViewModel
                     return true;
             }, (p) =>
             {
-                customerDAO.addCustomerToList(ID, Name, PhoneNumber, Email, IdCard, Address, 
-                    ImageIdCardFront != null ? ImageIdCardFront : "",
-                    ImageIdCardBack != null ? ImageIdCardBack : "");
-                List = getListObservableCustomer();
-                OnPropertyChanged(nameof(List));
-                reSetForm();
-            });
-            DeleteCommand = new RelayCommand<object>((p) =>
-            {
-                if (ErrorCollection.Count > 0)
-                    return false;
-                else
-                    return true;
-            }, (p) =>
-            {
-                customerDAO.removeCustomerFromList(ID);
-                List = getListObservableCustomer();
+                supplierDAO.addSupplierToList(ID, Name, PhoneNumber, Email, Address);
+                List = getListObservableSupplier();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
             });
@@ -105,7 +90,7 @@ namespace CarRentalManager.ViewModel
             }
         }
         private string email;
-            
+
         public string Email
         {
             get { return email; }
@@ -129,20 +114,6 @@ namespace CarRentalManager.ViewModel
                 {
                     address = value;
                     OnPropertyChanged("Address");
-                }
-            }
-        }
-        private string idCard;
-
-        public string IdCard
-        {
-            get { return idCard; }
-            set
-            {
-                if (value != idCard)
-                {
-                    idCard = value;
-                    OnPropertyChanged("IdCard");
                 }
             }
         }
@@ -180,37 +151,8 @@ namespace CarRentalManager.ViewModel
             ID = 0;
             Name = null;
             PhoneNumber = null;
-            Email= null;
-            IdCard= null;
-            Address= null;
-        }
-        private string imageIdCardFront;
-
-        public string ImageIdCardFront
-        {
-            get { return imageIdCardFront; }
-            set
-            {
-                if (value != imageIdCardFront)
-                {
-                    imageIdCardFront = value;
-                    OnPropertyChanged("imageIdCardFront");
-                }
-            }
-        }
-        private string imageIdCardBack;
-
-        public string ImageIdCardBack
-        {
-            get { return imageIdCardBack; }
-            set
-            {
-                if (value != imageIdCardBack)
-                {
-                    imageIdCardBack = value;
-                    OnPropertyChanged("imageIdCardBack");
-                }
-            }
+            Email = null;
+            Address = null;
         }
         public string this[string columnName]
         {
@@ -230,10 +172,6 @@ namespace CarRentalManager.ViewModel
                     case "Email":
                         if (string.IsNullOrEmpty(Email))
                             result = "Email cannot be empty";
-                        break;
-                    case "IdCard":
-                        if (string.IsNullOrEmpty(Email))
-                            result = "IdCard cannot be empty";
                         break;
                     case "ID":
                         if (ID <= 0)
@@ -256,11 +194,11 @@ namespace CarRentalManager.ViewModel
                 return result;
             }
         }
-        public ObservableCollection<Customer> getListObservableCustomer()
+        public ObservableCollection<Supplier> getListObservableSupplier()
         {
-            List<Customer> customers = customerDAO.getListCustomer();
-            ObservableCollection<Customer> customerList = new ObservableCollection<Customer>(customers);
-            return customerList;
+            List<Supplier> suppliers = supplierDAO.getListSupplier();
+            ObservableCollection<Supplier> supplierList = new ObservableCollection<Supplier>(suppliers);
+            return supplierList;
         }
 
     }

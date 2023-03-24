@@ -13,6 +13,7 @@ namespace CarRentalManager.enums
         CUSTOMER,
         RECEIPT,
         ORDER,
-        CONTRACT
+        CONTRACT,
+        SUPPLIER
     }
 }
