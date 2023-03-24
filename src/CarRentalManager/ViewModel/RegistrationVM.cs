@@ -49,7 +49,7 @@ namespace CarRentalManager.ViewModel
                     PhoneNumber, 
                     Name, 
                     Email != null ? Email : "", 
-                    IdCard != null ? IdCard : "", 
+                    IdCard, 
                     BookingPlace, 
                     ImageIdCardFront != null ? ImageIdCardFront : "", 
                     ImageIdCardBack != null ? ImageIdCardBack : "");
@@ -58,7 +58,7 @@ namespace CarRentalManager.ViewModel
                     variableService.parseStringToInt(CarId), 
                     lastCustomerId + 1, 
                     BookingPlace, StartDate, EndDate, TotalFee,
-                    DepositAmount.ToString() != null ? DepositAmount : 0,
+                    DepositAmount,
                     ImageEvidence != null ? ImageEvidence : "",
                     Notes != null ? Notes : "");
 
@@ -79,6 +79,11 @@ namespace CarRentalManager.ViewModel
             Name = null;
             PhoneNumber = null;
             BookingPlace = null;
+            IdCard= null;
+            ImageIdCardFront = null;
+            ImageIdCardBack = null;
+            DepositAmount = 0;
+            ImageEvidence = null;
             StartDate = DateTime.Today;
             EndDate = DateTime.Today;
         }
@@ -349,6 +354,30 @@ namespace CarRentalManager.ViewModel
                     case "BookingPlace":
                         if (string.IsNullOrEmpty(BookingPlace))
                             result = "Address cannot be empty";
+                        //ErrorCollection.Remove(name);
+                        break;
+                    case "IdCard":
+                        if (string.IsNullOrEmpty(IdCard))
+                            result = "IdCard cannot be empty";
+                        //ErrorCollection.Remove(name);
+                        break;
+                    case "DepositAmount":
+                        if (DepositAmount <= 0)
+                            result = "Must have DepositAmount";
+                        break;
+                    case "ImageEvidence":
+                        if (string.IsNullOrEmpty(ImageEvidence))
+                            result = "ImageEvidence cannot be empty";
+                        //ErrorCollection.Remove(name);
+                        break;
+                    case "ImageIdCardFront":
+                        if (string.IsNullOrEmpty(ImageIdCardFront))
+                            result = "ImageIdCardFront cannot be empty";
+                        //ErrorCollection.Remove(name);
+                        break;
+                    case "ImageIdCardBack":
+                        if (string.IsNullOrEmpty(ImageIdCardBack))
+                            result = "ImageIdCardBack cannot be empty";
                         //ErrorCollection.Remove(name);
                         break;
                 }

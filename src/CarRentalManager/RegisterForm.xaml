@@ -54,9 +54,9 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="350">
-                <StackPanel Margin="20 0" Height="400">
-                    <TextBlock Text="Register" Margin="10" Foreground="Black" Background="#6ab04c" TextAlignment="Center" FontSize="30" FontFamily="Copperplate Gothic Bold"></TextBlock>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Margin="20 0" Height="450">
+                    <TextBlock Text="Register" Margin="5" Foreground="Black" Background="#6ab04c" TextAlignment="Center" FontSize="30" FontFamily="Copperplate Gothic Bold"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="3">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="Black"/>
                         <TextBox
                             
@@ -65,7 +65,7 @@
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtTen" Margin="10 0" materialDesign:HintAssist.Hint="Họ tên" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="3">
                         <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="Black"/>
                         <TextBox
                             Text="{Binding PhoneNumber,
@@ -73,7 +73,7 @@
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtSdt" Margin="10 0" materialDesign:HintAssist.Hint="Số điện thoại" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="3">
                         <materialDesign:PackIcon Kind="Place" Width="25" Height="25" Foreground="Black"/>
                         <TextBox 
                             Text="{Binding BookingPlace,
@@ -81,21 +81,101 @@
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txtDiachi" Margin="10 0" materialDesign:HintAssist.Hint="Địa chỉ" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="3,10">
+                        <materialDesign:PackIcon Kind="IdCard" Width="25" Height="25" Foreground="Black"/>
+                        <TextBox 
+                            Text="{Binding IdCard,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txtCmnd" Margin="10 0" materialDesign:HintAssist.Hint="CMND/Ảnh CMND" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <materialDesign:PackIcon Kind="CameraFront" Width="25" Height="25" Foreground="Black"/>
+                        <TextBox
+                            Text="{Binding ImageIdCardFront,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txtTruocCmnd" Margin="10 0" materialDesign:HintAssist.Hint="Mặt trước CMND" Foreground="Black" Width="100" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"/>
+                        <ToggleButton
+                        Margin="-10,-20,0,-20"
+                        Name="btnCMNDFront"
+                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                        ToolTip="MaterialDesignFlatToggleButton" 
+                        Click="btnCMNDFront_Click"
+                        >
+                            <materialDesign:PackIcon
+                            Kind="Paperclip"
+                            Height="12"
+                            Width="21" VerticalAlignment="Center" />
+                        </ToggleButton>
+                        <TextBox
+                            Text="{Binding ImageIdCardBack,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txtSauCmnd" Margin="7 0" materialDesign:HintAssist.Hint="Mặt sau CMND" Foreground="Black" Width="80" BorderBrush="Black" CaretBrush="#FFD94448"/>
+                        <ToggleButton
+                        Margin="-15,-20,0,-20"
+                        Name="btnCMNDBack"
+                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                        ToolTip="MaterialDesignFlatToggleButton" 
+                        Click="btnCMNDBack_Click"
+                        >
+                            <materialDesign:PackIcon
+                            Kind="Paperclip"
+                            Height="12"
+                            Width="21" VerticalAlignment="Center" />
+                        </ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <materialDesign:PackIcon Kind="InstantDeposit" Width="25" Height="25" Foreground="Black"/>
+                        <TextBox 
+                            Text="{Binding DepositAmount,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txtTiencoc" Margin="10 0" materialDesign:HintAssist.Hint="Tiền đã cọc" Foreground="Black" Width="105" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <TextBox
+                            Text="{Binding ImageEvidence,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            materialDesign:HintAssist.Hint="Ảnh minh chứng"
+                            x:Name="txtMinhchung" Margin="7 0" Foreground="Black" Width="105" BorderBrush="Black"/>
+                        <ToggleButton
+                        Margin="-15,-20,0,-20"
+                        Name="btnTiencoc"
+                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                        ToolTip="MaterialDesignFlatToggleButton" 
+                        Click="btnTiencoc_Click" 
+                        
+                        >
+                            <materialDesign:PackIcon
+                            Kind="Paperclip"
+                            Height="12"
+                            Width="21" VerticalAlignment="Center" />
+                        </ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
                         <materialDesign:PackIcon Kind="TimerStart" Width="25" Height="25" Foreground="Black"/>
                         <DatePicker
                             SelectedDate="{Binding StartDate,
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="dpBatdau" Margin="10 0" materialDesign:HintAssist.Hint="Thời gian bắt đầu" Foreground="Black" Width="250" BorderBrush="Black" SelectedDateFormat="Short"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="3">
                         <materialDesign:PackIcon Kind="TimelineClock" Width="25" Height="25" Foreground="Black"/>
                         <DatePicker 
                             SelectedDate="{Binding EndDate, 
                             UpdateSourceTrigger=PropertyChanged}"
                             x:Name="dpKetThuc" Margin="10 0" materialDesign:HintAssist.Hint="Thời gian kết thúc" Foreground="Black" Width="250" BorderBrush="Black"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="7">
+                    <StackPanel Orientation="Horizontal" Margin="3,10">
+                        <materialDesign:PackIcon Kind="Note" Width="25" Height="25" Foreground="Black"/>
+                        <TextBox 
+                            Text="{Binding Notes,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txtNotes" Margin="10 0" materialDesign:HintAssist.Hint="Ghi chú" Foreground="Black" Width="250" BorderBrush="Black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
                         <materialDesign:PackIcon Kind="Money" Width="25" Height="32" Foreground="Black"/>
                         <Button x:Name="btnTinhtien" 
                             Content="Tính tiền"
@@ -112,7 +192,7 @@
                     <StackPanel Margin="30" HorizontalAlignment="Center">
                         <Button
                             Command="{Binding RegisterCommand}"
-                            Width="100" Height="30"
+                            Width="100" Height="29"
                             Background="#D94448" Foreground="White" x:Name="btnLogin" Content="Đặt xe">
                         </Button>
                     </StackPanel>
