@@ -28,6 +28,8 @@ namespace CarRentalManager.ViewModel
         private ObservableCollection<Contract> list;
         public ObservableCollection<Contract> List { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand PayCommand { get; set; }
+
         readonly ContractDAO contractDAO = new ContractDAO();
         public ListContractViewModel()
         {
@@ -42,7 +44,10 @@ namespace CarRentalManager.ViewModel
                 OnPropertyChanged(nameof(List));
                 reSetForm();
             });
+            PayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReceiptForm wd = new ReceiptForm(); wd.ShowDialog(); });
+
         }
+
         private int id;
         public int ID
         {

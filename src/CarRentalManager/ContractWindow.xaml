@@ -82,6 +82,7 @@
                     <Button  Background="#218c74"  Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
                     <Button Background="#218c74"  Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
                     <Button  Background="#218c74" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                    <Button  Background="#218c74" Command="{Binding PayCommand}" Content="Thanh toán" Width="110" Margin="10"></Button>
                 </WrapPanel>
             </materialDesign:Card>
 
