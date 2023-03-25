@@ -102,10 +102,10 @@ namespace CarRentalManager.services
 
         //*INFO: CONTRACT
 
-        public string createNewContract(int id, int orderId, int userId, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
+        public string createNewContract(int id, int orderId, int userId, string status, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
         {
-            return string.Format("INSERT INTO [{6}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
-                   id, orderId, userId, DateTime.Now, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
+            return string.Format("INSERT INTO [{7}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                   id, orderId, userId, DateTime.Now, status, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
         }
        
         //*INFO: ORDER

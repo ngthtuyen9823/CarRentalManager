@@ -48,6 +48,15 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width=" 150" Margin="5" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox Width="150" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem>
+                            PAID
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            UNPAID
+                        </ComboBoxItem>
+                    </ComboBox>
                     <DatePicker Width="120" Margin="5" Text="{Binding MakingDay}" 
                                     Name ="MakingDay"
                                     SelectedDate="{Binding MakingDay, UpdateSourceTrigger=PropertyChanged}"
@@ -83,6 +92,7 @@
                                 <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                                 <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
                                 <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                                <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                 <GridViewColumn Header="Making Day" DisplayMemberBinding="{Binding MakingDay}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày cập nhật" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>

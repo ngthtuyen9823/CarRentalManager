@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -120,6 +120,7 @@
     <Compile Include="dao\CustomerDAO.cs" />
     <Compile Include="dao\CarDAO.cs" />
     <Compile Include="dao\ContractDAO.cs" />
+    <Compile Include="dao\SupplierDAO.cs" />
     <Compile Include="dao\UserDAO.cs" />
     <Compile Include="enums\ECarStatus.cs" />
     <Compile Include="enums\ECarType.cs" />
@@ -154,11 +155,15 @@
     <Compile Include="services\OrderDataService.cs" />
     <Compile Include="services\ReceiptDataService.cs" />
     <Compile Include="services\SqlQueryService.cs" />
+    <Compile Include="services\SupplierDataService.cs" />
     <Compile Include="services\UserService.cs" />
     <Compile Include="services\UserDataService.cs" />
     <Compile Include="services\VariableService.cs" />
     <Compile Include="SupplierRegister.xaml.cs">
       <DependentUpon>SupplierRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierWindow.xaml.cs">
+      <DependentUpon>SupplierWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -171,6 +176,7 @@
     <Compile Include="ViewModel\ListContractViewModel.cs" />
     <Compile Include="ViewModel\ListCustomerViewModel.cs" />
     <Compile Include="ViewModel\ListOrderViewModel.cs" />
+    <Compile Include="ViewModel\ListSupplierViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationVM.cs" />
@@ -233,6 +239,10 @@
     <Page Include="SupplierRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupplierWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControlCRM\ControlBarUC.xaml">
       <SubType>Designer</SubType>
