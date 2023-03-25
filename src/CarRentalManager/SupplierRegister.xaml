@@ -17,7 +17,7 @@
             <Border CornerRadius="10" Grid.RowSpan="2">
                 <Border.Background>
                     <LinearGradientBrush>
-                        <GradientStop Color="#609966" Offset="0.0"/>
+                        <GradientStop Color="#609966" Offset="0.8"/>
                         <GradientStop Color="#9DC08B" Offset="1.1"/>
                     </LinearGradientBrush>
                 </Border.Background>
@@ -249,7 +249,9 @@
                                                 VerticalAlignment="Center" 
                                                 HorizontalAlignment="Center" 
                                                 Foreground="White"/>
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             x:Name="txtImage"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Hình ảnh"
                              BorderBrush="White"
@@ -263,10 +265,18 @@
                              Opacity="0.5"
                              Height="26"
                              Margin="2,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Picture" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                    <ToggleButton
+                        Margin="-15,-20,0,-20"
+                        Name="btnImage"
+                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                        ToolTip="MaterialDesignFlatToggleButton" Checked="btnTiencoc_Checked"                        
+                        >
+                        <materialDesign:PackIcon
+                            Kind="Paperclip"
+                            Height="15"
+                            Foreground="White"
+                            Width="21" VerticalAlignment="Center" />
+                    </ToggleButton>
                 </StackPanel>
                 <Border Width="250"
                         Height="2"

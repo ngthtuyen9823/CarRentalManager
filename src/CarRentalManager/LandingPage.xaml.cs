@@ -57,5 +57,11 @@ namespace CarRentalManager
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            SupplierRegister supplierRegister= new SupplierRegister();
+            supplierRegister.Show();
+        }
     }
 }
