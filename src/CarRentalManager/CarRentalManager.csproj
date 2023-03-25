@@ -157,6 +157,9 @@
     <Compile Include="services\UserService.cs" />
     <Compile Include="services\UserDataService.cs" />
     <Compile Include="services\VariableService.cs" />
+    <Compile Include="SupplierRegister.xaml.cs">
+      <DependentUpon>SupplierRegister.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupplierRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -313,6 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="Assets\images\iconsRegister\register.png" />
     <Resource Include="Assets\images\idCard\1.jpg" />
     <Resource Include="Assets\level-up.png" />
   </ItemGroup>
