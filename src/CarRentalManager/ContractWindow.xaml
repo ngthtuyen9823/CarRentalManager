@@ -48,6 +48,8 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width=" 150" Margin="5" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width=" 150" Margin="5" Text="{Binding Value, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox Width="150" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
@@ -92,6 +94,7 @@
                                 <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                                 <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
                                 <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                                <GridViewColumn Header="Trị giá" DisplayMemberBinding="{Binding Value}"></GridViewColumn>
                                 <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                 <GridViewColumn Header="Making Day" DisplayMemberBinding="{Binding MakingDay}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
