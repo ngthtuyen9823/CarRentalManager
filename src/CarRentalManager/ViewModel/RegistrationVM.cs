@@ -367,17 +367,17 @@ namespace CarRentalManager.ViewModel
                         break;
                     case "ImageEvidence":
                         if (string.IsNullOrEmpty(ImageEvidence))
-                            result = "ImageEvidence cannot be empty";
+                            result = "Image cannot be empty";
                         //ErrorCollection.Remove(name);
                         break;
                     case "ImageIdCardFront":
                         if (string.IsNullOrEmpty(ImageIdCardFront))
-                            result = "ImageIdCardFront cannot be empty";
+                            result = "Image cannot be empty";
                         //ErrorCollection.Remove(name);
                         break;
                     case "ImageIdCardBack":
                         if (string.IsNullOrEmpty(ImageIdCardBack))
-                            result = "ImageIdCardBack cannot be empty";
+                            result = "Image cannot be empty";
                         //ErrorCollection.Remove(name);
                         break;
                 }
