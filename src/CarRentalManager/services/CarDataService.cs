@@ -24,6 +24,9 @@ namespace CarRentalManager.services
             int publishYear = variableService.parseStringToInt(row["publishYear"].ToString());
             int price = variableService.parseStringToInt(row["price"].ToString());
             int seats = variableService.parseStringToInt(row["seats"].ToString());
+            DateTime createdAt = DateTime.Parse(row["createdAt"].ToString());
+            DateTime updatedAt = DateTime.Parse(row["updatedAt"].ToString());
+
             int? supplierId = null;
             if (row["supplierId"].ToString() != null)
             {
@@ -44,7 +47,8 @@ namespace CarRentalManager.services
                 row["imagePath"].ToString(),
                 row["tutorialPath"].ToString(),
                 row["city"].ToString(),
-                supplierId);
+                supplierId, 
+                createdAt, updatedAt);
         }
     }
 }

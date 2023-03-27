@@ -36,7 +36,9 @@ namespace CarRentalManager.modals
             string imagePath,
             string tutorialPath,
             string city,
-            int? supplierId)
+            int? supplierId,
+            DateTime createdAt,
+            DateTime updatedAt)
         {
             this.id = id;
             this.name = name;
@@ -51,8 +53,8 @@ namespace CarRentalManager.modals
             this.imagePath = imagePath;
             this.seats = seats;
             this.tutorialPath = tutorialPath;
-            this.createdAt = DateTime.Now;
-            this.updatedAt = DateTime.Now;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
             this.city = city;
             this.supplierId = supplierId;
         }

@@ -18,15 +18,16 @@ namespace CarRentalManager.services
 
         public Supplier createSupplierByRowData(DataRow row)
         {
-            int id = variableService.parseStringToInt(row["id"].ToString());
-            int.TryParse(row["id"].ToString(), out id);
+            int id = variableService.parseStringToInt(row["id"].ToString()); 
+            DateTime createdAt = DateTime.Parse(row["createdAt"].ToString());
+            DateTime updatedAt = DateTime.Parse(row["updatedAt"].ToString());
 
             return new Supplier(id,
                 row["name"].ToString(),
                 row["phoneNumber"].ToString(),
                 row["email"].ToString(),
-                row["address"].ToString()
-                );
+                row["address"].ToString(),
+                createdAt, updatedAt);
         }
     }
 }

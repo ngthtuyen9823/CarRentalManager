@@ -23,7 +23,9 @@ namespace CarRentalManager.modals
             string email,
             string phoneNumber,
             string password,
-            EUserRole role)
+            EUserRole role,
+            DateTime createdAt,
+            DateTime updatedAt)
         {
 
             this.id = id;
@@ -32,8 +34,8 @@ namespace CarRentalManager.modals
             this.phoneNumber = phoneNumber;
             this.password = password;
             this.role = role;
-            this.createdAt = DateTime.Now;
-            this.updatedAt = DateTime.Now;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
         }
        
         public int ID { get { return id; } }

@@ -13,15 +13,17 @@ namespace CarRentalManager.modals
         DateTime createdAt;
         DateTime updatedAt;
 
-        public Contract(int id, int orderId, int userId, DateTime makingDay, EContractStatus status)
+        public Contract(int id, int orderId, int userId, DateTime makingDay, EContractStatus status,
+            DateTime createdAt,
+            DateTime updatedAt)
         {
             this.id = id;
             this.orderId = orderId;
             this.userId = userId;
             this.makingDay = makingDay;
             this.status = status;
-            this.createdAt = DateTime.Now;
-            this.updatedAt = DateTime.Now;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
         }
 
         public int ID { get { return id; } set { id = value; } }

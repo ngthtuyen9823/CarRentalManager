@@ -32,7 +32,9 @@ namespace CarRentalManager.modals
         EOrderStatus status,
         int depositAmount,
         string imageEvidence,
-        string notes)
+        string notes,
+        DateTime createdAt,
+        DateTime updatedAt)
         {
             this.id = id;
             this.carId = carId;
@@ -42,8 +44,8 @@ namespace CarRentalManager.modals
             this.endDate = endDate;
             this.totalFee = totalFee;
             this.status = status;
-            this.createdAt = DateTime.Now;
-            this.updatedAt = DateTime.Now;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
             this.depositAmount = depositAmount;
             this.imageEvidence = imageEvidence;
             this.notes = notes;

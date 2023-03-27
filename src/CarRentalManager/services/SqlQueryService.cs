@@ -78,8 +78,8 @@ namespace CarRentalManager.services
         }
         public string updateCar(int id, string name, string brand, string color, string publishYear, string type, string status, string drivingType, int seats, string licensePlate, int price, string imagePath, int? supplierId, DateTime createdAt, DateTime updatedAt)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', createdAt = '{13}', updatedAt = '{14}' where id = '{15}'", 
-            ETableName.CAR, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, DateTime.Now, DateTime.Now, id);
+            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}' where id = '{14}'", 
+            ETableName.CAR, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, DateTime.Now, id);
         }
         //*INFO: USER
         public string getUserWithEmail(string email)

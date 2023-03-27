@@ -27,7 +27,9 @@ namespace CarRentalManager.modals
             string idCard, 
             string address,
             string imageIdCardFront,
-            string imageIdCardBack)
+            string imageIdCardBack,
+            DateTime createdAt,
+            DateTime updatedAt)
         {
             this.id = id;
             this.name = name;
@@ -37,8 +39,8 @@ namespace CarRentalManager.modals
             this.address = address;
             this.imageIdCardFront = imageIdCardFront;
             this.imageIdCardBack= imageIdCardBack;
-            this.createdAt = DateTime.Now;
-            this.updatedAt = DateTime.Now;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
         }
 
         public int ID { get { return id; } set { id = value; } }
