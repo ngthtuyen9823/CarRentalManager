@@ -39,7 +39,7 @@ namespace CarRentalManager.ViewModel
                 return true;
             }, (p) =>
             {
-                contractDAO.addContractToList(ID, OrderId, UserId, Status, MakingDay, CreatedAt, UpdatedAt);
+                contractDAO.addContractToList(ID, OrderId, UserId, Status.Substring(38), MakingDay, CreatedAt, UpdatedAt);
                 List = getListObservableContract();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
@@ -87,6 +87,20 @@ namespace CarRentalManager.ViewModel
                 {
                     userId = value;
                     OnPropertyChanged("UserId");
+                }
+            }
+        }
+        private int price;
+
+        public int Price
+        {
+            get { return price; }
+            set
+            {
+                if (value != price)
+                {
+                    price = value;
+                    OnPropertyChanged("Price");
                 }
             }
         }
@@ -154,6 +168,7 @@ namespace CarRentalManager.ViewModel
             ID = 0;
             OrderId = 0;
             UserId = 0;
+            
             Status = null;
         }
         public string this[string columnName]

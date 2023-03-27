@@ -37,7 +37,7 @@ namespace CarRentalManager.ViewModel
                     return true;
             }, (p) =>
             {
-                carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type, Status, DrivingType, Seats, LicensePlate, Price, ImagePath, null, CreatedAt, UpdatedAt);
+                carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type.Substring(38), Status.Substring(38), DrivingType.Substring(38), Seats, LicensePlate, Price, ImagePath, SupplierId, CreatedAt, UpdatedAt) ;
                 List = getListObservableCar();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
@@ -170,6 +170,20 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+        private int supplierId;
+
+        public int SupplierId
+        {
+            get { return supplierId; }
+            set
+            {
+                if (value != supplierId)
+                {
+                    supplierId = value;
+                    OnPropertyChanged("SupplierId");
+                }
+            }
+        }
         private string brand;
 
         public string Brand
@@ -244,6 +258,7 @@ namespace CarRentalManager.ViewModel
         private void reSetForm()
         {
             ID = 0;
+            SupplierId = 0;
             Name = null;
             Brand = null;
             Color = null;

@@ -43,6 +43,8 @@
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox Width="150" Margin="5 5 15 5" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding SupplierId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
@@ -70,6 +72,15 @@
                         </ComboBoxItem>
                         <ComboBoxItem>
                             UNAVAILABLE
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Width="150" Margin="5 5 15 5" SelectedValue="{Binding DrivingType,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Driving Type" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem>
+                            SELF_DRIVING
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            MANNED
                         </ComboBoxItem>
                     </ComboBox>
                     <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Seats,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Seats"
@@ -120,6 +131,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                                <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
                                 <GridViewColumn Header="Tên xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
                                 <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                                 <GridViewColumn Header="Màu xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
