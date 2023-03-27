@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using CarRentalManager.modals;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -49,6 +50,32 @@ namespace CarRentalManager
                 bitmap.EndInit();
             }
         }
-
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null && item.IsSelected)
+            {
+                var selectedCar = lsvCar.SelectedItems[0] as Car;
+                if (selectedCar == null)
+                {
+                    return;
+                }
+                ID.Text = selectedCar.ID.ToString();
+                SupplierId.Text = selectedCar.SupplierId.ToString();
+                Name.Text = selectedCar.Name;
+                Brand.Text = selectedCar.Brand;
+                Color.Text = selectedCar.Color;
+                PublishYear.Text = selectedCar.PublishYear.ToString();
+                Type.Text = selectedCar.Type.ToString();
+                Status.Text = selectedCar.Status.ToString();    
+                DrivingType.Text = selectedCar.DrivingType.ToString();
+                Seats.Text = selectedCar.Seats.ToString();
+                LicensePlate.Text = selectedCar.LicensePlate;    
+                Price.Text = selectedCar.Price.ToString();
+                ImagePath.Text = selectedCar.ImagePath;
+                CreatedAt.SelectedDate = selectedCar.CreatedAt;
+                UpdatedAt.SelectedDate = selectedCar.UpdatedAt;
+            }
+        }
     }
 }

@@ -41,19 +41,19 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
+                    <TextBox Name="ID" Width="150" Margin="5 5 15 5" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding SupplierId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
+                    <TextBox Name="SupplierId" Width="150" Margin="5 5 15 5" Text="{Binding SupplierId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
+                    <TextBox Name ="Name" Width="150" Margin="5 5 15 5" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
+                    <TextBox Name ="Brand" Width="150" Margin="5 5 15 5" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding Color,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
+                    <TextBox Name ="Color"  Width="150" Margin="5 5 15 5" Text="{Binding Color,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5 5 15 5" Text="{Binding PublishYear, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
+                    <TextBox Name="PublishYear" Width="150" Margin="5 5 15 5" Text="{Binding PublishYear, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox  Width="150" Margin="5 5 15 5" SelectedValue="{Binding Type, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại xe" 
+                    <ComboBox Name="Type" Width="150" Margin="5 5 15 5" SelectedValue="{Binding Type, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại xe" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             CAR
@@ -65,7 +65,7 @@
                             MOTOBIKE
                         </ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Width="150" Margin="5 5 15 5" SelectedValue="{Binding Status,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Trạng thái" 
+                    <ComboBox Name ="Status"  Width="150" Margin="5 5 15 5" SelectedValue="{Binding Status,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             AVAILABLE
@@ -73,8 +73,11 @@
                         <ComboBoxItem>
                             UNAVAILABLE
                         </ComboBoxItem>
+                        <ComboBoxItem>
+                            ONRENT
+                        </ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Width="150" Margin="5 5 15 5" SelectedValue="{Binding DrivingType,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Driving Type" 
+                    <ComboBox Name="DrivingType" Width="150" Margin="5 5 15 5" SelectedValue="{Binding DrivingType,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Driving Type" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             SELF_DRIVING
@@ -83,13 +86,13 @@
                             MANNED
                         </ComboBoxItem>
                     </ComboBox>
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Seats,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Seats"
+                    <TextBox Name ="Seats" Width="150" Margin="5 5 15 5" Text="{Binding Seats,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Seats"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding LicensePlate,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Biển số xe"
+                    <TextBox Name="LicensePlate" Width="150" Margin="5 5 15 5" Text="{Binding LicensePlate,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Biển số xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox  Width="150" Margin="5 5 15 5" Text="{Binding Price,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Giá thuê"
+                    <TextBox Name="Price"  Width="150" Margin="5 5 15 5" Text="{Binding Price,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Giá thuê"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="ImagePath"  Width="150" Margin="0 5 15 5" Text="{Binding ImagePath,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Browse a image"
+                    <TextBox Name ="ImagePath"  Width="150" Margin="0 5 15 5" Text="{Binding ImagePath,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Browse a image"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ToggleButton
                         Margin="-25,0,0,-15"
@@ -102,7 +105,7 @@
                             Height="21"
                             Width="21" />
                     </ToggleButton>
-                    <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
+                    <DatePicker     Width="120" Margin="5" Text="{Binding CreatedAt}" 
                                     Name="CreatedAt"
                                     SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Ngày tạo"
@@ -146,6 +149,11 @@
                                 <GridViewColumn Header="Updated at" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
                     </ListView>
                 </ScrollViewer>
             </materialDesign:Card>
