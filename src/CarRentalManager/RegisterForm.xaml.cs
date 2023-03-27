@@ -1,6 +1,7 @@
 ﻿using CarRentalManager.dao;
 using CarRentalManager.modals;
 using CarRentalManager.services;
+using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -87,6 +88,61 @@ namespace CarRentalManager
             lblTotalFee.Content = totalFee + "000 VNĐ";
 
             ((dynamic)this.DataContext).TotalFee = variableService.parseStringToInt(totalFee);
+        }
+
+        BitmapImage bitmap = new BitmapImage();
+
+        private void btnCMNDFront_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+            dlg.RestoreDirectory = true;
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                string selectedFileName = dlg.FileName;
+                txtTruocCmnd.Text = selectedFileName;
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(selectedFileName);
+                bitmap.EndInit();
+            }
+        }
+
+        private void btnCMNDBack_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+            dlg.RestoreDirectory = true;
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                string selectedFileName = dlg.FileName;
+                txtSauCmnd.Text = selectedFileName;
+                bitmap.UriSource = new Uri(selectedFileName);
+            }
+        }
+
+        private void btnTiencoc_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+            dlg.RestoreDirectory = true;
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                string selectedFileName = dlg.FileName;
+                txtMinhchung.Text = selectedFileName;
+                bitmap.UriSource = new Uri(selectedFileName);
+            }
         }
     }
 }

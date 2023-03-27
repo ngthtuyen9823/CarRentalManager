@@ -1,0 +1,293 @@
+﻿<Window x:Class="CarRentalManager.SupplierRegister"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRentalManager" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SupplierRegister" Height="650" Width="380">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Border CornerRadius="10" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#609966" Offset="0.8"/>
+                        <GradientStop Color="#9DC08B" Offset="1.1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+
+            <StackPanel 
+                VerticalAlignment="Center">
+                <Image Source="assets/images/iconsRegister/register.png" Width="80"/>
+                <TextBlock Text="Supplier Register"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="22"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+
+
+            <StackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="ID"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="IdCard" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Tên"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="User" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Số điện thoại"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="Phone" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Email"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="Email" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Địa chỉ"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="AddressMarker" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Tên xe"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="Car" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Hãng xe"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="110"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="BrandingWatermark" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Màu xe"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="110"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="2,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="Color" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Giá cho thuê"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="110"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="63,0,0,0"/>
+                    <materialDesign:PackIcon    Kind="Money" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                    <TextBox 
+                             x:Name="txtImage"
+                             FontFamily="Helvetica"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Hình ảnh"
+                             BorderBrush="White"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="110"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="2,0,0,0"/>
+                    <ToggleButton
+                        Margin="-15,-20,0,-20"
+                        Name="btnImage"
+                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                        ToolTip="MaterialDesignFlatToggleButton" Checked="btnTiencoc_Checked"                        
+                        >
+                        <materialDesign:PackIcon
+                            Kind="Paperclip"
+                            Height="15"
+                            Foreground="White"
+                            Width="21" VerticalAlignment="Center" />
+                    </ToggleButton>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                    <Button Width="100" Height="40" Margin="140,0,60,0" Content="REGISTER" Background="#40513B"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
