@@ -24,7 +24,7 @@
         x:Name="window"
 
         DataContext="{StaticResource CustomerVM}"
-        Title="Customer Manager" Height="750" Width="1000">
+        Title="Customer Manager" Height="820" Width="1380">
 
     <Grid>
         <Grid.RowDefinitions>

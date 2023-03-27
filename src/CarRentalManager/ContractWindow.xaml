@@ -22,7 +22,7 @@
         x:Name="window"
         DataContext="{StaticResource ContractVM}"
         
-        Title="Contract Manager" Height="750" Width="1000">
+        Title="Contract Manager" Height="820" Width="1380">
 
     <Grid>
         <Grid.RowDefinitions>

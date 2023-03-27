@@ -22,7 +22,7 @@
         WindowStartupLocation="CenterScreen"
         x:Name="window"
         DataContext="{StaticResource OrderVM}"
-        Title="Order Manager" Height="750" Width="1000">
+        Title="Order Manager" Height="820" Width="1380">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
