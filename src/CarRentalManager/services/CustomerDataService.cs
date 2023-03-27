@@ -18,7 +18,8 @@ namespace CarRentalManager.services
 
         public Customer createCustomerByRowData(DataRow row) {
             int id = variableService.parseStringToInt(row["id"].ToString());
-            int.TryParse(row["id"].ToString(), out id);
+            DateTime createdAt = DateTime.Parse(row["createdAt"].ToString());
+            DateTime updatedAt = DateTime.Parse(row["updatedAt"].ToString());
 
             return new Customer(id,
                 row["name"].ToString(),
@@ -27,7 +28,8 @@ namespace CarRentalManager.services
                 row["idCard"].ToString(),
                 row["address"].ToString(),
                 row["imageIdCardFront"].ToString(),
-                row["imageIdCardBack"].ToString());
+                row["imageIdCardBack"].ToString(), 
+                createdAt, updatedAt);
         }
     }
 }

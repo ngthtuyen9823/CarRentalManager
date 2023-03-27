@@ -20,11 +20,14 @@ namespace CarRentalManager.services
             int contractId = variableService.parseStringToInt(row["contractId"].ToString());
             int price = variableService.parseStringToInt(row["price"].ToString());
             DateTime makingDate = DateTime.Parse(row["makingDate"].ToString());
+            DateTime createdAt = DateTime.Parse(row["createdAt"].ToString());
+            DateTime updatedAt = DateTime.Parse(row["updatedAt"].ToString());
 
             return new Receipt(id,
                 contractId,
                 makingDate,
-                price);
+                price,
+                createdAt, updatedAt);
         }
     }
 }

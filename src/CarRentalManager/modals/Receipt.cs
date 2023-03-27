@@ -15,11 +15,15 @@ namespace CarRentalManager.modals
         DateTime createdAt;
         DateTime updatedAt;
 
-        public Receipt(int id, int contractId, DateTime makingDay, int price) {
+        public Receipt(int id, int contractId, DateTime makingDay, int price,
+        DateTime createdAt,
+        DateTime updatedAt) {
             this.id = id;
             this.contractId = contractId;
             this.makingDay = makingDay;
             this.price = price;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
         }
 
         public int ID { get { return id; } }

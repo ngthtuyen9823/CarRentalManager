@@ -18,11 +18,15 @@ namespace CarRentalManager.services
             int userId = variableService.parseStringToInt(row["userId"].ToString());
             EContractStatus status = variableService.parseStringToEnum<EContractStatus>(row["status"].ToString());
 
-             return new Contract(id,
+            DateTime createdAt = DateTime.Parse(row["createdAt"].ToString());
+            DateTime updatedAt = DateTime.Parse(row["updatedAt"].ToString());
+
+            return new Contract(id,
                 orderId,
                 userId,
                 makingDay,
-                status);
+                status, 
+                createdAt, updatedAt);
         }
     }
 }

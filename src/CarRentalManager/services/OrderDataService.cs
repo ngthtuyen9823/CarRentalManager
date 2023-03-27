@@ -24,6 +24,8 @@ namespace CarRentalManager.services
             int totalFee = variableService.parseStringToInt(row["totalFee"].ToString());
             int depositAmount = variableService.parseStringToInt(row["depositAmount"].ToString());
             EOrderStatus status = variableService.parseStringToEnum<EOrderStatus>(row["status"].ToString());
+            DateTime createdAt = DateTime.Parse(row["createdAt"].ToString());
+            DateTime updatedAt = DateTime.Parse(row["updatedAt"].ToString());
 
             return new Order(id,
                 carId,
@@ -35,7 +37,8 @@ namespace CarRentalManager.services
                 status,
                 depositAmount,
                 row["imageEvidence"].ToString(),
-                row["notes"].ToString());
+                row["notes"].ToString(),
+                createdAt, updatedAt);
         }
     }
 }
