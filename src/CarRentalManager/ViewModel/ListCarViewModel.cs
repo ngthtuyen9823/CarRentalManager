@@ -23,7 +23,11 @@ namespace CarRentalManager.ViewModel
 
         public ObservableCollection<Car> List {get; set;}
         public ICommand AddCommand { get; set; }
-        readonly CarDAO carDao = new CarDAO();
+        public ICommand DeleteCommand { get; set; }
+        public ICommand EditCommand { get; set; }
+
+
+        readonly CarDAO carDAO = new CarDAO();
 
 
         public ListCarViewModel()
@@ -37,7 +41,33 @@ namespace CarRentalManager.ViewModel
                     return true;
             }, (p) =>
             {
-                carDao.addCarToList(ID, Name, Brand, Color, PublishYear, Type.Substring(38), Status.Substring(38), DrivingType.Substring(38), Seats, LicensePlate, Price, ImagePath, SupplierId, CreatedAt, UpdatedAt) ;
+                carDAO.addCarToList(ID, Name, Brand, Color, PublishYear, Type.Substring(38), Status.Substring(38), DrivingType.Substring(38), Seats, LicensePlate, Price, ImagePath, SupplierId, CreatedAt, UpdatedAt) ;
+                List = getListObservableCar();
+                OnPropertyChanged(nameof(List));
+                reSetForm();
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
+            }, (p) =>
+            {
+                carDAO.removeCarFromList(ID);
+                List = getListObservableCar();
+                OnPropertyChanged(nameof(List));
+                reSetForm();
+            });
+            EditCommand = new RelayCommand<object>((p) =>
+            {
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
+            }, (p) =>
+            {
+                carDAO.updateCarToList(ID, Name, Brand, Color, PublishYear, Type.Substring(38), Status.Substring(38), DrivingType.Substring(38), Seats, LicensePlate, Price, ImagePath, SupplierId, CreatedAt, UpdatedAt);
                 List = getListObservableCar();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
@@ -340,7 +370,7 @@ namespace CarRentalManager.ViewModel
 
         public ObservableCollection<Car> getListObservableCar()
         {
-            List<Car> cars = carDao.getListCar();
+            List<Car> cars = carDAO.getListCar();
             ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
         }

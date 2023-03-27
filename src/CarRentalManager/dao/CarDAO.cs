@@ -79,7 +79,58 @@ namespace CarRentalManager.dao
             }
 
         }
+        public void updateCarToList(int id, string name, string brand, string color, string publishYear, string type, string status, string drivingType, int seats, string licensePlate, int price, string imagePath, int? supplierId, DateTime createdAt, DateTime updatedAt)
+        {
+            try
+            {
+                conn.Open();
+                string SQL = sqlService.updateCar(id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, createdAt, updatedAt);
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Success!");
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTableCar = new DataTable();
+                    adapter.Fill(dataTableCar);
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+        public void removeCarFromList(int id)
+        {
+            try
+            {
+                conn.Open();
+                string SQL = sqlService.removeCar(id);
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MessageBox.Show("Success!");
+                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                    DataTable dataTableCar = new DataTable();
+                    adapter.Fill(dataTableCar);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail!" + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public List<Car> getListCarByDescOrAsc(bool isDescrease, string fieldName)
         {
             try

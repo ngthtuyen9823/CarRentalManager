@@ -29,6 +29,7 @@ namespace CarRentalManager.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
+
         readonly CustomerDAO customerDAO = new CustomerDAO();
         public ListCustomerViewModel() 
         {
