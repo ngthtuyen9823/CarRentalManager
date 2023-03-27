@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRentalManager" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="SupplierRegister" Height="650" Width="380">
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="SupplierRegister" Height="650" Width="380"
+        DataContext="{StaticResource SupplierVM}">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -38,32 +42,14 @@
 
 
             <StackPanel Grid.Row="1">
-                <StackPanel Orientation="Horizontal">
-                    <TextBox FontFamily="Helvetica"
-                             FontWeight="Light"
-                             materialDesign:HintAssist.Hint="ID"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="235"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="IdCard" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
+                
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding Name, 
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Tên"
                              BorderBrush="White"
@@ -88,7 +74,11 @@
                         Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding PhoneNumber, 
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Số điện thoại"
                              BorderBrush="White"
@@ -113,7 +103,11 @@
                         Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding Email, 
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Email"
                              BorderBrush="White"
@@ -138,7 +132,11 @@
                         Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding Address, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Địa chỉ"
                              BorderBrush="White"
@@ -162,7 +160,11 @@
                         Background="White"
                         Opacity="0.5"/>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding NameCar, 
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Tên xe"
                              BorderBrush="White"
@@ -187,7 +189,11 @@
                         Opacity="0.5"/>
                 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding BrandCar, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Hãng xe"
                              BorderBrush="White"
@@ -205,7 +211,11 @@
                                                 VerticalAlignment="Center" 
                                                 HorizontalAlignment="Center" 
                                                 Foreground="White"/>
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox 
+                             Text="{Binding ColorCar, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Màu xe"
                              BorderBrush="White"
@@ -231,7 +241,11 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica"
+                    <TextBox
+                            Text="{Binding PriceCar, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            FontFamily="Helvetica"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Giá cho thuê"
                              BorderBrush="White"
@@ -250,6 +264,9 @@
                                                 HorizontalAlignment="Center" 
                                                 Foreground="White"/>
                     <TextBox 
+                            Text="{Binding ImageCar, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
                              x:Name="txtImage"
                              FontFamily="Helvetica"
                              FontWeight="Light"
@@ -284,7 +301,10 @@
                         Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    <Button Width="100" Height="40" Margin="140,0,60,0" Content="REGISTER" Background="#40513B"/>
+                    
+                    <Button 
+                        Command="{Binding SupplierCommand}"
+                        Width="100" Height="40" Margin="140,0,60,0" Content="REGISTER" Background="#40513B"/>
                 </StackPanel>
 
             </StackPanel>
