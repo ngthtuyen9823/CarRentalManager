@@ -27,9 +27,12 @@ namespace CarRentalManager.ViewModel
         private ObservableCollection<Supplier> list;
         public ObservableCollection<Supplier> List { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand SupplierCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
         readonly SupplierDAO supplierDAO = new SupplierDAO();
+        readonly CarDAO carDAO = new CarDAO();
+        readonly CommonDAO commonDAO = new CommonDAO();
         public ListSupplierViewModel()
         {
             List = getListObservableSupplier();
@@ -42,6 +45,42 @@ namespace CarRentalManager.ViewModel
             }, (p) =>
             {
                 supplierDAO.addSupplierToList(ID, Name, PhoneNumber, Email, Address);
+                List = getListObservableSupplier();
+                OnPropertyChanged(nameof(List));
+                reSetForm();
+            });
+
+            SupplierCommand = new RelayCommand<object>((p) =>
+            {
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
+            }, (p) =>
+            {
+                int lastSupplierId = commonDAO.getLastId(ETableName.SUPPLIER);
+                int lastCarId = commonDAO.getLastId(ETableName.CAR);
+
+
+                supplierDAO.createNewSupplier(lastSupplierId+1, Name, PhoneNumber, Email, Address);
+
+                carDAO.addCarToList(lastCarId + 1,
+                    NameCar,
+                    BrandCar,
+                    ColorCar,
+                    PublishYear != null ? PublishYear : "",
+                    Type != null ? Type : "",
+                    Status != null ? Status : "",
+                    DrivingType != null ? DrivingType : "",
+                    Seats.ToString() != null ? Seats : 0,
+                    LicensePlate != null ? LicensePlate : "",
+                    PriceCar,
+                    ImageCar,
+                    lastSupplierId + 1,
+                    CreatedAt,
+                    UpdatedAt
+                    );
+
                 List = getListObservableSupplier();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
@@ -146,6 +185,163 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
+        private string nameCar;
+
+        public string NameCar
+        {
+            get { return nameCar; }
+            set
+            {
+                if (value != NameCar)
+                {
+                    nameCar = value;
+                    OnPropertyChanged("NameCar");
+                }
+            }
+        }
+
+        private string brandCar;
+
+        public string BrandCar
+        {
+            get { return brandCar; }
+            set
+            {
+                if (value != BrandCar)
+                {
+                    brandCar = value;
+                    OnPropertyChanged("BrandCar");
+                }
+            }
+        }
+
+        private string colorCar;
+
+        public string ColorCar
+        {
+            get { return colorCar; }
+            set
+            {
+                if (value != ColorCar)
+                {
+                    colorCar = value;
+                    OnPropertyChanged("ColorCar");
+                }
+            }
+        }
+
+        private int priceCar;
+
+        public int PriceCar
+        {
+            get { return priceCar; }
+            set
+            {
+                if (value != PriceCar)
+                {
+                    priceCar = value;
+                    OnPropertyChanged("PriceCar");
+                }
+            }
+        }
+
+        private string imageCar;
+
+        public string ImageCar
+        {
+            get { return imageCar; }
+            set
+            {
+                if (value != ImageCar)
+                {
+                    imageCar = value;
+                    OnPropertyChanged("ImageCar");
+                }
+            }
+        }
+        private string publishYear;
+
+        public string PublishYear
+        {
+            get { return publishYear; }
+            set
+            {
+                if (value != publishYear)
+                {
+                    publishYear = value;
+                    OnPropertyChanged("PublishYear");
+                }
+            }
+        }
+        private string drivingType;
+        public string DrivingType
+        {
+            get { return drivingType; }
+            set
+            {
+                if (value != drivingType)
+                {
+                    drivingType = value;
+                    OnPropertyChanged("DrivingType");
+                }
+            }
+        }
+        private int seats;
+
+        public int Seats
+        {
+            get { return seats; }
+            set
+            {
+                if (value != seats)
+                {
+                    seats = value;
+                    OnPropertyChanged("Seats");
+                }
+            }
+        }
+        private string type;
+
+        public string Type
+        {
+            get { return type; }
+            set
+            {
+                if (value != type)
+                {
+                    type = value;
+                    OnPropertyChanged("Type");
+                }
+            }
+        }
+        private string status;
+
+        public string Status
+        {
+            get { return status; }
+            set
+            {
+                if (value != status)
+                {
+                    status = value;
+                    OnPropertyChanged("Status");
+                }
+            }
+        }
+        private string licensePlate;
+
+        public string LicensePlate
+        {
+            get { return licensePlate; }
+            set
+            {
+                if (value != licensePlate)
+                {
+                    licensePlate = value;
+                    OnPropertyChanged("LicensePlate");
+                }
+            }
+        }
         private void reSetForm()
         {
             ID = 0;
@@ -180,6 +376,26 @@ namespace CarRentalManager.ViewModel
                     case "Address":
                         if (string.IsNullOrEmpty(Address))
                             result = "Address can not be empty";
+                        break;
+                    case "NameCar":
+                        if (string.IsNullOrEmpty(NameCar))
+                            result = "NameCar can not be empty";
+                        break;
+                    case "BrandCar":
+                        if (string.IsNullOrEmpty(BrandCar))
+                            result = "Brand can not be empty";
+                        break;
+                    case "ColorCar":
+                        if (string.IsNullOrEmpty(ColorCar))
+                            result = "Color can not be empty";
+                        break;
+                    case "PriceCar":
+                        if (PriceCar < 0)
+                            result = "Price invalid";
+                        break;
+                    case "ImageCar":
+                        if (string.IsNullOrEmpty(ImageCar))
+                            result = "Image can not be empty";
                         break;
                 }
                 if (ErrorCollection.ContainsKey(columnName))
