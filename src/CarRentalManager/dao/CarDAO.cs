@@ -171,6 +171,61 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
-        
+
+        public List<string> getListCarBrand(string fieldName)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStringGetTable = sqlService.getDistinctValueFromTable(fieldName, ETableName.CAR);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<string> brandList = new List<string>();
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    var row = dataTable.Rows[i];
+                    string newBrand = row[fieldName].ToString();
+                    brandList.Add(newBrand);
+                }
+                return brandList;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<Car> getListCarByCondition(string City, string Brand, string Seats)
+        {
+            try
+            {
+                conn.Open();
+                string sqlStringGetTable = sqlService.getListCarByCondition(City, Brand, Seats);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
+                DataTable dataTableCar = new DataTable();
+                adapter.Fill(dataTableCar);
+
+                return getListCarFromDataTable(dataTableCar);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
+    
 }

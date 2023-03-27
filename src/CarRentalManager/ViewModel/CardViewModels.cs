@@ -8,6 +8,7 @@ using System.Windows.Input;
 using CarRentalManager.dao;
 using System.Windows.Documents;
 using CarRentalManager.constants;
+using System.Windows.Controls;
 
 namespace CarRentalManager.ViewModel
 {
@@ -29,10 +30,11 @@ namespace CarRentalManager.ViewModel
         public ICommand SortLowerThan500{ get; set; }
         public ICommand SortLowerThan1000{ get; set; }
         public ICommand SortBiggerThan1000{ get; set; }
+        public ICommand SearchCommand { get; set; }
 
         public CardViewModels()
         {
-            CarList = this.getListObservableCar();
+            this.initializeValue();
             SortByAscCommand = new RelayCommand<object>((p) => {
                 return true;
             }, (p) => getListCarSortByDescOrAsc(true, "price"));
@@ -68,6 +70,17 @@ namespace CarRentalManager.ViewModel
             SortBiggerThan1000 = new RelayCommand<object>((p) => {
                 return true;
             }, (p) => getListSortByRange(1000, constant.MaxPriceCar));
+            SearchCommand = new RelayCommand<object>((p) => {
+                return true;
+            }, (p) => searchCarHandler());
+        }
+
+        private void initializeValue()
+        {
+            CarList = this.getListObservableCar();
+            ListCarBrand = this.getListDistinctValue("brand");
+            ListCity = this.getListDistinctValue("city");
+            ListSeats = this.getListDistinctValue("seats");
         }
 
         public ObservableCollection<Car> getListObservableCar()
@@ -75,6 +88,13 @@ namespace CarRentalManager.ViewModel
             List<Car> cars = carDao.getListCar();
             ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
+        }
+
+        public ObservableCollection<string> getListDistinctValue(string fieldName)
+        {
+            List<string> brands = carDao.getListCarBrand(fieldName);
+            ObservableCollection<string> carBrandList = new ObservableCollection<string>(brands);
+            return carBrandList;
         }
 
         public void getListCarSortByDescOrAsc(bool isDescrease, string fieldName)
@@ -98,6 +118,53 @@ namespace CarRentalManager.ViewModel
             OnPropertyChanged(nameof(CarList));
         }
 
+        public void searchCarHandler()
+        {
+            List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats);
+            CarList = new ObservableCollection<Car>(cars);
+            OnPropertyChanged(nameof(CarList));
+        }
+
+        private ObservableCollection<string> listCarBrand;
+        public ObservableCollection<string> ListCarBrand
+        {
+            get { return listCarBrand; }
+            set
+            {
+                if (value != listCarBrand)
+                {
+                    listCarBrand = value;
+                    OnPropertyChanged("ListCarBrand");
+                }
+            }
+        }
+        private ObservableCollection<string> listCity;
+        public ObservableCollection<string> ListCity
+        {
+            get { return listCity; }
+            set
+            {
+                if (value != listCity)
+                {
+                    listCity = value;
+                    OnPropertyChanged("ListCity");
+                }
+            }
+        }
+
+        private ObservableCollection<string> listSeats;
+        public ObservableCollection<string> ListSeats
+        {
+            get { return listSeats; }
+            set
+            {
+                if (value != listSeats)
+                {
+                    listSeats = value;
+                    OnPropertyChanged("ListSeats");
+                }
+            }
+        }
 
         private ObservableCollection<Car> carList;
 
@@ -227,8 +294,35 @@ namespace CarRentalManager.ViewModel
                 }
             }
         }
-        private string drivingType;
+        private string city;
+        public string City
+        {
+            get { return city; }
+            set
+            {
+                if (value != city)
+                {
+                    city = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
 
+        private string seats;
+        public string Seats
+        {
+            get { return seats; }
+            set
+            {
+                if (value != seats)
+                {
+                    seats = value;
+                    OnPropertyChanged("Seats");
+                }
+            }
+        }
+        private string drivingType;
+        
         public string DrivingType
         {
             get { return drivingType; }

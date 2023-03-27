@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Xml.Linq;
 using CarRentalManager.enums;
@@ -41,8 +42,13 @@ namespace CarRentalManager.services
             return string.Format("SELECT TOP 1 id FROM [{0}] ORDER BY id DESC", tableName);
         }
 
+        public string getDistinctValueFromTable(string fieldName, ETableName tableName)
+        {
+            return string.Format("SELECT DISTINCT {0} FROM [{1}]", fieldName, tableName);
+        }
+
         //*INFO: CAR
-        
+
         public string getListCarByType(ECarType eCarType)
         {
             return string.Format("SELECT * FROM [{0}] WHERE type = '{1}'", ETableName.CAR, eCarType);
@@ -56,7 +62,14 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}] WHERE price > {1} and price <= {2}", ETableName.CAR, fromPrice, toPrice);
         }
-        
+
+        public string getListCarByCondition(string City, string Brand, string Seats)
+        {
+            string cityCondition =  City != null ? string.Format("city = '{0}'", City) : "city is not null";
+            string brandCondition = " and " + (Brand != null ? string.Format("brand = '{0}'", Brand) : "brand is not null");
+            string seatsCondition = " and " + (Seats != null ? string.Format("seats = '{0}'", Seats) : "seats is not null");
+            return string.Format("SELECT * FROM [{0}] WHERE {1}", ETableName.CAR, cityCondition + brandCondition + seatsCondition);
+        }
 
 
         //*INFO: USER
