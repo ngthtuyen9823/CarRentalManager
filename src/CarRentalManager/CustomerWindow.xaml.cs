@@ -23,8 +23,6 @@ namespace CarRentalManager
         public CustomerWindow()
         {
             InitializeComponent();
-            CreatedAt.SelectedDate = DateTime.Today;
-            UpdatedAt.SelectedDate = DateTime.Today;
         }
     }
 }

@@ -22,8 +22,6 @@ namespace CarRentalManager
         public ContractWindow()
         {
             InitializeComponent();
-            CreatedAt.SelectedDate = DateTime.Today;
-            UpdatedAt.SelectedDate = DateTime.Today;
             MakingDay.SelectedDate = DateTime.Today;
         }
     }

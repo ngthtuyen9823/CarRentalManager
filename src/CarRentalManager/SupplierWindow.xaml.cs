@@ -22,8 +22,6 @@ namespace CarRentalManager
         public SupplierWindow()
         {
             InitializeComponent();
-            CreatedAt.SelectedDate = DateTime.Today;
-            UpdatedAt.SelectedDate = DateTime.Today;
         }
     }
 }

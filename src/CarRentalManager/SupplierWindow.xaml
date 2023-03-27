@@ -51,16 +51,6 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5" Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
-                                    Name="CreatedAt"
-                                    SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Created At"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                    <DatePicker Width="120" Margin="5" Text="{Binding UpdatedAt}"
-                                    Name="UpdatedAt"
-                                    SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Updated At"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                 </WrapPanel>
             </materialDesign:Card>
 

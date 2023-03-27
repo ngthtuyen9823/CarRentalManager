@@ -28,8 +28,6 @@ namespace CarRentalManager
         public CarWindow()
         {
             InitializeComponent();
-            CreatedAt.SelectedDate = DateTime.Today;
-            UpdatedAt.SelectedDate = DateTime.Today;
         }
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -73,8 +71,6 @@ namespace CarRentalManager
                 LicensePlate.Text = selectedCar.LicensePlate;    
                 Price.Text = selectedCar.Price.ToString();
                 ImagePath.Text = selectedCar.ImagePath;
-                CreatedAt.SelectedDate = selectedCar.CreatedAt;
-                UpdatedAt.SelectedDate = selectedCar.UpdatedAt;
             }
         }
     }
