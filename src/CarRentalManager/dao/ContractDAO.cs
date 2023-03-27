@@ -39,12 +39,12 @@ namespace CarRentalManager.dao
                 conn.Close();
             }
         }
-        public void addContractToList(int id, int orderId, int userId, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
+        public void addContractToList(int id, int orderId, int userId,string status, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
         {
             try
             {
                 conn.Open();
-                string SQL = sqlService.createNewContract(id, orderId, userId, makingDay, createdAt, updatedAt);
+                string SQL = sqlService.createNewContract(id, orderId, userId, status, makingDay, createdAt, updatedAt);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                 {

@@ -13,17 +13,18 @@ namespace CarRentalManager.modals
         DateTime updatedAt;
 
         public Supplier(int id,
-            string email,
-            string phoneNumber,
             string name,
-            string address)
+            string address,
+            string email,
+            string phoneNumber
+        )
         {
 
             this.id = id;
             this.name = name;
+            this.address = address;
             this.email = email;
             this.phoneNumber = phoneNumber;
-            this.address = address;
             this.createdAt = DateTime.Now;
             this.updatedAt = DateTime.Now;
         }

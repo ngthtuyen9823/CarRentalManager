@@ -22,7 +22,7 @@
         x:Name="window"
         DataContext="{StaticResource ContractVM}"
         
-        Title="Contract Manager" Height="750" Width="1000">
+        Title="Contract Manager" Height="820" Width="1380">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -48,22 +48,22 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width=" 150" Margin="5" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width=" 150" Margin="5" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox Width="150" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Trạng thái" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem>
+                            PAID
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            UNPAID
+                        </ComboBoxItem>
+                    </ComboBox>
                     <DatePicker Width="120" Margin="5" Text="{Binding MakingDay}" 
                                     Name ="MakingDay"
                                     SelectedDate="{Binding MakingDay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Making Day"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    <DatePicker Width="120" Margin="5" Text="{Binding CreatedAt}" 
-                                    Name="CreatedAt"
-                                    SelectedDate="{Binding CreatedAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Ngày tạo"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                    <DatePicker Width="120" Margin="5" Text="{Binding UpdatedAt}"
-                                    Name="UpdatedAt"
-                                    SelectedDate="{Binding UpdatedAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Ngày cập nhật"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-
                 </WrapPanel>
             </materialDesign:Card>
             <materialDesign:Card Grid.Row="1" Margin="5">
@@ -71,6 +71,7 @@
                     <Button  Background="#218c74"  Command="{Binding AddCommand}" Content="Thêm" Width="100" Margin="10"></Button>
                     <Button Background="#218c74"  Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="10"></Button>
                     <Button  Background="#218c74" Command="{Binding EditCommand}" Content="Sửa" Width="100" Margin="10"></Button>
+                    <Button  Background="#218c74" Command="{Binding PayCommand}" Content="Thanh toán" Width="110" Margin="10"></Button>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -83,6 +84,8 @@
                                 <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                                 <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
                                 <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                                <GridViewColumn Header="Trị giá" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                                <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                                 <GridViewColumn Header="Making Day" DisplayMemberBinding="{Binding MakingDay}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày cập nhật" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>

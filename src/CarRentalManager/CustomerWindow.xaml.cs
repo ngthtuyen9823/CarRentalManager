@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRentalManager.modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,6 @@ namespace CarRentalManager
         public CustomerWindow()
         {
             InitializeComponent();
-            CreatedAt.SelectedDate = DateTime.Today;
-            UpdatedAt.SelectedDate = DateTime.Today;
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿<Window x:Class="CarRentalManager.ReceiptForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRentalManager"
+        mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        x:Name="window"
+        Height="350" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+                <TextBlock Text="Xác nhận thanh toán?" FontWeight="Bold" FontSize="15" Foreground="#353b48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Width="250" Margin="5" Text="{Binding ID, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã hóa đơn"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width="250" Margin="5" Text="{Binding ContractId, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Mã hợp đồng"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Width="250" Margin="5" Text="{Binding Value, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Số tiền thanh toán"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <DatePicker Width="250" Margin="5" Text="{Binding makingDay}" 
+                                    Name="MakingDay"
+                                    SelectedDate="{Binding createdAt, UpdateSourceTrigger=PropertyChanged}"
+                                    materialDesign:HintAssist.Hint="Making day"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                </WrapPanel>
+            </materialDesign:Card>
+        </Grid>
+        <materialDesign:Card Grid.Row="2" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="#218c74" Command="{Binding PayCommand}" Content="Thanh toán" Margin="10"></Button>
+                <Button Grid.Column="1" Background="#218c74" Content="Hủy" Margin="10" ToolTip="Close" x:Name="btnExit" Click="btnExit_Click"></Button>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
+

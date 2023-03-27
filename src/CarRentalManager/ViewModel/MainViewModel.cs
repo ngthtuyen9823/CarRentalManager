@@ -14,6 +14,8 @@ namespace CarRentalManager.ViewModel
         public bool isLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CustomerCommand { get; set; }
+        public ICommand SupplierCommand { get; set; }
+
         public ICommand ContractCommand { get; set; }
         public ICommand CarCommand { get; set; }
         public ICommand OrderCommand { get; set; }
@@ -48,6 +50,7 @@ namespace CarRentalManager.ViewModel
             });
           
             CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
+            SupplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ContractWindow wd = new ContractWindow(); wd.ShowDialog(); });
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });

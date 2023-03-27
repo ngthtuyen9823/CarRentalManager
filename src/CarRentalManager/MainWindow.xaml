@@ -48,6 +48,8 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+
 
             </Grid.RowDefinitions>
 
@@ -95,6 +97,9 @@
                         </Button>
                         <Button Grid.Column="4" Command="{Binding CustomerCommand}" ToolTip="Khách hàng">
                             <TextBlock Text="Khách hàng" HorizontalAlignment="Center"></TextBlock>
+                        </Button>
+                        <Button Grid.Column="5" Command="{Binding SupplierCommand}" ToolTip="Nhà cung cấp">
+                            <TextBlock Text="Nhà cung cấp" HorizontalAlignment="Center"></TextBlock>
                         </Button>
                     </WrapPanel>
 
@@ -309,7 +314,7 @@
                     <materialDesign:Card></materialDesign:Card>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="4">
+            <!--<Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -781,7 +786,7 @@
                         </StackPanel>
                     </Grid>
                 </materialDesign:Card>
-            </Grid>
+            </Grid>-->
         </Grid>
     </Grid>
 </Window>

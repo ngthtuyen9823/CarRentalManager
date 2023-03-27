@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 namespace CarRentalManager
 {
     /// <summary>
-    /// Interaction logic for ContractWindow.xaml
+    /// Interaction logic for SupplierWindow.xaml
     /// </summary>
-    public partial class ContractWindow : Window
+    public partial class SupplierWindow : Window
     {
-        public ContractWindow()
+        public SupplierWindow()
         {
             InitializeComponent();
-            MakingDay.SelectedDate = DateTime.Today;
         }
     }
 }

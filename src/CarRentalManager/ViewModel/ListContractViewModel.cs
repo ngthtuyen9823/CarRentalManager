@@ -28,6 +28,8 @@ namespace CarRentalManager.ViewModel
         private ObservableCollection<Contract> list;
         public ObservableCollection<Contract> List { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand PayCommand { get; set; }
+
         readonly ContractDAO contractDAO = new ContractDAO();
         public ListContractViewModel()
         {
@@ -37,12 +39,15 @@ namespace CarRentalManager.ViewModel
                 return true;
             }, (p) =>
             {
-                contractDAO.addContractToList(ID, OrderId, UserId, MakingDay, CreatedAt, UpdatedAt);
+                contractDAO.addContractToList(ID, OrderId, UserId, Status.Substring(38), MakingDay, CreatedAt, UpdatedAt);
                 List = getListObservableContract();
                 OnPropertyChanged(nameof(List));
                 reSetForm();
             });
+            PayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReceiptForm wd = new ReceiptForm(); wd.ShowDialog(); });
+
         }
+
         private int id;
         public int ID
         {
@@ -82,6 +87,35 @@ namespace CarRentalManager.ViewModel
                 {
                     userId = value;
                     OnPropertyChanged("UserId");
+                }
+            }
+        }
+        private int price;
+
+        public int Price
+        {
+            get { return price; }
+            set
+            {
+                if (value != price)
+                {
+                    price = value;
+                    OnPropertyChanged("Price");
+                }
+            }
+        }
+        private string status;
+
+        public string Status
+        {
+            get { return status; }
+            set
+            {
+                if (value != status)
+                {
+                    status = value;
+                    OnPropertyChanged("Status");
+
                 }
             }
         }
@@ -134,6 +168,8 @@ namespace CarRentalManager.ViewModel
             ID = 0;
             OrderId = 0;
             UserId = 0;
+            
+            Status = null;
         }
         public string this[string columnName]
         {
@@ -153,6 +189,10 @@ namespace CarRentalManager.ViewModel
                     case "UserId":
                         if (UserId == 0)
                             result = "Invalid user ID";
+                        break;
+                    case "Status":
+                        if (string.IsNullOrEmpty(Status))
+                            result = "Status is empty";
                         break;
                 }
                 if (ErrorCollection.ContainsKey(columnName))

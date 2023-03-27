@@ -1,4 +1,4 @@
-﻿<Window x:Class="CarRentalManager.CustomerWindow"
+﻿<Window x:Class="CarRentalManager.SupplierWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,11 +20,9 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        
         x:Name="window"
-
-        DataContext="{StaticResource CustomerVM}"
-        Title="Customer Manager" Height="820" Width="1380">
+        DataContext="{StaticResource SupplierVM}"
+        Title="Supplier Manager" Height="820" Width="1380">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -34,46 +32,24 @@
         <Grid Grid.Row="0">
             <uc:ControlBarUC Tag="{Binding Title, ElementName=window}"></uc:ControlBarUC>
         </Grid>
-
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-
             <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
-                    <!--<TextBox 
-                            Width="150" Margin="5" materialDesign:HintAssist.Hint="Mã khách hàng"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
-                        <TextBox.Resources>
-                            <local:TextConverter x:Key="MyConverter"/>
-                        </TextBox.Resources>
-                        <TextBox.Text>
-                            <MultiBinding 
-                                Converter="{StaticResource YourConverter}"
-                                NotifyOnValidationError="True"
-                                NotifyOnSourceUpdated="True"
-                                UpdateSourceTrigger="LostFocus" >
-                                <Binding Path="SelectedItem.ID"  ElementName="list" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged"></Binding>
-                                <Binding Path="ID" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged"></Binding>
-                            </MultiBinding>
-                        </TextBox.Text>
-                    </TextBox>-->
-                  
                     <TextBox Text="{Binding ID, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                            Width="150" Margin="5" materialDesign:HintAssist.Hint="Mã khách hàng"
+                            Width="150" Margin="5" materialDesign:HintAssist.Hint="ID"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width=" 150" Margin="5" Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên"
+                    <TextBox Width=" 150" Margin="5" Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5" Text="{Binding Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5" Text="{Binding PhoneNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="150" Margin="5" Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Width="150" Margin="5" Text="{Binding IdCard, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </materialDesign:Card>
@@ -96,7 +72,6 @@
                                 <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                                 <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
                                 <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                                <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding IdCard}"></GridViewColumn>
                                 <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                                 <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                             </GridView>

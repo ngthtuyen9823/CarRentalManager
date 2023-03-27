@@ -72,17 +72,20 @@ namespace CarRentalManager.services
         }
 
 
+        public string removeCar(int id)
+        {
+            return string.Format("DELETE FROM [{0}] WHERE id = {1}", ETableName.CAR, id);
+        }
+        public string updateCar(int id, string name, string brand, string color, string publishYear, string type, string status, string drivingType, int seats, string licensePlate, int price, string imagePath, int? supplierId, DateTime createdAt, DateTime updatedAt)
+        {
+            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', createdAt = '{13}', updatedAt = '{14}' where id = '{15}'", 
+            ETableName.CAR, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, DateTime.Now, DateTime.Now, id);
+        }
         //*INFO: USER
         public string getUserWithEmail(string email)
         {
             return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", ETableName.USER, email);
         }
-
-        public string removeCustomer(int id)
-        {
-            return string.Format("DELETE FROM [{0}] WHERE id = {1}", ETableName.CUSTOMER, id);
-        }
-
 
         //*INFO: CUSTOMER
 
@@ -92,13 +95,26 @@ namespace CarRentalManager.services
             return string.Format("INSERT INTO [{10}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
                     id, phoneNumber, name, email, idCard, address, imageIdCardFront, imageIdCardBack, DateTime.Now, DateTime.Now, ETableName.CUSTOMER);
         }
+        public string removeCustomer(int id)
+        {
+            return string.Format("DELETE FROM [{0}] WHERE id = {1}", ETableName.CUSTOMER, id);
+        }
+
+        //*INFO: SUPPLIER
+
+        public string createNewSupplier(int id, string name, string phoneNumber, string email,
+           string address)
+        {
+            return string.Format("INSERT INTO [{7}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                    id, phoneNumber, name, email, address, DateTime.Now, DateTime.Now, ETableName.SUPPLIER);
+        }
 
         //*INFO: CONTRACT
 
-        public string createNewContract(int id, int orderId, int userId, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
+        public string createNewContract(int id, int orderId, int userId, string status, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
         {
-            return string.Format("INSERT INTO [{6}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
-                   id, orderId, userId, DateTime.Now, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
+            return string.Format("INSERT INTO [{7}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                   id, orderId, userId, DateTime.Now, status, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
         }
        
         //*INFO: ORDER
