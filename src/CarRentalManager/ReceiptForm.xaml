@@ -19,18 +19,16 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         x:Name="window"
-        Height="420" Width="300">
+        Height="350" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" 
-                ToolTip="Close" x:Name="btnExit" Click="btnExit_Click" HorizontalAlignment="Left" Foreground="Red" Background="Transparent" Margin="244,0,0,0">
-            <materialDesign:PackIcon Kind="Close" />
-        </Button>
-
+        <Grid Grid.Row="0">
+                <TextBlock Text="Xác nhận thanh toán?" FontWeight="Bold" FontSize="15" Foreground="#353b48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        </Grid>
         <Grid Grid.Row="1">
             <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                 <WrapPanel Margin="0 0 0 10">
@@ -45,24 +43,18 @@
                                     SelectedDate="{Binding createdAt, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Making day"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                    <DatePicker Width="250" Margin="5" Text="{Binding createdAt}" 
-                                    Name="CreatedAt"
-                                    SelectedDate="{Binding createdAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Created at"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                    <DatePicker Width="250" Margin="5" Text="{Binding updatedAt}"
-                                    Name="UpdatedAt"
-                                    SelectedDate="{Binding updatedAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Updated at"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-
                 </WrapPanel>
             </materialDesign:Card>
         </Grid>
         <materialDesign:Card Grid.Row="2" Margin="5">
-            <WrapPanel>
-                <Button Background="#218c74" Command="{Binding PayCommand}" Content="Thanh toán" Width="300" Margin="10"></Button>
-            </WrapPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="#218c74" Command="{Binding PayCommand}" Content="Thanh toán" Margin="10"></Button>
+                <Button Grid.Column="1" Background="#218c74" Content="Hủy" Margin="10" ToolTip="Close" x:Name="btnExit" Click="btnExit_Click"></Button>
+            </Grid>
         </materialDesign:Card>
     </Grid>
 </Window>
