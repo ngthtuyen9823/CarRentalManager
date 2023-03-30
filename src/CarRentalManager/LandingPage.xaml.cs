@@ -54,8 +54,8 @@ namespace CarRentalManager
 
         private void Chip_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

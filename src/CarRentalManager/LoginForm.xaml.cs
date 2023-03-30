@@ -31,14 +31,14 @@ namespace CarRentalManager
         {
             if (true)
             {
-                if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0) 
+                if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
                 {
                     textEmail.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     textEmail.Visibility = Visibility.Visible;
-                }    
+                }
             }
         }
         private void textPassword_MouseDown(object sender, MouseEventArgs e)
@@ -51,19 +51,12 @@ namespace CarRentalManager
             {
                 if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
                 {
-                    textPassword.Visibility = Visibility.Collapsed;
+                    FloatingPasswordBox.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    textPassword.Visibility = Visibility.Visible;
+                    FloatingPasswordBox.Visibility = Visibility.Visible;
                 }
-            }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtPassword.Password))
-            {
-                MessageBox.Show("Successfully Signed in");
             }
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -73,10 +66,9 @@ namespace CarRentalManager
                 this.DragMove();
             }
         }
-
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Application.Current.Shutdown();
+            Close();   
         }
     }
 }

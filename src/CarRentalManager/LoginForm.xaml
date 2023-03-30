@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRentalManager"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:util="clr-namespace:CarRentalManager.utils"
         Background="Transparent"
+        DataContext="{StaticResource LoginVM}"
+        Name="loginWindow"
         Title="LoginForm" Height="500" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -59,7 +63,7 @@
                         </Grid.ColumnDefinitions>
                         <Image Source="/Assets/images/mail.png" Height="20" />
                         <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="Email" Style="{StaticResource textHint }" />
-                        <TextBox x:Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}"/>
+                        <TextBox Text="{Binding Email}" x:Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}"/>
                     </Grid>
                 </Border>
                 <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7" CornerRadius="5">
@@ -69,12 +73,20 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="/Assets/images/lock.png" Height="20" />
-                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint }" />
-                        <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged" Style="{StaticResource textBox}"/>
+                        <TextBlock x:Name="FloatingPasswordBox" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint }" />
+                        <PasswordBox 
+                            x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged" Style="{StaticResource textBox}"
+                        util:BoundPasswordBox.Password="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,NotifyOnValidationError=True}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangeCommand}" CommandParameter="{Binding ElementName=PasswordChanged}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
                     </Grid>
                 </Border>
 
-                <Button Content="Sign In" Click="Button_Click" Style="{StaticResource mainbutton}"/>
+                <Button Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=loginWindow}" Content="Sign In" Style="{StaticResource mainbutton}"/>
             </StackPanel>
         </Border>
     </Grid>
