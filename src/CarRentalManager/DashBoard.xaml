@@ -7,7 +7,12 @@
         xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Height="720" Width="1080" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
-        Background="Transparent" WindowStyle="None">
+        Background="Transparent" WindowStyle="None"
+        DataContext="{StaticResource CarVM}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        x:Name="window"
+        >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
@@ -43,46 +48,44 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock Text="Silvers Club" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                        <TextBlock Text="Members, France" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <TextBlock Text="Carrental Manager" Foreground="White" FontSize="20" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <TextBlock Text="Hi, Jenny" Foreground="#D0BFFF" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu Seprator-->
                         <Separator Margin="25" Background="#7E5FDC" DockPanel.Dock="Top" Height="0.8"/>
 
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top" >
-                            <Button Style="{StaticResource menuButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Dashboard"/>
-                                </StackPanel>
-                            </Button>
 
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Events"/>
+                                    <Icon:PackIconMaterial Kind="Car" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Cars"/>
                                 </StackPanel>
                             </Button>
-
-                            <Button Style="{StaticResource menuButton}" Background="#7B5CD6" Foreground="White">
+                            <Button Style="{StaticResource menuButton}" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Members"/>
+                                    <TextBlock Text="Suppliers"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Wallet"/>
+                                    <Icon:PackIconMaterial Kind="Group" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Customers"/>
                                 </StackPanel>
                             </Button>
-
+                            <Button Style="{StaticResource menuButton}"  Background="#7B5CD6" Foreground="White">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="FileDocumentEdit" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Orders"/>
+                                </StackPanel>
+                            </Button>
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="ForumOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Messages"/>
+                                    <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Contracts"/>
                                 </StackPanel>
                             </Button>
 
@@ -132,13 +135,13 @@
                 </Button>
 
                 <!--Page Title-->
-                <TextBlock Text="Members" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
+                <TextBlock Text="Cars" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
                 <!--Add Button-->
                 <Button Style="{StaticResource addButton}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Add New Member"/>
+                        <TextBlock Text="Add New Car"/>
                     </StackPanel>
                 </Button>
 
@@ -147,93 +150,57 @@
 
                 <!--Tab buttons-->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button Style="{StaticResource tabButton}" Content="Club staff" BorderBrush="#784FF2"/>
-                    <Button Style="{StaticResource tabButton}" Content="Players"/>
-                    <Button Style="{StaticResource tabButton}" Content="Archived"/>
+                    <Button Style="{StaticResource tabButton}" Content="Available" BorderBrush="#784FF2"/>
+                    <Button Style="{StaticResource tabButton}" Content="Unavailable "/>
+                    <Button Style="{StaticResource tabButton}" Content="Onrent"/>
                 </StackPanel>
 
                 <!--Counter Title-->
-                <TextBlock Text="68 Club Staff" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="68 Cars" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <TextBlock Text="Filter by" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
                 <!--Filter Textbox-->
                 <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
                     <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search in Members ..."
+                           Panel.ZIndex="1" Text="Search in Cars ..."
                            Visibility="{Binding ElementName=textBoxFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
 
                     <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
                 </Grid>
 
                 <!--Members Data Grid-->
-                <!--<DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>
 
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>-->
-
-                <!--Pagingation Section-->
-                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource pagingButton}">
-                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-                        <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
-
-                        <Button Style="{StaticResource pagingButton}" Content="1"/>
-                        <Button Style="{StaticResource pagingButton}" Content="2" Background="#7950F2" Foreground="#ffffff"/>
-                        <Button Style="{StaticResource pagingButton}" Content="3"/>
-
-                        <TextBlock Text="..." Foreground="#6C7682" VerticalAlignment="Center" Margin="10 0" FontSize="15"/>
-
-                        <Button Style="{StaticResource pagingButton}" Content="7"/>
-                        <Button Style="{StaticResource pagingButton}" Content="8"/>
-                        <Button Style="{StaticResource pagingButton}" Content="9"/>
-
-                        <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
-                        <Button Style="{StaticResource pagingButton}">
-                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-                    </StackPanel>
-                </Border>
+                <materialDesign:Card Grid.Row="5" Margin="5" VerticalAlignment="Stretch" Padding="10">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView x:Name="lsvCar" ItemsSource="{Binding List}"
+                              SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                                    <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
+                                    <GridViewColumn Header="Tên xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                                    <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                    <GridViewColumn Header="Màu xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
+                                    <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                                    <GridViewColumn Header="Driving Type" DisplayMemberBinding="{Binding DrivingType}"></GridViewColumn>
+                                    <GridViewColumn Header="Seats" DisplayMemberBinding="{Binding Seats}"></GridViewColumn>
+                                    <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
+                                    <GridViewColumn Header="Giá thuê" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                                    <GridViewColumn Header="Hình ảnh" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
+                                    <GridViewColumn Header="Created at" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                                    <GridViewColumn Header="Updated at" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                            <!--<ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                                </Style>
+                            </ListView.ItemContainerStyle>-->
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
 
             </Grid>
 
