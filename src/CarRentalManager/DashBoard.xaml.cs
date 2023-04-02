@@ -1,7 +1,11 @@
-﻿using System;
+﻿using CarRentalManager.enums;
+using CarRentalManager.modals;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -91,6 +95,9 @@ namespace CarRentalManager
             {
                 this.DragMove();
             }
+        }
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
         }
     }
 

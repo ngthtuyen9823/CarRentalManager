@@ -169,10 +169,8 @@
                     <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
                 </Grid>
 
-                <!--Members Data Grid-->
-
-                <materialDesign:Card Grid.Row="5" Margin="5" VerticalAlignment="Stretch" Padding="10">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <!--Cars Data Grid-->
+                    <Grid Grid.Row="5" Margin="5" VerticalAlignment="Stretch" >
                         <ListView x:Name="lsvCar" ItemsSource="{Binding List}"
                               SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                             <ListView.View>
@@ -193,17 +191,14 @@
                                     <GridViewColumn Header="Updated at" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
-                            <!--<ListView.ItemContainerStyle>
+                            <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                                 </Style>
-                            </ListView.ItemContainerStyle>-->
+                            </ListView.ItemContainerStyle>
                         </ListView>
-                    </ScrollViewer>
-                </materialDesign:Card>
-
+                    </Grid>
             </Grid>
-
         </Grid>
     </Border>
 </Window>
