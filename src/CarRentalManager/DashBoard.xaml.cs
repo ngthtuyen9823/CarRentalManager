@@ -58,8 +58,17 @@ namespace CarRentalManager
                 this.DragMove();
             }
         }
-        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
+
+        private void Car_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#7B5CD6"));
+            btn.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFFFF"));
         }
     }
 
