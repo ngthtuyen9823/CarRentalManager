@@ -15,7 +15,6 @@ namespace CarRentalManager.ViewModel
         private string password;
         public string Password { get => password; set { password = value; OnPropertyChanged(); } }
         readonly UserDAO userDAO = new UserDAO();
-
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -24,23 +23,18 @@ namespace CarRentalManager.ViewModel
         {
             isLogin = false;
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
-            CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
-
         }
 
         private bool comparePassword(string currentPassword, string oldPassword)
         {
             return currentPassword == oldPassword;
         }
-
         void Login(Window p)
         {
-
             if (p == null)
                 return;
             User currentUser = userDAO.getUserWithEmail(Email);
-
             if(currentUser == null)
             {
                 MessageBox.Show("Tài khoản không tồn tại, xin vui lòng đăng ký");
