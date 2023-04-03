@@ -29,25 +29,7 @@ namespace CarRentalManager
         {
             InitializeComponent();
         }
-        private void BrowseButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = "c:\\";
-            dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
-            dlg.RestoreDirectory = true;
-            Nullable<bool> result = dlg.ShowDialog();
 
-            // Process save file dialog box results
-            if (result == true)
-            {
-                string selectedFileName = dlg.FileName;
-                ImagePath.Text = selectedFileName;
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(selectedFileName);
-                bitmap.EndInit();
-            }
-        }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
@@ -58,19 +40,9 @@ namespace CarRentalManager
                 {
                     return;
                 }
-                ID.Text = selectedCar.ID.ToString();
-                SupplierId.Text = selectedCar.SupplierId.ToString();
-                Name.Text = selectedCar.Name;
-                Brand.Text = selectedCar.Brand;
-                Color.Text = selectedCar.Color;
-                PublishYear.Text = selectedCar.PublishYear.ToString();
-                Type.Text = selectedCar.Type.ToString();
-                Status.Text = selectedCar.Status.ToString();
-                DrivingType.Text = selectedCar.DrivingType.ToString();
-                Seats.Text = selectedCar.Seats.ToString();
-                LicensePlate.Text = selectedCar.LicensePlate;
-                Price.Text = selectedCar.Price.ToString();
-                ImagePath.Text = selectedCar.ImagePath;
+                var carForm = new CarForm(item, selectedCar);
+                carForm.Show();
+
             }
         }
     }

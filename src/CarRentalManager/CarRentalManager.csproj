@@ -104,6 +104,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CarForm.xaml.cs">
+      <DependentUpon>CarForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
     </Compile>
@@ -198,6 +201,10 @@
     <Page Include="Assets\icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CarForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CarView.xaml">
       <SubType>Designer</SubType>
