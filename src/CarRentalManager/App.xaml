@@ -163,8 +163,8 @@
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Foreground" Value="#6E7783" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                <Setter Property="Height" Value="30" />
-                <Setter Property="Width" Value="30" />
+                <Setter Property="Height" Value="35" />
+                <Setter Property="Width" Value="35" />
                 <Setter Property="HorizontalAlignment" Value="Right" />
                 <Setter Property="Template" >
                     <Setter.Value>
@@ -186,7 +186,7 @@
 
             <Style x:Key="menuButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="#D0C0FF" />
+                <Setter Property="Foreground" Value="#c7ecee" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="Height" Value="35" />
                 <Setter Property="Margin" Value="15 3" />
@@ -203,7 +203,7 @@
 
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#7B5CD6" />
+                        <Setter Property="Background" Value="#218c74" />
                         <Setter Property="Foreground" Value="#ffffff" />
                     </Trigger>
                 </Style.Triggers>
@@ -254,7 +254,7 @@
 
 
             <Style x:Key="addButton" TargetType="Button">
-                <Setter Property="Background" Value="#6741D9" />
+                <Setter Property="Background" Value="#218c74" />
                 <Setter Property="Foreground" Value="#ffffff" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="Height" Value="35" />
@@ -266,7 +266,7 @@
                 <Setter Property="Template" >
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <Border Background="#218c74" CornerRadius="7">
                                 <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
@@ -275,7 +275,7 @@
 
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#7B5CD6" />
+                        <Setter Property="Background" Value="#218c74" />
                         <Setter Property="Foreground" Value="#ffffff" />
                     </Trigger>
                 </Style.Triggers>
@@ -291,6 +291,7 @@
                 <Setter Property="BorderBrush" Value="Transparent" />
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0 0 15 0"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -303,7 +304,7 @@
 
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="#784FF2" />
+                        <Setter Property="BorderBrush" Value="#218c74" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -350,7 +351,7 @@
 
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#7950F2" />
+                        <Setter Property="Background" Value="#218c74" />
                         <Setter Property="Foreground" Value="#ffffff" />
                     </Trigger>
                 </Style.Triggers>
@@ -365,8 +366,8 @@
 
 
             <Style x:Key="gridEditButton" TargetType="Button">
-                <Setter Property="Background" Value="#512DA8" />
-                <Setter Property="BorderBrush" Value="#4A148C" />
+                <Setter Property="Background" Value="#218c74" />
+                <Setter Property="BorderBrush" Value="#218c74" />
                 <Setter Property="Foreground" Value="#ffffff" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="VerticalAlignment" Value="Center" />
@@ -381,7 +382,7 @@
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#673AB7" />
+                        <Setter Property="Background" Value="#218c74" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -403,7 +404,16 @@
                 <Setter Property="Width" Value="12" />
                 <Setter Property="Height" Value="12" />
             </Style>
-
+        <!--search-->
+            <Style x:Key="searchHint" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="Panel.ZIndex" Value="1"/>
+                <Setter Property="Margin" Value="10 0 0 5"/>
+                <Setter Property="Foreground" Value="#abc0af"/>
+                <Setter Property="Width" Value="200"/>
+            </Style>
+                
         </ResourceDictionary>
     </Application.Resources>
 </Application>
