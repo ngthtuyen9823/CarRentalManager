@@ -72,8 +72,8 @@ namespace CarRentalManager.ViewModel
                     Type != null ? Type : "",
                     Status != null ? Status : "",
                     DrivingType != null ? DrivingType : "",
-                    Seats.ToString() != null ? Seats : 0,
-                    LicensePlate != null ? LicensePlate : "",
+                    Seats,
+                    LicensePlate,
                     PriceCar,
                     ImageCar,
                     lastSupplierId + 1,
@@ -396,6 +396,14 @@ namespace CarRentalManager.ViewModel
                     case "ImageCar":
                         if (string.IsNullOrEmpty(ImageCar))
                             result = "Image can not be empty";
+                        break;
+                    case "LicensePlate":
+                        if (string.IsNullOrEmpty(LicensePlate))
+                            result = "LicensePlate can not be empty";
+                        break;
+                    case "Seats":
+                        if (Seats <=  0)
+                            result = "Price invalid";
                         break;
                 }
                 if (ErrorCollection.ContainsKey(columnName))
