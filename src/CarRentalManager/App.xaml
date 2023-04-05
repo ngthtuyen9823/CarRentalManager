@@ -413,7 +413,6 @@
                 <Setter Property="Foreground" Value="#abc0af"/>
                 <Setter Property="Width" Value="200"/>
             </Style>
-                
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -91,7 +91,7 @@
                                     <TextBlock Text="Orders" />
                                 </StackPanel>
                             </Button>
-                            <Button Background="#16a085" Style="{StaticResource menuButton}" Command="{Binding ContractCommand}">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding ContractCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Contracts" />
@@ -121,8 +121,17 @@
 
                 <!--Top Buttons-->
                 <Grid Grid.Row ="0">
-                    <WrapPanel HorizontalAlignment="Right">
-                        <Button Style="{StaticResource topButton}" Background="#dcdcdc">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel Grid.Column="0" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource tabButton}" Content="Home" BorderBrush="#218c74"/>
+                        <Button Style="{StaticResource tabButton}" Content="Statistics" />
+                        <Button Style="{StaticResource tabButton}" Content="Store" />
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource topButton}">
                             <Icon:PackIconMaterial Kind="Cog"/>
                         </Button>
                         <Button  Style="{StaticResource topButton}">
@@ -132,7 +141,6 @@
                             <Icon:PackIconMaterial Kind="ExitToApp"/>
                         </Button>
                     </WrapPanel>
-                   
                 </Grid>
                 <ContentControl Grid.Row="1" Content="{Binding CurrentChildView}" 
                                 Margin="10"/>

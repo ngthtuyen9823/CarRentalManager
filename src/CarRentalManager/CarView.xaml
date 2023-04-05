@@ -7,9 +7,6 @@
             mc:Ignorable="d"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
             xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-            TextElement.FontWeight="Regular"
-            TextElement.FontSize="12"
             TextOptions.TextFormattingMode="Ideal"
             TextOptions.TextRenderingMode="Auto"
             Background="{DynamicResource MaterialDesignPaper}"
@@ -62,7 +59,7 @@
                     </Button>
                 </WrapPanel>
             </Grid>
-            <Separator Grid.Row="1" Margin="10" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
+            <Separator Grid.Row="1" Margin="8" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"></ColumnDefinition>
@@ -135,16 +132,16 @@
                     </ToggleButton>
                 </WrapPanel>
             </Grid>
-            <Separator Grid.Row="3" Margin="10 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
+            <Separator Grid.Row="3" Margin="8 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button Style="{StaticResource tabButton}" Content="Available" BorderBrush="#218c74"/>
-                    <Button Style="{StaticResource tabButton}" Content="Unavailable "/>
-                    <Button Style="{StaticResource tabButton}" Content="Onrent"/>
+                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Available" BorderBrush="#218c74"/>
+                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Unavailable "/>
+                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Onrent"/>
                 </StackPanel>
                 <Grid Margin="0 10 0 0" Grid.Column ="1" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
@@ -173,7 +170,7 @@
                         <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
                         <GridViewColumn Header="Tên xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
                         <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Màu xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                        <GridViewColumn Header="Màu xe" DisplayMemberBinding="{Binding Color}"></GridViewColumn>
                         <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
                         <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Driving Type" DisplayMemberBinding="{Binding DrivingType}"></GridViewColumn>
@@ -187,7 +184,10 @@
                 </ListView.View>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Height" Value="30"/>
+                        <EventSetter Event="PreviewMouseLeftButtonDown" 
+                                     Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
