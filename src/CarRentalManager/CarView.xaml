@@ -135,7 +135,7 @@
                     </ToggleButton>
                 </WrapPanel>
             </Grid>
-            <Separator Grid.Row="3" Margin="0 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
+            <Separator Grid.Row="3" Margin="10 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
