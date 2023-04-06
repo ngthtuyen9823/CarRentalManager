@@ -15,14 +15,12 @@ namespace CarRentalManager.ViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CustomerCommand { get; set; }
         public ICommand SupplierCommand { get; set; }
-
         public ICommand ContractCommand { get; set; }
         public ICommand CarCommand { get; set; }
         public ICommand OrderCommand { get; set; }
         public ICommand RegisterFormCommand { get; set; }
         public BaseViewModel CurrentChildView { get { return currentChildView; } set { currentChildView = value; OnPropertyChanged(nameof(currentChildView)); } }
         public string CapTion { get { return capTion; } set { capTion = value; OnPropertyChanged(nameof(capTion)); } }
-
         private BaseViewModel currentChildView;
         private string capTion;
         public MainViewModel()
@@ -36,9 +34,7 @@ namespace CarRentalManager.ViewModel
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListContractViewModel(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListOrderViewModel(); });
             SupplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListSupplierViewModel(); });
-
         }
-
         private bool ExecuteShowCarViewCommand(object obj)
         {
             throw new NotImplementedException();

@@ -25,7 +25,6 @@ namespace CarRentalManager.ViewModel
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
         }
-
         private bool comparePassword(string currentPassword, string oldPassword)
         {
             return currentPassword == oldPassword;
