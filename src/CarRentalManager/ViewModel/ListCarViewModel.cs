@@ -310,6 +310,10 @@ namespace CarRentalManager.ViewModel
                 string result = null;
                 switch (columnName)
                 {
+                    case nameof(ID):
+                        if (ID <= 0)
+                            result = "ID invalid";
+                        break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
                             result = "Name cannot be empty";
@@ -367,7 +371,6 @@ namespace CarRentalManager.ViewModel
                 return result;
             }
         }    
-
         public ObservableCollection<Car> getListObservableCar()
         {
             List<Car> cars = carDAO.getListCar();

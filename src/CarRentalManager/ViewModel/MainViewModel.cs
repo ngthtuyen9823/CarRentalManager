@@ -29,35 +29,13 @@ namespace CarRentalManager.ViewModel
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                //isLoaded = true;
-                //if (p == null)
-                //{
-                //    return;
-                //}
-                //p.Hide();
-                //LoginWindow loginWindow = new LoginWindow();
-                //loginWindow.ShowDialog();
-                //if (loginWindow.DataContext == null)
-                //{
-                //    return;
-                //}
-                //var loginVM = loginWindow.DataContext as LoginViewModel;
-                //if (loginVM.isLogin)
-                //{
-                //    p.Show();
-                //}
-                //else
-                //{
-                //    p.Close();
-                //}
                 p.Show();
             });
-            //customercommand = new relaycommand<object>((p) => { return true; }, (p) => { customerwindow wd = new customerwindow(); wd.showdialog(); });
-            //suppliercommand = new relaycommand<object>((p) => { return true; }, (p) => { supplierwindow wd = new supplierwindow(); wd.showdialog(); });
-            //contractcommand = new relaycommand<object>((p) => { return true; }, (p) => { contractwindow wd = new contractwindow(); wd.showdialog(); });
-            //carcommand = new relaycommand<object>((p) => { return true; }, (p) => { CarWindow wd = new CarWindow(); wd.ShowDialog(); });
-            //OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OrderWindow wd = new OrderWindow(); wd.ShowDialog(); });
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListCarViewModel(); });
+            CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListCustomerViewModel(); });
+            ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListContractViewModel(); });
+            OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListOrderViewModel(); });
+            SupplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListSupplierViewModel(); });
 
         }
 

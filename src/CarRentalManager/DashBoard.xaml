@@ -21,7 +21,16 @@
             <local:CarView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ListCustomerViewModel}">
-            <local:CarView/>
+            <local:CustomerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ListContractViewModel}">
+            <local:ContractView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ListOrderViewModel}">
+            <local:OrderView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ListSupplierViewModel}">
+            <local:SupplierView/>
         </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
