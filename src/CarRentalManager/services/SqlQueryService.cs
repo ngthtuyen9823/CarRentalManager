@@ -116,7 +116,10 @@ namespace CarRentalManager.services
             return string.Format("INSERT INTO [{7}] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
                    id, orderId, userId, DateTime.Now, status, DateTime.Now, DateTime.Now, ETableName.CONTRACT);
         }
-       
+        public string removeContract(int id)
+        {
+            return string.Format("DELETE FROM [{0}] WHERE id = {1}", ETableName.CONTRACT, id);
+        }
         //*INFO: ORDER
         public string getListOrder()
         {

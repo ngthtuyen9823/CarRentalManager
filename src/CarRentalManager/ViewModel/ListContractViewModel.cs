@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Security.Policy;
 using System.Windows.Media;
 using System.Xml.Linq;
+using MaterialDesignThemes.Wpf;
 
 namespace CarRentalManager.ViewModel
 {
@@ -29,6 +30,8 @@ namespace CarRentalManager.ViewModel
         public ObservableCollection<Contract> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand PayCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+        public ICommand EditCommand { get; set; }
 
         readonly ContractDAO contractDAO = new ContractDAO();
         public ListContractViewModel()
@@ -44,10 +47,21 @@ namespace CarRentalManager.ViewModel
                 OnPropertyChanged(nameof(List));
                 reSetForm();
             });
-            PayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReceiptForm wd = new ReceiptForm(); wd.ShowDialog(); });
-
+            //PayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReceiptForm wd = new ReceiptForm(); wd.ShowDialog(); });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                if (ErrorCollection.Count > 0)
+                    return false;
+                else
+                    return true;
+            }, (p) =>
+            {
+                contractDAO.removeContractFromList(ID);
+                List = getListObservableContract();
+                OnPropertyChanged(nameof(List));
+                reSetForm();
+            });
         }
-
         private int id;
         public int ID
         {
