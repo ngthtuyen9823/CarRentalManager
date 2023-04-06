@@ -189,7 +189,7 @@
                 <Setter Property="Foreground" Value="#c7ecee" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="Height" Value="35" />
-                <Setter Property="Margin" Value="15 3" />
+                <Setter Property="Margin" Value="15 6" />
                 <Setter Property="FontSize" Value="13" />
                 <Setter Property="Template" >
                     <Setter.Value>
@@ -203,7 +203,7 @@
 
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#218c74" />
+                        <Setter Property="Background" Value="#3AA9AD" />
                         <Setter Property="Foreground" Value="#ffffff" />
                     </Trigger>
                 </Style.Triggers>
@@ -254,7 +254,7 @@
 
 
             <Style x:Key="addButton" TargetType="Button">
-                <Setter Property="Background" Value="#218c74" />
+                <Setter Property="Background" Value="#3AA9AD" />
                 <Setter Property="Foreground" Value="#ffffff" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="Height" Value="35" />
@@ -266,7 +266,7 @@
                 <Setter Property="Template" >
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="#218c74" CornerRadius="7">
+                            <Border Background="#3AA9AD" CornerRadius="7">
                                 <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>

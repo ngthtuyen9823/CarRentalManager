@@ -54,7 +54,7 @@
                     <Icon:PackIconMaterial Kind="Menu" Width="20" Height="20" />
                 </Button>
 
-                <Border Grid.Row="1" Background="#218c74" CornerRadius="0 50 0 30">
+                <Border Grid.Row="1" Background="#4EB1B6" CornerRadius="0 50 0 30">
                     <DockPanel>
                         <!--Menu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
@@ -78,32 +78,32 @@
                             <Button Style="{StaticResource menuButton}" Command="{Binding CarCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Car" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Cars" />
+                                    <TextBlock Text="Cars" FontWeight="SemiBold" />
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}" Command="{Binding SupplierCommand}" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Suppliers" />
+                                    <TextBlock Text="Suppliers" FontWeight="SemiBold" />
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Command="{Binding CustomerCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Group" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customers" />
+                                    <TextBlock Text="Customers" FontWeight="SemiBold" />
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}" Command="{Binding OrderCommand}" Background="#218c74" Foreground="White">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding OrderCommand}" Background="#3AA9AD" Foreground="White">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentEdit" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Orders" />
+                                    <TextBlock Text="Orders" FontWeight="SemiBold" />
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}" Command="{Binding ContractCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Contracts" />
+                                    <TextBlock Text="Contracts" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </Button>
 
@@ -112,7 +112,7 @@
                         <Button Click="Button_Click" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Logout" />
+                                <TextBlock Text="Logout" FontWeight="SemiBold"/>
                             </StackPanel>
                         </Button>
 

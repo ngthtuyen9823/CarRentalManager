@@ -44,7 +44,7 @@ namespace CarRentalManager.ViewModel
                 {
                     Application.Current.Windows[0].Close();
 
-                    var mainWindow = new MainWindow();
+                    var mainWindow = new DashBoard();
                     mainWindow.Show();
                     p.Close();
                 }
