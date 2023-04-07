@@ -40,8 +40,8 @@ namespace CarRentalManager
                 if (IsMaximize)
                 {
                     this.WindowState = WindowState.Normal;
-                    this.Width = 1080;
-                    this.Height = 720;
+                    this.Width = 1380;
+                    this.Height = 800;
 
                     IsMaximize = false;
                 }

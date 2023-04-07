@@ -66,15 +66,15 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Width="150" Margin = "10 8 10 8" Text="{Binding ID, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                    <TextBox Name="ID" Width="200" Margin = "10 8 10 8" Text="{Binding ID, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="CarId" Width="150" Margin = "10 8 10 8" Text="{Binding CarId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
+                    <TextBox Name="CarId" Width="200" Margin = "10 8 10 8" Text="{Binding CarId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="CustomerId" Width="150" Margin = "10 8 10 8" Text="{Binding CustomerId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
+                    <TextBox Name="CustomerId" Width="200" Margin = "10 8 10 8" Text="{Binding CustomerId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="BookingPlace" Width="150" Margin = "10 8 10 8" Text="{Binding BookingPlace, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Booking Place"
+                    <TextBox Name="BookingPlace" Width="200" Margin = "10 8 10 8" Text="{Binding BookingPlace, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Booking Place"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox Name="Status" Width="150" SelectedValue="{Binding Status, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
+                    <ComboBox Name="Status" Width="200" SelectedValue="{Binding Status, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             COMPLETE
@@ -90,15 +90,15 @@
                        Name="StartDate"
                        SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"
                        materialDesign:HintAssist.Hint="Ngày bắt đầu"
-                       Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>  
+                       Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                     <DatePicker Width="120" Margin = "10 8 10 8" Text="{Binding EndDate}"
                            Name="EndDate"
                            SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}"
                            materialDesign:HintAssist.Hint="Ngày kết thúc"
                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                                    <TextBox Width="150" Margin = "10 8 10 8" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
+                    <TextBox Width="200" Margin = "10 8 10 8" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="TotalFee" Width="150" Margin="10 8 10 8" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
+                    <TextBox Name="TotalFee" Width="200" Margin="10 8 10 8" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </Grid>

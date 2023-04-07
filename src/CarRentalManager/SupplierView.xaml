@@ -67,15 +67,15 @@
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
                     <TextBox Name="ID" Text="{Binding ID, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                    Width="150" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="ID"
+                    Width="200" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="ID"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="Name" Width=" 150" Margin = "10 8 10 8" Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
+                    <TextBox Name ="Name" Width=" 200" Margin = "10 8 10 8" Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="Address" Width="150" Margin = "10 8 10 8" Text="{Binding Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
+                    <TextBox Name="Address" Width="200" Margin = "10 8 10 8" Text="{Binding Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="PhoneNumber" Width="150" Margin = "10 8 10 8" Text="{Binding PhoneNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
+                    <TextBox Name="PhoneNumber" Width="200" Margin = "10 8 10 8" Text="{Binding PhoneNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="Email" Width="150" Margin = "10 8 10 8" Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
+                    <TextBox Name="Email" Width="200" Margin = "10 8 10 8" Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Email"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </Grid>

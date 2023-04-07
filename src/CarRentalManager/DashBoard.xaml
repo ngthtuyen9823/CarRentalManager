@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarRentalManager"
         xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Height="720" Width="1080" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        Height="800" Width="1380" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" 
@@ -32,13 +32,16 @@
         <DataTemplate DataType="{x:Type viewModel:ListSupplierViewModel}">
             <local:SupplierView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+            <local:HomeView/>
+        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
     <Border CornerRadius="30" Background="#ffffff" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="260"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -66,7 +69,7 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock Text="Carrental Manager" Foreground="White" FontSize="20" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                        <TextBlock Text="Carrental Manager" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
                         <TextBlock Text="Hi, Jenny" Foreground="#c7ecee" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu Seprator-->
@@ -78,32 +81,32 @@
                             <Button Style="{StaticResource menuButton}" Command="{Binding CarCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Car" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Cars" FontWeight="SemiBold" />
+                                    <TextBlock Text="Cars" FontWeight="SemiBold" FontSize="16" />
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}" Command="{Binding SupplierCommand}" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Suppliers" FontWeight="SemiBold" />
+                                    <TextBlock Text="Suppliers" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Command="{Binding CustomerCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Group" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customers" FontWeight="SemiBold" />
+                                    <TextBlock Text="Customers" FontWeight="SemiBold" FontSize="16" />
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}" Command="{Binding OrderCommand}" Background="#3AA9AD" Foreground="White">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentEdit" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Orders" FontWeight="SemiBold" />
+                                    <TextBlock Text="Orders" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}" Command="{Binding ContractCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Contracts" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Contracts" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </Button>
 
@@ -112,7 +115,7 @@
                         <Button Click="Button_Click" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Logout" FontWeight="SemiBold"/>
+                                <TextBlock Text="Logout" FontWeight="SemiBold" FontSize="16"/>
                             </StackPanel>
                         </Button>
 
@@ -135,9 +138,9 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <WrapPanel Grid.Column="0" HorizontalAlignment="Left">
-                        <Button Style="{StaticResource tabButton}" Content="Home" BorderBrush="#218c74"/>
-                        <Button Style="{StaticResource tabButton}" Content="Statistics" />
-                        <Button Style="{StaticResource tabButton}" Content="Store" />
+                        <Button Command="{Binding HomeCommand}" Style="{StaticResource tabButton}" FontSize="18" Content="Home" BorderBrush="#218c74"/>
+                        <Button Style="{StaticResource tabButton}" FontSize="18" Content="Statistics" />
+                        <Button Style="{StaticResource tabButton}" FontSize="18" Content="Store" />
                     </WrapPanel>
                     <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
                         <Button Style="{StaticResource topButton}">
