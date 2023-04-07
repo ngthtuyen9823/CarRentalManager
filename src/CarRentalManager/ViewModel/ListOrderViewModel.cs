@@ -226,7 +226,7 @@ namespace CarRentalManager.ViewModel
                 switch (columnName)
                 {
                     case "ID":
-                        if (id <= 0)
+                        if (ID <= 0)
                             result = "ID invalid";
                         break;
                     case "CarId":

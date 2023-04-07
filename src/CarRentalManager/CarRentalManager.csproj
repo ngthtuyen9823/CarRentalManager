@@ -107,12 +107,9 @@
     <Compile Include="CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CarWindow.xaml.cs">
-      <DependentUpon>CarWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="constants\Constant.cs" />
-    <Compile Include="ContractWindow.xaml.cs">
-      <DependentUpon>ContractWindow.xaml</DependentUpon>
+    <Compile Include="ContractView.xaml.cs">
+      <DependentUpon>ContractView.xaml</DependentUpon>
     </Compile>
     <Compile Include="customcontrols\CustomCard.xaml.cs">
       <DependentUpon>CustomCard.xaml</DependentUpon>
@@ -120,8 +117,8 @@
     <Compile Include="customcontrols\MenuBottons.xaml.cs">
       <DependentUpon>MenuBottons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerWindow.xaml.cs">
-      <DependentUpon>CustomerWindow.xaml</DependentUpon>
+    <Compile Include="CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="dao\CommonDAO.cs" />
     <Compile Include="dao\OrderDAO.cs" />
@@ -155,8 +152,8 @@
     <Compile Include="modals\Receipt.cs" />
     <Compile Include="modals\Supplier.cs" />
     <Compile Include="modals\User.cs" />
-    <Compile Include="OrderWindow.xaml.cs">
-      <DependentUpon>OrderWindow.xaml</DependentUpon>
+    <Compile Include="OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReceiptForm.xaml.cs">
       <DependentUpon>ReceiptForm.xaml</DependentUpon>
@@ -177,8 +174,8 @@
     <Compile Include="SupplierRegister.xaml.cs">
       <DependentUpon>SupplierRegister.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SupplierWindow.xaml.cs">
-      <DependentUpon>SupplierWindow.xaml</DependentUpon>
+    <Compile Include="SupplierView.xaml.cs">
+      <DependentUpon>SupplierView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -203,11 +200,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CarWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ContractWindow.xaml">
+    <Page Include="ContractView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,7 +212,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomerWindow.xaml">
+    <Page Include="CustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,19 +228,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="OrderWindow.xaml">
+    <Page Include="OrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,9 +252,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SupplierWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="SupplierView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlCRM\ControlBarUC.xaml">
       <SubType>Designer</SubType>
@@ -357,6 +342,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="Assets\delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\update.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\images\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
