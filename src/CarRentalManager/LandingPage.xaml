@@ -466,7 +466,7 @@
                     <Grid
                         Grid.Row="0" Width="1399" Height="650">
                         <Grid.Background>
-                            <ImageBrush ImageSource="/vali.jpg" Opacity="0.9" Stretch="UniformToFill">
+                            <ImageBrush ImageSource="/landingpage.jpg" Opacity="0.9" Stretch="UniformToFill">
                                 <ImageBrush.RelativeTransform>
                                     <TransformGroup>
                                         <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
