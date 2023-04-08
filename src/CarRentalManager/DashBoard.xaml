@@ -92,8 +92,8 @@
                             </RadioButton>
                             <RadioButton x:Name="btnCustomer" Style="{StaticResource menuRadioButton}" Command="{Binding CustomerCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="FileDocumentEdit" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Orders" FontWeight="SemiBold" FontSize="16"/>
+                                    <Icon:PackIconMaterial Kind="Account"  Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Customers" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="btnOrder" Style="{StaticResource menuRadioButton}" Command="{Binding OrderCommand}" >

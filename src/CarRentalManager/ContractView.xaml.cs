@@ -26,6 +26,39 @@ namespace CarRentalManager
         public ContractView()
         {
             InitializeComponent();
+            FilterBy.ItemsSource = new string[] {"Status" };
+        }
+        private bool StatusFilter(object obj)
+        {
+            var Filterobj = obj as Contract;
+            string filterobj1 = Filterobj.Status.ToString().ToLower();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+     
+        public Predicate<object> GetFilter()
+        {
+            switch (FilterBy.SelectedItem as string)
+            {
+                case "Status":
+                    return StatusFilter;
+            }
+            return StatusFilter;
+        }
+        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterTextBox.Text == null)
+            {
+                lsvContract.Items.Filter = null;
+            }
+            else
+            {
+                lsvContract.Items.Filter = GetFilter();
+            }
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvContract.Items.Filter = GetFilter();
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

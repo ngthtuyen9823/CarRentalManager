@@ -25,6 +25,63 @@ namespace CarRentalManager
         public CustomerView()
         {
             InitializeComponent();
+            FilterBy.ItemsSource = new string[] { "Address", "Email", "PhoneNumber", "IDCard"};
+            //FilterBy.ItemsSource = typeof(Car).GetProperties().Select((o) => o.Name);
+        }
+        private bool AddressFilter(object obj)
+        {
+            var Filterobj = obj as Customer;
+            string filterobj1 = Filterobj.Address.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool EmailFilter(object obj)
+        {
+            var Filterobj = obj as Customer;
+            string filterobj1 = Filterobj.Email.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool PhoneNumberFilter(object obj)
+        {
+            var Filterobj = obj as Customer;
+            string filterobj1 = Filterobj.PhoneNumber.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool IdCardFilter(object obj)
+        {
+            var Filterobj = obj as Customer;
+            string filterobj1 = Filterobj.IDCard.ToString().ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        public Predicate<object> GetFilter()
+        {
+            switch (FilterBy.SelectedItem as string)
+            {
+                case "Address":
+                    return AddressFilter;
+                case "PhoneNumber":
+                    return PhoneNumberFilter;
+                case "Email":
+                    return EmailFilter;
+                case "IdCard":
+                    return IdCardFilter;
+            }
+            return AddressFilter;
+        }
+        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterTextBox.Text == null)
+            {
+                lsvCustomer.Items.Filter = null;
+            }
+            else
+            {
+                lsvCustomer.Items.Filter = GetFilter();
+            }
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvCustomer.Items.Filter = GetFilter();
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

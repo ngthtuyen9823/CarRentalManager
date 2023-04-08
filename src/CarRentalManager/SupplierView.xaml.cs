@@ -26,6 +26,55 @@ namespace CarRentalManager
         public SupplierView()
         {
             InitializeComponent();
+            FilterBy.ItemsSource = new string[] { "Address", "Email", "PhoneNumber" };
+            //FilterBy.ItemsSource = typeof(Car).GetProperties().Select((o) => o.Name);
+        }
+        private bool AddressFilter(object obj)
+        {
+            var Filterobj = obj as Supplier;
+            string filterobj1 = Filterobj.Address.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool EmailFilter(object obj)
+        {
+            var Filterobj = obj as Supplier;
+            string filterobj1 = Filterobj.Email.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool PhoneNumberFilter(object obj)
+        {
+            var Filterobj = obj as Supplier;
+            string filterobj1 = Filterobj.PhoneNumber.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        public Predicate<object> GetFilter()
+        {
+            switch (FilterBy.SelectedItem as string)
+            {
+                case "Address":
+                    return AddressFilter;
+                case "PhoneNumber":
+                    return PhoneNumberFilter;
+                case "Email":
+                    return EmailFilter;
+            }
+            return AddressFilter;
+        }
+        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterTextBox.Text == null)
+            {
+                lsvSupplier.Items.Filter = null;
+            }
+            else
+            {
+                lsvSupplier.Items.Filter = GetFilter();
+            }
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvSupplier.Items.Filter = GetFilter();
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

@@ -28,6 +28,38 @@ namespace CarRentalManager
         public OrderView()
         {
             InitializeComponent();
+            FilterBy.ItemsSource = new string[] { "BookingPlace" };
+        }
+        private bool BookingPlaceFilter(object obj)
+        {
+            var Filterobj = obj as Order;
+            string filterobj1 = Filterobj.BookingPlace.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        public Predicate<object> GetFilter()
+        {
+            switch (FilterBy.SelectedItem as string)
+            {
+                case "BookingPlace":
+                    return BookingPlaceFilter;
+            }
+            return BookingPlaceFilter;
+        }
+        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterTextBox.Text == null)
+            {
+                lsvOrder.Items.Filter = null;
+            }
+            else
+            {
+                lsvOrder.Items.Filter = GetFilter();
+            }
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvOrder.Items.Filter = GetFilter();
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
