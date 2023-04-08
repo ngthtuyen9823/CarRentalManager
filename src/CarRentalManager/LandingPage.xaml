@@ -828,36 +828,7 @@
 
 
 
-                                    <!--search-->
-
-                                    <!--<Grid 
-                                    Grid.Row="2">
-                                        <materialDesign:PackIcon 
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Left" 
-                                            Height="40" Width="40"
-                                            Margin="330,10,0,0"
-                                            Foreground="{StaticResource PrimaryBrush}"
-                                            Kind="search"
-                                            />
-                                      
-                                            <Button x:Name="btnSearch"
-                                        Grid.Column="1"      
-                                        Background="{StaticResource CanvasBrush}"
-                                        BorderThickness="4"
-                                        BorderBrush="DarkGray"
-                                        Content="Tìm Kiếm Ngay"
-                                        FontSize="20"
-                                        Foreground="{StaticResource PrimaryBrush}"
-                                        Width="250"
-                                        Height="45"
-                                        Cursor="Hand"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Command="{Binding SearchCommand}" Margin="0,16,0,5">
-                                            </Button>
-                                        
-                                    </Grid>-->
+                              
                                 </Grid>
 
                             </Grid>
@@ -902,7 +873,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <local:CustomCard Width="305"/>
+                                    <local:CustomCard Width="250"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
