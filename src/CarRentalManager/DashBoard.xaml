@@ -78,37 +78,38 @@
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top" >
 
-                            <Button Style="{StaticResource menuButton}" Command="{Binding CarCommand}">
+                            <RadioButton x:Name="btnCar" Style="{StaticResource menuRadioButton}" Command="{Binding CarCommand}" 
+                                         IsChecked="True"
+                                         >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Car" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Cars" FontWeight="SemiBold" FontSize="16" />
                                 </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource menuButton}" Command="{Binding SupplierCommand}" >
+                            </RadioButton>
+                            <RadioButton x:Name="btnSupplier" Style="{StaticResource menuRadioButton}" Command="{Binding SupplierCommand}" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Suppliers" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
-                            </Button>
-
-                            <Button Style="{StaticResource menuButton}" Command="{Binding CustomerCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="Group" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customers" FontWeight="SemiBold" FontSize="16" />
-                                </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource menuButton}" Command="{Binding OrderCommand}" Background="#3AA9AD" Foreground="White">
+                            </RadioButton>
+                            <RadioButton x:Name="btnCustomer" Style="{StaticResource menuRadioButton}" Command="{Binding CustomerCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentEdit" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Orders" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
-                            </Button>
-                            <Button Style="{StaticResource menuButton}" Command="{Binding ContractCommand}">
+                            </RadioButton>
+                            <RadioButton x:Name="btnOrder" Style="{StaticResource menuRadioButton}" Command="{Binding OrderCommand}" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="FileDocumentEdit" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Orders" FontWeight="SemiBold" FontSize="16"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton x:Name="btnContract" Style="{StaticResource menuRadioButton}" Command="{Binding ContractCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Contracts" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
-                            </Button>
+                            </RadioButton>
 
                         </StackPanel>
 

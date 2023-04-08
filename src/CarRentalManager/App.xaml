@@ -133,7 +133,8 @@
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#e8e8e8"/>
-                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Foreground" Value="#3AB19B"/>
+                        <Setter Property="Cursor" Value="Hand" />
                     </Trigger>
                     <Trigger Property="IsMouseCaptured" Value="True">
                         <Setter Property="Background" Value="#3AB19B"/>
@@ -179,6 +180,7 @@
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#dcdcdc" />
+                        <Setter Property="Cursor" Value="Hand" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -205,13 +207,53 @@
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#3AA9AD" />
                         <Setter Property="Foreground" Value="#ffffff" />
+                        <Setter Property="Cursor" Value="Hand" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
-
+            <Style BasedOn="{StaticResource {x:Type ToggleButton}}"
+                TargetType="{x:Type RadioButton}"
+                x:Key="menuRadioButton">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="#c7ecee" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="Height" Value="50" />
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Width" Value="220"/>
+                <Setter Property="Margin" Value="20 10 20 10" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="Template" >
+                        <Setter.Value>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="#3AA9AD" />
+                                        <Setter Property="Foreground" Value="#ffffff" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#3AA9AD" />
+                                        <Setter Property="Foreground" Value="#ffffff" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#3AA9AD" />
+                        <Setter Property="Foreground" Value="#ffffff" />
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+                
+            
 
             <Style x:Key="menuButtonIcon" TargetType="Icon:PackIconMaterial">
-                <Setter Property="Margin" Value="20 2 20 0" />
+                <Setter Property="Margin" Value="10 0 10 0" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Width" Value="15" />
                 <Setter Property="Height" Value="15" />
@@ -272,11 +314,9 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#218c74" />
-                        <Setter Property="Foreground" Value="#ffffff" />
+                        <Setter Property="Cursor" Value="Hand" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -305,6 +345,7 @@
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="BorderBrush" Value="#218c74" />
+                        <Setter Property="Cursor" Value="Hand" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -353,6 +394,7 @@
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#218c74" />
                         <Setter Property="Foreground" Value="#ffffff" />
+                        <Setter Property="Cursor" Value="Hand" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
