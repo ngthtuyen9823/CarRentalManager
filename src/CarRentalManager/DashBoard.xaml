@@ -78,9 +78,7 @@
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top" >
 
-                            <RadioButton x:Name="btnCar" Style="{StaticResource menuRadioButton}" Command="{Binding CarCommand}" 
-                                         IsChecked="True"
-                                         >
+                            <RadioButton x:Name="btnCar" Style="{StaticResource menuRadioButton}" Command="{Binding CarCommand}" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Car" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Cars" FontWeight="SemiBold" FontSize="16" />
@@ -139,9 +137,15 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <WrapPanel Grid.Column="0" HorizontalAlignment="Left">
-                        <Button Command="{Binding HomeCommand}" Style="{StaticResource tabButton}" FontSize="18" Content="Home" BorderBrush="#218c74"/>
-                        <Button Style="{StaticResource tabButton}" FontSize="18" Content="Statistics" />
-                        <Button Style="{StaticResource tabButton}" FontSize="18" Content="Store" />
+                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" IsChecked="True" >
+                            <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
+                        </RadioButton>
+                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
+                            <TextBlock Text="Satistic" FontWeight="SemiBold" FontSize="16"/>
+                        </RadioButton>
+                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
+                            <TextBlock Text="Store" FontWeight="SemiBold" FontSize="16"/>
+                        </RadioButton>
                     </WrapPanel>
                     <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
                         <Button Style="{StaticResource topButton}">
@@ -157,7 +161,6 @@
                 </Grid>
                 <ContentControl Grid.Row="1" Content="{Binding CurrentChildView}" 
                                 Margin="10"/>
-
             </Grid>
         </Grid>
     </Border>

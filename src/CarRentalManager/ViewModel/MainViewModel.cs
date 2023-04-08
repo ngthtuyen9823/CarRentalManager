@@ -39,9 +39,9 @@ namespace CarRentalManager.ViewModel
             HomeCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new HomeViewModel(); });
 
         }
-        private bool ExecuteShowCarViewCommand(object obj)
+        private void ExecuteShowHomeViewCommand(object obj)
         {
-            throw new NotImplementedException();
+            CurrentChildView = new HomeViewModel();
         }
     }
 }
