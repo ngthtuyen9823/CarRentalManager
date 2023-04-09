@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRentalManager.enums;
 
-namespace CarRentalManager.modals
+namespace CarRentalManager.models
 {
     public class Order
     {
@@ -50,6 +50,8 @@ namespace CarRentalManager.modals
             this.imageEvidence = imageEvidence;
             this.notes = notes;
         }
+
+        public Order() { }
 
         public int ID { get { return id; } set { id = value; } }
         public int CarId { get { return carId; } set { carId = value; } }

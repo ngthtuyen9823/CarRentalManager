@@ -1,29 +1,23 @@
-﻿using CarRentalManager.modals;
+﻿using CarRentalManager.models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
 using CarRentalManager.dao;
 using System.Windows.Input;
-using System.Windows;
 using System.ComponentModel;
-using System.Windows.Data;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
-using System.Collections;
 using CarRentalManager.enums;
-using System.Diagnostics;
-using System.Security.Policy;
-using System.Windows.Media;
-using System.Xml.Linq;
+using CarRentalManager.services;
 using MaterialDesignThemes.Wpf;
+using System.Net;
+using System.Xml.Linq;
+using System.Windows;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListContractViewModel : BaseViewModel, IDataErrorInfo
     {
+        readonly VariableService variableService = new VariableService();
+        readonly ContractDAO contractDAO = new ContractDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Contract> list;
@@ -33,150 +27,23 @@ namespace CarRentalManager.ViewModel
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
 
-        readonly ContractDAO contractDAO = new ContractDAO();
+
+        //*INFO: Value binding
+        private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
+        private int orderId; public int OrderId { get => orderId; set => SetProperty(ref orderId, value, nameof(OrderId)); }
+        private int userId; public int UserId { get => userId; set => SetProperty(ref userId, value, nameof(UserId)); }
+        private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
+        private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
+
         public ListContractViewModel()
         {
             List = getListObservableContract();
-            AddCommand = new RelayCommand<object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                contractDAO.addContractToList(ID, OrderId, UserId, Status.Substring(38), MakingDay, CreatedAt, UpdatedAt);
-                List = getListObservableContract();
-                OnPropertyChanged(nameof(List));
-                reSetForm();
-            });
             //PayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReceiptForm wd = new ReceiptForm(); wd.ShowDialog(); });
-            DeleteCommand = new RelayCommand<object>((p) =>
-            {
-                if (ErrorCollection.Count > 0)
-                    return false;
-                else
-                    return true;
-            }, (p) =>
-            {
-                contractDAO.removeContractFromList(ID);
-                List = getListObservableContract();
-                OnPropertyChanged(nameof(List));
-                reSetForm();
-            });
+            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
+            EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
+            DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
         }
-        private int id;
-        public int ID
-        {
-            get { return id; }
-            set
-            {
-                if (value != id)
-                {
-                    id = value;
-                    OnPropertyChanged("ID");
-                }
-            }
-        }
-        private int orderId;
 
-        public int OrderId
-        {
-            get { return orderId; }
-            set
-            {
-                if (value != orderId)
-                {
-                    orderId = value;
-                    OnPropertyChanged("OrderId");
-
-                }
-            }
-        }
-        private int userId;
-
-        public int UserId
-        {
-            get { return userId; }
-            set
-            {
-                if (value != userId)
-                {
-                    userId = value;
-                    OnPropertyChanged("UserId");
-                }
-            }
-        }
-        private int price;
-
-        public int Price
-        {
-            get { return price; }
-            set
-            {
-                if (value != price)
-                {
-                    price = value;
-                    OnPropertyChanged("Price");
-                }
-            }
-        }
-        private string status;
-
-        public string Status
-        {
-            get { return status; }
-            set
-            {
-                if (value != status)
-                {
-                    status = value;
-                    OnPropertyChanged("Status");
-
-                }
-            }
-        }
-        private DateTime createdAt;
-
-        public DateTime CreatedAt
-        {
-            get { return createdAt; }
-            set
-            {
-                if (value != createdAt)
-                {
-                    createdAt = value;
-                    OnPropertyChanged("CreatedAt");
-
-                }
-            }
-        }
-        private DateTime updatedAt;
-
-        public DateTime UpdatedAt
-        {
-            get { return updatedAt; }
-            set
-            {
-                if (value != updatedAt)
-                {
-                    updatedAt = value;
-                    OnPropertyChanged("UpdatedAt");
-
-                }
-            }
-        }
-        private DateTime makingDay;
-
-        public DateTime MakingDay
-        {
-            get { return makingDay; }
-            set
-            {
-                if (value != makingDay)
-                {
-                    makingDay = value;
-                    OnPropertyChanged("MakingDay");
-                }
-            }
-        }
         private void reSetForm()
         {
             ID = 0;
@@ -192,21 +59,21 @@ namespace CarRentalManager.ViewModel
                 string result = null;
                 switch (columnName)
                 {
-                    case "ID":
-                        if (ID == 0)
+                    case nameof(ID):
+                        if (ID <= 0)
                             result = "Invalid ID";
                         break;
-                    case "OrderId":
-                        if (OrderId == 0)
+                    case nameof(OrderId):
+                        if (OrderId <= 0)
                             result = "Invalid order ID";
                         break;
-                    case "UserId":
-                        if (UserId == 0)
+                    case nameof(UserId):
+                        if (UserId <= 0)
                             result = "Invalid user ID";
                         break;
-                    case "Status":
-                        if (string.IsNullOrEmpty(Status))
-                            result = "Status is empty";
+                    default:
+                        if (string.IsNullOrEmpty(typeof(ListContractViewModel).GetProperty(columnName).GetValue(this)?.ToString()))
+                            result = string.Format("{0} can not be empty", columnName);
                         break;
                 }
                 if (ErrorCollection.ContainsKey(columnName))
@@ -217,7 +84,7 @@ namespace CarRentalManager.ViewModel
                 else if (result != null)
                     ErrorCollection.Add(columnName, result);
 
-                OnPropertyChanged("ErrorCollection");
+                OnPropertyChanged(nameof(ErrorCollection));
                 return result;
             }
         }
@@ -227,6 +94,48 @@ namespace CarRentalManager.ViewModel
             List<Contract> contracts = contractDAO.getListContract();
             ObservableCollection<Contract> contractList = new ObservableCollection<Contract>(contracts);
             return contractList;
+        }
+        private bool checkIsError()
+        {
+            if (ErrorCollection.Count > 0)
+                return false;
+            else
+                return true;
+        }
+        private Contract getContract()
+        {
+            return new Contract(ID, OrderId, UserId,
+                    variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
+                    Price,
+                    DateTime.Now, DateTime.Now);
+        }
+
+        private void updateListUI()
+        {
+            MessageBox.Show("Success!");
+            List = getListObservableContract();
+            OnPropertyChanged(nameof(List));
+            reSetForm();
+        }
+
+        private void handleAddCommand()
+        {
+            Contract contract = getContract();
+            contractDAO.createContract(contract);
+            updateListUI();
+        }
+
+        private void handleEditCommand()
+        {
+            Contract contract = getContract();
+            contractDAO.updateContract(contract);
+            updateListUI();
+        }
+
+        private void handleDeleteCommand()
+        {
+            contractDAO.removeContract(ID);
+            updateListUI();
         }
     }
 }

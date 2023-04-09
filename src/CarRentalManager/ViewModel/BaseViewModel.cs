@@ -17,6 +17,7 @@ namespace CarRentalManager.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         protected virtual bool OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
         {
             if (EqualityComparer<T>.Default.Equals(backingField, value))
@@ -25,6 +26,14 @@ namespace CarRentalManager.ViewModel
             backingField = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+        protected virtual void SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (!EqualityComparer<T>.Default.Equals(field, value))
+            {
+                field = value;
+                OnPropertyChanged(propertyName);
+            }
         }
     }
 

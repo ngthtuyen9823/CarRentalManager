@@ -1,5 +1,5 @@
 ﻿using CarRentalManager.dao;
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using CarRentalManager.services;
 using Microsoft.Win32;
 using System;
@@ -16,7 +16,6 @@ namespace CarRentalManager
     public partial class RegisterForm : Window
     {
         readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CarDataService carDataService = new CarDataService();
         readonly CarDAO carDAO = new CarDAO();
         readonly OrderDAO orderDAO = new OrderDAO();
         readonly VariableService variableService = new VariableService();
@@ -47,7 +46,7 @@ namespace CarRentalManager
             lblPriceCar.Content = "Price : " + car.Price;
             lblSeats.Content = "Seats : " + car.Seats;
 
-            ((dynamic)this.DataContext).CarId = car.ID.ToString();
+            ((dynamic)this.DataContext).CarId = car.ID;
         }
 
         public string ID { get; set; }

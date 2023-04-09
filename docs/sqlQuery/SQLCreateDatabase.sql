@@ -5,12 +5,12 @@ go
 CREATE TABLE [dbo].[Customer] (
 	id int primary key,
 	phoneNumber char(10),
-	name char(100) NULL,
+	name char(200) NULL,
 	email char(50) NULL,
 	idCard char(15) NULL,
 	address char(50) NULL,
-	imageIdCardFront char(50) NULL,
-	imageIdCardBack char(50) NULL,
+	imageIdCardFront char(200) NULL,
+	imageIdCardBack char(200) NULL,
 	createdAt date,
 	updatedAt date,
 )
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[Supplier] (
 
 CREATE TABLE [dbo].[Car] (
 	id int primary key,
-	name char(100) NULL,
+	name char(200) NULL,
 	brand char(50) NULL,
 	color char(50) NULL,
 	publishYear char(50) NULL,
@@ -52,8 +52,8 @@ CREATE TABLE [dbo].[Car] (
 	seats int,
 	licensePlate char(20) NULL,
 	price int,
-	imagePath char(100) NULL,
-	tutorialPath char(100) NULL,
+	imagePath char(200) NULL,
+	tutorialPath char(200) NULL,
 	city char(50) NULL,
 	supplierId int references [dbo].[Supplier](id),
 	createdAt date,
@@ -64,15 +64,15 @@ CREATE TABLE [dbo].[Order] (
 	id int primary key,
 	carId int references Car(id),
 	customerId int references Customer(id),
-	bookingPlace char(100) NULL,
+	bookingPlace char(200) NULL,
 	startDate date,
 	endDate date,
 	totalFee int,
 	status char(50) NULL,
 	--COMPLETE, CANCELLED, PENDING
 	depositAmount int,
-	imageEvidence char(100) NULL,
-	notes char(100) NULL,
+	imageEvidence char(200) NULL,
+	notes char(200) NULL,
 	createdAt date,
 	updatedAt date,
 )
@@ -81,8 +81,8 @@ CREATE TABLE [dbo].[Contract] (
 	id int primary key,
 	orderId int references [dbo].[Order](id),
 	userId int references [dbo].[User](id),
-	makingDay date, --newDate
 	status char(20) NULL,
+	price int,
 	-- PAID, UNPAID
 	createdAt date,
 	updatedAt date,
@@ -91,21 +91,20 @@ CREATE TABLE [dbo].[Contract] (
 CREATE TABLE [dbo].[Receipt] (
 	id int primary key,
 	contractId int references Contract(id),
-	makingDay date,
 	price int,
 	createdAt date,
 	updatedAt date,
 )
 
+insert into [dbo].[Supplier] values(0, 'carhelp@gmail.com', '0686868686', 'Car Help', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(1, 'honda@gmail.com', '0656565565', 'Honda', 'Thu Duc', '2022-03-23', '2022-03-23')
-insert into [dbo].[Supplier] values(2, 'toyota@gmail.com', '0987654321', 'Toyota', 'Ho Chi Minh City', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(2, 'toyota@gmail.com', '0987654321', 'Toyota', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(3, 'ford@gmail.com', '0123456789', 'Ford', 'Hanoi', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(4, 'mercedes@gmail.com', '0369874123', 'Mercedes-Benz', 'Da Nang', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(5, 'bmw@gmail.com', '0656565656', 'BMW', 'Can Tho', '2023-03-23', '2023-03-23')
-insert into [dbo].[Supplier] values(6, 'carhelp@gmail.com', '0656565656', 'Car Help', 'Hanoi', '2023-03-23', '2023-03-23')
 
-INSERT INTO [dbo].[Car] VALUES (1, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7606', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p3.jpg', 'HCM', 6, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (2, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7553', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p2.jpg', 'HCM', 6, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (1, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7606', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p3.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (2, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7553', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p2.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (3, 'TOYOTA RUSH 2019', 'TOYOTA', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8095', 900, '/assets/images/cars/3.jpg', '/assets/images/avatar/p3.jpg', 'HANOI', 2, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (4, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A3361', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p4.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (5, 'TOYOTA INNOVA G 2016', 'TOYOTA', 'Black', '2016', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1900', 920, '/assets/images/cars/5.jpg', '/assets/images/avatar/p4.jpg', 'HCM', 2, '2022-01-01', '2022-01-01')
@@ -155,11 +154,11 @@ insert into [dbo].[Order] Values(7,5,7,'Ho Chi Minh City', '2022-12-20', '2022-1
 insert into [dbo].[Order] Values(8,4,8,'Ho Chi Minh City', '2022-12-20', '2022-12-20', 100000, 'PENDING', 200, '', 'Please contact me soon!', '2022-12-20', '2022-12-20')
 
 
-insert into [dbo].[Contract] values(1,8,1, '2022-12-12', 'PAID', '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(2,7,2,'2022-12-12', 'PAID', '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(3,6,3,'2022-12-12', 'PAID', '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(4,5,4,'2022-12-12', 'UNPAID', '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(5,5,4,'2022-12-12', 'UNPAID', '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(6,5,1,'2022-12-12', 'UNPAID', '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(7,5,3,'2022-12-12', 'UNPAID', '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(1,8,1, 'PAID', 100000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(2,7,2, 'PAID', 90000,'2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(3,6,3, 'PAID', 80000,'2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(4,5,4, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(5,5,4, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(6,5,1, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(7,5,3, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
 

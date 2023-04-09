@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRentalManager.enums;
 
-namespace CarRentalManager.modals
+namespace CarRentalManager.models
 {
     public class Customer
     {
@@ -43,6 +43,8 @@ namespace CarRentalManager.modals
             this.updatedAt = updatedAt;
         }
 
+        public Customer() { }
+
         public int ID { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
@@ -56,6 +58,6 @@ namespace CarRentalManager.modals
         public string ImageIdCardBack { get { return imageIdCardBack; } set { imageIdCardBack = value; } }
 
         public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
-        public DateTime UpdatedAt { get { return updatedAt; }set { UpdatedAt = value; } }
+        public DateTime UpdatedAt { get { return updatedAt; }set { updatedAt = value; } }
     }
 }

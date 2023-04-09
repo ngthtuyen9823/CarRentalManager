@@ -38,11 +38,6 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Width="250" Margin="5" Text="{Binding Value, ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Số tiền thanh toán"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <DatePicker Width="250" Margin="5" Text="{Binding makingDay}" 
-                                    Name="MakingDay"
-                                    SelectedDate="{Binding createdAt, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.Hint="Making day"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                 </WrapPanel>
             </materialDesign:Card>
         </Grid>

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using CarRentalManager.enums;
 using System.Windows.Input;
 using CarRentalManager.dao;
@@ -31,6 +31,24 @@ namespace CarRentalManager.ViewModel
         public ICommand SortLowerThan1000{ get; set; }
         public ICommand SortBiggerThan1000{ get; set; }
         public ICommand SearchCommand { get; set; }
+
+        //*INFO: Value binding
+        private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
+        private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
+        private string city; public string City { get => city; set => SetProperty(ref city, value, nameof(City)); }
+        private string imagePath; public string ImagePath { get => imagePath; set => SetProperty(ref imagePath, value, nameof(ImagePath)); }
+        private string name; public string Name { get => name; set => SetProperty(ref name, value, nameof(Name)); }
+        private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
+        private string brand; public string Brand { get => brand; set => SetProperty(ref brand, value, nameof(Brand)); }
+        private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
+        private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
+        private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
+        private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
+        private ObservableCollection<string> listCarBrand; public ObservableCollection<string> ListCarBrand { get => listCarBrand; set => SetProperty(ref listCarBrand, value, nameof(ListCarBrand)); }
+        private ObservableCollection<string> listCity; public ObservableCollection<string> ListCity { get => listCity; set => SetProperty(ref listCity, value, nameof(ListCity)); }
+        private ObservableCollection<string> listSeats; public ObservableCollection<string> ListSeats { get => listSeats; set => SetProperty(ref listSeats, value, nameof(ListSeats)); }
+        private ObservableCollection<Car> carList; public ObservableCollection<Car> CarList { get => carList; set => SetProperty(ref carList, value, nameof(CarList)); }
+
 
         public CardViewModels()
         {
@@ -78,9 +96,9 @@ namespace CarRentalManager.ViewModel
         private void initializeValue()
         {
             CarList = this.getListObservableCar();
-            ListCarBrand = this.getListDistinctValue("brand");
-            ListCity = this.getListDistinctValue("city");
-            ListSeats = this.getListDistinctValue("seats");
+            ListCarBrand = this.getListDistinctValue(nameof(brand));
+            ListCity = this.getListDistinctValue(nameof(city));
+            ListSeats = this.getListDistinctValue(nameof(seats));
         }
 
         public ObservableCollection<Car> getListObservableCar()
@@ -124,231 +142,5 @@ namespace CarRentalManager.ViewModel
             CarList = new ObservableCollection<Car>(cars);
             OnPropertyChanged(nameof(CarList));
         }
-
-        private ObservableCollection<string> listCarBrand;
-        public ObservableCollection<string> ListCarBrand
-        {
-            get { return listCarBrand; }
-            set
-            {
-                if (value != listCarBrand)
-                {
-                    listCarBrand = value;
-                    OnPropertyChanged("ListCarBrand");
-                }
-            }
-        }
-        private ObservableCollection<string> listCity;
-        public ObservableCollection<string> ListCity
-        {
-            get { return listCity; }
-            set
-            {
-                if (value != listCity)
-                {
-                    listCity = value;
-                    OnPropertyChanged("ListCity");
-                }
-            }
-        }
-
-        private ObservableCollection<string> listSeats;
-        public ObservableCollection<string> ListSeats
-        {
-            get { return listSeats; }
-            set
-            {
-                if (value != listSeats)
-                {
-                    listSeats = value;
-                    OnPropertyChanged("ListSeats");
-                }
-            }
-        }
-
-        private ObservableCollection<Car> carList;
-
-        public ObservableCollection<Car> CarList
-        {
-            get { return carList; }
-            set
-            {
-                if (value != carList)
-                {
-                    carList = value;
-                    OnPropertyChanged("CarList");
-                }
-            }
-        }
-
-        private string name;
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                if (value != name)
-                {
-                    name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-        private int id;
-
-        public int ID
-        {
-            get { return id; }
-            set
-            {
-                if (value != id)
-                {
-                    id = value;
-                    OnPropertyChanged("ID");
-                }
-            }
-        }
-        private string brand;
-
-        public string Brand
-        {
-            get { return brand; }
-            set
-            {
-                if (value != brand)
-                {
-                    brand = value;
-                    OnPropertyChanged("Brand");
-                }
-            }
-        }
-        private string type;
-
-        public string Type
-        {
-            get { return type; }
-            set
-            {
-                if (value != type)
-                {
-                    type = value;
-                    OnPropertyChanged("Type");
-                }
-            }
-        }
-        private string status;
-
-        public string Status
-        {
-            get { return status; }
-            set
-            {
-                if (value != status)
-                {
-                    status = value;
-                    OnPropertyChanged("Status");
-                }
-            }
-        }
-        private string licensePlate;
-
-        public string LicensePlate
-        {
-            get { return licensePlate; }
-            set
-            {
-                if (value != licensePlate)
-                {
-                    licensePlate = value;
-                    OnPropertyChanged("LicensePlate");
-                }
-            }
-        }
-        private int price;
-
-        public int Price
-        {
-            get { return price; }
-            set
-            {
-                if (value != price)
-                {
-                    price = value;
-                    OnPropertyChanged("Price");
-                }
-            }
-        }
-
-        private string imagePath;
-
-        public string ImagePath
-        {
-            get { return imagePath; }
-            set
-            {
-                if (value != imagePath)
-                {
-                    imagePath = value;
-                    OnPropertyChanged("ImagePath");
-                }
-            }
-        }
-        private string city;
-        public string City
-        {
-            get { return city; }
-            set
-            {
-                if (value != city)
-                {
-                    city = value;
-                    OnPropertyChanged("City");
-                }
-            }
-        }
-
-        private string seats;
-        public string Seats
-        {
-            get { return seats; }
-            set
-            {
-                if (value != seats)
-                {
-                    seats = value;
-                    OnPropertyChanged("Seats");
-                }
-            }
-        }
-        private string drivingType;
-        
-        public string DrivingType
-        {
-            get { return drivingType; }
-            set
-            {
-                if (value != drivingType)
-                {
-                    drivingType = value;
-                    OnPropertyChanged("DrivingType");
-                }
-            }
-        }
-
-        private bool isSelfDriving;
-        public bool IsSelfDriving
-        {
-            get { return isSelfDriving; }
-            set
-            {
-                if (value != isSelfDriving)
-                {
-                    isSelfDriving = value;
-                    OnPropertyChanged("IsSelfDriving");
-                }
-            }
-        }
-
     }
 }

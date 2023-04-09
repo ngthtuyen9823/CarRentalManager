@@ -1,4 +1,4 @@
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,276 +13,55 @@ using System.Windows.Data;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
+using CarRentalManager.services;
+using CarRentalManager.enums;
+using MaterialDesignThemes.Wpf;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListCarViewModel : BaseViewModel, IDataErrorInfo
     {
+        readonly VariableService variableService = new VariableService();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
-
         public ObservableCollection<Car> List {get; set;}
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
-
-
+        public ICommand SetInformationCommand { get; set; }
+        
         readonly CarDAO carDAO = new CarDAO();
+
+        //*INFO: Value binding
+        private string color; public string Color { get => color; set => SetProperty(ref color, value, nameof(Color)); }
+        
+        public int PublishYear { get => publishYear; set => SetProperty(ref publishYear, value, nameof(PublishYear)); }
+        private int publishYear;
+        private DateTime createdAt; public DateTime CreatedAt { get => createdAt; set => SetProperty(ref createdAt, value, nameof(CreatedAt)); }
+        private DateTime updatedAt; public DateTime UpdatedAt { get => updatedAt; set => SetProperty(ref updatedAt, value, nameof(UpdatedAt)); }
+        private int supplierId; public int SupplierId { get => supplierId; set => SetProperty(ref supplierId, value, nameof(SupplierId)); }
+        private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
+        private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
+        private string city; public string City { get => city; set => SetProperty(ref city, value, nameof(City)); }
+        private string imagePath; public string ImagePath { get => imagePath; set => SetProperty(ref imagePath, value, nameof(ImagePath)); }
+        private string name; public string Name { get => name; set => SetProperty(ref name, value, nameof(Name)); }
+        private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
+        private string brand; public string Brand { get => brand; set => SetProperty(ref brand, value, nameof(Brand)); }
+        private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
+        private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
+        private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
+        private int price; int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
 
 
         public ListCarViewModel()
         {
             List = getListObservableCar();
-            AddCommand = new RelayCommand<object>((p) =>
-            {
-                if (ErrorCollection.Count > 0)
-                    return false;
-                else
-                    return true;
-            }, (p) =>
-            {
-                carDAO.addCarToList(ID, Name, Brand, Color, PublishYear, Type.Substring(38), Status.Substring(38), DrivingType.Substring(38), Seats, LicensePlate, Price, ImagePath, SupplierId, CreatedAt, UpdatedAt) ;
-                List = getListObservableCar();
-                OnPropertyChanged(nameof(List));
-                reSetForm();
-            });
-            DeleteCommand = new RelayCommand<object>((p) =>
-            {
-                if (ErrorCollection.Count > 0)
-                    return false;
-                else
-                    return true;
-            }, (p) =>
-            {
-                carDAO.removeCarFromList(ID);
-                List = getListObservableCar();
-                OnPropertyChanged(nameof(List));
-                reSetForm();
-            });
-            EditCommand = new RelayCommand<object>((p) =>
-            {
-                if (ErrorCollection.Count > 0)
-                    return false;
-                else
-                    return true;
-            }, (p) =>
-            {
-                carDAO.updateCarToList(ID, Name, Brand, Color, PublishYear, Type.Substring(38), Status.Substring(38), DrivingType.Substring(38), Seats, LicensePlate, Price, ImagePath, SupplierId, CreatedAt, UpdatedAt);
-                List = getListObservableCar();
-                OnPropertyChanged(nameof(List));
-                reSetForm();
-            });
-        }
-        private string color;
-
-        public string Color
-        {
-            get { return color; }
-            set
-            {
-                if (value != color)
-                {
-                    color = value;
-                    OnPropertyChanged("Color");
-                }
-            }
-        }
-        private string publishYear;
-
-        public string PublishYear
-        {
-            get { return  publishYear; }
-            set
-            {
-                if (value != publishYear)
-                {
-                    publishYear = value;
-                    OnPropertyChanged("PublishYear");
-                }
-            }
-        }
-        private string drivingType;
-        public string DrivingType
-        {
-            get { return drivingType; }
-            set
-            {
-                if (value != drivingType)
-                {
-                    drivingType = value;
-                    OnPropertyChanged("DrivingType");
-                }
-            }
-        }
-        private int seats;
-
-        public int Seats
-        {
-            get { return seats; }
-            set
-            {
-                if (value != seats)
-                {
-                    seats = value;
-                    OnPropertyChanged("Seats");
-                }
-            }
-        }
-        private string imagePath;
-
-        public string ImagePath
-        {
-            get { return imagePath; }
-            set
-            {
-                if (value != imagePath)
-                {
-                    imagePath = value;
-                    OnPropertyChanged("ImagePath");
-                }
-            }
-        }
-        private DateTime createdAt;
-
-        public DateTime CreatedAt
-        {
-            get { return createdAt; }
-            set
-            {
-                if (value != createdAt)
-                {
-                    createdAt = value;
-                    OnPropertyChanged("CreatedAt");
-
-                }
-            }
-        }
-        private DateTime updatedAt;
-
-        public DateTime UpdatedAt
-        {
-            get { return updatedAt; }
-            set
-            {
-                if (value != updatedAt)
-                {
-                    updatedAt = value;
-                    OnPropertyChanged("UpdatedAt");
-
-                }
-            }
-        }
-        private string name;
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                if (value != name)
-                {
-                    name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-        private int id;
-
-        public int ID
-        {
-            get { return id; }
-            set
-            {
-                if (value != id)
-                {
-                    id = value;
-                    OnPropertyChanged("ID");
-                }
-            }
-        }
-        private int supplierId;
-
-        public int SupplierId
-        {
-            get { return supplierId; }
-            set
-            {
-                if (value != supplierId)
-                {
-                    supplierId = value;
-                    OnPropertyChanged("SupplierId");
-                }
-            }
-        }
-        private string brand;
-
-        public string Brand
-        {
-            get { return brand; }
-            set
-            {
-                if (value != brand)
-                {
-                    brand = value;
-                    OnPropertyChanged("Brand");
-                }
-            }
-        }
-        private string type;
-
-        public string Type
-        {
-            get { return type; }
-            set
-            {
-                if (value != type)
-                {
-                    type = value;
-                    OnPropertyChanged("Type");
-                }
-            }
-        }
-        private string status;
-
-        public string Status
-        {
-            get { return status; }
-            set
-            {
-                if (value != status)
-                {
-                    status = value;
-                    OnPropertyChanged("Status");
-                }
-            }
-        }
-        private string licensePlate;
-
-        public string LicensePlate
-        {
-            get { return licensePlate; }
-            set
-            {
-                if (value != licensePlate)
-                {
-                    licensePlate = value;
-                    OnPropertyChanged("LicensePlate");
-                }
-            }
-        }
-        private int price;
-
-        public int Price
-        {
-            get { return price; }
-            set
-            {
-                if (value != price)
-                {
-                    price = value;
-                    OnPropertyChanged("Price");
-                }
-            }
+            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
+            EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
+            DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
         }
 
         private void reSetForm()
@@ -292,7 +71,7 @@ namespace CarRentalManager.ViewModel
             Name = null;
             Brand = null;
             Color = null;
-            PublishYear = null;
+            PublishYear = 0;
             Type = null;
             Status = null;
             DrivingType = null;
@@ -314,49 +93,17 @@ namespace CarRentalManager.ViewModel
                         if (ID <= 0)
                             result = "ID invalid";
                         break;
-                    case "Name":
-                        if (string.IsNullOrEmpty(Name))
-                            result = "Name cannot be empty";
-                        break;
-                    case "Brand":
-                        if (string.IsNullOrEmpty(Brand))
-                            result = "Brand cannot be empty";
-                        break;
-                    case "Color":
-                        if (string.IsNullOrEmpty(Color))
-                            result = "Color cannot be empty";
-                        break;
-                    case "PublishYear":
-                        if (string.IsNullOrEmpty(PublishYear))
-                            result = "Publish year cannot be empty";
-                        break;
-                    case "Type":
-                        if (string.IsNullOrEmpty(Type))
-                            result = "Type cannot be empty";
-                        break;
-                    case "Status":
-                        if (string.IsNullOrEmpty(Status))
-                            result = "Status cannot be empty";
-                        break;
-                    case "DrivingType":
-                        if (string.IsNullOrEmpty(Type))
-                            result = "Driving type cannot be empty";
-                        break;
-                    case "Seats":
+                    case nameof(Seats):
                         if (seats <= 0)
                             result = "Seats invalid";
                         break;
-                    case "LicensePlate":
-                        if (string.IsNullOrEmpty(LicensePlate))
-                            result = "License plate can not be empty";
-                        break;
-                    case "Price":
+                    case nameof(Price):
                         if (price <= 0)
                             result = "Price invalid";
                         break;
-                    case "ImagePath":
-                        if (string.IsNullOrEmpty(ImagePath))
-                            result = "Please choose a image";
+                    default:
+                        if (string.IsNullOrEmpty(typeof(ListCarViewModel).GetProperty(columnName).GetValue(this)?.ToString()))
+                            result = string.Format("{0} can not be empty", columnName);
                         break;
                 }
                 if (ErrorCollection.ContainsKey(columnName))
@@ -367,7 +114,7 @@ namespace CarRentalManager.ViewModel
                 else if (result != null)
                     ErrorCollection.Add(columnName, result);
 
-                OnPropertyChanged("ErrorCollection");
+                OnPropertyChanged(nameof(ErrorCollection));
                 return result;
             }
         }    
@@ -376,6 +123,54 @@ namespace CarRentalManager.ViewModel
             List<Car> cars = carDAO.getListCar();
             ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
+        }
+
+        private bool checkIsError()
+        {
+            if (ErrorCollection.Count > 0)
+                return false;
+            else
+                return true;
+        }
+        private void updateListUI()
+        {
+            MessageBox.Show("Success!");
+            List = getListObservableCar();
+            OnPropertyChanged(nameof(List));
+            reSetForm();
+        }
+        private Car getCar()
+        {
+            return new Car(ID, Name,
+                    Brand, PublishYear,
+                    Color, Price,
+                    variableService.parseStringToEnum<ECarStatus>(Status.Substring(38)),
+                    variableService.parseStringToEnum<ECarType>(Type.Substring(38)),
+                    variableService.parseStringToEnum<EDrivingType>(DrivingType.Substring(38)),
+                    Seats, LicensePlate,
+                    ImagePath, ImagePath,
+                    City != null ? variableService.parseStringToEnum<ECityName>(City.Substring(38)) : ECityName.HCM,
+                    SupplierId,
+                    CreatedAt, UpdatedAt);
+        }
+        private void handleAddCommand()
+        {
+            Car car = getCar();
+            carDAO.createCar(car);
+            updateListUI();
+        }
+
+        private void handleEditCommand()
+        {
+            Car car = getCar();
+            carDAO.updateCar(car);
+            updateListUI();
+        }
+
+        private void handleDeleteCommand()
+        {
+            carDAO.removeCar(ID);
+            updateListUI();
         }
     }
 }

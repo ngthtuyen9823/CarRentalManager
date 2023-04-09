@@ -1,4 +1,4 @@
-﻿using CarRentalManager.modals;
+using CarRentalManager.models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
