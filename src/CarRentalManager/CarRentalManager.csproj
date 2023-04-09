@@ -52,6 +52,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -120,6 +123,7 @@
     <Compile Include="CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="dao\DbConnectionDAO.cs" />
     <Compile Include="dao\CommonDAO.cs" />
     <Compile Include="dao\OrderDAO.cs" />
     <Compile Include="dao\ReceiptDAO.cs" />
@@ -133,6 +137,7 @@
     </Compile>
     <Compile Include="enums\ECarStatus.cs" />
     <Compile Include="enums\ECarType.cs" />
+    <Compile Include="enums\ECityName.cs" />
     <Compile Include="enums\EContractStatus.cs" />
     <Compile Include="enums\EDrivingType.cs" />
     <Compile Include="enums\EnumDescriptionTypeConverter.cs" />
@@ -145,13 +150,13 @@
     <Compile Include="LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="modals\Car.cs" />
-    <Compile Include="modals\Contract.cs" />
-    <Compile Include="modals\Customer.cs" />
-    <Compile Include="modals\Order.cs" />
-    <Compile Include="modals\Receipt.cs" />
-    <Compile Include="modals\Supplier.cs" />
-    <Compile Include="modals\User.cs" />
+    <Compile Include="models\Car.cs" />
+    <Compile Include="models\Contract.cs" />
+    <Compile Include="models\Customer.cs" />
+    <Compile Include="models\Order.cs" />
+    <Compile Include="models\Receipt.cs" />
+    <Compile Include="models\Supplier.cs" />
+    <Compile Include="models\User.cs" />
     <Compile Include="OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
@@ -161,15 +166,10 @@
     <Compile Include="RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="services\CustomerDataService.cs" />
-    <Compile Include="services\CarDataService.cs" />
-    <Compile Include="services\ContractDataService.cs" />
-    <Compile Include="services\OrderDataService.cs" />
+    <Compile Include="services\CommondDataService.cs" />
     <Compile Include="services\ReceiptDataService.cs" />
     <Compile Include="services\SqlQueryService.cs" />
-    <Compile Include="services\SupplierDataService.cs" />
     <Compile Include="services\UserService.cs" />
-    <Compile Include="services\UserDataService.cs" />
     <Compile Include="services\VariableService.cs" />
     <Compile Include="SupplierRegister.xaml.cs">
       <DependentUpon>SupplierRegister.xaml</DependentUpon>

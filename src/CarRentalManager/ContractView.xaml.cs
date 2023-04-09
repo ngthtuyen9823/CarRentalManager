@@ -1,4 +1,4 @@
-﻿using CarRentalManager.modals;
+﻿using CarRentalManager.models;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace CarRentalManager
                 ID.Text = selectedContract.ID.ToString();
                 OrderId.Text = selectedContract.OrderId.ToString();
                 UserId.Text = selectedContract.UserId.ToString();
-                //Price.Text = selectedContract.Price();
+                Price.Text = selectedContract.Price.ToString();
                 Status.Text = selectedContract.Status.ToString();
             }
         }

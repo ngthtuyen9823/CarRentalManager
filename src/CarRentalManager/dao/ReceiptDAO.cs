@@ -8,99 +8,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace CarRentalManager.dao
 {
     public class ReceiptDAO
     {
-        private SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly ReceiptDataService receiptDataService = new ReceiptDataService();
+        readonly CommondDataService commondDataService = new CommondDataService();
+        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
+
         public ReceiptDAO() { }
 
         public List<Receipt> getListReceipt()
         {
-            try
-            {
-                conn.Open();
-                string sqlStringGetTable = sqlService.getListTableData(ETableName.RECEIPT);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                List<Receipt> receiptList = new List<Receipt>();
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    var row = dataTable.Rows[i];
-                    Receipt newReceipt = receiptDataService.createReceiptByRowData(row);
-                    receiptList.Add(newReceipt);
-                }
-                return receiptList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally { 
-                conn.Close();
-            }
+            string sqlStringGetTable = sqlService.getListTableData(ETableName.RECEIPT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Receipt>(dataTable);
         }
 
         public List<Receipt> getListReceiptByDescOrAsc(bool isDescrease, string fieldName)
         {
-            try
-            {
-                conn.Open();
-                string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.RECEIPT);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                List<Receipt> receiptList = new List<Receipt>();
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    var row = dataTable.Rows[i];
-                    Receipt newReceipt = receiptDataService.createReceiptByRowData(row);
-                    receiptList.Add(newReceipt);
-                }
-                return receiptList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
+            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.RECEIPT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Receipt>(dataTable);
         }
 
         public Receipt getReceiptById(string id)
         {
-            try
-            {
-                conn.Open();
-                string sqlStringGetTable = sqlService.getValueById(id, ETableName.RECEIPT);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
+            
+            string sqlStringGetTable = sqlService.getValueById(id, ETableName.RECEIPT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Receipt>(dataTable).First();
+        }
 
-                Receipt newReceipt = receiptDataService.createReceiptByRowData(dataTable.Rows[0]);
-                return newReceipt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
+        public Receipt createReceipt(Receipt receipt)
+        {
+            string sqlStringGetTable = sqlService.createReceipt(receipt);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Receipt>(dataTable).First();
+        }
+
+        public void removeReceipt(int id)
+        {
+            string sqlString = sqlService.removeById(ETableName.RECEIPT, id);
+            dbConnectionDAO.getDataTable(sqlString);
+        }
+        public void updateReceipt(Receipt receipt)
+        {
+            string sqlString = sqlService.updateReceipt(receipt);
+            dbConnectionDAO.getDataTable(sqlString);
         }
     }
 }

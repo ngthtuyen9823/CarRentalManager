@@ -1,154 +1,58 @@
 ﻿using CarRentalManager.enums;
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using CarRentalManager.services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows;
+using System.Linq;
 
 namespace CarRentalManager.dao
 {
     public class ContractDAO
     {
-        private SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly ContractDataService contractDataService = new ContractDataService();
+        readonly CommondDataService commondDataService = new CommondDataService();
+        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
         public ContractDAO() { }
 
         public Contract getContractById(string id)
         {
-            try
-            {
-                conn.Open(); 
-                string sqlStringGetTable = sqlService.getValueById(id, ETableName.CONTRACT);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTableCar = new DataTable();
-                adapter.Fill(dataTableCar);
+            string sqlStringGetTable = sqlService.getValueById(id, ETableName.CONTRACT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Contract>(dataTable).First();
 
-                Contract newCar = contractDataService.createContractByRowData(dataTableCar.Rows[0]);
-                return newCar;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
         }
-        public void addContractToList(int id, int orderId, int userId,string status, DateTime makingDay, DateTime createdAt, DateTime updatedAt)
+        public void createContract(Contract newContract)
         {
-            try
-            {
-                conn.Open();
-                string SQL = sqlService.createNewContract(id, orderId, userId, status, makingDay, createdAt, updatedAt);
-                SqlCommand cmd = new SqlCommand(SQL, conn);
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    MessageBox.Show("Success!");
-                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CONTRACT);
-                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                    DataTable dataTableContract = new DataTable();
-                    adapter.Fill(dataTableContract);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fail!" + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
+            string sqlString = sqlService.createNewContract(newContract);
+            dbConnectionDAO.getDataTable(sqlString);
         }
-        public void removeContractFromList(int id)
+
+        public void removeContract(int id)
         {
-            try
-            {
-                conn.Open();
-                string SQL = sqlService.removeContract(id);
-                SqlCommand cmd = new SqlCommand(SQL, conn);
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    MessageBox.Show("Success!");
-                    string sqlStringGetTable = sqlService.getListTableData(ETableName.CONTRACT);
-                    SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                    DataTable dataTableContract = new DataTable();
-                    adapter.Fill(dataTableContract);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fail!" + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            string sqlString = sqlService.removeById(ETableName.CONTRACT, id);
+            dbConnectionDAO.getDataTable(sqlString);
         }
+        public void updateContract(Contract updatedContract)
+        {
+            string sqlString = sqlService.updateContract(updatedContract);
+            dbConnectionDAO.executing(sqlString, ETableName.CONTRACT);
+        }
+
         public List<Contract> getListContract()
         {
-            try
-            {
-                conn.Open();
-                string sqlStringGetTable = sqlService.getListTableData(ETableName.CONTRACT);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTableCar = new DataTable();
-                adapter.Fill(dataTableCar);
-
-                List<Contract> contractList = new List<Contract>();
-                for (int i = 0; i < dataTableCar.Rows.Count; i++)
-                {
-                    var row = dataTableCar.Rows[i];
-                    Contract newContract = contractDataService.createContractByRowData(row);
-                    contractList.Add(newContract);
-                }
-                return contractList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
+            string sqlStringGetTable = sqlService.getListTableData(ETableName.CONTRACT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Contract>(dataTable);
         }
 
         public List<Contract> getListContractByDescOrAsc(bool isDescrease, string fieldName)
         {
-            try
-            {
-                conn.Open();
-                string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CONTRACT);
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStringGetTable, conn);
-                DataTable dataTableCar = new DataTable();
-                adapter.Fill(dataTableCar);
-
-                List<Contract> contractList = new List<Contract>();
-                for (int i = 0; i < dataTableCar.Rows.Count; i++)
-                {
-                    var row = dataTableCar.Rows[i];
-                    Contract newContract = contractDataService.createContractByRowData(row);
-                    contractList.Add(newContract);
-                }
-                return contractList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
+            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CONTRACT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Contract>(dataTable);
         }
 
     }

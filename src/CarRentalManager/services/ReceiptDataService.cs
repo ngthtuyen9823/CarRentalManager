@@ -1,5 +1,5 @@
 ﻿using CarRentalManager.enums;
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +25,6 @@ namespace CarRentalManager.services
 
             return new Receipt(id,
                 contractId,
-                makingDate,
                 price,
                 createdAt, updatedAt);
         }

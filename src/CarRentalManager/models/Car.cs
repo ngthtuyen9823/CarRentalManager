@@ -1,7 +1,7 @@
 using System;
 using CarRentalManager.enums;
 
-namespace CarRentalManager.modals
+namespace CarRentalManager.models
 {
     public class Car
     {
@@ -18,7 +18,7 @@ namespace CarRentalManager.modals
         string imagePath;
         int seats;
         string tutorialPath;
-        string city;
+        ECityName city;
         int? supplierId;
         DateTime createdAt;
         DateTime updatedAt;
@@ -35,7 +35,7 @@ namespace CarRentalManager.modals
             string licensePlate,
             string imagePath,
             string tutorialPath,
-            string city,
+            ECityName city,
             int? supplierId,
             DateTime createdAt,
             DateTime updatedAt)
@@ -61,7 +61,6 @@ namespace CarRentalManager.modals
 
         public Car() {  }
 
-
         public int ID { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string Brand { get { return brand; } set { brand = value; } }
@@ -75,7 +74,7 @@ namespace CarRentalManager.modals
         public string ImagePath { get { return imagePath; } set { imagePath = value; } }
         public int Seats { get { return seats; } set { seats = value; } }
         public string TutorialPath { get { return tutorialPath; } set { tutorialPath = value; } }
-        public string City { get { return city; } set { city = value; } }
+        public ECityName City { get { return city; } set { city = value; } }
         public int? SupplierId { get { return supplierId; } set { supplierId = value; } }
         public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
         public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }

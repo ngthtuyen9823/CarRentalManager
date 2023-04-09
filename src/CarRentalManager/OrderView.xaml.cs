@@ -1,5 +1,5 @@
 ﻿using CarRentalManager.enums;
-using CarRentalManager.modals;
+using CarRentalManager.models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
