@@ -9,8 +9,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:SqlClient="clr-namespace:System.Data.SqlClient;assembly=System.Data" x:Class="CarRentalManager.LandingPage"
         mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="700" Width="1400"
-        ResizeMode="CanResizeWithGrip">
+       >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -149,42 +151,30 @@
         <StaticResource ResourceKey="CarViewModel"/>
     </Window.DataContext>
     <Border>
-        <Grid>
+        <Grid RenderTransformOrigin="0.5,0.5">
             <Grid.Background>
-                <ImageBrush>
-                    <ImageBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                            <TranslateTransform Y="-0.55"/>
-                        </TransformGroup>
-                    </ImageBrush.RelativeTransform>
-                </ImageBrush>
+                <ImageBrush Stretch="Fill"/>
             </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <!--#region Logo-->
-            <Grid
-            Background="{StaticResource PrimaryBrush}">
+            <Grid  
+               Background="Black"
+               Grid.Column="0">
                 <Path
-                Fill="{StaticResource SecondaryBrush}"
-                Height="40"
-                Width="40"
+                HorizontalAlignment="Left"
+                Fill="#3AB19B"          
                 Stretch="Uniform"
-                Data="{StaticResource car_icon}"/>
+                Data="{StaticResource car_icon}" 
+                Margin="10,0,0,-2" Width="59"/>
             </Grid>
             <!--#endregion-->
             <Grid
-                Background="{StaticResource SecondaryBrush}"
-                Grid.Column="1">
+                Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
@@ -195,13 +185,17 @@
 
             <!--#region Header-->
             <StackPanel
-            Grid.Column="1"
             HorizontalAlignment="Left"
             Height="80"
-            Background="{StaticResource SecondaryBrush}" Width="270">
+            Background="Black" 
+            Margin="100,0,0,0"
+            Width="1300">
                 <Grid
-             VerticalAlignment="Center"
-             Margin="0,10,0,0">
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Margin="0,10,0,0"
+                 Width="350"
+                    >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -209,38 +203,68 @@
                     <TextBlock x:Name="txtNameofWebsite"
                     FontSize="40"
                     FontWeight="Bold"
-                    Foreground="{StaticResource HeaderBrush}"
+                    Foreground="White"
                     Text="Rentalcars" FontFamily="Copperplate Gothic Bold"/>
                     <TextBlock
                     Grid.Row="1"
                     FontSize="20"
                     HorizontalAlignment="Right"
                     FontWeight="Bold"
-                    Foreground="{StaticResource TertiaryBrush}"
+                    Margin="0,0,30,0"
+                    Foreground="#3AB19B"
                     Text=".com" FontFamily="Copperplate Gothic Bold"/>
                 </Grid>
             </StackPanel>
 
-            <Grid
-                Margin="269,0,964,0"
-                Width="90"
-                Background="{StaticResource SecondaryBrush}" Grid.Column="1">
-                <Path
-                    Fill="{StaticResource PrimaryBrush}"
-                    Height="20"
-                    Width="20"
-                    Stretch="Uniform"
-                    Margin="30,0,0,0"
-                    Data="{StaticResource phone_icon}"/>
-            </Grid>
+            <StackPanel
+            Grid.Column="2"
+            HorizontalAlignment="Right"
+            Height="80"
+            Background="Black" 
+            Margin="0,0,410,0" 
+            Width="160">
+                <Grid
+                Margin="0,30,0,0" Width="160">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txtHelp"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Help" FontFamily="Harlow Solid Italic" Margin="0,0,0,0"/>
+                </Grid>
+
+            </StackPanel>
 
 
             <StackPanel
-            Grid.Column="1"
-            HorizontalAlignment="Left"
+                Grid.Column="2"
+                Width="50"              
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="0,0,470,0">
+                <Grid
+                    
+                    Background="Black" Grid.Column="1">
+                    <Path
+                    Fill="White"
+                    Height="80"
+                    Width="20"
+                    Stretch="Uniform"
+                    Margin="0,0,0,0"
+                    Data="{StaticResource phone_icon}"/>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel
+            Grid.Column="2"
+            HorizontalAlignment="Right"
             Height="80"
-            Background="{StaticResource SecondaryBrush}" 
-            Margin="361,0,0,0" Width="151">
+            Background="Black" 
+            Margin="0,0,320,0" 
+            Width="160">
                 <Grid
                 Margin="0,30,0,0" Width="160">
                     <Grid.RowDefinitions>
@@ -249,7 +273,7 @@
                     <TextBlock x:Name="txtHotline"
                     FontSize="20"
                     FontWeight="Bold"
-                    Foreground="{StaticResource HeaderBrush}"
+                    Foreground="White"
                     Text="Hotline 68686868" FontFamily="Harlow Solid Italic" Margin="0,0,0,0"/>
                 </Grid>
 
@@ -279,13 +303,39 @@
 
 
             <StackPanel
-                Grid.Column="1"
-                HorizontalAlignment="Center"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
                 Height="80"
-                Background="{StaticResource SecondaryBrush}" 
-                Margin="850,10,0,0" Width="160">
-                <Grid Height="83">
-                    <materialDesign:Chip
+                Background="Black" 
+                Margin="0,0,285,0" Width="35">
+                <Grid 
+                    Height="80"
+                 >
+                    <ToggleButton
+                      Height="20"
+                      IsChecked="False" 
+                      Checked="CheckBox_Checked"
+                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      Foreground="Black"
+                      ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
+                        <materialDesign:PackIcon
+                            Kind="Pin"
+                            RenderTransformOrigin=".5,.5">
+                            <materialDesign:PackIcon.RenderTransform>
+                                <RotateTransform
+                                    
+                                    Angle="45" />
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <materialDesign:PackIcon
+                                Background="White"
+                                Kind="Pin" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+
+                    </ToggleButton>
+
+                    <!--<materialDesign:Chip
                                          HorizontalAlignment="Center"
                                          FontWeight="Bold"
                                          Background="Gray"
@@ -297,27 +347,53 @@
                             HorizontalAlignment="Center"
                             Content="Cho thuê xe" 
                             IsChecked="False" Checked="CheckBox_Checked"/>
-                    </materialDesign:Chip>
+                    </materialDesign:Chip>-->
                 </Grid>
 
             </StackPanel>
+
             <StackPanel
-                Grid.Column="1"
+                Grid.Column="2"
                 HorizontalAlignment="Right"
                 Height="80"
-                Background="{StaticResource SecondaryBrush}" 
-                Margin="0,10,0,0" Width="160">
+                Background="Black"
+                Margin="0,0,170,0" Width="120">
+                <Grid
+                    Height="80">
+                    <materialDesign:Chip 
+                        Height="25"
+                        
+                        Foreground="White"
+                        Background="#3AB19B"
+                        FontFamily="Dubai Medium">
+                        Be Our Supplier
+                    </materialDesign:Chip>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Height="80"
+                Background="Black"
+                Margin="692,0,0,0" Width="160">
                 <Grid Height="83">
                     <materialDesign:Chip
-                                         Content="Đăng nhập"
-                                         HorizontalAlignment="Center"
-                                         FontWeight="Bold"
-                                         Background="Gray"
-                                         Foreground="{StaticResource HeaderBrush}"
-                                         Icon="D"
-                                         IsDeletable="True"
-                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
-                                         IconForeground="{DynamicResource PrimaryBrush}" Width="152" Click="Chip_Click" />
+                          VerticalAlignment="Bottom"
+                          Margin="10"
+                          Background="#aec3b0"
+                          Content="ADMIN LOGIN"
+                          IconBackground="#3AB19B"
+                          IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                          Click="Chip_Click" FontFamily="Dubai Medium">
+                        <materialDesign:Chip.Icon>
+                            <materialDesign:PackIcon
+                                Height="25"
+                                Kind="Login">
+                            </materialDesign:PackIcon>
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
                 </Grid>
 
             </StackPanel>
@@ -327,12 +403,11 @@
 
             <StackPanel
                 Grid.Column="2"
-                Grid.RowSpan="2"
                 Panel.ZIndex="1"
                 Orientation="Horizontal"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Margin="8">
+                Margin="0">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent"/>
@@ -377,301 +452,550 @@
             <ScrollViewer 
                     x:Name="scvMain" VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Visible"
-                      Grid.Column="2"
-                      Grid.Row="2"
+                      Grid.Column="1"
+                      Grid.Row="1"                      
+                      Grid.ColumnSpan="2"
                     >
-                <Grid>
-                    <Border
+                <ScrollViewer.Background>
+                    <ImageBrush/>
+                </ScrollViewer.Background>
+                <Viewbox Stretch="Fill">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="650"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid
+                        Grid.Row="0" Width="1399" Height="650">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/landingpage.jpg" Opacity="0.9" Stretch="UniformToFill">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="1"/>
+                                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                                            <TranslateTransform X="0"/>
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Grid.Background>
+                            <!--slogan-->
+                            <TextBlock
+                            Height="100"
+                            Width="1100"
+                            VerticalAlignment="Top"
+                            Margin="0,153,0,0"
+                            HorizontalAlignment="Center"
+                            FontSize="55"
+                            Foreground="Black"                           
+                            Grid.Row="0" FontFamily="Arial Rounded MT Bold">
+                            FIND YOUR BEST CAR RENTAL WITH US
+                            </TextBlock>
+                            <TextBlock
+                            Height="100"
+                            Width="1100"
+                            VerticalAlignment="Top"
+                            Margin="0,150,15,0"
+                            HorizontalAlignment="Center"
+                            FontSize="55"
+                            Foreground="#57C5B6"
+                            Grid.Row="0" FontFamily="Arial Rounded MT Bold" >
+                            FIND YOUR BEST CAR RENTAL WITH US
+                            </TextBlock>
+                            <!-- should disable on 2nd transition... -->
+
+                            <Line 
+                            Grid.Row="0" 
+                            VerticalAlignment="Top"
+                            Margin="0,180,0,0"
+                            HorizontalAlignment="Center"
+                            X1="0" Y1="50" X2="600" Y2="50" Stroke="Black" StrokeThickness="2"/>
+                            <TextBlock
+                            Grid.Row="0"
+                            VerticalAlignment="Top"
+                            Margin="240"
+                            Height="45"
+                            FontSize="35"
+                            Width="520"
+                            Foreground="Black" FontFamily="Corbel Light">
+                            Explore, discover, and save. Let's go
+                            </TextBlock>
+                            <Line 
+                            Grid.Row="0" 
+                            VerticalAlignment="Top"
+                            Margin="0,245,0,0"
+                            HorizontalAlignment="Center"
+                            X1="0" Y1="50" X2="600" Y2="50" Stroke="Black" StrokeThickness="2"/>
+                            <!--fillform-->
+                            <Border
                     Grid.Column="1"
                     CornerRadius="10"
-                    Background="{StaticResource FormBrush}"
-                    HorizontalAlignment="Stretch"
-                    Height="200"
-                    Margin="0,25,80,0"
-                    VerticalAlignment="Top"
-                    Width="700" Grid.Row="1">
-
-                        <Grid
+                    Background="#3AADA1"
+                    HorizontalAlignment="Center"
+                    Height="140"
+                    Margin="0,120,0,0"
+                    VerticalAlignment="Center"
+                    Width="1000" Grid.Row="1">
+                                <Grid
+                                
                         VerticalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="300"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                <customcontrols:MenuBottons x:Name="btndDriver" Icon= "{StaticResource driver_icon}" 
+
+                                    <!--<StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="230">
+                                    <customcontrols:MenuBottons x:Name="btndDriver" Icon= "{StaticResource driver_icon}" 
                                                         IconWidth="30"
                                                         IndicatorBrush="#88cc00" 
                                                         Text="Xe có tài xế" 
                                                         IsSelected="True" 
                                                         VerticalAlignment="Center"
                                                         GroupName="MenuButtons" Cursor="Hand"/>
-                                <customcontrols:MenuBottons x:Name="btnNoDriver" Icon="{StaticResource nodriver_icon}" 
+                                    <customcontrols:MenuBottons x:Name="btnNoDriver" Icon="{StaticResource nodriver_icon}" 
                                                         IconWidth="30"
                                                         IndicatorBrush="#88cc00" 
                                                         Text="Xe tự lái"
                                                         VerticalAlignment="Center"
                                                         GroupName="MenuButtons" Cursor="Hand"/>
-                            </StackPanel>
-                            <!--Fill Infor-->
-                            <Grid
+                                </StackPanel>-->
+                                    <!--Fill Infor-->
+                                    <Grid
                             Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Border
-                                Height="45"
-                                BorderBrush="Silver"
-                                BorderThickness="2"
-                                CornerRadius="4">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="40"/>
-                                            <!--for icon-->
-                                            <ColumnDefinition/>
-                                            <!--describe-->
-                                        </Grid.ColumnDefinitions>
-                                        <!--Icon-->
-                                        <Path
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="55"/>
+                                            <RowDefinition Height="60"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Border
+                                    Background="White"
+                                    Height="45"
+                                    BorderBrush="Silver"
+                                    BorderThickness="2"
+                                    Margin="10,0,5,0"
+                                    CornerRadius="4"
+                                    Width="480"
+                                        HorizontalAlignment="Left">
+                                            <Grid
+                                        Height="45">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="45"/>
+                                                    <!--for icon-->
+                                                    <ColumnDefinition/>
+                                                    <!--describe-->
+                                                </Grid.ColumnDefinitions>
+                                                <!--Icon-->
+                                                <Path
                                         Margin="10,8,10,8"
+                                        
                                         Data="{StaticResource location_icon}"
-                                        Fill="{StaticResource PrimaryBrush}" RenderTransformOrigin="0.16,0.481" Stretch="Fill"/>
-                                        <Label 
-                                        Background="{StaticResource FormBrush}"
+                                        Fill="Gray" 
+                                        RenderTransformOrigin="0.16,0.481" Stretch="Fill"/>
+                                                <Label 
+                                        
                                         BorderThickness="0"
-                                        Foreground="DarkGray"
+                                        Foreground="Black"
                                         Width="115"
                                         FontSize="20"
-                                        Content="Thành phố"
-                                        VerticalAlignment="Center"
-                                        FontWeight="SemiBold" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="35,0,0,0"/>
-                                        <ComboBox x:Name="txtDiaChi" Style="{DynamicResource MaterialDesignComboBox}"
-                                        Background="{StaticResource FormBrush}"
+                                        Content="Location"
+                                        VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="50,0,0,0" FontFamily="Calibri"/>
+                                                <ComboBox x:Name="txtDiaChi" Style="{DynamicResource MaterialDesignComboBox}"                             
                                         BorderThickness="0"
-                                        Foreground="DarkGray"
+                                        Foreground="Black"
                                         FontSize="20"
                                         Grid.Column="1"
-                                        Margin="101,0,0,0"
+                                        Margin="115,0,0,0"
                                         FontWeight="SemiBold"
                                         SelectedItem="{Binding City}"
-                                        ItemsSource="{Binding ListCity}"/>
-                                    </Grid>
+                                        ItemsSource="{Binding ListCity}"
+                                        Width="310"
+                                        HorizontalAlignment="Left"/>
+                                            </Grid>
 
-                                </Border>
-                                <!--#start time-->
-                                <Border
-                                Grid.Row="1"
+                                        </Border>
+                                        <!--#start time-->
+                                        <Border
+                                Grid.Row="0"
                                 Height="45"
-                                BorderBrush="Silver"
-                                BorderThickness="2"
-                                CornerRadius="4">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50"/>
-                                            <!--for icon-->
-                                            <ColumnDefinition/>
-                                            <!--describe-->
-                                        </Grid.ColumnDefinitions>
-                                        <!--Icon-->
-                                        <Label 
-                                        Background="{StaticResource FormBrush}"
-                                        BorderThickness="0"
-                                        Foreground="DarkGray"
-                                        Width="150"
-                                        FontSize="20"
-                                        Content="Hãng xe"
-                                        VerticalAlignment="Center"
-                                        FontWeight="SemiBold" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
-                                        <ComboBox 
-                                        Foreground="DarkGray"
-                                        FontWeight="SemiBold"
-                                        x:Name="dtStart" 
-                                        Grid.Column="2"
-                                        Margin="35,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        ItemsSource="{Binding ListCarBrand}"
-                                        SelectedItem="{Binding Brand}">
-                                        </ComboBox>
-                                    </Grid>
-
-                                </Border>
-                                <!--end time-->
-                                <Border
-                                Grid.Row="2"
-                                Height="45"
-                                BorderBrush="Silver"
-                                BorderThickness="2"
-                                CornerRadius="4">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50"/>
-                                            <!--for icon-->
-                                            <ColumnDefinition Width="18*"/>
-                                            <ColumnDefinition Width="155*"/>
-                                            <!--describe-->
-                                        </Grid.ColumnDefinitions>
-                                        <!--Icon-->
-                                        <Label
-                                        Background="{StaticResource FormBrush}"
-                                        BorderThickness="0"
-                                        Foreground="DarkGray"
-                                        Width="120"
-                                        FontSize="20"
-                                        Content="Số chỗ ngồi"
-                                        VerticalAlignment="Center"
-                                        FontWeight="SemiBold" Grid.ColumnSpan="3" HorizontalAlignment="Left"/>
-                                        <ComboBox 
-                                        x:Name="txtSeats" 
-                                        Margin="70,0,0,0"
-                                        Foreground="DarkGray"
-                                        FontWeight="SemiBold"
-                                        Grid.Column="1"
-                                        FontSize="20" 
-                                        VerticalAlignment="Center"
-                                        Grid.ColumnSpan="2"
-                                        SelectedItem="{Binding Seats}"
-                                        ItemsSource="{Binding ListSeats}"/>
-                                    </Grid>
-                                </Border>
-
-                                <!--search-->
-                                <Border
-                                Grid.Row="3"
-                                Height="45"
+                                Margin="0,0,10,0"
+                                Background="White"
                                 BorderBrush="Silver"
                                 BorderThickness="2"
                                 CornerRadius="4"
-                                Background="{StaticResource CanvasBrush}"/>
-                                <Grid 
-                                Grid.Row="3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <!--for icon-->
-                                        <ColumnDefinition Width="250"/>
-                                        <!--describe-->
-                                        <ColumnDefinition/>
-                                        <!--sort-->
-                                    </Grid.ColumnDefinitions>
-                                    <Grid>
-                                        <Path
-                                    Width="30"
-                                    Height="30"
-                                    Margin="10,0"
-                                    Data="{StaticResource search_icon}"
-                                    Fill="{StaticResource PrimaryBrush}"/>
-                                    </Grid>
-                                    <Button x:Name="btnSearch"
-                                    Grid.Column="1"      
-                                    Background="{StaticResource CanvasBrush}"
-                                    BorderThickness="0"
-                                    Content="Tìm Kiếm Ngay"
-                                    FontSize="20"
-                                    Foreground="{StaticResource PrimaryBrush}"
-                                    Height="40"
-                                    Width="250" Cursor="Hand"
-                                    Command="{Binding SearchCommand}"/>
-                                    <Grid
-                                        Grid.Column="2">
-                                        <Menu>
-                                            <MenuItem Header="Sort by"
-                                                      FontStyle="Italic"
-                                                      Foreground="{StaticResource PrimaryBrush}"
+                                HorizontalAlignment="Right"
+                                Width="480">
+                                            <Grid
+                                        Height="45">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <!--for icon-->
+                                                    <ColumnDefinition Width="129"/>
+                                                    <ColumnDefinition />
+                                                    <!--describe-->
+                                                </Grid.ColumnDefinitions>
+                                                <!--Icon-->
+
+                                                <materialDesign:PackIcon 
+                                                    Grid.Column="0"
+                                                    Kind="CarSports" 
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center" 
+                                                    Height="45" Width="50"
+                                                    Foreground="Gray"/>
+                                                <Label 
+                                        Grid.Column="1"                                        
+                                        BorderThickness="0"
+                                        Foreground="Black"
+                                        Width="100"
+                                        FontSize="20"
+                                        Content="Brand"
+                                        VerticalAlignment="Center" 
+                                        Grid.ColumnSpan="2" 
+                                        HorizontalAlignment="Left" FontFamily="Calibri"/>
+
+                                                <ComboBox 
+                                         Grid.Column="2"                              
+                                        BorderThickness="0"                                      
+                                        Foreground="Black"
+                                        FontWeight="SemiBold"
+                                        x:Name="dtStart"                                        
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Width="260"
+                                        FontSize="20"
+                                        ItemsSource="{Binding ListCarBrand}"
+                                        SelectedItem="{Binding Brand}" Grid.ColumnSpan="2" />
+                                            </Grid>
+
+                                        </Border>
+                                        <!--end time-->
+                                        <Border
+                                Grid.Row="1"
+                                Width="480"
+                                Height="45"
+                                Margin="10,0,5,0"
+                                Background="White"
+                                HorizontalAlignment="Left"
+                                BorderBrush="Silver"
+                                BorderThickness="2"                              
+                                CornerRadius="4">
+                                            <Grid
+                                        Height="45">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <!--for icon-->
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition/>
+                                                    <!--describe-->
+                                                </Grid.ColumnDefinitions>
+                                                <!--Icon-->
+                                                <materialDesign:PackIcon 
+                                                Grid.Column="0"
+                                                Kind="SeatReclineExtra"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" 
+                                                Height="40" Width="40"
+                                                Foreground="Gray"
+                                                />
+                                                <Label
+                                        Grid.Column="1"
+                                        
+                                        BorderThickness="0"
+                                        Foreground="Black"
+                                        Width="100"
+                                        FontSize="20"
+                                        Content="Seats"
+                                        VerticalAlignment="Center" Grid.ColumnSpan="3" HorizontalAlignment="Left" FontFamily="Calibri" />
+                                                <ComboBox                                  
+                                        
+                                        BorderThickness="0"                                                                                     
+                                        x:Name="txtSeats" 
+                                        Margin="109,0,0,0"
+                                        Width="311"
+                                        Foreground="Black"
+                                        FontWeight="SemiBold"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        FontSize="20"
+                                        Grid.ColumnSpan="2"
+                                        SelectedItem="{Binding Seats}"
+                                        ItemsSource="{Binding ListSeats}"/>
+                                            </Grid>
+                                        </Border>
+
+                                        <!--sortby-->
+
+                                        <Border
+                                    Grid.Row="1"
+                                    Height="45"
+                                    Margin="10,0,10,0"
+                                    Background="White"
+                                    BorderBrush="Silver"
+                                    BorderThickness="2"
+                                    CornerRadius="4"
+                                    HorizontalAlignment="Right"
+                                    Width="480">
+                                            <Grid
+                                        Height="45">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <!--for icon-->
+                                                    <ColumnDefinition/>
+                                                    <!--describe-->
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon 
+                                                Grid.Column="0"
+                                                Kind="Sort" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" 
+                                                Height="45" Width="50"
+                                                Foreground="Gray"/>
+                                                <Menu
+                                            Grid.Column="1">
+                                                    <MenuItem Header="Sort by"
+                                                      FontFamily="Calibri"
+                                                      Foreground="Black"
                                                       FontSize="20"
-                                                      Height="44" Width="207"
-                                                      Margin="5"
-                                                      >
-                                                <MenuItem 
+                                                      Height="40" 
+                                                      Width="400"
+                                                      Margin="-10,0,0,0"
+                                                      HorizontalContentAlignment="Left">
+                                                        <MenuItem 
                                                     Header ="Khoảng giá"  
                                                      >
-                                                    <MenuItem.Icon>
-                                                        <Image Source="Assets/level-up.png"
+                                                            <MenuItem.Icon>
+                                                                <Image Source="Assets/level-up.png"
                                                                Stretch="Uniform"
                                                                Height="60"/>
-                                                    </MenuItem.Icon>
-                                                    <MenuItem 
+                                                            </MenuItem.Icon>
+                                                            <MenuItem 
                                                         Header="Dưới 200"
                                                         Command="{Binding SortLowerThan200}"/>
-                                                    <MenuItem
+                                                            <MenuItem
                                                         Header="Từ 200 đến 500"
                                                         Command="{Binding SortLowerThan500}"/>
-                                                    <MenuItem
+                                                            <MenuItem
                                                         Header="Từ 500 đến 1000"
                                                         Command="{Binding SortLowerThan1000}"/>
-                                                    <MenuItem
+                                                            <MenuItem
                                                         Header="Trên 1000"
                                                         Command="{Binding SortBiggerThan1000}"/>
-                                                </MenuItem>
-                                                <MenuItem 
+                                                        </MenuItem>
+                                                        <MenuItem 
                                                     Header ="Giá cao đến thấp"
                                                       Command="{Binding SortByAscCommand}"   
                                                      >
-                                                    <MenuItem.Icon>
-                                                        <Image Source="Assets/hightolow.jpg"
+                                                            <MenuItem.Icon>
+                                                                <Image Source="Assets/hightolow.jpg"
                                                                Stretch="Uniform"
                                                                Height="60"/>
-                                                    </MenuItem.Icon>
-                                                </MenuItem>
-                                                <MenuItem 
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem 
                                                     Header="Giá thấp đến cao"
                                                     Command="{Binding SortByDscCommand}">
-                                                    <MenuItem.Icon>
-                                                        <Image Source="Assets/lowtohigh.jpg"
+                                                            <MenuItem.Icon>
+                                                                <Image Source="Assets/lowtohigh.jpg"
                                                                Stretch="Uniform"
                                                                Height="60"/>
-                                                    </MenuItem.Icon>
-                                                </MenuItem>
-                                                <MenuItem Header="Loại xe">
-                                                    <MenuItem Header="CAR"
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Loại xe">
+                                                            <MenuItem Header="CAR"
                                                               Command="{Binding SortByCarCommand}">
-                                                        <MenuItem.Icon>
-                                                            <Image Source="Assets/car_type.jpg"
+                                                                <MenuItem.Icon>
+                                                                    <Image Source="Assets/car_type.jpg"
                                                                Stretch="Uniform"
                                                                Height="80"/>
-                                                        </MenuItem.Icon>
-                                                    </MenuItem>
-                                                    <MenuItem Header="BYCYCLE" Command="{Binding SortByBikeCommand}">
-                                                        <MenuItem.Icon>
-                                                            <Image Source="Assets/bicycle_type.png"
+                                                                </MenuItem.Icon>
+                                                            </MenuItem>
+                                                            <MenuItem Header="BYCYCLE" Command="{Binding SortByBikeCommand}">
+                                                                <MenuItem.Icon>
+                                                                    <Image Source="Assets/bicycle_type.png"
                                                                Stretch="Uniform"
                                                                Height="80"/>
-                                                        </MenuItem.Icon>
-                                                    </MenuItem>
-                                                    <MenuItem Header="MOTOBIKE" Command="{Binding SortByMotoBikeCommand}">
-                                                        <MenuItem.Icon>
-                                                            <Image Source="Assets/motobike_type.png"
+                                                                </MenuItem.Icon>
+                                                            </MenuItem>
+                                                            <MenuItem Header="MOTOBIKE" Command="{Binding SortByMotoBikeCommand}">
+                                                                <MenuItem.Icon>
+                                                                    <Image Source="Assets/motobike_type.png"
                                                                Stretch="Uniform"
                                                                Height="80"/>
-                                                        </MenuItem.Icon>
+                                                                </MenuItem.Icon>
+                                                            </MenuItem>
+                                                        </MenuItem>
                                                     </MenuItem>
-                                                </MenuItem>
-                                            </MenuItem>
-                                        </Menu>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
+                                                </Menu>
+                                            </Grid>
+                                        </Border>
 
+
+
+
+
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+
+
+
+                            <Grid
+                                Height="70"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center"
+                                Margin="0,100">
+
+                                <Button x:Name="btnSearch"
+                                        Grid.Column="1"                                         
+                                        Background="#3AADA1"
+                                        BorderThickness="4"
+                                        BorderBrush="DarkGray"
+                                        Content="Select My Car"
+                                        FontSize="20"
+                                        Foreground="Black"
+                                        Width="150"
+                                        Height="45"
+                                        Cursor="Hand"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Command="{Binding SearchCommand}" Margin="0,16,0,5" FontFamily="Calibri" FontWeight="Normal">
+                                </Button>
+                            </Grid>
+                            <!--cardcar-->
                         </Grid>
-                    </Border>
-                    <ItemsControl x:Name="itemsCotrolCards"
-                        Margin="0,230"
+                        <Grid
+                        Grid.Row="1">
+                            <ItemsControl x:Name="itemsCotrolCards"
+                        Margin="2,0,1,230"
                         VerticalContentAlignment="Center"
                         ItemsSource="{Binding CarList, UpdateSourceTrigger=PropertyChanged}" Width="1300">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <local:CustomCard Width="305"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <!--#form register-->
-                </Grid>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:CustomCard Width="250"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                        <!--feedback-->
+                        
+                        <Grid
+                            Grid.Row="2">
+                            <!-- and here's another -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid
+                                Grid.Column="1">
+                                <Line
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                X1="-450" Y1="20" X2="-150" Y2="20" Stroke="DarkGray" StrokeThickness="1"/>
+                                <materialDesign:PackIcon
+                                    Foreground="DarkGray"
+                                    VerticalAlignment="Center"
+                                    Height="50"
+                                    Width="50"
+                                    HorizontalAlignment="Center"
+                                    Kind="User"
+                                    Margin="0,0,250,0"
+                                    />
+                                <TextBlock
+                                    Foreground="DarkGray"
+                                    FontWeight="SemiBold"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    HorizontalAlignment="Center"
+                                    Margin="100,0,0,0">
+                                    KHÁCH HÀNG NHẬN XÉT
+                                </TextBlock>
+                                <Line
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                X1="650" Y1="20" X2="900" Y2="20" Stroke="DarkGray" StrokeThickness="1"/>
+                            </Grid>
+                            <materialDesign:Chip
+                                    Grid.Row="1"
+                                    VerticalAlignment="Top"
+                                    Background="#3AB19B"
+                                    Foreground="Black"
+                                    Content="N"                                    
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,0"
+                                    />
+                                <StackPanel
+                                        Margin="8 0 0 0"
+                                        Grid.Row="1"
+                                        Grid.Column="1">
+                                    <TextBlock FontWeight="Bold"
+                                               Text="Ngoc Nguyen Pham" />
+                                    <TextBlock Text="Good" />
+                                </StackPanel>
+                                <materialDesign:Chip
+                                            Grid.Row="2"
+                                            VerticalAlignment="Top"
+                                            Background="Beige"
+                                            Foreground="Black"
+                                            Content="A"                                    
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,0"
+                                            />
+                                <StackPanel
+                                            Grid.Row="2"
+                                            Margin="8 0 0 0"
+                                            Grid.Column="1">
+                                    <TextBlock FontWeight="Bold"
+                                                   Text="An Le" />
+                                    <TextBlock Text="Great" />
+                                </StackPanel>
+                            <materialDesign:Chip
+                                            Grid.Row="3"
+                                            VerticalAlignment="Top"
+                                            Background="MediumPurple"
+                                            Foreground="Black"
+                                            Content="D"                                    
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,0"
+                                            />
+                            <StackPanel
+                                            Grid.Row="3"
+                                            Margin="8 0 0 0"
+                                            Grid.Column="1">
+                                <TextBlock FontWeight="Bold"
+                                                   Text="Duong Phan" />
+                                <TextBlock Text="Helpful" />
+                            </StackPanel>
+                            <materialDesign:Chip
+                                            Grid.Row="4"
+                                            VerticalAlignment="Top"
+                                            Background="YellowGreen"
+                                            Foreground="Black"
+                                            Content="S"                                    
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,0"
+                                            />
+                            <StackPanel
+                                            Grid.Row="4"
+                                            Margin="8 0 0 0"
+                                            Grid.Column="1">
+                                <TextBlock FontWeight="Bold"
+                                                   Text="Sami Ngo" />
+                                <TextBlock Text="Reasonable price" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Viewbox>
             </ScrollViewer>
         </Grid>
     </Border>

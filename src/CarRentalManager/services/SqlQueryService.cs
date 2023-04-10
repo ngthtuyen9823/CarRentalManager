@@ -68,7 +68,7 @@ namespace CarRentalManager.services
         {
             string cityCondition =  City != null ? string.Format("city = '{0}'", City) : "city is not null";
             string brandCondition = " and " + (Brand != null ? string.Format("brand = '{0}'", Brand) : "brand is not null");
-            string seatsCondition = " and " + (Seats != null ? string.Format("seats = '{0}'", Seats) : "seats is not null");
+            string seatsCondition = " and " + (Seats != 0 ? string.Format("seats = '{0}'", Seats) : "seats is not null");
             return string.Format("SELECT * FROM [{0}] WHERE {1}", ETableName.CAR, cityCondition + brandCondition + seatsCondition);
         }
 

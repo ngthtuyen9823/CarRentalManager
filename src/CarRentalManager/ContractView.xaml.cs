@@ -73,7 +73,6 @@ namespace CarRentalManager
                 }
                 ID.Text = selectedContract.ID.ToString();
                 OrderId.Text = selectedContract.OrderId.ToString();
-                UserId.Text = selectedContract.UserId.ToString();
                 Price.Text = selectedContract.Price.ToString();
                 Status.Text = selectedContract.Status.ToString();
             }

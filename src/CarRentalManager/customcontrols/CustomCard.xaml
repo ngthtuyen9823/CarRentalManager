@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CarRentalManager" xmlns:viewmodel="clr-namespace:CarRentalManager.ViewModel" 
+             xmlns:local="clr-namespace:CarRentalManager" xmlns:viewmodel="clr-namespace:CarRentalManager.ViewModel" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{StaticResource CarViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -45,47 +45,85 @@
         </Style>
         <!--</ResourceDictionary>-->
     </UserControl.Resources>
-    <Border>
-        <Border.Background>
-            <ImageBrush
-                ImageSource="{Binding ImagePath}" 
-                Stretch="UniformToFill"
-                />
-        </Border.Background>
+    <Border
+        Height="260"
+        Width="210"
+        BorderThickness="2"
+        CornerRadius="4">
+        <materialDesign:Card
+        Height="240"
+        Width="200">
         <Grid>
-            <TextBlock
-
-                HorizontalAlignment="Left"
-                FontWeight="Bold"
-                VerticalAlignment="Bottom"
-                Foreground="White"
-                Background="Black"
-                FontSize="15"
-                >
-                <Run 
-                     FontSize="20"
-                     Text="{Binding Name}"/>
-                <LineBreak/>
-                <Run 
-                     Text="{Binding DrivingType}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                                Height="140" />
+                <RowDefinition
+                                Height="60" />
+                <RowDefinition
+                                Height="40" />
+            </Grid.RowDefinitions>
+            <Image
+                  Source="{Binding ImagePath}"
+                  Height="140"
+                  Width="196"
+                  Stretch="UniformToFill" />    
+            <Button
+              Grid.Row="0"
+              Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Bottom"
+              Margin="0 0 16 -20"
+              BorderBrush="#3AADA1"
+              Background="#3AADA1"
+              Cursor="Hand"
+              Tag="{Binding ID}"
+              Click="btnLoadRegister_Click">
+                <materialDesign:PackIcon Kind="Car" />
+            </Button>
+            <StackPanel
+      Grid.Row="1"
+      Margin="8 24 8 0">
+                <TextBlock 
+                    FontSize="15"
+                    FontWeight="Bold">
+                    <Run Text="{Binding Name}"/>
+                </TextBlock>
                 <TextBlock
-				Background="{StaticResource PrimaryBrush}"
-				Foreground="Black"
-				HorizontalAlignment="Right"
-				FontWeight="Bold"
-				VerticalAlignment="Top"
-				FontSize="15"
-				Margin="0,0,0,0">
-				<Run Text="{Binding Price}" />
-				<Run Text="K/NGÀY" />
-			    </TextBlock>
-            </TextBlock>
-            <Button 
-                    HorizontalAlignment="Right"
-                    Margin="0,205,0,0"
-                    x:Name="btnLoadRegister" 
-                    Tag="{Binding ID}"
-                    Style="{StaticResource PlayButtons}" Click="btnLoadRegister_Click" Cursor="Hand"/>
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center">     
+                    <Run Text="{Binding Price}"/>
+                    <Run Text="K/NGÀY" />
+                </TextBlock>
+            </StackPanel>
+            <StackPanel
+                  HorizontalAlignment="Right"
+                  Grid.Row="2"
+                  Orientation="Horizontal"
+                  VerticalAlignment="Top"
+                  Margin="8">   
+                <Button
+                    Style="{StaticResource MaterialDesignToolButton}"
+                    Width="30"
+                    Padding="2 0 2 0"
+                    materialDesign:RippleAssist.IsCentered="True">
+                    <materialDesign:PackIcon
+                             Kind="ShareVariant" />
+                </Button>
+                <Button
+        Style="{StaticResource MaterialDesignToolButton}"
+        Width="30"
+        Padding="2 0 2 0"
+        materialDesign:RippleAssist.IsCentered="True">
+                    <materialDesign:PackIcon
+                        Kind="Heart" />
+                </Button>
+            </StackPanel>
         </Grid>
+    </materialDesign:Card>
     </Border>
+
+
+
+
+
 </UserControl>
