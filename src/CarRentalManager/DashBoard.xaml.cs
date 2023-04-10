@@ -27,8 +27,6 @@ namespace CarRentalManager
         public DashBoard()
         {
             InitializeComponent();
-            InitializeComponent();
-
             var converter = new BrushConverter();
             ObservableCollection<Member> members = new ObservableCollection<Member>();
         }
@@ -40,8 +38,8 @@ namespace CarRentalManager
                 if (IsMaximize)
                 {
                     this.WindowState = WindowState.Normal;
-                    this.Width = 1080;
-                    this.Height = 720;
+                    this.Width = 1380;
+                    this.Height = 800;
 
                     IsMaximize = false;
                 }
@@ -68,6 +66,14 @@ namespace CarRentalManager
         {
             Close();
         }
+
+        //private void CarCommand_Click(object sender, RoutedEventArgs e)
+        //{
+        //    btnCar.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#3AA9AD"));
+        //    btnCar.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFFFF"));
+        //    btnOrder.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4EB1B6"));
+        //    btnOrder.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c7ecee"));
+        //}
     }
 
     public class Member

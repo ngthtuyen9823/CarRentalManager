@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CarRentalManager.ContractView"
+<UserControl x:Class="CarRentalManager.ContractView"
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -66,15 +66,13 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Width="150" Margin = "10 8 10 8" Text="{Binding ID, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
+                    <TextBox Name="ID" Width="200" Margin = "10 8 10 8" Text="{Binding ID, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="OrderId" Width="150" Margin = "10 8 10 8" Text="{Binding OrderId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
+                    <TextBox Name="OrderId" Width="200" Margin = "10 8 10 8" Text="{Binding OrderId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="UserId" Width=" 150" Margin = "10 8 10 8" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
+                           <TextBox Name="Price" Width=" 200" Margin = "10 8 10 8" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="Price" Width=" 150" Margin = "10 8 10 8" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox Name="Status" Width="150" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
+                    <ComboBox Name="Status" Width="200" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBoxItem>
                             PAID
@@ -90,17 +88,20 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0 10 0 0">
                     <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Available" BorderBrush="#218c74"/>
                     <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Unavailable "/>
                     <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Onrent"/>
                 </StackPanel>
-                <Grid Margin="0 10 0 0" Grid.Column ="1" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="1" Margin="30 20 30 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                </ComboBox>
+                <Grid Margin="0 10 0 0" Grid.Column ="2" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search here ..."
                            Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-                    <TextBox Height="35" Name="textBoxSearch" Style="{StaticResource searchTextbox}"/>
+                    <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="35" Style="{StaticResource searchTextbox}"/>
 
                     <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
                 </Grid>
@@ -121,7 +122,6 @@
                     <GridView>
                         <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
-                        <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
                         <GridViewColumn Header="Trị giá" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
                         <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>

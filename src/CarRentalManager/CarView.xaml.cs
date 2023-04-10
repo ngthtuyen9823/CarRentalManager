@@ -1,9 +1,9 @@
 using CarRentalManager.models;
 using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignColors;
+using System.Runtime.Remoting.Messaging;
 
 namespace CarRentalManager
 {
@@ -28,6 +30,71 @@ namespace CarRentalManager
         public CarView()
         {
             InitializeComponent();
+            FilterBy.ItemsSource = new string[] { "Name", "Brand", "Status", "DrivingType", "Type" };
+            //FilterBy.ItemsSource = typeof(Car).GetProperties().Select((o) => o.Name);
+        }
+        private bool NameFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj1 = Filterobj.Name.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool BrandFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj1 = Filterobj.Brand.ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool StatusFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj1 = Filterobj.Status.ToString().ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool TypeFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj1 = Filterobj.Type.ToString().ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool DrivingTypeFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj1 = Filterobj.DrivingType.ToString().ToLower().ToString();
+            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+        }
+        public Predicate<object> GetFilter()
+        {
+            switch(FilterBy.SelectedItem as string)
+            {
+                case "Name":
+                    return NameFilter;
+                case "Brand":
+                    return BrandFilter;
+                case "Status":
+                    return StatusFilter;
+                case "Type":
+                    return TypeFilter;
+                case "DrivingType":
+                    return DrivingTypeFilter;   
+            }
+            return NameFilter;
+        }
+        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterTextBox.Text == null)
+            {
+                lsvCar.Items.Filter = null;
+            }
+            else
+            {
+                lsvCar.Items.Filter = GetFilter();
+            }
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvCar.Items.Filter = GetFilter();
         }
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {

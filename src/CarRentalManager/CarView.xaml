@@ -66,17 +66,17 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Width="150" Margin="10 8 10 8" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
+                    <TextBox Name="ID" Width="200" Margin="10 8 10 8" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="SupplierId" Width="150" Margin="10 8 10 8" Text="{Binding SupplierId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
+                    <TextBox Name="SupplierId" Width="200" Margin="10 8 10 8" Text="{Binding SupplierId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="Name" Width="150" Margin="10 8 10 8" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
+                    <TextBox Name ="Name" Width="200" Margin="10 8 10 8" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="Brand" Width="150" Margin="10 8 10 8" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
+                    <TextBox Name ="Brand" Width="200" Margin="10 8 10 8" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="Color"  Width="150" Margin="10 8 10 8" Text="{Binding Color,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
+                    <TextBox Name ="Color"  Width="200" Margin="10 8 10 8" Text="{Binding Color,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Màu xe"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="PublishYear" Width="150" Margin="10 8 10 8" Text="{Binding PublishYear, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
+                    <TextBox Name="PublishYear" Width="200" Margin="10 8 10 8" Text="{Binding PublishYear, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Năm sản xuất"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox Name="Type" Width="100" Margin="10 8 10 8" SelectedValue="{Binding Type, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Loại xe" 
                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -111,13 +111,13 @@
                             MANNED
                         </ComboBoxItem>
                     </ComboBox>
-                    <TextBox Name ="Seats" Width="150" Margin="10 8 10 8" Text="{Binding Seats,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Seats"
+                    <TextBox Name ="Seats" Width="200" Margin="10 8 10 8" Text="{Binding Seats,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Seats"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="LicensePlate" Width="150" Margin="10 8 10 8" Text="{Binding LicensePlate,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Biển số xe"
+                    <TextBox Name="LicensePlate" Width="200" Margin="10 8 10 8" Text="{Binding LicensePlate,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Biển số xe"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="Price"  Width="150" Margin="10 8 10 8" Text="{Binding Price,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Giá thuê"
+                    <TextBox Name="Price"  Width="200" Margin="10 8 10 8" Text="{Binding Price,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Giá thuê"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name ="ImagePath"  Width="150" Margin="10 5 15 5" Text="{Binding ImagePath,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Browse a image"
+                    <TextBox Name ="ImagePath"  Width="200" Margin="10 5 15 5" Text="{Binding ImagePath,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Browse a image"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ToggleButton
                             Margin="-25,0,0,-15"
@@ -137,17 +137,20 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0 10 0 0">
                     <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Available" BorderBrush="#218c74"/>
                     <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Unavailable "/>
                     <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Onrent"/>
                 </StackPanel>
-                <Grid Margin="0 10 0 0" Grid.Column ="1" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="1" Margin="30 20 30 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                </ComboBox>
+                <Grid Margin="0 10 0 0" Grid.Column ="2" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search here ..."
                            Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-                    <TextBox Height="35" Name="textBoxSearch" Style="{StaticResource searchTextbox}"/>
+                    <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="35" Style="{StaticResource searchTextbox}"/>
 
                     <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
                 </Grid>

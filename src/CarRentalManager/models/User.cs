@@ -39,13 +39,13 @@ namespace CarRentalManager.models
         }
         public User() { }
 
-        public int ID { get { return id; } }
-        public string Name { get { return name; } }
-        public string Email { get { return email; } }
-        public string PhoneNumber { get { return phoneNumber; } }
-        public string Password { get { return password; } }
-        public EUserRole Role { get { return role; } }
-        public DateTime CreatedAt { get { return createdAt; } }
-        public DateTime UpdatedAt { get { return updatedAt; } }
+        public int ID { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string Email { get { return email; } set { email = value; } }
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+        public string Password { get { return password; } set { password = value; } }
+        public EUserRole Role { get { return role; } set { role = value; } }
+        public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
     }
 }
