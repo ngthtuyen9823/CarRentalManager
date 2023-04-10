@@ -70,9 +70,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="OrderId" Width="200" Margin = "10 8 10 8" Text="{Binding OrderId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="UserId" Width=" 200" Margin = "10 8 10 8" Text="{Binding UserId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="User ID"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="Price" Width=" 200" Margin = "10 8 10 8" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
+                           <TextBox Name="Price" Width=" 200" Margin = "10 8 10 8" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox Name="Status" Width="200" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -124,7 +122,6 @@
                     <GridView>
                         <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
-                        <GridViewColumn Header="User ID" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
                         <GridViewColumn Header="Trị giá" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
                         <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
