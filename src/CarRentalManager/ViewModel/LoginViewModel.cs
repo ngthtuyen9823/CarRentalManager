@@ -40,7 +40,7 @@ namespace CarRentalManager.ViewModel
             } 
             else
             {
-                if (comparePassword(Password, currentUser.Password.Trim()))
+                if (comparePassword(Password, currentUser?.Password?.Trim()))
                 {
                     Application.Current.Windows[0].Close();
 
