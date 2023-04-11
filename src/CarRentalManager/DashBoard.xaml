@@ -141,7 +141,7 @@
                             <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
                         <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
-                            <TextBlock Text="Satistic" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
                         <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
                             <TextBlock Text="Store" FontWeight="SemiBold" FontSize="16"/>
