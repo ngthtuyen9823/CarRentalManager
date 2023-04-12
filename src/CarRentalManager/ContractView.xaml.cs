@@ -26,20 +26,20 @@ namespace CarRentalManager
         public ContractView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"Status" };
+            FilterBy.ItemsSource = new string[] { "Status" };
         }
         private bool StatusFilter(object obj)
         {
             var Filterobj = obj as Contract;
-            string filterobj1 = Filterobj.Status.ToString().ToLower();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Status.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
-     
+
         public Predicate<object> GetFilter()
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "Status":
+                case nameof(Status):
                     return StatusFilter;
             }
             return StatusFilter;

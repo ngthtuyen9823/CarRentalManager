@@ -25,44 +25,44 @@ namespace CarRentalManager
         public CustomerView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] { "Address", "Email", "PhoneNumber", "IDCard"};
+            FilterBy.ItemsSource = new string[] { "Address", "Email", "PhoneNumber", "IDCard" };
             //FilterBy.ItemsSource = typeof(Car).GetProperties().Select((o) => o.Name);
         }
         private bool AddressFilter(object obj)
         {
             var Filterobj = obj as Customer;
-            string filterobj1 = Filterobj.Address.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Address.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool EmailFilter(object obj)
         {
             var Filterobj = obj as Customer;
-            string filterobj1 = Filterobj.Email.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Email.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool PhoneNumberFilter(object obj)
         {
             var Filterobj = obj as Customer;
-            string filterobj1 = Filterobj.PhoneNumber.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.PhoneNumber.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool IdCardFilter(object obj)
         {
             var Filterobj = obj as Customer;
-            string filterobj1 = Filterobj.IDCard.ToString().ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.IDCard.ToString().ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "Address":
+                case nameof(Address):
                     return AddressFilter;
-                case "PhoneNumber":
+                case nameof(PhoneNumber):
                     return PhoneNumberFilter;
-                case "Email":
+                case nameof(Email):
                     return EmailFilter;
-                case "IdCard":
+                case nameof(IdCard):
                     return IdCardFilter;
             }
             return AddressFilter;

@@ -32,30 +32,30 @@ namespace CarRentalManager
         private bool AddressFilter(object obj)
         {
             var Filterobj = obj as Supplier;
-            string filterobj1 = Filterobj.Address.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Address.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool EmailFilter(object obj)
         {
             var Filterobj = obj as Supplier;
-            string filterobj1 = Filterobj.Email.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Email.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool PhoneNumberFilter(object obj)
         {
             var Filterobj = obj as Supplier;
-            string filterobj1 = Filterobj.PhoneNumber.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.PhoneNumber.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "Address":
+                case nameof(Address):
                     return AddressFilter;
-                case "PhoneNumber":
+                case nameof(PhoneNumber):
                     return PhoneNumberFilter;
-                case "Email":
+                case nameof(Email):
                     return EmailFilter;
             }
             return AddressFilter;

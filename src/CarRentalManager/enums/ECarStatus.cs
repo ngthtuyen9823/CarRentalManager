@@ -9,6 +9,7 @@ namespace CarRentalManager.enums
     public enum ECarStatus
     {
         ONRENT,
-        AVAILABLE
+        AVAILABLE,
+        UNAVAILABLE
     }
 }

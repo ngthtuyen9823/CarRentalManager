@@ -118,9 +118,9 @@
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Tên" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
+                        <GridViewColumn Width="10" Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                        <GridViewColumn Width="30" Header="Tên" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Width="20" Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                         <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
                         <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
                         <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding IdCard}"></GridViewColumn>
