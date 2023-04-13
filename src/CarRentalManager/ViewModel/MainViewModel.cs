@@ -19,10 +19,8 @@ namespace CarRentalManager.ViewModel
         public ICommand OrderCommand { get; set; }
         public ICommand RegisterFormCommand { get; set; }
         public ICommand HomeCommand { get; set; }
-
-        public string CapTion { get { return capTion; } set { capTion = value; OnPropertyChanged(nameof(capTion)); } }
+        public ICommand StatisticCommand { get; set; }
         private BaseViewModel currentChildView;
-        private string capTion;
         public BaseViewModel CurrentChildView { get { return currentChildView; } set { currentChildView = value; OnPropertyChanged(nameof(currentChildView)); } }
         public MainViewModel()
         {
@@ -37,7 +35,7 @@ namespace CarRentalManager.ViewModel
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListOrderViewModel(); });
             SupplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListSupplierViewModel(); });
             HomeCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new HomeViewModel(); });
-
+            StatisticCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new StatisticViewModel(); });
         }
         private void ExecuteShowHomeViewCommand(object obj)
         {

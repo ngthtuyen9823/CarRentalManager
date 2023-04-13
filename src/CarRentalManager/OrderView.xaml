@@ -134,27 +134,27 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="50 2 2 0"  >
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="60 2 2 0"  >
             <ListView x:Name="lsvOrder" ItemsSource="{Binding List}"
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Mã xe" DisplayMemberBinding="{Binding CarId}"></GridViewColumn>
-                        <GridViewColumn Header="Mã khách hàng" DisplayMemberBinding="{Binding CustomerId}"></GridViewColumn>
+                        <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                        <GridViewColumn Header="Car ID" DisplayMemberBinding="{Binding CarId}"></GridViewColumn>
+                        <GridViewColumn Header="Customer ID" DisplayMemberBinding="{Binding CustomerId}"></GridViewColumn>
                         <GridViewColumn Header="Booking Place" DisplayMemberBinding="{Binding BookingPlace}"></GridViewColumn>
-                        <GridViewColumn Header="Phí thanh toán" DisplayMemberBinding="{Binding TotalFee}"></GridViewColumn>
-                        <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày bắt đầu" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày kết thúc" DisplayMemberBinding="{Binding EndDate}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày cập nhật" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
+                        <GridViewColumn Header="Total Fee" DisplayMemberBinding="{Binding TotalFee}"></GridViewColumn>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                        <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>
+                        <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}"></GridViewColumn>
+                        <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                        <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Height" Value="35"/>
                         <EventSetter Event="PreviewMouseLeftButtonDown" 
                                      Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>

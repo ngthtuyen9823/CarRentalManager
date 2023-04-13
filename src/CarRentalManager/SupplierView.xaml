@@ -111,15 +111,15 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="50 2 2 0"  >
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="90 2 2 0"  >
             <ListView x:Name="lsvSupplier" ItemsSource="{Binding List}"
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Tên" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
-                        <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
+                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
                         <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
                         <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                         <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
@@ -128,7 +128,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Height" Value="35"/>
                         <EventSetter Event="PreviewMouseLeftButtonDown" 
                                      Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>

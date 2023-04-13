@@ -115,23 +115,23 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="50 2 2 0"  >
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Left" Grid.Row="1" Margin="90 2 2 0"  >
             <ListView x:Name="lsvContract" ItemsSource="{Binding List}"
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Mã hợp đồng" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Mã đơn hàng" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
-                        <GridViewColumn Header="Trị giá" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
-                        <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày lập" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày cập nhật" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
+                        <GridViewColumn Header="Contract ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                        <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                        <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
+                        <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Height" Value="35"/>
                         <EventSetter Event="PreviewMouseLeftButtonDown" 
                                      Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>

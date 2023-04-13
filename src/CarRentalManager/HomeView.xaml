@@ -56,7 +56,7 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Width="150" 
+                    <Button Width="150" Command="{Binding StatisticCommand}"
                         Content="Get Started" Style="{StaticResource mainbutton}"/>
                 </Grid>
             </StackPanel>
