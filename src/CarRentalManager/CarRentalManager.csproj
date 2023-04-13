@@ -177,6 +177,9 @@
     <Compile Include="StatisticView.xaml.cs">
       <DependentUpon>StatisticView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StoreView.xaml.cs">
+      <DependentUpon>StoreView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SupplierRegister.xaml.cs">
       <DependentUpon>SupplierRegister.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationVM.cs" />
     <Compile Include="ViewModel\StatisticViewModel.cs" />
+    <Compile Include="ViewModel\StoreViewModel.cs" />
     <Page Include="Assets\icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -261,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatisticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StoreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

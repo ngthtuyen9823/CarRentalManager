@@ -39,6 +39,9 @@
         <DataTemplate DataType="{x:Type viewModel:StatisticViewModel}">
             <local:StatisticView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StoreViewModel}">
+            <local:StoreView/>
+        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
@@ -147,7 +150,7 @@
                         <RadioButton Command="{Binding StatisticCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
                             <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
-                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
+                        <RadioButton Command="{Binding StoreCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
                             <TextBlock Text="Store" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
                     </WrapPanel>
