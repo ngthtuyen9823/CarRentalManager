@@ -63,6 +63,7 @@ namespace CarRentalManager.ViewModel
             ImageIdCardBack = null;
             DepositAmount = 0;
             ImageEvidence = null;
+            Notes= null;
             StartDate = DateTime.Today;
             EndDate = DateTime.Today;
         }
