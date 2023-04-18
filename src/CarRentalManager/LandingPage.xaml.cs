@@ -63,5 +63,12 @@ namespace CarRentalManager
             SupplierRegister supplierRegister= new SupplierRegister();
             supplierRegister.Show();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            cbDiaChi.Text = null;
+            cbBrand.Text = null;
+            cbSeats.Text = "0";
+        }
     }
 }

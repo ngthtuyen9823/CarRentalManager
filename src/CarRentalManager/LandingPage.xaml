@@ -302,67 +302,19 @@
 
 
 
-            <StackPanel
-                Grid.Column="2"
-                HorizontalAlignment="Right"
-                Height="80"
-                Background="Black" 
-                Margin="0,0,285,0" Width="35">
-                <Grid 
-                    Height="80"
-                 >
-                    <ToggleButton
-                      Height="20"
-                      IsChecked="False" 
-                      Checked="CheckBox_Checked"
-                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                      Foreground="Black"
-                      ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
-                        <materialDesign:PackIcon
-                            Kind="Pin"
-                            RenderTransformOrigin=".5,.5">
-                            <materialDesign:PackIcon.RenderTransform>
-                                <RotateTransform
-                                    
-                                    Angle="45" />
-                            </materialDesign:PackIcon.RenderTransform>
-                        </materialDesign:PackIcon>
-                        <materialDesign:ToggleButtonAssist.OnContent>
-                            <materialDesign:PackIcon
-                                Background="White"
-                                Kind="Pin" />
-                        </materialDesign:ToggleButtonAssist.OnContent>
-
-                    </ToggleButton>
-
-                    <!--<materialDesign:Chip
-                                         HorizontalAlignment="Center"
-                                         FontWeight="Bold"
-                                         Background="Gray"
-                                         Foreground="{StaticResource HeaderBrush}"
-                                         
-                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
-                                         IconForeground="{DynamicResource PrimaryBrush}" Width="120"  >
-                        <CheckBox
-                            HorizontalAlignment="Center"
-                            Content="Cho thuê xe" 
-                            IsChecked="False" Checked="CheckBox_Checked"/>
-                    </materialDesign:Chip>-->
-                </Grid>
-
-            </StackPanel>
+            
 
             <StackPanel
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Height="80"
                 Background="Black"
-                Margin="0,0,170,0" Width="120">
+                Margin="0,0,150,0" Width="150">
                 <Grid
                     Height="80">
                     <materialDesign:Chip 
-                        Height="25"
-                        
+                        Click="CheckBox_Checked"
+                        Height="25"                        
                         Foreground="White"
                         Background="#3AB19B"
                         FontFamily="Dubai Medium">
@@ -588,15 +540,14 @@
                                         Data="{StaticResource location_icon}"
                                         Fill="Gray" 
                                         RenderTransformOrigin="0.16,0.481" Stretch="Fill"/>
-                                                <Label 
-                                        
+                                                <Label                               
                                         BorderThickness="0"
                                         Foreground="Black"
                                         Width="115"
                                         FontSize="20"
                                         Content="Location"
                                         VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="50,0,0,0" FontFamily="Calibri"/>
-                                                <ComboBox x:Name="txtDiaChi" Style="{DynamicResource MaterialDesignComboBox}"                             
+                                                <ComboBox x:Name="cbDiaChi" Style="{DynamicResource MaterialDesignComboBox}"                             
                                         BorderThickness="0"
                                         Foreground="Black"
                                         FontSize="20"
@@ -655,7 +606,7 @@
                                         BorderThickness="0"                                      
                                         Foreground="Black"
                                         FontWeight="SemiBold"
-                                        x:Name="dtStart"                                        
+                                        x:Name="cbBrand"                                        
                                         Margin="10,0,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
@@ -707,7 +658,7 @@
                                                 <ComboBox                                  
                                         
                                         BorderThickness="0"                                                                                     
-                                        x:Name="txtSeats" 
+                                        x:Name="cbSeats" 
                                         Margin="109,0,0,0"
                                         Width="311"
                                         Foreground="Black"
@@ -750,7 +701,9 @@
                                                 Foreground="Gray"/>
                                                 <Menu
                                             Grid.Column="1">
-                                                    <MenuItem Header="Sort by"
+                                                    <MenuItem 
+                                                       
+                                                      Header="Sort by"
                                                       FontFamily="Calibri"
                                                       Foreground="Black"
                                                       FontSize="20"
@@ -767,15 +720,19 @@
                                                                Height="60"/>
                                                             </MenuItem.Icon>
                                                             <MenuItem 
+                                                                Click="MenuItem_Click"
                                                         Header="Dưới 200"
                                                         Command="{Binding SortLowerThan200}"/>
                                                             <MenuItem
+                                                                Click="MenuItem_Click"
                                                         Header="Từ 200 đến 500"
                                                         Command="{Binding SortLowerThan500}"/>
                                                             <MenuItem
+                                                                Click="MenuItem_Click"
                                                         Header="Từ 500 đến 1000"
                                                         Command="{Binding SortLowerThan1000}"/>
                                                             <MenuItem
+                                                                Click="MenuItem_Click"
                                                         Header="Trên 1000"
                                                         Command="{Binding SortBiggerThan1000}"/>
                                                         </MenuItem>
@@ -881,7 +838,7 @@
                             </ItemsControl>
                         </Grid>
                         <!--feedback-->
-                        
+
                         <Grid
                             Grid.Row="2">
                             <!-- and here's another -->
@@ -934,15 +891,15 @@
                                     HorizontalAlignment="Center"
                                     Margin="0,0,0,0"
                                     />
-                                <StackPanel
+                            <StackPanel
                                         Margin="8 0 0 0"
                                         Grid.Row="1"
                                         Grid.Column="1">
-                                    <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold"
                                                Text="Ngoc Nguyen Pham" />
-                                    <TextBlock Text="Good" />
-                                </StackPanel>
-                                <materialDesign:Chip
+                                <TextBlock Text="Good" />
+                            </StackPanel>
+                            <materialDesign:Chip
                                             Grid.Row="2"
                                             VerticalAlignment="Top"
                                             Background="Beige"
@@ -951,14 +908,14 @@
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
-                                <StackPanel
+                            <StackPanel
                                             Grid.Row="2"
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
-                                    <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold"
                                                    Text="An Le" />
-                                    <TextBlock Text="Great" />
-                                </StackPanel>
+                                <TextBlock Text="Great" />
+                            </StackPanel>
                             <materialDesign:Chip
                                             Grid.Row="3"
                                             VerticalAlignment="Top"

@@ -143,5 +143,10 @@ namespace CarRentalManager
                 bitmap.UriSource = new Uri(selectedFileName);
             }
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            lblTotalFee.Content = string.Empty;
+        }
     }
 }

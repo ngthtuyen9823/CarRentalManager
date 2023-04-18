@@ -380,15 +380,15 @@
                             <Button
                             Command="{Binding RegisterCommand}"
                             Width="150" Height="45" FontSize="20"
-                            Background="#3AB19B" Foreground="White" x:Name="btnLogin" Content="Đặt xe">
+                            Background="#3AB19B" Foreground="White" x:Name="btnLogin" Content="Đặt xe" Click="btnLogin_Click">
                             </Button>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Width="80">
-                    <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="White"
+                    <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="White" BorderBrush="White"
                  ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
-                        <materialDesign:PackIcon Kind="Close" Foreground="Red" Width="30" Height="30" />
+                        <materialDesign:PackIcon Kind="Close" Foreground="Red" Width="30" Height="30"/>
                     </Button>
                 </StackPanel>
             </StackPanel>

@@ -45,6 +45,7 @@ namespace CarRentalManager.ViewModel
         private string notes; public string Notes { get => notes; set => SetProperty(ref notes, value, nameof(Notes)); }
 
         
+        
         public RegistrationVM() 
         {
             RegisterCommand = new RelayCommand<object>((p) =>
@@ -66,6 +67,7 @@ namespace CarRentalManager.ViewModel
             Notes= null;
             StartDate = DateTime.Today;
             EndDate = DateTime.Today;
+            TotalFee = 0;
         }
 
         public string this[string columnName]
