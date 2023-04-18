@@ -12,6 +12,7 @@
         xmlns:uc="clr-namespace:CarRentalManager.UserControlCRM" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:viewModel="clr-namespace:CarRentalManager.ViewModel"
+        ResizeMode="NoResize"
         x:Name="window">
      <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -34,6 +35,12 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StatisticViewModel}">
+            <local:StatisticView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StoreViewModel}">
+            <local:StoreView/>
         </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
@@ -140,10 +147,10 @@
                         <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" IsChecked="True" >
                             <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
-                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
-                            <TextBlock Text="Satistic" FontWeight="SemiBold" FontSize="16"/>
+                        <RadioButton Command="{Binding StatisticCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
+                            <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
-                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
+                        <RadioButton Command="{Binding StoreCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
                             <TextBlock Text="Store" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
                     </WrapPanel>

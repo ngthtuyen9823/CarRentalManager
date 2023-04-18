@@ -25,9 +25,13 @@ namespace CarRentalManager.ViewModel
     {
         readonly VariableService variableService = new VariableService();
         readonly OrderDAO orderDao = new OrderDAO();
+        readonly ContractDAO contractDao = new ContractDAO();
+
 
         public ObservableCollection<Order> List { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand ConfirmCommand { get; set; }
+
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
@@ -54,8 +58,9 @@ namespace CarRentalManager.ViewModel
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand()); 
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
+            ConfirmCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleConfirmCommand());
         }
-       
+
         private void reSetForm()
         { 
             ID = 0;
@@ -149,6 +154,13 @@ namespace CarRentalManager.ViewModel
 
         private void handleDeleteCommand()
         {
+            orderDao.removeOrder(ID);
+            updateListUI();
+        }
+        private void handleConfirmCommand()
+        {
+            Contract contract = new Contract(97, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, DateTime.Now, DateTime.Now);
+            contractDao.createContract(contract);
             orderDao.removeOrder(ID);
             updateListUI();
         }

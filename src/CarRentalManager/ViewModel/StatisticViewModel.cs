@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRentalManager.enums
+namespace CarRentalManager.ViewModel
 {
-    public enum ECarStatus
+    public class StatisticViewModel : BaseViewModel
     {
-        ONRENT,
-        AVAILABLE,
-        UNAVAILABLE
     }
 }

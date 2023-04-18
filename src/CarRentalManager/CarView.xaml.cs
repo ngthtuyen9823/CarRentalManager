@@ -36,47 +36,47 @@ namespace CarRentalManager
         private bool NameFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj1 = Filterobj.Name.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Name.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool BrandFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj1 = Filterobj.Brand.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Brand.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool StatusFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj1 = Filterobj.Status.ToString().ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Status.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool TypeFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj1 = Filterobj.Type.ToString().ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.Type.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool DrivingTypeFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj1 = Filterobj.DrivingType.ToString().ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.DrivingType.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
         {
-            switch(FilterBy.SelectedItem as string)
+            switch (FilterBy.SelectedItem as string)
             {
-                case "Name":
+                case nameof(Name):
                     return NameFilter;
-                case "Brand":
+                case nameof(Brand):
                     return BrandFilter;
-                case "Status":
+                case nameof(Status):
                     return StatusFilter;
-                case "Type":
+                case nameof(Type):
                     return TypeFilter;
-                case "DrivingType":
-                    return DrivingTypeFilter;   
+                case nameof(DrivingType):
+                    return DrivingTypeFilter;
             }
             return NameFilter;
         }
@@ -103,8 +103,6 @@ namespace CarRentalManager
             dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
             dlg.RestoreDirectory = true;
             Nullable<bool> result = dlg.ShowDialog();
-
-            // Process save file dialog box results
             if (result == true)
             {
                 string selectedFileName = dlg.FileName;

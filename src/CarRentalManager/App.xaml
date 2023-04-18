@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CarRentalManager" 
              xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             StartupUri="LandingPage.xaml">
+             StartupUri="DashBoard.xaml">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.LightGreen.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.BlueGrey.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/ResourceXAML/MainResource.xaml" />
                 <ResourceDictionary Source="/assets/icons.xaml"/>
@@ -320,7 +320,56 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-
+            <Style x:Key="cancelButton" TargetType="Button">
+                <Setter Property="Background" Value="#ff6b6b" />
+                <Setter Property="Foreground" Value="#ffffff" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="Height" Value="35" />
+                <Setter Property="Width" Value="120" />
+                <Setter Property="Margin" Value="0 20 0 0" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="#ff6b6b" CornerRadius="7">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="confirmButton" TargetType="Button">
+                <Setter Property="Background" Value="#3AA9AD" />
+                <Setter Property="Foreground" Value="#ffffff" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="Height" Value="35" />
+                <Setter Property="Width" Value="120" />
+                <Setter Property="Margin" Value="0 20 0 0" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="#3AA9AD" CornerRadius="7">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
             <Style x:Key="tabButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent" />

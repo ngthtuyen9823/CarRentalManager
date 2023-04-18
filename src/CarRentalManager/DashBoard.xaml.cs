@@ -67,23 +67,19 @@ namespace CarRentalManager
             Close();
         }
 
-        //private void CarCommand_Click(object sender, RoutedEventArgs e)
-        //{
-        //    btnCar.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#3AA9AD"));
-        //    btnCar.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFFFF"));
-        //    btnOrder.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4EB1B6"));
-        //    btnOrder.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#c7ecee"));
-        //}
-    }
+        private void window_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
 
-    public class Member
-    {
-        public string Character { get; set; }
-        public Brush BgColor { get; set; }
-        public string Number { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public class Member
+        {
+            public string Character { get; set; }
+            public Brush BgColor { get; set; }
+            public string Number { get; set; }
+            public string Name { get; set; }
+            public string Position { get; set; }
+            public string Email { get; set; }
+            public string Phone { get; set; }
+        }
     }
 }

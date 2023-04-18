@@ -33,14 +33,14 @@ namespace CarRentalManager
         private bool BookingPlaceFilter(object obj)
         {
             var Filterobj = obj as Order;
-            string filterobj1 = Filterobj.BookingPlace.ToLower().ToString();
-            return filterobj1.Contains(FilterTextBox.Text.ToLower());
+            string filterobj = Filterobj.BookingPlace.ToLower().ToString();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "BookingPlace":
+                case nameof(BookingPlace):
                     return BookingPlaceFilter;
             }
             return BookingPlaceFilter;

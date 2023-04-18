@@ -164,23 +164,23 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="50 2 2 0"  >
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="80 2 2 0"  >
             <ListView x:Name="lsvCar" ItemsSource="{Binding List}"
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="100" Header="Mã xe" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
-                        <GridViewColumn Header="Tên xe" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
-                        <GridViewColumn Header="Hãng" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Màu xe" DisplayMemberBinding="{Binding Color}"></GridViewColumn>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                        <GridViewColumn Header="Brand" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Color" DisplayMemberBinding="{Binding Color}"></GridViewColumn>
                         <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
-                        <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Driving Type" DisplayMemberBinding="{Binding DrivingType}"></GridViewColumn>
                         <GridViewColumn Header="Seats" DisplayMemberBinding="{Binding Seats}"></GridViewColumn>
-                        <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
-                        <GridViewColumn Header="Giá thuê" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
-                        <GridViewColumn Header="Hình ảnh" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
+                        <GridViewColumn Header="License Plate" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                        <GridViewColumn Header="Imgae" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
                         <GridViewColumn Header="Created at" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                         <GridViewColumn Header="Updated at" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
@@ -188,7 +188,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Height" Value="35"/>
                         <EventSetter Event="PreviewMouseLeftButtonDown" 
                                      Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>

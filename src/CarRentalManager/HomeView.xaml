@@ -49,14 +49,14 @@
                        FontSize="35" Margin="5 0 0 15" TextAlignment="Left"></TextBlock>
                 <TextBlock Text="OUR SYSTEM"  FontWeight="SemiBold" Foreground="#3AB19B"
                        FontSize="35" Margin="5 0 0 20" TextAlignment="Left"></TextBlock>
-                <TextBlock Text="Drive your dreams with our wheels - Rent a car today! " Foreground="#121518"
+                <TextBlock Text="The admin can manage Car, Customer, Rental and Return" Foreground="#121518"
                        FontSize="15" Margin="5 25 0 10" TextAlignment="Left"></TextBlock>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Width="150" 
+                    <Button Width="150" Command="{Binding StatisticCommand}"
                         Content="Get Started" Style="{StaticResource mainbutton}"/>
                 </Grid>
             </StackPanel>
@@ -96,6 +96,7 @@
                     <Icon:PackIconMaterial Kind="Circle"/>
                 </Button>
             </WrapPanel>
+
         </Border>
         <Grid Grid.Row="1">
             
