@@ -119,11 +119,11 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Name" Width="220" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                         <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                         <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
-                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                        <GridViewColumn Header="ID card" DisplayMemberBinding="{Binding IdCard}"></GridViewColumn>
+                        <GridViewColumn Header="Email" Width="200" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
+                        <GridViewColumn Header="Id Card" DisplayMemberBinding="{Binding IDCard}"></GridViewColumn>
                         <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                         <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>

@@ -44,8 +44,15 @@ namespace CarRentalManager.dao
 
         public void removeOrder(int id)
         {
-            string sqlString = sqlService.removeById(ETableName.ORDER, id);
-            dbConnectionDAO.getDataTable(sqlString);
+            try
+            {
+                string sqlString = sqlService.removeById(ETableName.ORDER, id);
+                dbConnectionDAO.executing(sqlString, ETableName.ORDER);
+            }
+            catch
+            {
+                throw new System.Exception();
+            }
         }
         public void updateOrder(Order order)
         {

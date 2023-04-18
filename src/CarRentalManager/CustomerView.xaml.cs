@@ -1,4 +1,5 @@
 ﻿using CarRentalManager.models;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,7 +100,7 @@ namespace CarRentalManager
                 Address.Text = selectedCustomer.Address;
                 PhoneNumber.Text = selectedCustomer.PhoneNumber;
                 Email.Text = selectedCustomer.Email;
-                IdCard.Text = selectedCustomer.IDCard.ToString();
+                IdCard.Text = selectedCustomer.IDCard;
             }
         }
     }

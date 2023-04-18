@@ -90,9 +90,7 @@
                            SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}"
                            materialDesign:HintAssist.Hint="Ngày kết thúc"
                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    <TextBox Width="200" Margin = "10 8 10 8" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
-                           Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="TotalFee" Width="200" Margin="10 8 10 8" Text="{Binding TotalFee}" materialDesign:HintAssist.Hint="Phí thanh toán"
+                    <TextBox Name="TotalFee" Width="200" Margin="10 8 10 8" Text="{Binding TotalFee,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Phí thanh toán"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </Grid>
@@ -129,14 +127,14 @@
             </Border.Background>
         </Border>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Row="1" Margin="60 2 2 0"  >
-            <ListView x:Name="lsvOrder" ItemsSource="{Binding List}"
+            <ListView x:Name="lsvOrder" ItemsSource="{Binding List}" Margin="30 0 0 0"
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Car ID" DisplayMemberBinding="{Binding CarId}"></GridViewColumn>
                         <GridViewColumn Header="Customer ID" DisplayMemberBinding="{Binding CustomerId}"></GridViewColumn>
-                        <GridViewColumn Header="Booking Place" DisplayMemberBinding="{Binding BookingPlace}"></GridViewColumn>
+                        <GridViewColumn Header="Booking Place" Width="200" DisplayMemberBinding="{Binding BookingPlace}"></GridViewColumn>
                         <GridViewColumn Header="Total Fee" DisplayMemberBinding="{Binding TotalFee}"></GridViewColumn>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>

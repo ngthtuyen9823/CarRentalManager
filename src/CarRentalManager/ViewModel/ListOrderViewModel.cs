@@ -26,7 +26,7 @@ namespace CarRentalManager.ViewModel
         readonly VariableService variableService = new VariableService();
         readonly OrderDAO orderDao = new OrderDAO();
         readonly ContractDAO contractDao = new ContractDAO();
-
+        readonly CommonDAO commonDAO = new CommonDAO();
 
         public ObservableCollection<Order> List { get; set; }
         public ICommand AddCommand { get; set; }
@@ -69,6 +69,7 @@ namespace CarRentalManager.ViewModel
             BookingPlace = null;
             StartDate= DateTime.Now;
             EndDate= DateTime.Now;
+            TotalFee = 0;
         }
         public string this[string columnName]
         {
@@ -159,10 +160,18 @@ namespace CarRentalManager.ViewModel
         }
         private void handleConfirmCommand()
         {
-            Contract contract = new Contract(97, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, DateTime.Now, DateTime.Now);
-            contractDao.createContract(contract);
-            orderDao.removeOrder(ID);
-            updateListUI();
+            try
+            {
+                int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
+                Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, DateTime.Now, DateTime.Now);
+                orderDao.removeOrder(ID);
+                contractDao.createContract(contract);
+                updateListUI();
+            }
+            catch
+            {
+                MessageBox.Show("Cannot remove order");
+            }
         }
     }
 }
