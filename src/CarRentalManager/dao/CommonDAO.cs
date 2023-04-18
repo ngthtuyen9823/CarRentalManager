@@ -29,7 +29,10 @@ namespace CarRentalManager.dao
         {
             string sqlStringGetTable = sqlService.getLastId(eTableName);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-
+            if (dataTable.Rows.Count == 0)
+            {
+                return 0;
+            }
             int id = variableService.parseStringToInt(dataTable.Rows[0][nameof(id)].ToString());
             return id;
         }

@@ -62,6 +62,7 @@ namespace CarRentalManager.dao
             catch (Exception ex)
             {
                 MessageBox.Show("Fail!" + ex);
+                throw new Exception();
             }
             finally
             {

@@ -171,16 +171,16 @@
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
-                        <GridViewColumn Header="Brand" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Color" DisplayMemberBinding="{Binding Color}"></GridViewColumn>
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
+                        <GridViewColumn Header="Brand" Width="220" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Color" Width="120" DisplayMemberBinding="{Binding Color}"></GridViewColumn>
                         <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Driving Type" DisplayMemberBinding="{Binding DrivingType}"></GridViewColumn>
                         <GridViewColumn Header="Seats" DisplayMemberBinding="{Binding Seats}"></GridViewColumn>
                         <GridViewColumn Header="License Plate" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
                         <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
-                        <GridViewColumn Header="Imgae" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
+                        <GridViewColumn Header="Image" Width="220" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
                         <GridViewColumn Header="Created at" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                         <GridViewColumn Header="Updated at" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>

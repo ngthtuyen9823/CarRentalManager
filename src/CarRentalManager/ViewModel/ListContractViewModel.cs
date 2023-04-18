@@ -34,11 +34,10 @@ namespace CarRentalManager.ViewModel
         private int userId; public int UserId { get => userId; set => SetProperty(ref userId, value, nameof(UserId)); }
         private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
-
+        private int fee; public int Fee { get => fee; set => SetProperty(ref fee, value, nameof(Fee)); }
         public ListContractViewModel()
         {
             List = getListObservableContract();
-            //PayCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReceiptForm wd = new ReceiptForm(); wd.ShowDialog(); });
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
@@ -49,8 +48,8 @@ namespace CarRentalManager.ViewModel
             ID = 0;
             OrderId = 0;
             UserId = 0;
-            
             Status = null;
+            Fee = 0;
         }
         public string this[string columnName]
         {
@@ -70,6 +69,10 @@ namespace CarRentalManager.ViewModel
                     case nameof(UserId):
                         if (UserId <= 0)
                             result = "Invalid user ID";
+                        break;
+                    case nameof(Fee):
+                        if (Fee <= 0)
+                            result = "Invalid total fee";
                         break;
                     default:
                         if (string.IsNullOrEmpty(typeof(ListContractViewModel).GetProperty(columnName).GetValue(this)?.ToString()))
@@ -134,6 +137,7 @@ namespace CarRentalManager.ViewModel
 
         private void handleDeleteCommand()
         {
+            MessageBox.Show(Fee.ToString());
             contractDAO.removeContract(ID);
             updateListUI();
         }

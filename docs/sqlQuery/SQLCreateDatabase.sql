@@ -55,15 +55,15 @@ CREATE TABLE [dbo].[Car] (
 	imagePath char(200) NULL,
 	tutorialPath char(200) NULL,
 	city char(50) NULL,
-	supplierId int references [dbo].[Supplier](id),
+	supplierId int,
 	createdAt date,
 	updatedAt date,
 )
 
 CREATE TABLE [dbo].[Order] (
 	id int primary key,
-	carId int references Car(id),
-	customerId int references Customer(id),
+	carId int,
+	customerId int,
 	bookingPlace char(200) NULL,
 	startDate date,
 	endDate date,
@@ -79,8 +79,8 @@ CREATE TABLE [dbo].[Order] (
 
 CREATE TABLE [dbo].[Contract] (
 	id int primary key,
-	orderId int references [dbo].[Order](id),
-	userId int references [dbo].[User](id),
+	orderId int,
+	userId int,
 	status char(20) NULL,
 	price int,
 	-- PAID, UNPAID
@@ -90,7 +90,7 @@ CREATE TABLE [dbo].[Contract] (
 
 CREATE TABLE [dbo].[Receipt] (
 	id int primary key,
-	contractId int references Contract(id),
+	contractId int,
 	price int,
 	createdAt date,
 	updatedAt date,
