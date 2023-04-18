@@ -1,5 +1,6 @@
 ﻿using CarRentalManager.enums;
 using CarRentalManager.models;
+using CarRentalManager.state;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,11 +65,9 @@ namespace CarRentalManager
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var landingPage = new LandingPage();
+            landingPage.Show();
             Close();
-        }
-
-        private void window_Loaded(object sender, RoutedEventArgs e)
-        {
         }
 
         public class Member
@@ -80,6 +79,11 @@ namespace CarRentalManager
             public string Position { get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtUserName.Text = "Hi, " + LoginInInforState.Name;
         }
     }
 }

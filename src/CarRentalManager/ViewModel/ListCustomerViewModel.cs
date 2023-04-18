@@ -6,12 +6,13 @@ using CarRentalManager.dao;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
+using CarRentalManager.services;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListCustomerViewModel : BaseViewModel, IDataErrorInfo
     {
-
+        readonly ImageService imgService = new ImageService();
         readonly CustomerDAO customerDAO = new CustomerDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
@@ -94,6 +95,9 @@ namespace CarRentalManager.ViewModel
         }
         private Customer getCustomer()
         {
+            string imageIdCardFront = imgService.getProjectImagePath(ImageIdCardFront ?? "", "customers", ID.ToString());
+            string imageIdCardBack = imgService.getProjectImagePath(ImageIdCardBack ?? "", "customers", ID.ToString());
+
             return new Customer(ID, Name, PhoneNumber, Email, IdCard, Address,
                     ImageIdCardFront != null ? ImageIdCardFront : "",
                     ImageIdCardBack != null ? ImageIdCardBack : "",

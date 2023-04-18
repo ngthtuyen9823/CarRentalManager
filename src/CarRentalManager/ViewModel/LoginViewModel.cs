@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CarRentalManager.models;
 using System;
+using CarRentalManager.state;
 
 namespace CarRentalManager.ViewModel
 {
@@ -29,6 +30,7 @@ namespace CarRentalManager.ViewModel
         {
             return currentPassword == oldPassword;
         }
+
         void Login(Window p)
         {
             if (p == null)
@@ -43,7 +45,10 @@ namespace CarRentalManager.ViewModel
                 if (comparePassword(Password, currentUser?.Password?.Trim()))
                 {
                     Application.Current.Windows[0].Close();
-
+                    LoginInInforState.ID = currentUser.ID;
+                    LoginInInforState.Name = currentUser.Name;
+                    LoginInInforState.Role = currentUser.Role;
+                    MessageBox.Show(LoginInInforState.Name);
                     var mainWindow = new DashBoard();
                     mainWindow.Show();
                     p.Close();

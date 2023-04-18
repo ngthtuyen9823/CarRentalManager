@@ -13,8 +13,9 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:viewModel="clr-namespace:CarRentalManager.ViewModel"
         ResizeMode="NoResize"
+        Loaded="MainWindow_Loaded"
         x:Name="window">
-     <Window.DataContext>
+    <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
@@ -76,8 +77,14 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock Text="Carrental Manager" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                        <TextBlock Text="Hi, Jenny" Foreground="#c7ecee" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <Grid DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="209*"/>
+                                <ColumnDefinition Width="51*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Carrental Manager" Foreground="White" FontSize="22" FontWeight="SemiBold"  Margin="5 25 0 10" TextAlignment="Center" Grid.ColumnSpan="2"/>
+                            <TextBlock Name="txtUserName" Text="CARRENTAL" Foreground="#c7ecee" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="92,59,0,0"/>
+                        </Grid>
 
                         <!--Menu Seprator-->
                         <Separator Margin="25" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>
@@ -140,10 +147,11 @@
                 <!--Top Buttons-->
                 <Grid Grid.Row ="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <WrapPanel Grid.Column="0" HorizontalAlignment="Left">
+                    <WrapPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,35">
                         <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" IsChecked="True" >
                             <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
@@ -154,7 +162,7 @@
                             <TextBlock Text="Store" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
                     </WrapPanel>
-                    <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                    <WrapPanel Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,0,35">
                         <Button Style="{StaticResource topButton}">
                             <Icon:PackIconMaterial Kind="Cog"/>
                         </Button>
