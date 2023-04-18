@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -42,9 +42,16 @@ namespace CarRentalManager.services
                         try
                         {
                             var propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-                            var safeValue = row[prop.Name] == null ? null : Convert.ChangeType(row[prop.Name], propType);
-
-                            prop.SetValue(obj, safeValue, null);
+                            if (propType.IsEnum)
+                            {
+                                var safeValue = row[prop.Name] == null ? null : Enum.Parse(propType, row[prop.Name].ToString());
+                                prop.SetValue(obj, safeValue, null); 
+                            }
+                            else
+                            {
+                                var safeValue = row[prop.Name] == null ? null : Convert.ChangeType(row[prop.Name], propType);
+                                prop.SetValue(obj, safeValue, null);
+                            }
                         }
                         catch
                         {

@@ -9,6 +9,7 @@ namespace CarRentalManager.enums
     public enum EContractStatus
     {
         PAID,
-        UNPAID
+        UNPAID,
+        COMPLETE
     }
 }

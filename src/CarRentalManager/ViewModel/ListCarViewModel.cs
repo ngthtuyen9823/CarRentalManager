@@ -19,12 +19,14 @@ using CarRentalManager.services;
 using CarRentalManager.enums;
 using MaterialDesignThemes.Wpf;
 using System.Runtime.InteropServices.ComTypes;
+using System.IO;
 
 namespace CarRentalManager.ViewModel
 {
     public class ListCarViewModel : BaseViewModel, IDataErrorInfo
     {
         readonly VariableService variableService = new VariableService();
+        readonly ImageService imgService = new ImageService();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         public ObservableCollection<Car> List {get; set;}
@@ -141,6 +143,8 @@ namespace CarRentalManager.ViewModel
         }
         private Car getCar()
         {
+            string imagePath = imgService.getProjectImagePath(ImagePath, "cars", ID.ToString());
+
             return new Car(ID, Name,
                     Brand, PublishYear,
                     Color, Price,
@@ -148,7 +152,7 @@ namespace CarRentalManager.ViewModel
                     variableService.parseStringToEnum<ECarType>(Type.Substring(38)),
                     variableService.parseStringToEnum<EDrivingType>(DrivingType.Substring(38)),
                     Seats, LicensePlate,
-                    ImagePath, ImagePath,
+                    ImagePath, imagePath,
                     City != null ? variableService.parseStringToEnum<ECityName>(City.Substring(38)) : ECityName.HCM,
                     SupplierId,
                     CreatedAt, UpdatedAt);
