@@ -170,10 +170,11 @@
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="services\CommondDataService.cs" />
-    <Compile Include="services\ReceiptDataService.cs" />
+    <Compile Include="services\ImageService.cs" />
     <Compile Include="services\SqlQueryService.cs" />
     <Compile Include="services\UserService.cs" />
     <Compile Include="services\VariableService.cs" />
+    <Compile Include="state\LoginInInforState.cs" />
     <Compile Include="StatisticView.xaml.cs">
       <DependentUpon>StatisticView.xaml</DependentUpon>
     </Compile>
@@ -313,20 +314,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\images\cars\1.jpg" />
-    <Resource Include="Assets\images\cars\2.jpg" />
-    <Resource Include="Assets\images\cars\3.jpg" />
-    <Resource Include="Assets\images\cars\4.jpg" />
-    <Resource Include="Assets\images\cars\4.png" />
-    <Resource Include="Assets\images\cars\5.jpg" />
-    <Resource Include="Assets\images\cars\6.jpg" />
-    <Resource Include="Assets\images\cars\7.jpg" />
-    <Resource Include="Assets\images\cars\8.jpg" />
-    <Resource Include="Assets\images\avatar\p1.png" />
-    <Resource Include="Assets\images\avatar\p2.jpg" />
-    <Resource Include="Assets\images\avatar\p3.jpg" />
-    <Resource Include="Assets\images\avatar\p4.jpg" />
-    <Resource Include="Assets\images\avatar\p5.jpg" />
+    <Resource Include="Assets\images\cars\*" />
+    <Resource Include="Assets\images\avatar\*" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
