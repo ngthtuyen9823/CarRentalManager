@@ -737,8 +737,9 @@
                                                         Command="{Binding SortBiggerThan1000}"/>
                                                         </MenuItem>
                                                         <MenuItem 
-                                                    Header ="Giá cao đến thấp"
-                                                      Command="{Binding SortByAscCommand}"   
+                                                            Click="MenuItem_Click"
+                                                            Header ="Giá cao đến thấp"
+                                                            Command="{Binding SortByAscCommand}"   
                                                      >
                                                             <MenuItem.Icon>
                                                                 <Image Source="Assets/hightolow.jpg"
@@ -746,7 +747,8 @@
                                                                Height="60"/>
                                                             </MenuItem.Icon>
                                                         </MenuItem>
-                                                        <MenuItem 
+                                                        <MenuItem
+                                                            Click="MenuItem_Click"
                                                     Header="Giá thấp đến cao"
                                                     Command="{Binding SortByDscCommand}">
                                                             <MenuItem.Icon>
@@ -756,7 +758,9 @@
                                                             </MenuItem.Icon>
                                                         </MenuItem>
                                                         <MenuItem Header="Loại xe">
-                                                            <MenuItem Header="CAR"
+                                                            <MenuItem 
+                                                                Click="MenuItem_Click"
+                                                                Header="CAR"
                                                               Command="{Binding SortByCarCommand}">
                                                                 <MenuItem.Icon>
                                                                     <Image Source="Assets/car_type.jpg"
