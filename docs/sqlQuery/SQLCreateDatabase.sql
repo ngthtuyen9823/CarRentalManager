@@ -83,6 +83,8 @@ CREATE TABLE [dbo].[Contract] (
 	userId int,
 	status char(20) NULL,
 	price int,
+	paid int,
+	remain int,
 	-- PAID, UNPAID
 	createdAt date,
 	updatedAt date,
@@ -154,11 +156,11 @@ insert into [dbo].[Order] Values(7,5,7,'Ho Chi Minh City', '2022-12-20', '2022-1
 insert into [dbo].[Order] Values(8,4,8,'Ho Chi Minh City', '2022-12-20', '2022-12-20', 100000, 'PENDING', 200, '', 'Please contact me soon!', '2022-12-20', '2022-12-20')
 
 
-insert into [dbo].[Contract] values(1,8,1, 'PAID', 100000, '2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(2,7,2, 'PAID', 90000,'2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(3,6,3, 'PAID', 80000,'2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(4,5,4, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(5,5,4, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(6,5,1, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
-insert into [dbo].[Contract] values(7,5,3, 'UNPAID', 70000,'2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(1,8,1, 'PAID', 100000, 0, 100000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(2,7,2, 'PAID', 90000, 0, 90000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(3,6,3, 'PAID', 80000, 0, 80000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(4,5,4, 'UNPAID', 70000, 0, 70000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(5,5,4, 'UNPAID', 70000, 0, 70000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(6,5,1, 'UNPAID', 70000, 0, 70000, '2022-12-12', '2022-12-12')
+insert into [dbo].[Contract] values(7,5,3, 'UNPAID', 70000, 0, 70000, '2022-12-12', '2022-12-12')
 
