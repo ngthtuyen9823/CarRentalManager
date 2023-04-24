@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts.Wpf;
+using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,32 @@ namespace CarRentalManager
         public StatisticView()
         {
             InitializeComponent();
+
+            PointLabel = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+
+            Values = new ChartValues<double> { 150, 375, 420, 500, 160, 140 };
+            DataContext = this;
         }
+        public Func<ChartPoint, string> PointLabel { get; set; }
+
+        private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
+        {
+            var chart = (LiveCharts.Wpf.PieChart)chartpoint.ChartView;
+
+            //clear selected slice.
+            foreach (PieSeries series in chart.Series)
+                series.PushOut = 0;
+
+            var selectedSeries = (PieSeries)chartpoint.SeriesView;
+            selectedSeries.PushOut = 8;
+        }
+        public ChartValues<double> Values { get; set; }
+
+        private void UpdateOnclick(object sender, RoutedEventArgs e)
+        {
+            Chart.Update(true);
+        }
+
     }
 }
