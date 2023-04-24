@@ -59,5 +59,10 @@ namespace CarRentalManager.dao
             string sqlString = sqlService.updateOrder(order);
             dbConnectionDAO.getDataTable(sqlString);
         }
+        public void updateStatusOfOrder(Order order)
+        {
+            string sqlString = sqlService.updateStatusOfOrder(order);
+            dbConnectionDAO.getDataTable(sqlString);
+        }
     }
 }
