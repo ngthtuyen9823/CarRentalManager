@@ -27,7 +27,10 @@ namespace CarRentalManager.ViewModel
         public ICommand PayCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
-
+        private bool _IsOpenPopup_CarInfor;
+        public bool IsOpenPopup_CarInfor { get { return _IsOpenPopup_CarInfor; } set { _IsOpenPopup_CarInfor = value; OnPropertyChanged(); } }
+        public ICommand ClosePopup_CarInfor_Command { get; set; }
+        public ICommand OpenPopup_Command { get; set; }
 
         //*INFO: Value binding
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
@@ -47,6 +50,15 @@ namespace CarRentalManager.ViewModel
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             PayCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handlePayCommand());
+            IsOpenPopup_CarInfor = false;
+            ClosePopup_CarInfor_Command = new RelayCommand<object>((o) => { return true; }, (o) =>
+            {
+                IsOpenPopup_CarInfor = false;
+            });
+            OpenPopup_Command = new RelayCommand<string>((content) => { return true; }, (content) =>
+            {
+                IsOpenPopup_CarInfor = true;
+            });
         }
         private void reSetForm()
         {
