@@ -64,7 +64,7 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM [{0}] WHERE price > {1} and price <= {2}", ETableName.CAR, fromPrice, toPrice);
         }
 
-        public string getListCarByCondition(string City, string Brand, int? Seats)
+        public string getListCarByCondition(string City, string Brand, int Seats)
         {
             string cityCondition =  City != null ? string.Format("city = '{0}'", City) : "";
             string brandCondition = (Brand != null ? (City != null ? " and " : "") + string.Format("brand = '{0}'", Brand) : "");

@@ -26,6 +26,7 @@ namespace CarRentalManager.ViewModel
     public class ListSupplierViewModel : BaseViewModel, IDataErrorInfo
     {
         readonly VariableService variableService = new VariableService();
+        readonly ImageService imgService = new ImageService();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Supplier> list;
@@ -144,6 +145,7 @@ namespace CarRentalManager.ViewModel
         {
             int lastSupplierId = commonDAO.getLastId(ETableName.SUPPLIER);
             int lastCarId = commonDAO.getLastId(ETableName.CAR);
+            string imagePath = imgService.getProjectImagePath(ImageCar, "cars", (lastCarId + 1).ToString());
             Car car = new Car();
             car.ID = lastCarId + 1;
             car.Brand = BrandCar;
@@ -153,6 +155,7 @@ namespace CarRentalManager.ViewModel
             car.LicensePlate = LicensePlate;
             car.Seats = Seats;
             car.ImagePath = ImageCar;
+            car.TutorialPath = imagePath;
             car.Price = PriceCar;
             carDAO.createCar(car);
         }

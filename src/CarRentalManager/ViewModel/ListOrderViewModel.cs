@@ -27,7 +27,7 @@ namespace CarRentalManager.ViewModel
         readonly OrderDAO orderDao = new OrderDAO();
         readonly ContractDAO contractDao = new ContractDAO();
         readonly CommonDAO commonDAO = new CommonDAO();
-
+        readonly CarDAO carDao = new CarDAO();  
         public ObservableCollection<Order> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
@@ -123,8 +123,8 @@ namespace CarRentalManager.ViewModel
         }
         private void updateListUI()
         {
-            MessageBox.Show("Success!");
             List = getListObservableOrder();
+            MessageBox.Show("Success!");
             OnPropertyChanged(nameof(List));
             reSetForm();
         }
@@ -155,19 +155,32 @@ namespace CarRentalManager.ViewModel
 
         private void handleDeleteCommand()
         {
-            orderDao.removeOrder(ID);
+            Order order = orderDao.getOrderById(ID.ToString());
+            order.Status = EOrderStatus.CANCEL;
+            orderDao.updateOrder(order);
             updateListUI();
         }
         private void handleConfirmCommand()
         {
             try
             {
-                int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
-                Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, 0, TotalFee, DateTime.Now, DateTime.Now);
-                Order order = getOrder();
-                orderDao.updateStatusOfOrder(order);
-                updateListUI();
-                contractDao.createContract(contract);
+                Car currentCar = carDao.getCarById(CarId.ToString());
+                if(currentCar != null && currentCar.Status == ECarStatus.AVAILABLE)
+                {
+                    int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
+                    Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, 0, TotalFee, DateTime.Now, DateTime.Now);
+                    Order order = getOrder();
+                    orderDao.updateStatusOfOrder(order);
+                    contractDao.createContract(contract);
+                    currentCar.Status = ECarStatus.ONRENT;
+                    carDao.updateCar(currentCar);
+
+                    updateListUI();
+                }
+                else
+                {
+                    MessageBox.Show("The Car is onrent or not available to rent for now");
+                }
             }
             catch
             {
