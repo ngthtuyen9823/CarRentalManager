@@ -44,12 +44,14 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Orders" Grid.Column="0" FontSize="32" FontWeight="SemiBold" 
                            Margin="10 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
-                <Button Grid.Column="1" Command="{Binding AddCommand}" Style="{StaticResource addButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Add New Order"/>
-                    </StackPanel>
-                </Button>
+                <Button Grid.Column="1" Command="{Binding AddCommand}" HorizontalAlignment="Right"
+                            x:Name="Button_OpenPopup"
+                            Width="140"
+                            Height="38"
+                            Margin="10"
+                            Content="+ Add new order"
+                            Background="#3AA9AD"
+                            />
 
             </Grid>
             <Separator Grid.Row="1" Margin="8" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
@@ -100,13 +102,23 @@
                     <ColumnDefinition ></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <WrapPanel Grid.Column="0" HorizontalAlignment="Left">
-                    <Button Margin="10 20 10 0" Command="{Binding DeleteCommand}" Style="{StaticResource cancelButton}">
-                        <TextBlock Text ="CANCEL"/>
-                    </Button>
-                    <Button Command="{Binding ConfirmCommand}" Style="{StaticResource confirmButton}">
-                        <TextBlock Text="CONFIRM"/>
-                    </Button>
+                <WrapPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Command="{Binding DeleteCommand}"
+                            Width="120"
+                            Height="38"
+                            Margin="5"
+                            Content="CANCEL"
+                            Background="#ee5253"
+                            VerticalAlignment="Bottom"
+                            />
+                    <Button Command="{Binding ConfirmCommand}"
+                            Width="120"
+                            Height="38"
+                            Margin="5"
+                            Content="CONFIRM"
+                            Background="#3AA9AD"
+                            VerticalAlignment="Bottom"
+                            />
                 </WrapPanel>
                 <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="1" Margin="30 20 30 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
