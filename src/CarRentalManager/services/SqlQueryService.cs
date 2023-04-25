@@ -144,12 +144,14 @@ namespace CarRentalManager.services
 
         public string updateContract(Contract updatedContract)
         {
-            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', updatedAt = '{5}' where id = '{6}'",
+            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', updatedAt = '{7}' where id = '{8}'",
             ETableName.CONTRACT, 
             updatedContract.UserId,
             updatedContract.OrderId, 
             updatedContract.Status,
             updatedContract.Price,
+            updatedContract.Paid,
+            updatedContract.Remain,
             updatedContract.UpdatedAt,
             updatedContract.ID);
         }
@@ -171,6 +173,14 @@ namespace CarRentalManager.services
                     newOrder.TotalFee, newOrder.Status,
                     newOrder.DepositAmount, newOrder.ImageEvidence,
                     newOrder.Notes, newOrder.UpdatedAt, newOrder.ID);
+        }
+        public string updateStatusOfOrder(Order newOrder)
+        {
+            EOrderStatus status = EOrderStatus.COMPLETE;
+            return string.Format("UPDATE [{0}] SET status = '{1}' where id = '{2}' ",
+                ETableName.ORDER,
+                    status,
+                    newOrder.ID);
         }
 
         public string createOrder(Order newOrder)

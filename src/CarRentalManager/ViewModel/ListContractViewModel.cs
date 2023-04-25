@@ -11,6 +11,7 @@ using MaterialDesignThemes.Wpf;
 using System.Net;
 using System.Xml.Linq;
 using System.Windows;
+using System.Data.Entity.Core.Objects;
 
 namespace CarRentalManager.ViewModel
 {
@@ -35,14 +36,18 @@ namespace CarRentalManager.ViewModel
         private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private int fee; public int Fee { get => fee; set => SetProperty(ref fee, value, nameof(Fee)); }
+        private int paid; public int Paid { get => paid; set => SetProperty(ref paid, value, nameof(Paid)); }
+        private int remain; public int Remain { get => remain; set => SetProperty(ref remain, value, nameof(Remain)); }
+
+
         public ListContractViewModel()
         {
             List = getListObservableContract();
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
+            PayCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handlePayCommand());
         }
-
         private void reSetForm()
         {
             ID = 0;
@@ -72,7 +77,7 @@ namespace CarRentalManager.ViewModel
                         break;
                     case nameof(Fee):
                         if (Fee <= 0)
-                            result = "Invalid total fee";
+                            result = "Please enter fee to pay";
                         break;
                     default:
                         if (string.IsNullOrEmpty(typeof(ListContractViewModel).GetProperty(columnName).GetValue(this)?.ToString()))
@@ -109,7 +114,7 @@ namespace CarRentalManager.ViewModel
         {
             return new Contract(ID, OrderId, UserId,
                     variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
-                    Price,
+                    Price, Paid, Remain,
                     DateTime.Now, DateTime.Now);
         }
 
@@ -137,9 +142,34 @@ namespace CarRentalManager.ViewModel
 
         private void handleDeleteCommand()
         {
-            MessageBox.Show(Fee.ToString());
             contractDAO.removeContract(ID);
             updateListUI();
+        }
+        private void handlePayCommand()
+        {
+            try
+            {
+                bool isError = Fee <= 0 || 
+                    variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                if (!isError)
+                {
+                    Contract currentContract = contractDAO.getContractById(ID.ToString());
+                    currentContract.Paid += Fee;
+                    currentContract.Remain -= Fee;
+                    currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
+                    currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
+                    contractDAO.updateContract(currentContract);
+                    updateListUI();
+                }
+                else
+                {
+                    MessageBox.Show("The contract has been paid completely");
+                }
+            }
+            catch
+            {
+                MessageBox.Show(Error);
+            }
         }
     }
 }

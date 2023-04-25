@@ -163,10 +163,11 @@ namespace CarRentalManager.ViewModel
             try
             {
                 int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
-                Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, DateTime.Now, DateTime.Now);
-                orderDao.removeOrder(ID);
-                contractDao.createContract(contract);
+                Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, 0, TotalFee, DateTime.Now, DateTime.Now);
+                Order order = getOrder();
+                orderDao.updateStatusOfOrder(order);
                 updateListUI();
+                contractDao.createContract(contract);
             }
             catch
             {
