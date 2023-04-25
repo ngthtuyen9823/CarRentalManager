@@ -145,6 +145,8 @@ namespace CarRentalManager.ViewModel
             orderDAO.createOrder(Order);
             MessageBox.Show("Success!");
 
+            int createdOrderID = commonDAO.getLastId(ETableName.ORDER);
+            MessageBox.Show(createdOrderID.ToString());
             resetForm();
         }
     }

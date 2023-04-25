@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarRentalManager.enums
 {
-    public enum EOrderStatus
+    public enum EReturnCarStatus
     {
-        PENDING,
-        COMPLETE,
-        CANCELBYUSER,
-        CANCELBYADMIN
+        BROKEN, 
+        INTACT
     }
 }

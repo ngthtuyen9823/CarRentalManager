@@ -156,7 +156,7 @@ namespace CarRentalManager.ViewModel
         private void handleDeleteCommand()
         {
             Order order = orderDao.getOrderById(ID.ToString());
-            order.Status = EOrderStatus.CANCEL;
+            order.Status = EOrderStatus.CANCELBYADMIN;
             orderDao.updateOrder(order);
             updateListUI();
         }

@@ -148,6 +148,7 @@
     <Compile Include="enums\EDrivingType.cs" />
     <Compile Include="enums\EnumDescriptionTypeConverter.cs" />
     <Compile Include="enums\EOrderStatus.cs" />
+    <Compile Include="enums\EReturnCarStatus.cs" />
     <Compile Include="enums\ETableName.cs" />
     <Compile Include="enums\EUserRole.cs" />
     <Compile Include="HomeView.xaml.cs">
