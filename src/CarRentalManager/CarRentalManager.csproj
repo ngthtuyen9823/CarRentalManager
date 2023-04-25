@@ -174,9 +174,6 @@
     <Compile Include="OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReceiptForm.xaml.cs">
-      <DependentUpon>ReceiptForm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
@@ -266,10 +263,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OrderView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ReceiptForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
