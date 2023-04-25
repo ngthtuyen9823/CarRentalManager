@@ -64,11 +64,11 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM [{0}] WHERE price > {1} and price <= {2}", ETableName.CAR, fromPrice, toPrice);
         }
 
-        public string getListCarByCondition(string City, string Brand, int Seats)
+        public string getListCarByCondition(string City, string Brand, int? Seats)
         {
-            string cityCondition =  City != null ? string.Format("city = '{0}'", City) : "city is not null";
-            string brandCondition = " and " + (Brand != null ? string.Format("brand = '{0}'", Brand) : "brand is not null");
-            string seatsCondition = " and " + (Seats != 0 ? string.Format("seats = '{0}'", Seats) : "seats is not null");
+            string cityCondition =  City != null ? string.Format("city = '{0}'", City) : "";
+            string brandCondition = (Brand != null ? (City != null ? " and " : "") + string.Format("brand = '{0}'", Brand) : "");
+            string seatsCondition = (Seats != 0 ? (Brand != null ? " and " : "") + string.Format("seats = '{0}'", Seats) : "");
             return string.Format("SELECT * FROM [{0}] WHERE {1}", ETableName.CAR, cityCondition + brandCondition + seatsCondition);
         }
 
