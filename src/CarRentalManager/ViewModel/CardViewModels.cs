@@ -110,8 +110,10 @@ namespace CarRentalManager.ViewModel
 
         public ObservableCollection<string> getListDistinctValue(string fieldName)
         {
-            List<string> brands = carDao.getListCarBrand(fieldName);
-            ObservableCollection<string> carBrandList = new ObservableCollection<string>(brands);
+            List<string> data = carDao.getListCarBrand(fieldName);
+            if (data[0] == "") data.RemoveAt(0);
+            data.Insert(0, null);
+            ObservableCollection<string> carBrandList = new ObservableCollection<string>(data);
             return carBrandList;
         }
 
