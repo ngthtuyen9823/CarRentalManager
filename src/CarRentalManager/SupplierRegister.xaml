@@ -7,357 +7,421 @@
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="SupplierRegister" Height="620" Width="380"
+        Title="SupplierRegister"
         DataContext="{StaticResource SupplierVM}">
-    <Grid>
-        <Grid>
+    <Grid
+        Width="1150"
+        Height="600" RenderTransformOrigin="0.5,0.5">
+        <Grid.Background>
+            <ImageBrush ImageSource="/sup_bkg.jpg" Stretch="UniformToFill" Opacity="0.8">
+                <ImageBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ImageBrush.RelativeTransform>
+            </ImageBrush>
+        </Grid.Background>
+
+        <Grid
+            Height="350"
+            Width="750"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-
-            <Border CornerRadius="10" Grid.RowSpan="2">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#609966" Offset="0.8"/>
-                        <GradientStop Color="#9DC08B" Offset="1.1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Border 
+                Background="WhiteSmoke"
+                CornerRadius="10" Grid.RowSpan="2" Grid.ColumnSpan="2">
+               
             </Border>
 
-
+            <!--title-->
             <StackPanel 
+                Grid.Column="1"
                 VerticalAlignment="Center">
-                <Image Source="assets/images/iconsRegister/register.png" Width="80"/>
-                <TextBlock Text="Supplier Register"
-                           FontWeight="Light"
-                           FontFamily="helvetica"
+                <TextBlock Text="SUPPLIER REGISTER"
+                           FontFamily="Century Gothic"
                            FontSize="22"
-                           Foreground="White"
+                           Foreground="Black"
+                           Margin="0,0,0,0"
                            HorizontalAlignment="Center"/>
             </StackPanel>
 
 
 
-            <StackPanel Grid.Row="1">
-                
+            <StackPanel
+                Grid.Column="1"
+                Grid.Row="1">
 
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+                <StackPanel
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal" 
+                    Margin="0,0,0,0">
+                    <Border     
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="200">
+                            <TextBox 
                              Text="{Binding Name, 
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Tên"
                              BorderBrush="White"
-                             FontSize="18"
+                             FontSize="13"
                              HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontFamily="Arial"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="180"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="User" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
-
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+                             Height="26"/>
+                        </Grid>
+                    </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4" Width="150">
+                        <Grid
+                            HorizontalAlignment="Right"
+                            >
+                            <TextBox 
                              Text="{Binding PhoneNumber, 
                              ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             UpdateSourceTrigger=PropertyChanged}"                            
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Số điện thoại"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             FontFamily="Arial"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="140"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Phone" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
-
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="150">
+                            <TextBox 
                              Text="{Binding Email, 
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Email"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             FontFamily="Arial"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="140"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Email" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+                <StackPanel
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal" 
+                    Margin="0,25,0,0">
+                    <Border     
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="200">
+                            <TextBox 
                              Text="{Binding Address, 
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             FontFamily="Arial"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Địa chỉ"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="180"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="AddressMarker" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4" Width="150">
+                        <Grid
+                            HorizontalAlignment="Right"
+                            Width="150">
+                            <TextBox 
                              Text="{Binding NameCar, 
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             FontFamily="Arial"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Tên xe"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="140"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Car" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
-                
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="150">
+                            <TextBox 
                              Text="{Binding BrandCar, 
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             FontFamily="Arial"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Hãng xe"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="110"
+                             Width="140"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="BrandingWatermark" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                    <TextBox 
-                             Text="{Binding ColorCar, 
-                            ValidatesOnDataErrors=True,
-                            UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
-                             FontWeight="Light"
-                             materialDesign:HintAssist.Hint="Màu xe"
-                             BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="110"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="26"
-                             Margin="2,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Color" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox 
+
+
+
+                <StackPanel
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal" 
+                    Margin="0,25,0,0">
+                    <Border     
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="200">
+                            <TextBox 
                              Text="{Binding LicensePlate, 
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             FontFamily="Arial"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Biển số xe"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="110"
+                             Width="180"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="License" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                    <TextBox 
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4" Width="150">
+                        <Grid
+                            HorizontalAlignment="Right"
+                            Width="150">
+                            <TextBox 
+                             Text="{Binding ColorCar, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Arial"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Màu xe"
+                             BorderBrush="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="140"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="150">
+                            <TextBox 
                              Text="{Binding Seats, 
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                             FontFamily="Helvetica"
+                             FontFamily="Arial"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Số chỗ ngồi"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="110"
+                             Width="140"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="2,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Seat" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
 
-
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox
-                            Text="{Binding PriceCar, 
-                            ValidatesOnDataErrors=True,
-                            UpdateSourceTrigger=PropertyChanged}"
-                            FontFamily="Helvetica"
-                             FontWeight="Light"
-                             materialDesign:HintAssist.Hint="Giá cho thuê"
-                             BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="110"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="26"
-                             Margin="63,0,0,0"/>
-                    <materialDesign:PackIcon    Kind="Money" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
-                    <TextBox 
+                <StackPanel
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal" 
+                    Margin="0,25,0,0">
+                    <Border     
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="200">
+                            <TextBox 
                             Text="{Binding ImageCar, 
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
                              x:Name="txtImage"
-                             FontFamily="Helvetica"
+                             FontFamily="Arial"
                              FontWeight="Light"
                              materialDesign:HintAssist.Hint="Hình ảnh"
                              BorderBrush="White"
-                             FontSize="18"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="110"
+                             Width="180"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="26"
-                             Margin="2,0,0,0"/>
-                    <ToggleButton
+                             Margin="10,0,0,0"/>
+                            <ToggleButton
+                                HorizontalAlignment="Right"
                         Margin="-15,-20,0,-20"
                         Name="btnImage"
                         Style="{StaticResource MaterialDesignFlatToggleButton}"
                         ToolTip="MaterialDesignFlatToggleButton" Checked="btnTiencoc_Checked"                        
                         >
-                        <materialDesign:PackIcon
+                                <materialDesign:PackIcon
                             Kind="Paperclip"
-                            Height="15"
-                            Foreground="White"
+                            Height="13"
+                            Foreground="Black"
                             Width="21" VerticalAlignment="Center" />
-                    </ToggleButton>
+                            </ToggleButton>
+                        </Grid>
+                    </Border>
+
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4" Width="150">
+                        <Grid
+                            HorizontalAlignment="Right"
+                            Width="150">
+                            <TextBox
+                            Text="{Binding PriceCar, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            FontFamily="Arial"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Giá cho thuê"
+                             BorderBrush="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="140"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    
+
                     <Button 
                         Command="{Binding SupplierCommand}"
-                        Width="100" Height="40" Margin="140,0,60,0" Content="REGISTER" Background="#40513B"/>
+                        Width="120" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Content="REGISTER" Background="#3AB19B" Margin="240,0,0,0" FontFamily="Dubai Light" BorderBrush="#3AB19B" />
                 </StackPanel>
 
             </StackPanel>
         </Grid>
+        <Grid
+            Height="270"
+            Width="180"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,700,0"
+            >
+            <Border
+                CornerRadius="10">
+                <Border.Background>
+                    <ImageBrush ImageSource="/supgrid.jpg"/>
+                </Border.Background>
+            </Border>
+        </Grid>
+        <Button Margin="30 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="White" BorderBrush="White"
+                 ToolTip="Close" x:Name="btnExit" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Click="btnExit_Click"> 
+            <materialDesign:PackIcon Kind="Close" Foreground="Red" Width="20" Height="20"/>
+        </Button>
     </Grid>
 </Window>

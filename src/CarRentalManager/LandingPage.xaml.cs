@@ -61,7 +61,17 @@ namespace CarRentalManager
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SupplierRegister supplierRegister= new SupplierRegister();
-            supplierRegister.Show();
+            supplierRegister.ShowDialog();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbSeats.Items.Count > 0)
+                cbSeats.SelectedIndex = 0;
+            if (cbDiaChi.Items.Count > 0)
+                cbDiaChi.SelectedIndex = 0;
+            if (cbBrand.Items.Count > 0)
+                cbBrand.SelectedIndex = 0;
         }
     }
 }

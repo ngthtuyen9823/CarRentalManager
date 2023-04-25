@@ -44,5 +44,10 @@ namespace CarRentalManager
                 bitmap.EndInit();
             }
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

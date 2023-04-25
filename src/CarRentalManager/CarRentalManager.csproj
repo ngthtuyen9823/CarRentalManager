@@ -353,6 +353,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="supgrid.jpg" />
+    <Resource Include="Assets\images\supplier\supgrid.jpg" />
+    <Resource Include="sup_bkg.jpg" />
+    <Resource Include="Assets\images\supplier\sup_bkg.jpg" />
     <Resource Include="landingpage.jpg" />
     <Resource Include="Assets\images\background\landingpage.jpg" />
     <Resource Include="Assets\images\slider\car-ren-1.png">

@@ -50,18 +50,22 @@ namespace CarRentalManager.ViewModel
         private string colorCar; public string ColorCar { get => colorCar; set => SetProperty(ref colorCar, value, nameof(ColorCar)); }
         private int priceCar; public int PriceCar { get => priceCar; set => SetProperty(ref priceCar, value, nameof(PriceCar)); }
         private string imageCar; public string ImageCar { get => imageCar; set => SetProperty(ref imageCar, value, nameof(ImageCar)); }
+        private string tutorialCar; public string TutorialCar { get => tutorialCar; set => SetProperty(ref tutorialCar, value, nameof(TutorialCar)); }
         private int publishYear; public int PublishYear { get => publishYear; set => SetProperty(ref publishYear, value, nameof(PublishYear)); }
         private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
-        private int seats; public int Seats { get => publishYear; set => SetProperty(ref seats, value, nameof(Seats)); }
+        private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
         private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
         private string city; public string City { get => city; set => SetProperty(ref city, value, nameof(City)); }
+        private string createdAt; public string CreatedAt { get => createdAt; set => SetProperty(ref createdAt, value, nameof(CreatedAt)); }
+        private string updatedAt; public string UpdatedAt { get => updatedAt; set => SetProperty(ref updatedAt, value, nameof(UpdatedAt)); }
 
 
         public ListSupplierViewModel()
         {
             List = getListObservableSupplier();
+            SupplierCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleSupplierCommand());
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
@@ -70,10 +74,17 @@ namespace CarRentalManager.ViewModel
         private void reSetForm()
         {
             ID = 0;
-            Name = null;
-            PhoneNumber = null;
-            Email = null;
-            Address = null;
+            Name = string.Empty;
+            PhoneNumber = string.Empty;
+            Email = string.Empty;
+            Address = string.Empty;
+            NameCar = string.Empty;
+            BrandCar = string.Empty;
+            LicensePlate = string.Empty;
+            ColorCar = string.Empty;
+            Seats = PriceCar = 0;
+            ImageCar = string.Empty;
+
         }
         public string this[string columnName]
         {
@@ -91,8 +102,8 @@ namespace CarRentalManager.ViewModel
                             result = "Price invalid";
                         break;
                     case nameof(Seats):
-                        if (Seats <=  0)
-                            result = "Price invalid";
+                        if (Seats <  0)
+                            result = "Seats invalid";
                         break;
                     default:
                         if (string.IsNullOrEmpty(typeof(ListSupplierViewModel).GetProperty(columnName).GetValue(this)?.ToString()))
@@ -129,7 +140,22 @@ namespace CarRentalManager.ViewModel
         {
             return new Supplier(ID, Name, PhoneNumber, Email, Address, DateTime.Now, DateTime.Now);
         }
-
+        private void getaddCar()
+        {
+            int lastSupplierId = commonDAO.getLastId(ETableName.SUPPLIER);
+            int lastCarId = commonDAO.getLastId(ETableName.CAR);
+            Car car = new Car();
+            car.ID = lastCarId + 1;
+            car.Brand = BrandCar;
+            car.SupplierId = lastSupplierId;
+            car.Color = ColorCar;
+            car.Name = NameCar;
+            car.LicensePlate = LicensePlate;
+            car.Seats = Seats;
+            car.ImagePath = ImageCar;
+            car.Price = PriceCar;
+            carDAO.createCar(car);
+        }
         private void updateListUI()
         {
             MessageBox.Show("Success!");
@@ -155,6 +181,15 @@ namespace CarRentalManager.ViewModel
         private void handleDeleteCommand()
         {
             supplierDAO.removeSupplier(ID);
+            updateListUI();
+        }
+        private void handleSupplierCommand()
+        {
+            int lastSupplierId = commonDAO.getLastId(ETableName.SUPPLIER);
+            Supplier supplier = getSupplier();
+            supplier.ID = lastSupplierId + 1;
+            supplierDAO.createSupplier(supplier);
+            getaddCar();
             updateListUI();
         }
     }
