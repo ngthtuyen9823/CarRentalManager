@@ -17,7 +17,7 @@
             d:DesignHeight="450" d:DesignWidth="950">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2.*"></RowDefinition>
             <RowDefinition Height="5.5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderBrush="Black" CornerRadius="4,4,0,0" Grid.ColumnSpan="2">
@@ -132,7 +132,7 @@
             <Grid Margin="30 0 30 30">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="9*"></RowDefinition>
+                    <RowDefinition Height="8*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="LIST OF RENTAL CAR BY BRAND" Foreground="#121518"
                       FontWeight="SemiBold" FontSize="16" TextAlignment="Center"></TextBlock>
@@ -150,13 +150,34 @@
                 </lvc:PieChart>
             </Grid>
             <Grid Margin="30 0 30 30" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="179*"/>
+                    <ColumnDefinition Width="108*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="9*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <!--<TextBlock Grid.Row="0" Text="THỐNG KÊ SỐ LƯỢNG ĐƠN HÀNG TRONG THÁNG" Foreground="#121518"
-                       FontSize="15" TextAlignment="Center"></TextBlock>-->
-                <Grid Grid.Row="1" Background="#4EB1B6">
+
+                <WrapPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                    <TextBlock Text="Draw char by " Width="89"></TextBlock>
+                    <ComboBox Name="TypeChart" Width="156"
+                              Margin="0 0 0 40"
+                              VerticalAlignment="Center"
+                              materialDesign:HintAssist.Hint="" 
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="30">
+                        <ComboBoxItem>
+                            BY MONTH
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            BY PRECIOUSE
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            BY YEAR
+                        </ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                <Grid Background="#4EB1B6" Grid.ColumnSpan="2" Margin="0,26,0,0" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".7*"></ColumnDefinition>
                         <ColumnDefinition Width=".3*"></ColumnDefinition>
@@ -169,7 +190,7 @@
                     <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="25, 10">
                         <Path Width="25" Height="25" Stretch="Fill" Fill="#4C4949" Data="F1 M 38,3.16666C 57.2379,3.16666 72.8333,18.7621 72.8333,38C 72.8333,57.2379 57.2379,72.8333 38,72.8333C 18.7621,72.8333 3.16667,57.2379 3.16667,38C 3.16667,18.7621 18.7621,3.16666 38,3.16666 Z M 52.252,18.9974L 36.4164,18.9974L 23.75,39.5833L 34.8333,39.5833L 25.3316,60.1667L 50.6667,34.8333L 38,34.8333L 52.252,18.9974 Z "/>
                         <StackPanel Margin="10, 0">
-                            <TextBlock FontSize="22" Foreground="White">Orders chart</TextBlock>
+                            <TextBlock FontSize="20" Foreground="White" Text="Biểu đồ tăng trưởng doanh thu"></TextBlock>
                             <TextBlock FontSize="14" Foreground="#7CFFFFFF" Text="24-04-2023"></TextBlock>
                         </StackPanel>
                     </StackPanel>
@@ -190,16 +211,12 @@
                             </lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
-                    
-                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Background="#4CFFFFFF" Height="270" VerticalAlignment="Top">
-                        <TextBlock Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0">Average num this year</TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" HorizontalAlignment="Center">832</TextBlock>
-                        <TextBlock Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0">Average num this month</TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" HorizontalAlignment="Center">292</TextBlock>
-                        <TextBlock Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0">Numbers of order today</TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" HorizontalAlignment="Center">9</TextBlock>
+
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Background="#4CFFFFFF" Height="104" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="401,0,0,0">
+                        <TextBlock Foreground="White" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0" Text="Đơn vi"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="26" HorizontalAlignment="Center" Text="triệu đồng"></TextBlock>
                     </StackPanel>
-                    
+
                     <Button Grid.Column="1" Grid.Row="1" Width="40" Height="40" VerticalAlignment="Top" Panel.ZIndex="1"
                     Click="UpdateOnclick" Margin="0, 180, 0, 0">
                         <Button.Template>
@@ -220,7 +237,7 @@
                     </Button>
                 </Grid>
             </Grid>
-          
+
         </Grid>
     </Grid>
 </UserControl>

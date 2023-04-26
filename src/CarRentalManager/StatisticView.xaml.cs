@@ -71,7 +71,7 @@ namespace CarRentalManager
             Dictionary<string, int> dictPreciouse = statisticsService.getDictTotalRevenueByPrecious();
             for (int i = 1; i <= 4; i++)
             {
-                double x = dictPreciouse[$"{i}"] / (double)10;
+                double x = dictPreciouse[$"{i}"] / (double)1000;
                 Values.Add(x);
             }
         }
@@ -80,7 +80,7 @@ namespace CarRentalManager
             Dictionary<string, int> dictMonth = statisticsService.getDictTotalRevenueByMonth();
             for (int i = 1; i <= 12; i++)
             {
-                double x = dictMonth[$"{i}"] / (double)10;
+                double x = dictMonth[$"{i}"] / (double)1000;
                 Values.Add(x);
             }
         }
