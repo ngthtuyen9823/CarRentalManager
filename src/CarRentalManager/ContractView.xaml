@@ -164,22 +164,51 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Available" BorderBrush="#218c74"/>
-                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Unavailable "/>
-                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Onrent"/>
-                </StackPanel>
-                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="1" Margin="30 20 30 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="0" Margin="50 20 50 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
-                <Grid Margin="0 10 0 0" Grid.Column ="2" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search here ..."
-                           Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-                    <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="35" Style="{StaticResource searchTextbox}" VerticalContentAlignment="Center"/>
-
-                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
+                <Grid Margin="0 10 0 0" Grid.Column ="1" Width="380" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <materialDesign:ColorZone
+                        Mode="Standard"
+                        Padding="8 4 8 4"
+                        CornerRadius="20"
+                        Panel.ZIndex="1"
+                        Margin="16 0 0 0"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+                                    Kind="Magnify"
+                                    Opacity=".56" />
+                            </Button>
+                            <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged"
+                                     Grid.Column="1"
+                                     Margin="8 0 0 0"
+                                     materialDesign:HintAssist.Hint="Search here..."
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0"
+                                     MinWidth="200"
+                                     VerticalAlignment="Center" />
+                            <Button
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Grid.Column="2">
+                                <materialDesign:PackIcon
+                                    Kind="Microphone"
+                                    Opacity=".56"
+                                    Margin="8 0 0 0" />
+                            </Button>
+                        </Grid>
+                    </materialDesign:ColorZone>
                 </Grid>
             </Grid>
         </Grid>
