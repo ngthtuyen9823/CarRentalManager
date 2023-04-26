@@ -139,13 +139,15 @@
                       FontWeight="SemiBold" FontSize="16" TextAlignment="Center"></TextBlock>
                 <lvc:PieChart Grid.Row="1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
                     <lvc:PieChart.Series>
-                        <lvc:PieSeries Title="VINFAST" Values="3" DataLabels="True"
+                        <lvc:PieSeries Name="Piece1" Title="VINFAST" Values="3" DataLabels="True"
                                    LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Title="MAZDA" Values="4" DataLabels="True" 
+                        <lvc:PieSeries Name="Piece2" Title="MAZDA" Values="4" DataLabels="True" 
                                    LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Title="TOYOTA" Values="6" DataLabels="True" 
+                        <lvc:PieSeries Name="Piece3" Title="TOYOTA" Values="6" DataLabels="True" 
                                    LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Title="MITSUBISHI" Values="2" DataLabels="True" 
+                        <lvc:PieSeries Name="Piece4" Title="MITSUBISHI" Values="2" DataLabels="True" 
+                                   LabelPoint="{Binding PointLabel}"/>
+                        <lvc:PieSeries Name="Piece5" Title="MITSUBISHI" Values="2" DataLabels="True" 
                                    LabelPoint="{Binding PointLabel}"/>
                     </lvc:PieChart.Series>
                 </lvc:PieChart>
