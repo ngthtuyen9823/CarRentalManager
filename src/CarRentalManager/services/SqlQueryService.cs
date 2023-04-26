@@ -1,5 +1,6 @@
 using System;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using CarRentalManager.enums;
 using CarRentalManager.models;
 
@@ -225,19 +226,21 @@ namespace CarRentalManager.services
         //*INFO: STATISTIC
         public string countOnrentTimes()
         {
-            return "SELECT carId, COUNT([Contract].id) as onrentTimes " +
-                "FROM[Order] " +
-                "JOIN[Contract] on[Order].id = [Contract].orderId " +
-                "GROUP BY carId";
+            return "SELECT name, COUNT([Contract].id) as onrentTimes " +
+                    "FROM[Order] " +
+                    "JOIN[Contract] on[Order].id = [Contract].orderId " +
+                    "JOIN[Car] on[Order].carId = [Car].id " +
+                    "GROUP BY name";
         }
 
         public string countBrokenTimes()
         {
-            return "SELECT [Order].carId, COUNT([Contract].id) as brokenTimes " +
-                "FROM[Contract] " +
-                "JOIN[Order] ON[Contract].orderId = [Order].id " +
-                "WHERE[Contract].returnCarStatus = 'BROKEN' " +
-                "GROUP BY[Order].carId";
+            return "SELECT name, COUNT([Contract].id) as brokenTimes " +
+                "FROM [Contract] " +
+                "JOIN [Order] ON[Contract].orderId = [Order].id " +
+                "JOIN [Car] on [Order].carId = [Car].id " +
+                "WHERE [Contract].returnCarStatus = 'BROKEN' " +
+                "GROUP BY name";
         }
     }
 }
