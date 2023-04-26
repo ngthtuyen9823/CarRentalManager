@@ -124,10 +124,11 @@
                             CommandParameter="{Binding ElementName=Button_OpenPopup,Path=Content}" 
                             x:Name="Button_OpenPopup"
                             Width="120"
-                            Height="38"
+                            Height="40"
                             Margin="10"
                             Content="Click to pay"
-                            Background="#3AA9AD"
+                           BorderThickness="20"
+                            BorderBrush="#3AA9AD"
                             >
                     </Button>
                 </WrapPanel>
