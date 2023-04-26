@@ -116,7 +116,6 @@
                 </Grid>
             </Border>
         </Grid>
-        <Button Click="showData"></Button>
         <Border Grid.Row="1" BorderBrush="Black" CornerRadius="4,4,0,0" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -139,15 +138,13 @@
                       FontWeight="SemiBold" FontSize="16" TextAlignment="Center"></TextBlock>
                 <lvc:PieChart Grid.Row="1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
                     <lvc:PieChart.Series>
-                        <lvc:PieSeries Name="Piece1" Title="VINFAST" Values="3" DataLabels="True"
+                        <lvc:PieSeries Name="Piece1" DataLabels="True"
                                    LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Name="Piece2" Title="MAZDA" Values="4" DataLabels="True" 
+                        <lvc:PieSeries Name="Piece2" DataLabels="True" 
                                    LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Name="Piece3" Title="TOYOTA" Values="6" DataLabels="True" 
+                        <lvc:PieSeries Name="Piece3" DataLabels="True" 
                                    LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Name="Piece4" Title="MITSUBISHI" Values="2" DataLabels="True" 
-                                   LabelPoint="{Binding PointLabel}"/>
-                        <lvc:PieSeries Name="Piece5" Title="MITSUBISHI" Values="2" DataLabels="True" 
+                        <lvc:PieSeries Name="Piece4" DataLabels="True" 
                                    LabelPoint="{Binding PointLabel}"/>
                     </lvc:PieChart.Series>
                 </lvc:PieChart>
