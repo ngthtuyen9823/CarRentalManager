@@ -64,5 +64,11 @@ namespace CarRentalManager.dao
             string sqlString = sqlService.updateStatusOfOrder(order);
             dbConnectionDAO.getDataTable(sqlString);
         }
+
+        public List<Order> getListOrderByCondition(string condition) {
+            string sqlString = sqlService.getListByCondition(ETableName.ORDER, condition);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlString);
+            return commondDataService.dataTableToList<Order>(dataTable);
+        }
     }
 }

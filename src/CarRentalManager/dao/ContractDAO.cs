@@ -54,7 +54,12 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Contract>(dataTable);
         }
-
+        public List<Contract> getListByCondition(string condition)
+        {
+            string sqlString = sqlService.getListByCondition(ETableName.CONTRACT, condition);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlString);
+            return commondDataService.dataTableToList<Contract>(dataTable);
+        }
     }
 }
 

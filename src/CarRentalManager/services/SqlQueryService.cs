@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using CarRentalManager.enums;
 using CarRentalManager.models;
 
@@ -40,6 +41,11 @@ namespace CarRentalManager.services
         {
             return string.Format("DELETE FROM [{0}] WHERE id = {1}", tableName, id);
         }
+        public string getListByCondition(ETableName tableName, string condition)
+        {
+            return string.Format("SELECT * FROM [{0}] where {1}", tableName, condition);
+        }
+
 
         //*INFO: CAR
 
@@ -50,12 +56,12 @@ namespace CarRentalManager.services
         public string createNewCar(Car newCar)
         {
             return string.Format("INSERT INTO [{15}](id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')",
-                    newCar.ID, newCar.Name, 
-                    newCar.Brand, newCar.Color, 
+                    newCar.ID, newCar.Name,
+                    newCar.Brand, newCar.Color,
                     newCar.PublishYear, newCar.Type,
                     newCar.Status, newCar.DrivingType,
-                    newCar.Seats, newCar.LicensePlate, 
-                    newCar.Price, newCar.ImagePath, 
+                    newCar.Seats, newCar.LicensePlate,
+                    newCar.Price, newCar.ImagePath,
                     newCar.SupplierId, DateTime.Now,
                     DateTime.Now, ETableName.CAR);
         }
@@ -66,7 +72,7 @@ namespace CarRentalManager.services
 
         public string getListCarByCondition(string City, string Brand, int Seats)
         {
-            string cityCondition =  City != null ? string.Format("city = '{0}'", City) : "";
+            string cityCondition = City != null ? string.Format("city = '{0}'", City) : "";
             string brandCondition = (Brand != null ? (City != null ? " and " : "") + string.Format("brand = '{0}'", Brand) : "");
             string seatsCondition = (Seats != 0 ? (Brand != null ? " and " : "") + string.Format("seats = '{0}'", Seats) : "");
             return string.Format("SELECT * FROM [{0}] WHERE {1}", ETableName.CAR, cityCondition + brandCondition + seatsCondition);
@@ -74,11 +80,11 @@ namespace CarRentalManager.services
 
         public string updateCar(Car updatedCar)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}' where id = '{14}'", 
-                ETableName.CAR, updatedCar.Name, 
-                updatedCar.Brand, updatedCar.Color, 
-                updatedCar.PublishYear, updatedCar.Type, 
-                updatedCar.Status, updatedCar.DrivingType, 
+            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}' where id = '{14}'",
+                ETableName.CAR, updatedCar.Name,
+                updatedCar.Brand, updatedCar.Color,
+                updatedCar.PublishYear, updatedCar.Type,
+                updatedCar.Status, updatedCar.DrivingType,
                 updatedCar.Seats, updatedCar.LicensePlate,
                 updatedCar.Price, updatedCar.ImagePath,
                 updatedCar.SupplierId, updatedCar.UpdatedAt, updatedCar.ID);
@@ -94,11 +100,11 @@ namespace CarRentalManager.services
         public string createCustomer(Customer newCustomer)
         {
             return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')",
-                    ETableName.CUSTOMER, 
-                    newCustomer.ID, newCustomer.PhoneNumber, 
-                    newCustomer.Name, newCustomer.Email, 
-                    newCustomer.IDCard, newCustomer.Address, 
-                    newCustomer.ImageIdCardFront, newCustomer.ImageIdCardBack, 
+                    ETableName.CUSTOMER,
+                    newCustomer.ID, newCustomer.PhoneNumber,
+                    newCustomer.Name, newCustomer.Email,
+                    newCustomer.IDCard, newCustomer.Address,
+                    newCustomer.ImageIdCardFront, newCustomer.ImageIdCardBack,
                     newCustomer.CreatedAt, newCustomer.UpdatedAt);
         }
         public string updateCustomer(Customer updatedCustomer)
@@ -117,10 +123,10 @@ namespace CarRentalManager.services
         public string createSupplier(Supplier newSupplier)
         {
             return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
-                    ETableName.SUPPLIER, 
-                    newSupplier.ID, newSupplier.PhoneNumber, 
-                    newSupplier.Name, newSupplier.Email, 
-                    newSupplier.Address, newSupplier.CreatedAt, 
+                    ETableName.SUPPLIER,
+                    newSupplier.ID, newSupplier.PhoneNumber,
+                    newSupplier.Name, newSupplier.Email,
+                    newSupplier.Address, newSupplier.CreatedAt,
                     newSupplier.UpdatedAt);
         }
 
@@ -130,7 +136,7 @@ namespace CarRentalManager.services
                 ETableName.SUPPLIER,
                 updatedSupplier.ID, updatedSupplier.PhoneNumber,
                 updatedSupplier.Name, updatedSupplier.Email,
-                updatedSupplier.Address, updatedSupplier.UpdatedAt, 
+                updatedSupplier.Address, updatedSupplier.UpdatedAt,
                 updatedSupplier.ID);
         }
 
@@ -145,9 +151,9 @@ namespace CarRentalManager.services
         public string updateContract(Contract updatedContract)
         {
             return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', updatedAt = '{7}' where id = '{8}'",
-            ETableName.CONTRACT, 
+            ETableName.CONTRACT,
             updatedContract.UserId,
-            updatedContract.OrderId, 
+            updatedContract.OrderId,
             updatedContract.Status,
             updatedContract.Price,
             updatedContract.Paid,
@@ -155,7 +161,7 @@ namespace CarRentalManager.services
             updatedContract.UpdatedAt,
             updatedContract.ID);
         }
-        
+
 
         //*INFO: ORDER
         public string getListOrder()
@@ -187,12 +193,12 @@ namespace CarRentalManager.services
         {
             return string.Format("INSERT INTO [{0}]" +
                     "VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}')",
-                    ETableName.ORDER, 
-                    newOrder.ID, newOrder.CarId, 
-                    newOrder.CustomerId, newOrder.BookingPlace, 
-                    newOrder.StartDate, newOrder.EndDate, 
-                    newOrder.TotalFee, newOrder.Status, 
-                    newOrder.DepositAmount, newOrder.ImageEvidence, 
+                    ETableName.ORDER,
+                    newOrder.ID, newOrder.CarId,
+                    newOrder.CustomerId, newOrder.BookingPlace,
+                    newOrder.StartDate, newOrder.EndDate,
+                    newOrder.TotalFee, newOrder.Status,
+                    newOrder.DepositAmount, newOrder.ImageEvidence,
                     newOrder.Notes, newOrder.CreatedAt, newOrder.UpdatedAt);
         }
 
@@ -210,6 +216,25 @@ namespace CarRentalManager.services
             return string.Format("INSERT INTO [{0}]" +
                     "VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
                     ETableName.ORDER, newReceipt.ID, newReceipt.ContractId, newReceipt.Price, newReceipt.CreatedAt, newReceipt.UpdatedAt);
+        }
+
+
+        //*INFO: STATISTIC
+        public string countOnrentTimes()
+        {
+            return "SELECT carId, COUNT([Contract].id) as onrentTimes " +
+                "FROM[Order] " +
+                "JOIN[Contract] on[Order].id = [Contract].orderId " +
+                "GROUP BY carId";
+        }
+
+        public string countBrokenTimes()
+        {
+            return "SELECT [Order].carId, COUNT([Contract].id) as brokenTimes " +
+                "FROM[Contract] " +
+                "JOIN[Order] ON[Contract].orderId = [Order].id " +
+                "WHERE[Contract].returnCarStatus = 'BROKEN' " +
+                "GROUP BY[Order].carId";
         }
     }
 }

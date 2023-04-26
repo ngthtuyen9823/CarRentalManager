@@ -179,6 +179,7 @@
     <Compile Include="services\CommondDataService.cs" />
     <Compile Include="services\ImageService.cs" />
     <Compile Include="services\SqlQueryService.cs" />
+    <Compile Include="services\StatisticsService.cs" />
     <Compile Include="services\UserService.cs" />
     <Compile Include="services\VariableService.cs" />
     <Compile Include="state\LoginInInforState.cs" />
