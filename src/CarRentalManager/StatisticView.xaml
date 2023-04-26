@@ -116,6 +116,7 @@
                 </Grid>
             </Border>
         </Grid>
+        <Button Click="showData"></Button>
         <Border Grid.Row="1" BorderBrush="Black" CornerRadius="4,4,0,0" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
