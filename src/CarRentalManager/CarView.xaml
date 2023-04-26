@@ -53,11 +53,12 @@
                     </Button>
                     <Button Command="{Binding AddCommand}"
                             x:Name="Button_OpenPopup"
-                            Width="120"
-                            Height="38"
+                            Width="122"
+                            Height="40"
                             Margin="10"
                             Content="+ Add new car"
-                            Background="#3AA9AD"
+                            BorderThickness="20"
+                            BorderBrush="#3AA9AD"
                             />
                 </WrapPanel>
             </Grid>
