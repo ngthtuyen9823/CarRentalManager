@@ -1,4 +1,4 @@
-﻿using LiveCharts.Wpf;
+using LiveCharts.Wpf;
 using LiveCharts;
 using System;
 using System.Collections.Generic;
@@ -76,17 +76,22 @@ namespace CarRentalManager
         private void showData(object sender, RoutedEventArgs e)
         {
             // Vo ham nay coi cach lay list ra
-            List<Dictionary<string, object>> dictOnrentTimes = statisticsService.getDictOnrentTimes();
-            List<Dictionary<string, object>> dictBrokenTimes = statisticsService.getDictBrokennTimes();
-            //foreach (var dict in dictOnrentTimes)
-            //{
-            //    object carId;
-            //    bool hasValueId = dict.TryGetValue("carId", out carId);
-            //    object onrentTimes;
-            //    bool hasValueOnerent = dict.TryGetValue("onrentTimes", out onrentTimes);
-            //    MessageBox.Show(onrentTimes.ToString());
-            //}
+            Dictionary<string, int> dictOnrentTimes = statisticsService.getDictOnrentTimes();
+            Dictionary<string, int> dictBrokenTimes = statisticsService.getDictBrokennTimes();
 
+            foreach (var dict in dictBrokenTimes)
+            {
+                MessageBox.Show($"Key: {dict.Key}, Value: {dict.Value}");
+            }
+            /*
+            foreach (var dict in dictOnrentTimes)
+            {
+                object carId;
+                bool hasValueId = dict.TryGetValue("carId", out carId);
+                object brokenTimes;
+                bool hasValueOnerent = dict.TryGetValue("brokenTimes", out brokenTimes);
+                MessageBox.Show(brokenTimes.ToString());
+            }*/
             //Piece1.Title = dictOnrentTimes
             //Piece1.Values = new ChartValues<double> { 10 };
             

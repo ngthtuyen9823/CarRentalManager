@@ -40,7 +40,6 @@ namespace CarRentalManager.dao
         public DataTable countOnrentTimes()
         {
             string sqlStringGetTable = sqlService.countOnrentTimes();
-            MessageBox.Show(sqlStringGetTable);
             return dbConnectionDAO.getDataTable(sqlStringGetTable);
             
         }
