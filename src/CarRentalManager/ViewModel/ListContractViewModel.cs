@@ -41,8 +41,9 @@ namespace CarRentalManager.ViewModel
         private int fee; public int Fee { get => fee; set => SetProperty(ref fee, value, nameof(Fee)); }
         private int paid; public int Paid { get => paid; set => SetProperty(ref paid, value, nameof(Paid)); }
         private int remain; public int Remain { get => remain; set => SetProperty(ref remain, value, nameof(Remain)); }
-
-
+        private string returnCarStatus; public string ReturnCarStatus { get => returnCarStatus; set => SetProperty(ref returnCarStatus, value, nameof(ReturnCarStatus)); }
+        private string feedback; public string Feedback { get => feedback; set => SetProperty(ref feedback, value, nameof(Feedback)); }
+        private string note; public string Note { get => note; set => SetProperty(ref note, value, nameof(Note)); }
         public ListContractViewModel()
         {
             List = getListObservableContract();
@@ -57,7 +58,15 @@ namespace CarRentalManager.ViewModel
             });
             OpenPopup_Command = new RelayCommand<string>((content) => { return true; }, (content) =>
             {
-                IsOpenPopup_CarInfor = true;
+                bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                if (!isError)
+                {
+                    IsOpenPopup_CarInfor = true;
+                }
+                else
+                {
+                    MessageBox.Show("The contract was paid completely");
+                }
             });
         }
         private void reSetForm()
@@ -127,6 +136,7 @@ namespace CarRentalManager.ViewModel
             return new Contract(ID, OrderId, UserId,
                     variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
                     Price, Paid, Remain,
+                    Feedback, variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38)), Note,
                     DateTime.Now, DateTime.Now);
         }
 
@@ -161,20 +171,24 @@ namespace CarRentalManager.ViewModel
         {
             try
             {
-                bool isError = Fee <= 0 || 
-                    variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                bool isError = Fee <= 0; 
                 if (!isError)
                 {
+                    IsOpenPopup_CarInfor = false;
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
                     currentContract.Paid += Fee;
                     currentContract.Remain -= Fee;
                     currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
                     currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
+                    currentContract.Feedback = Feedback;
+                    currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
+                    currentContract.Note = Note;
                     contractDAO.updateContract(currentContract);
                     updateListUI();
                 }
                 else
                 {
+                    IsOpenPopup_CarInfor = false;
                     MessageBox.Show("The contract has been paid completely");
                 }
             }

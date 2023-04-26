@@ -32,7 +32,9 @@
         <Popup StaysOpen="True" 
                Placement="Center"
                x:Name="Popup_CarInfor" 
-               IsOpen="{Binding IsOpenPopup_CarInfor}">
+               IsOpen="{Binding IsOpenPopup_CarInfor}"
+               Width="400"
+               >
             <Border Background="#ffffff" BorderBrush="Transparent" Padding="5" BorderThickness="3" CornerRadius="5">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -48,11 +50,11 @@
                     <Grid Grid.Row="1">
                         <materialDesign:Card Grid.Row="0" Margin="5" Padding="10">
                             <StackPanel Margin="0 0 0 10">
-                                <TextBox Margin="10" Name="price" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
+                                <TextBox Margin="10" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá hợp đồng"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Margin="10 10 10 0" Name="fee" Text="{Binding Fee, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số tiền thanh toán"
+                                <TextBox Name="Fee" Margin="10 10 10 0" Text="{Binding Fee, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số tiền thanh toán"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Margin="10 0 10 10" Text="{Binding Status, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
+                                <TextBox Name="Feedback" Margin="10 0 10 10" Text="{Binding Feedback, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                          TextWrapping="Wrap"
                                          VerticalAlignment="Stretch"
                                          MinWidth="280"
@@ -62,17 +64,17 @@
                                          Height="60"
                                          materialDesign:HintAssist.Hint="Feedback"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <ComboBox Margin="10 10 10 0" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
-                                          materialDesign:HintAssist.Hint="Trạng thái" 
+                                <ComboBox Name ="ReturnCarStatus"  Margin="10 10 10 0" SelectedValue="{Binding ReturnCarStatus, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                                          materialDesign:HintAssist.Hint="Tình trạng xe" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBoxItem>
+                                       INTACT
+                                    </ComboBoxItem>
                                     <ComboBoxItem>
                                        BROKEN
                                     </ComboBoxItem>
-                                    <ComboBoxItem>
-                                       NO
-                                    </ComboBoxItem>
                                 </ComboBox>
-                                <TextBox Margin="10 0 10 10" Text="{Binding Status, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
+                                <TextBox Name ="Note" Margin="10 0 10 10" Text="{Binding Note, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                          TextWrapping="Wrap"
                                          VerticalAlignment="Stretch"
                                          MinWidth="280"
@@ -80,7 +82,7 @@
                                          VerticalScrollBarVisibility="Auto"
                                          SpellCheck.IsEnabled="True"
                                          Height="60"
-                                         materialDesign:HintAssist.Hint="Notes"
+                                         materialDesign:HintAssist.Hint="Ghi chú về tình trạng xe"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </StackPanel>
                         </materialDesign:Card>
@@ -155,8 +157,6 @@
                             COMPLETE
                         </ComboBoxItem>
                     </ComboBox>
-                    <TextBox Name="Fee" Width="200" Margin = "10 8 10 8" Text="{Binding Fee, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số tiền thanh toán"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </Grid>
             <Separator Grid.Row="3" Margin="8 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
@@ -202,6 +202,9 @@
                         <GridViewColumn Header="Paid" DisplayMemberBinding="{Binding Paid}"></GridViewColumn>
                         <GridViewColumn Header="Remain" DisplayMemberBinding="{Binding Remain}"></GridViewColumn>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
+                        <GridViewColumn Header="Feedback" Width="200" DisplayMemberBinding="{Binding Feedback}"></GridViewColumn>
+                        <GridViewColumn Header="ReturnCarStatus" Width="190" DisplayMemberBinding="{Binding ReturnCarStatus}"></GridViewColumn>
+                        <GridViewColumn Header="Note" Width="200" DisplayMemberBinding="{Binding Note}"></GridViewColumn>
                         <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
                         <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
