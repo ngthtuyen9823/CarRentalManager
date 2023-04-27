@@ -6,11 +6,11 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:CarRentalManager" 
         mc:Ignorable="d"
-        Title="RegisterForm" Height="800" Width="1400" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
+        Title="RegisterForm" Height="840" Width="1400" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
         DataContext="{StaticResource RegistrationVM}"
         Name="registerForm">
     <Border
-        Height="800"
+        Height="840"
         CornerRadius="50">
         <Grid MouseDown="Border_MouseDown">
             <StackPanel Orientation="Horizontal">
@@ -92,9 +92,10 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Width="620">
-                    <StackPanel Margin="20 0" Height="800">
-                        <StackPanel>
+                    <StackPanel Margin="20 0" Height="840">
+                        <StackPanel >
                             <TextBlock
+                                Height ="50"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Left"
                                 Margin="20"
@@ -375,11 +376,27 @@
                                 </Grid>
                             </Border>
                         </StackPanel>
+                        <StackPanel>
+                            <Expander
+                                Foreground="Gray"
+                                FontSize="15"
+                                HorizontalAlignment="Stretch"
+                                Header="Your Discout">
+                                <StackPanel                           
+                                      Orientation="Vertical"
+                                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                      Margin="24,0,24,16">
+                                    <TextBlock 
+                                        x:Name="yourDiscout"
+                                        Foreground="Gray"/>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
 
-                        <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Button
                             Command="{Binding RegisterCommand}"
-                            Width="150" Height="45" FontSize="20"
+                            Width="150" Height="35" FontSize="20"
                             Background="#3AB19B" Foreground="White" x:Name="btnLogin" Content="Đặt xe" Click="btnLogin_Click">
                             </Button>
                         </StackPanel>

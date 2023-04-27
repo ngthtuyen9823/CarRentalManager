@@ -416,6 +416,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="650"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="650"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid
@@ -841,10 +842,14 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </Grid>
+                        <Grid
+                            Grid.Row="2">
+                            <Image Source="assets/images/background/discoutbanner.png" Stretch="Fill"/>
+                        </Grid>
                         <!--feedback-->
 
                         <Grid
-                            Grid.Row="2">
+                            Grid.Row="3">
                             <!-- and here's another -->
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
