@@ -58,16 +58,24 @@ namespace CarRentalManager.ViewModel
             });
             OpenPopup_Command = new RelayCommand<string>((content) => { return true; }, (content) =>
             {
-                bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
-                if (!isError)
+                if (Status is null)
                 {
-                    IsOpenPopup_CarInfor = true;
+                    MessageBox.Show("Vui lòng chọn hợp đồng để thanh toán!");
                 }
                 else
                 {
-                    MessageBox.Show("The contract was paid completely");
+                    bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                    if (!isError)
+                    {
+                        IsOpenPopup_CarInfor = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The contract was paid completely");
+                    }
                 }
             });
+
         }
         private void reSetForm()
         {
