@@ -17,13 +17,13 @@
             d:DesignHeight="450" d:DesignWidth="950">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2.*"></RowDefinition>
-            <RowDefinition Height="5.5*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderBrush="Black" CornerRadius="4,4,0,0" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#ffcccc" Offset="1" />
+                    <GradientStop Color="#ffffff" Offset="1" />
                     <GradientStop Color="#ffffff" Offset="0" />
                 </LinearGradientBrush>
             </Border.Background>
@@ -54,7 +54,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                     <Icon:PackIconMaterial Kind="Car" Margin="217,38,0,0" Height="34" Width="37" />
-                    <StackPanel Margin="16,26,-6,0" VerticalAlignment="Top" Height="120">
+                    <StackPanel Margin="16,26,-6,0" VerticalAlignment="Top" Height="100">
                         <TextBlock Text="Onrent cars" Foreground="#e9e9e9" FontSize="14" Margin="0 0 0 10"/>
                         <TextBlock Text="128329" Foreground="#ffffff" FontSize="28" FontWeight="SemiBold"/>
                         <materialDesign:RatingBar Value="3" x:Name="BasicRatingBar" VerticalAlignment="Bottom" Margin="0 20 0 0"/>
@@ -120,22 +120,29 @@
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="#ffffff" Offset="1" />
-                    <GradientStop Color="#ffcccc" Offset="0" />
+                    <GradientStop Color="#ffffff" Offset="0" />
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Margin="30 0 30 30">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="8*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="LIST OF RENTAL CAR BY BRAND" Foreground="#121518"
-                      FontWeight="SemiBold" FontSize="16" TextAlignment="Center"></TextBlock>
+                <WrapPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0">
+                    <RadioButton Name ="btnOnrent" Click="btnOnrent_Click" Width="120" Margin="0 0 10 0" Style="{StaticResource tabRadioButton}" FontSize="14" IsChecked="True">
+                        <TextBlock Text="Thuê nhiều" FontSize="14" VerticalAlignment="Top" />
+                    </RadioButton>
+                    <RadioButton Name ="btnBroken" Click="btnBroken_Click" Width="120" Margin="0 0 10 0" Style="{StaticResource tabRadioButton}" FontSize="14"  >
+                        <TextBlock Text="Hư nhiều" FontSize="14" VerticalAlignment="Top" />
+                    </RadioButton>
+                </WrapPanel>
                 <lvc:PieChart Grid.Row="1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
                     <lvc:PieChart.Series>
                         <lvc:PieSeries Name="Piece1" DataLabels="True"
@@ -148,36 +155,27 @@
                                    LabelPoint="{Binding PointLabel}"/>
                     </lvc:PieChart.Series>
                 </lvc:PieChart>
+                    <TextBlock Grid.Row ="2" Margin="0 12 0 0" FontWeight="SemiBold" FontSize="14" Text ="Thống kê top xe thuê nhiều (hư nhiều)" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </Grid>
             <Grid Margin="30 0 30 30" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="179*"/>
-                    <ColumnDefinition Width="108*"/>
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="8*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="9*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <WrapPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                    <TextBlock Text="Draw char by " Width="89"></TextBlock>
-                    <ComboBox Name="TypeChart" Width="156"
-                              Margin="0 0 0 40"
-                              VerticalAlignment="Center"
-                              materialDesign:HintAssist.Hint="" 
-                              Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="30">
-                        <ComboBoxItem>
-                            BY MONTH
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            BY PRECIOUSE
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            BY YEAR
-                        </ComboBoxItem>
-                    </ComboBox>
+                <WrapPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0">
+                    <RadioButton Name ="btnMonth" Click="btnMonth_Click" Width="120" Margin="0 0 10 0" Style="{StaticResource tabRadioButton}" FontSize="14" IsChecked="True" >
+                        <TextBlock Text="Theo tháng" FontSize="14" VerticalAlignment="Top" />
+                    </RadioButton>
+                    <RadioButton Name ="btnYear" Click="btnYear_Click" Width="120" Margin="0 0 10 0" Style="{StaticResource tabRadioButton}" FontSize="14" >
+                        <TextBlock Text="Theo năm" FontSize="14" VerticalAlignment="Top" />
+                    </RadioButton>
+                    <RadioButton  Name ="btnPreciouse" Click="btnPreciouse_Click" Width="120" Margin="0 0 10 0" Style="{StaticResource tabRadioButton}" FontSize="14" >
+                        <TextBlock Text="Theo quý" FontSize="14" VerticalAlignment="Top" />
+                    </RadioButton>
                 </WrapPanel>
-                <Grid Background="#4EB1B6" Grid.ColumnSpan="2" Margin="0,26,0,0" Grid.RowSpan="2">
+                <Grid Grid.Row="1" Background="#4EB1B6" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".7*"></ColumnDefinition>
                         <ColumnDefinition Width=".3*"></ColumnDefinition>
@@ -237,6 +235,7 @@
                     </Button>
                 </Grid>
             </Grid>
+            
 
         </Grid>
     </Grid>
