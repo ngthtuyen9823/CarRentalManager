@@ -32,16 +32,10 @@ namespace CarRentalManager
         public StatisticView()
         {
             InitializeComponent();
-
             PointLabel = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
             drawChartByOnrentTimes();
-            drawChartByBrokenTimes();
-
             Values = new ChartValues<double>();
-            drawChartByYear();
-            //drawChartByMonth();
-            //drawChartByPreciouse();
-
+            drawChartByMonth();
             DataContext = this;
         }
         private void drawChartByBrokenTimes()
@@ -107,6 +101,34 @@ namespace CarRentalManager
         private void UpdateOnclick(object sender, RoutedEventArgs e)
         {
             Chart.Update(true);
+        }
+        private void btnMonth_Click(object sender, RoutedEventArgs e)
+        {
+            Values.Clear();
+            btnMonth.IsChecked = true;
+            drawChartByMonth();
+        }
+        private void btnYear_Click(object sender, RoutedEventArgs e)
+        {
+            Values.Clear();
+            btnYear.IsChecked = true;
+            drawChartByYear();
+        }
+        private void btnPreciouse_Click(object sender, RoutedEventArgs e)
+        {
+            Values.Clear();
+            btnPreciouse.IsChecked = true;
+            drawChartByPreciouse();
+        }
+        private void btnBroken_Click(object sender, RoutedEventArgs e)
+        {
+            btnBroken.IsChecked = true;
+            drawChartByBrokenTimes();
+        }
+        private void btnOnrent_Click(object sender, RoutedEventArgs e)
+        {
+            btnOnrent.IsChecked = true;
+            drawChartByOnrentTimes();
         }
     }
 }
