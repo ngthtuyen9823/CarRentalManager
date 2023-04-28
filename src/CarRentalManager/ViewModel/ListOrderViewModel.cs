@@ -34,6 +34,8 @@ namespace CarRentalManager.ViewModel
 
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
@@ -59,6 +61,8 @@ namespace CarRentalManager.ViewModel
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             ConfirmCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleConfirmCommand());
+            SearchCommand = new RelayCommand<object>((p) => { return true; }, (p) => { handleSearchOrder(); });
+            CancelCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleCancelOrder());
         }
 
         private void reSetForm()
@@ -186,6 +190,22 @@ namespace CarRentalManager.ViewModel
             {
                 MessageBox.Show("Cannot remove order");
             }
+        }
+        private void handleSearchOrder ()
+        {
+            Order order = orderDao.getOrderById(ID.ToString());
+            CarId = order.CarId;
+            BookingPlace = order.BookingPlace;
+            StartDate= order.StartDate;
+            EndDate= order.EndDate;
+        }
+
+        private void handleCancelOrder()
+        {
+            Order order = orderDao.getOrderById(ID.ToString());
+            order.Status = EOrderStatus.CANCELBYUSER;
+            orderDao.updateOrder(order);
+            updateListUI();
         }
     }
 }

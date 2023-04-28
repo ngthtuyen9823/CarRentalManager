@@ -1,4 +1,5 @@
 ﻿using CarRentalManager.dao;
+using CarRentalManager.enums;
 using CarRentalManager.models;
 using CarRentalManager.services;
 using Microsoft.Win32;
@@ -83,9 +84,9 @@ namespace CarRentalManager
             DateTime start = dpBatdau.SelectedDate.Value.Date;
             DateTime end = dpKetThuc.SelectedDate.Value.Date;
             TimeSpan timeSpan = end.Subtract(start);
-            string totalFee = (timeSpan.TotalDays * priceCar).ToString();
+            string totalFee = ((timeSpan.TotalDays * priceCar) - getDiscout(timeSpan.TotalDays * priceCar)).ToString();
             lblTotalFee.Content = totalFee + "000 VNĐ";
-
+            yourDiscout.Text = "Đã áp dụng mã giảm " + getDiscout(timeSpan.TotalDays * priceCar).ToString() + ".000VND";
             ((dynamic)this.DataContext).TotalFee = variableService.parseStringToInt(totalFee);
         }
 
@@ -147,6 +148,25 @@ namespace CarRentalManager
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             lblTotalFee.Content = string.Empty;
+        }
+
+        private double getDiscout(double price)
+        {
+
+            if (price >= 1000 && price < 2000)
+            {
+                return ((double)EDiscout.VOUCHER1M);
+            }
+            else if (price >= 2000 && price < 3000)
+            {
+                return ((double)EDiscout.VOUCHER2M);
+            }
+            else if (price >= 3000)
+            {
+                return ((double)EDiscout.VOUCHERMORE3M);
+            }
+            else
+                return 0;
         }
     }
 }

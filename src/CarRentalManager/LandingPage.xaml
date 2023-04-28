@@ -302,43 +302,23 @@
 
 
 
-            
+
 
             <StackPanel
-                Grid.Column="2"
                 HorizontalAlignment="Right"
                 Height="80"
                 Background="Black"
-                Margin="0,0,150,0" Width="150">
+                Margin="1090,0,0,0" Width="310">
                 <Grid
                     Height="80">
-                    <materialDesign:Chip 
-                        Click="CheckBox_Checked"
-                        Height="25"                        
-                        Foreground="White"
-                        Background="#3AB19B"
-                        FontFamily="Dubai Medium">
-                        Be Our Supplier
-                    </materialDesign:Chip>
-                </Grid>
-            </StackPanel>
-
-
-            <StackPanel
-                Grid.Column="2"
-                HorizontalAlignment="Right"
-                Height="80"
-                Background="Black"
-                Margin="692,0,0,0" Width="160">
-                <Grid Height="83">
                     <materialDesign:Chip
-                          VerticalAlignment="Bottom"
-                          Margin="10"
+                          VerticalAlignment="Top"
+                          Margin="175,43,2,0"
                           Background="#aec3b0"
                           Content="ADMIN LOGIN"
                           IconBackground="#3AB19B"
                           IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                          Click="Chip_Click" FontFamily="Dubai Medium">
+                          Click="Chip_Click" FontFamily="Dubai Medium" HorizontalAlignment="Stretch">
                         <materialDesign:Chip.Icon>
                             <materialDesign:PackIcon
                                 Height="25"
@@ -346,9 +326,28 @@
                             </materialDesign:PackIcon>
                         </materialDesign:Chip.Icon>
                     </materialDesign:Chip>
-                </Grid>
+                    <materialDesign:Chip 
+                        Click="CheckBox_Checked"
+                        Height="25"                        
+                        Foreground="White"
+                        Background="#3AB19B"
+                        FontFamily="Dubai Medium" Margin="10,26,0,28" Width="106" FontSize="12">
+                        Be Our Supplier
+                    </materialDesign:Chip>
+                    <materialDesign:Chip x:Name="chipCancel" 
+                        Click="chipCancel_Click"
+                        Height="25"                        
+                        Foreground="White"
+                        Background="#3AB19B"
+                        FontFamily="Dubai Medium" Margin="122,26,0,28" Width="56" FontSize="12" >
+                        Cancel
+                    </materialDesign:Chip>
 
+                </Grid>
             </StackPanel>
+
+
+
             <!--#endregion-->
 
             <!--#region Minimize, Maximize, Close Buttons-->
@@ -416,6 +415,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="650"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="650"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid
@@ -841,10 +841,14 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </Grid>
+                        <Grid
+                            Grid.Row="2">
+                            <Image Source="assets/images/background/discoutbanner.png" Stretch="Fill"/>
+                        </Grid>
                         <!--feedback-->
 
                         <Grid
-                            Grid.Row="2">
+                            Grid.Row="3">
                             <!-- and here's another -->
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>

@@ -113,6 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CancelForm.xaml.cs">
+      <DependentUpon>CancelForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,7 @@
     <Compile Include="enums\ECarType.cs" />
     <Compile Include="enums\ECityName.cs" />
     <Compile Include="enums\EContractStatus.cs" />
+    <Compile Include="enums\EDiscout.cs" />
     <Compile Include="enums\EDrivingType.cs" />
     <Compile Include="enums\EnumDescriptionTypeConverter.cs" />
     <Compile Include="enums\EOrderStatus.cs" />
@@ -216,6 +220,10 @@
     <Page Include="Assets\icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CancelForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CarView.xaml">
       <SubType>Designer</SubType>
@@ -361,6 +369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="Assets\images\background\discoutbanner.png" />
     <Resource Include="supgrid.jpg" />
     <Resource Include="Assets\images\supplier\supgrid.jpg" />
     <Resource Include="sup_bkg.jpg" />

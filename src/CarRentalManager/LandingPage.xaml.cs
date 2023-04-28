@@ -73,5 +73,11 @@ namespace CarRentalManager
             if (cbBrand.Items.Count > 0)
                 cbBrand.SelectedIndex = 0;
         }
+
+        private void chipCancel_Click(object sender, RoutedEventArgs e)
+        {
+            CancelForm cancelForm = new CancelForm();
+            cancelForm.ShowDialog();
+        }
     }
 }
