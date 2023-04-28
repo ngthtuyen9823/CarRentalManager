@@ -30,53 +30,44 @@ namespace CarRentalManager
         public CarView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] { "Name", "Brand", "Status", "DrivingType", "Type" };
-            //FilterBy.ItemsSource = typeof(Car).GetProperties().Select((o) => o.Name);
+            FilterBy.ItemsSource = new string[] {"ID", "SupplierId", "Name", "Brand" };
+        }
+        private bool IDFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj = Filterobj.ID.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool SupplierIdFilter(object obj)
+        {
+            var Filterobj = obj as Car;
+            string filterobj = Filterobj.SupplierId.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool NameFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj = Filterobj.Name.ToString().ToLower();
+            string filterobj = Filterobj.Name.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool BrandFilter(object obj)
         {
             var Filterobj = obj as Car;
-            string filterobj = Filterobj.Brand.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
-        }
-        private bool StatusFilter(object obj)
-        {
-            var Filterobj = obj as Car;
-            string filterobj = Filterobj.Status.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
-        }
-        private bool TypeFilter(object obj)
-        {
-            var Filterobj = obj as Car;
-            string filterobj = Filterobj.Type.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
-        }
-        private bool DrivingTypeFilter(object obj)
-        {
-            var Filterobj = obj as Car;
-            string filterobj = Filterobj.DrivingType.ToString().ToLower();
+            string filterobj = Filterobj.Brand.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
         {
             switch (FilterBy.SelectedItem as string)
             {
+                case nameof(ID):
+                    return IDFilter;
+                case nameof(SupplierId):
+                    return SupplierIdFilter;
                 case nameof(Name):
                     return NameFilter;
                 case nameof(Brand):
                     return BrandFilter;
-                case nameof(Status):
-                    return StatusFilter;
-                case nameof(Type):
-                    return TypeFilter;
-                case nameof(DrivingType):
-                    return DrivingTypeFilter;
             }
             return NameFilter;
         }

@@ -166,7 +166,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="0" Margin="50 20 50 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="0" Margin="50 20 50 20" materialDesign:HintAssist.Hint="Search by" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
                 <Grid Margin="0 10 0 0" Grid.Column ="1" Width="380" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <materialDesign:ColorZone
@@ -242,7 +242,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="Height" Value="40"/>
                         <EventSetter Event="PreviewMouseLeftButtonDown" 
                                      Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>

@@ -26,31 +26,46 @@ namespace CarRentalManager
         public SupplierView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] { "Address", "Email", "PhoneNumber" };
-            //FilterBy.ItemsSource = typeof(Car).GetProperties().Select((o) => o.Name);
+            FilterBy.ItemsSource = new string[] {"ID", "Name", "Address", "Email", "PhoneNumber" };
+        }
+        private bool IDFilter(object obj)
+        {
+            var Filterobj = obj as Supplier;
+            string filterobj = Filterobj.ID.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool NameFilter(object obj)
+        {
+            var Filterobj = obj as Supplier;
+            string filterobj = Filterobj.Name.ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool AddressFilter(object obj)
         {
             var Filterobj = obj as Supplier;
-            string filterobj = Filterobj.Address.ToLower().ToString();
+            string filterobj = Filterobj.Address.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool EmailFilter(object obj)
         {
             var Filterobj = obj as Supplier;
-            string filterobj = Filterobj.Email.ToLower().ToString();
+            string filterobj = Filterobj.Email.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool PhoneNumberFilter(object obj)
         {
             var Filterobj = obj as Supplier;
-            string filterobj = Filterobj.PhoneNumber.ToLower().ToString();
+            string filterobj = Filterobj.PhoneNumber.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
         {
             switch (FilterBy.SelectedItem as string)
             {
+                case nameof(ID):
+                    return IDFilter;
+                case nameof(Name):
+                    return NameFilter;
                 case nameof(Address):
                     return AddressFilter;
                 case nameof(PhoneNumber):

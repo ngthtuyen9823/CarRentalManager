@@ -151,7 +151,7 @@ namespace CarRentalManager.services
 
         public string updateContract(Contract updatedContract)
         {
-            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', feedback = '{7}', carStatus = '{8}', note = '{9}',  updatedAt = '{10}' where id = '{11}'",
+            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', feedback = '{7}', returnCarStatus = '{8}', note = '{9}',  updatedAt = '{10}' where id = '{11}'",
             ETableName.CONTRACT,
             updatedContract.UserId,
             updatedContract.OrderId,
