@@ -10,6 +10,7 @@ namespace CarRentalManager.enums
     {
         ONRENT,
         AVAILABLE,
-        UNAVAILABLE
+        UNAVAILABLE,
+        READYTORENT,
     }
 }

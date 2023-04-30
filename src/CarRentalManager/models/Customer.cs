@@ -21,8 +21,8 @@ namespace CarRentalManager.models
 		DateTime updatedAt;
 
 		public Customer(int id, 
-            string name, 
             string phoneNumber, 
+            string name, 
             string email, 
             string idCard, 
             string address,

@@ -73,6 +73,9 @@
                                     <ComboBoxItem>
                                        BROKEN
                                     </ComboBoxItem>
+                                    <ComboBoxItem>
+                                       ISNOTRETURN
+                                    </ComboBoxItem>
                                 </ComboBox>
                                 <TextBox Name ="Note" Margin="10 0 10 10" Text="{Binding Note, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
                                          TextWrapping="Wrap"
@@ -93,7 +96,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" Background="#3AA9AD" Command="{Binding PayCommand}" Content="Thanh toán" Margin="10"></Button>
-                        <Button Grid.Column="1" Background="Black" Foreground="White" Command="{Binding ClosePopup_CarInfor_Command}" Content="Close"></Button>
+                        <Button Grid.Column="1" Background="Black" Foreground="White" Command="{Binding ClosePopupCarInforCommand}" Content="Close"></Button>
                         </Grid>
                 </Grid>
             </Border>
@@ -120,7 +123,7 @@
                             <TextBlock Text="Click to Pay"/>
                         </StackPanel>
                     </Button>-->
-                    <Button Command="{Binding OpenPopup_Command}"
+                    <Button Command="{Binding OpenPopupCommand}"
                             CommandParameter="{Binding ElementName=Button_OpenPopup,Path=Content}" 
                             x:Name="Button_OpenPopup"
                             Width="120"

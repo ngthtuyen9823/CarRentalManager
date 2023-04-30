@@ -11,6 +11,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
+        Loaded="LandingPageLoaded"
         Title="MainWindow" Height="700" Width="1400"
        >
     <Window.Resources>
@@ -411,7 +412,8 @@
                     <ImageBrush/>
                 </ScrollViewer.Background>
                 <Viewbox Stretch="Fill">
-                    <Grid>
+                    <Grid
+                        Width="1400">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="650"/>
                             <RowDefinition Height="Auto"/>
@@ -895,24 +897,25 @@
                                     VerticalAlignment="Top"
                                     Background="#3AB19B"
                                     Foreground="Black"
-                                    Content="N"                                    
+                                    Name="chipContent1"                                    
                                     HorizontalAlignment="Center"
-                                    Margin="0,0,0,0"
+                                    Margin="0,0,0,5"
                                     />
                             <StackPanel
-                                        Margin="8 0 0 0"
+                                        Margin="8 0 0 5"
                                         Grid.Row="1"
                                         Grid.Column="1">
                                 <TextBlock FontWeight="Bold"
-                                               Text="Ngoc Nguyen Pham" />
-                                <TextBlock Text="Good" />
+                                            Name ="txtbloName1"
+                                                />
+                                <TextBlock Name="txtContent1" />
                             </StackPanel>
                             <materialDesign:Chip
                                             Grid.Row="2"
                                             VerticalAlignment="Top"
                                             Background="Beige"
                                             Foreground="Black"
-                                            Content="A"                                    
+                                            Name="chipContent2"                                    
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
@@ -921,15 +924,16 @@
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
                                 <TextBlock FontWeight="Bold"
-                                                   Text="An Le" />
-                                <TextBlock Text="Great" />
+                                           Name ="txtbloName2"
+                                                    />
+                                <TextBlock Name="txtContent2"/>
                             </StackPanel>
                             <materialDesign:Chip
                                             Grid.Row="3"
                                             VerticalAlignment="Top"
                                             Background="MediumPurple"
                                             Foreground="Black"
-                                            Content="D"                                    
+                                            Name="chipContent3"                                    
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
@@ -938,15 +942,16 @@
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
                                 <TextBlock FontWeight="Bold"
-                                                   Text="Duong Phan" />
-                                <TextBlock Text="Helpful" />
+                                           Name ="txtbloName3"
+                                                   />
+                                <TextBlock Name="txtContent3"/>
                             </StackPanel>
                             <materialDesign:Chip
                                             Grid.Row="4"
                                             VerticalAlignment="Top"
                                             Background="YellowGreen"
                                             Foreground="Black"
-                                            Content="S"                                    
+                                            Name="chipContent4"                                    
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
@@ -955,8 +960,9 @@
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
                                 <TextBlock FontWeight="Bold"
-                                                   Text="Sami Ngo" />
-                                <TextBlock Text="Reasonable price" />
+                                           Name ="txtbloName4"
+                                                    />
+                                <TextBlock Name="txtContent4" />
                             </StackPanel>
                         </Grid>
                     </Grid>

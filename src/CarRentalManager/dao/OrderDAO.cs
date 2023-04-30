@@ -39,7 +39,11 @@ namespace CarRentalManager.dao
         {
             string sqlStringGetTable = sqlService.getValueById(id, ETableName.ORDER);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Order>(dataTable).First();
+            if(dataTable.Rows.Count > 0)
+            {
+                return commondDataService.dataTableToList<Order>(dataTable).First();
+            }
+            return null;
         }
 
         public void removeOrder(int id)

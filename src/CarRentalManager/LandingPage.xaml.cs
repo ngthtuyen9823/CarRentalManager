@@ -13,8 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CarRentalManager.customcontrols;
+using CarRentalManager.dao;
 using CarRentalManager.models;
 using CarRentalManager.ViewModel;
+using MaterialDesignThemes.Wpf;
 
 namespace CarRentalManager
 {
@@ -23,6 +25,7 @@ namespace CarRentalManager
     /// </summary>
     public partial class LandingPage : Window
     {
+        readonly CommonDAO commonDao = new CommonDAO();
         public LandingPage()
         {
             InitializeComponent();
@@ -78,6 +81,38 @@ namespace CarRentalManager
         {
             CancelForm cancelForm = new CancelForm();
             cancelForm.ShowDialog();
+        }
+
+        private void LandingPageLoaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dictionary<string, string> dictFeedback = commonDao.getListFeedbackOfCustomer();
+                List<TextBlock> txtbloNameList = new List<TextBlock>() { txtbloName1, txtbloName2, txtbloName3, txtbloName4 };
+                List<TextBlock> txtContentList = new List<TextBlock>() { txtContent1, txtContent2, txtContent3, txtContent4 };
+                List<Chip> chipContent = new List<Chip>() { chipContent1, chipContent2, chipContent3, chipContent4 };
+                
+                
+                int i = 0;
+                foreach (var val in dictFeedback)
+                {
+                    if (i < txtbloNameList.Count)
+                    {
+                        txtbloNameList[i].Text = val.Key;
+                        txtContentList[i].Text = val.Value;
+                        chipContent[i].Content = val.Key.Trim().Split(' ').LastOrDefault()?.FirstOrDefault() ?? default(char); ;
+                        i++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

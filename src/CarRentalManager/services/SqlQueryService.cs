@@ -47,6 +47,17 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM [{0}] where {1}", tableName, condition);
         }
 
+        public string getListFeedbackOfCustomer()
+        {
+            return $"SELECT name, MIN(feedback) AS feedback" +
+                $" FROM [{ETableName.CONTRACT}] " +
+                $" JOIN [{ETableName.ORDER}] ON [{ETableName.CONTRACT}].orderId = [{ETableName.ORDER}].id" +
+                $" JOIN [{ETableName.CUSTOMER}] ON [{ETableName.ORDER}].customerId = [{ETableName.CUSTOMER}].id" +
+                $" WHERE returnCarStatus = '{EReturnCarStatus.INTACT}' " +
+                $" AND feedback IS NOT NULL AND FEEDBACK <> ''" +
+                $" GROUP BY name";
+        }
+
 
         //*INFO: CAR
 
@@ -88,7 +99,7 @@ namespace CarRentalManager.services
                 updatedCar.Status, updatedCar.DrivingType,
                 updatedCar.Seats, updatedCar.LicensePlate,
                 updatedCar.Price, updatedCar.ImagePath,
-                updatedCar.SupplierId, updatedCar.UpdatedAt, updatedCar.ID);
+                updatedCar.SupplierId, DateTime.Now, updatedCar.ID);
         }
         //*INFO: USER
         public string getUserWithEmail(string email)
@@ -106,7 +117,7 @@ namespace CarRentalManager.services
                     newCustomer.Name, newCustomer.Email,
                     newCustomer.IDCard, newCustomer.Address,
                     newCustomer.ImageIdCardFront, newCustomer.ImageIdCardBack,
-                    newCustomer.CreatedAt, newCustomer.UpdatedAt);
+                    DateTime.Now, DateTime.Now);
         }
         public string updateCustomer(Customer updatedCustomer)
         {
@@ -116,7 +127,7 @@ namespace CarRentalManager.services
                 updatedCustomer.Email, updatedCustomer.IDCard,
                 updatedCustomer.Address, updatedCustomer.ImageIdCardFront,
                 updatedCustomer.ImageIdCardBack,
-                updatedCustomer.UpdatedAt, updatedCustomer.ID);
+                DateTime.Now, updatedCustomer.ID);
         }
 
         //*INFO: SUPPLIER
@@ -127,8 +138,8 @@ namespace CarRentalManager.services
                     ETableName.SUPPLIER,
                     newSupplier.ID, newSupplier.PhoneNumber,
                     newSupplier.Name, newSupplier.Email,
-                    newSupplier.Address, newSupplier.CreatedAt,
-                    newSupplier.UpdatedAt);
+                    newSupplier.Address, DateTime.Now,
+                    DateTime.Now);
         }
 
         public string updateSupplier(Supplier updatedSupplier)
@@ -137,7 +148,7 @@ namespace CarRentalManager.services
                 ETableName.SUPPLIER,
                 updatedSupplier.ID, updatedSupplier.PhoneNumber,
                 updatedSupplier.Name, updatedSupplier.Email,
-                updatedSupplier.Address, updatedSupplier.UpdatedAt,
+                updatedSupplier.Address, DateTime.Now,
                 updatedSupplier.ID);
         }
 
@@ -145,8 +156,20 @@ namespace CarRentalManager.services
 
         public string createNewContract(Contract newContract)
         {
-            return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
-                   ETableName.CONTRACT, newContract.ID, newContract.OrderId, newContract.UserId, newContract.Status, newContract.Price, newContract.UpdatedAt, newContract.CreatedAt);
+            return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')",
+                   ETableName.CONTRACT, 
+                   newContract.ID, 
+                   newContract.OrderId, 
+                   newContract.UserId, 
+                   newContract.Status,
+                   newContract.Price, 
+                   newContract.Paid,
+                   newContract.Remain,
+                   newContract.Feedback,
+                   newContract.ReturnCarStatus,
+                   newContract.Note,
+                   DateTime.Now,
+                   DateTime.Now);
         }
 
         public string updateContract(Contract updatedContract)
@@ -162,10 +185,9 @@ namespace CarRentalManager.services
             updatedContract.Feedback,
             updatedContract.ReturnCarStatus,
             updatedContract.Note,
-            updatedContract.UpdatedAt,
+            DateTime.Now,
             updatedContract.ID);
         }
-
 
         //*INFO: ORDER
         public string getListOrder()
@@ -182,14 +204,14 @@ namespace CarRentalManager.services
                     newOrder.StartDate, newOrder.EndDate,
                     newOrder.TotalFee, newOrder.Status,
                     newOrder.DepositAmount, newOrder.ImageEvidence,
-                    newOrder.Notes, newOrder.UpdatedAt, newOrder.ID);
+                    newOrder.Notes, DateTime.Now, newOrder.ID);
         }
         public string updateStatusOfOrder(Order newOrder)
         {
-            EOrderStatus status = EOrderStatus.COMPLETE;
-            return string.Format("UPDATE [{0}] SET status = '{1}' where id = '{2}' ",
+            return string.Format("UPDATE [{0}] SET status = '{1}', updatedAt = '{2}' where id = '{3}' ",
                 ETableName.ORDER,
-                    status,
+                    EOrderStatus.COMPLETE,
+                    DateTime.Now,
                     newOrder.ID);
         }
 
@@ -203,7 +225,7 @@ namespace CarRentalManager.services
                     newOrder.StartDate, newOrder.EndDate,
                     newOrder.TotalFee, newOrder.Status,
                     newOrder.DepositAmount, newOrder.ImageEvidence,
-                    newOrder.Notes, newOrder.CreatedAt, newOrder.UpdatedAt);
+                    newOrder.Notes, DateTime.Now, DateTime.Now);
         }
 
 
@@ -212,14 +234,14 @@ namespace CarRentalManager.services
         {
             //*TODO: UPDATE query later
             return string.Format("UPDATE [{0}] SET contractId = '{1}', price = '{2}', updatedAt = '{3}' where id = '{4}' ",
-                ETableName.ORDER, newReceipt.ContractId, newReceipt.Price, newReceipt.UpdatedAt, newReceipt.ID);
+                ETableName.ORDER, newReceipt.ContractId, newReceipt.Price, DateTime.Now, newReceipt.ID);
         }
 
         public string createReceipt(Receipt newReceipt)
         {
             return string.Format("INSERT INTO [{0}]" +
                     "VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
-                    ETableName.ORDER, newReceipt.ID, newReceipt.ContractId, newReceipt.Price, newReceipt.CreatedAt, newReceipt.UpdatedAt);
+                    ETableName.ORDER, newReceipt.ID, newReceipt.ContractId, newReceipt.Price, DateTime.Now, DateTime.Now);
         }
 
 

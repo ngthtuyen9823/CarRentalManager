@@ -9,6 +9,7 @@ namespace CarRentalManager.enums
     public enum EReturnCarStatus
     {
         BROKEN, 
-        INTACT
+        INTACT,
+        ISNOTRETURN
     }
 }

@@ -34,15 +34,12 @@ namespace CarRentalManager.ViewModel
 
         //*INFO: Value binding
         private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
-        private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
         private string city; public string City { get => city; set => SetProperty(ref city, value, nameof(City)); }
-        private string imagePath; public string ImagePath { get => imagePath; set => SetProperty(ref imagePath, value, nameof(ImagePath)); }
         private string name; public string Name { get => name; set => SetProperty(ref name, value, nameof(Name)); }
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
         private string brand; public string Brand { get => brand; set => SetProperty(ref brand, value, nameof(Brand)); }
         private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
-        private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
         private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
         private ObservableCollection<string> listCarBrand; public ObservableCollection<string> ListCarBrand { get => listCarBrand; set => SetProperty(ref listCarBrand, value, nameof(ListCarBrand)); }
         private ObservableCollection<string> listCity; public ObservableCollection<string> ListCity { get => listCity; set => SetProperty(ref listCity, value, nameof(ListCity)); }
