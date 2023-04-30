@@ -1,5 +1,6 @@
 using System;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using CarRentalManager.enums;
 using CarRentalManager.models;
 
@@ -150,7 +151,7 @@ namespace CarRentalManager.services
 
         public string updateContract(Contract updatedContract)
         {
-            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', updatedAt = '{7}' where id = '{8}'",
+            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', feedback = '{7}', returnCarStatus = '{8}', note = '{9}',  updatedAt = '{10}' where id = '{11}'",
             ETableName.CONTRACT,
             updatedContract.UserId,
             updatedContract.OrderId,
@@ -158,6 +159,9 @@ namespace CarRentalManager.services
             updatedContract.Price,
             updatedContract.Paid,
             updatedContract.Remain,
+            updatedContract.Feedback,
+            updatedContract.ReturnCarStatus,
+            updatedContract.Note,
             updatedContract.UpdatedAt,
             updatedContract.ID);
         }
@@ -222,19 +226,21 @@ namespace CarRentalManager.services
         //*INFO: STATISTIC
         public string countOnrentTimes()
         {
-            return "SELECT carId, COUNT([Contract].id) as onrentTimes " +
-                "FROM[Order] " +
-                "JOIN[Contract] on[Order].id = [Contract].orderId " +
-                "GROUP BY carId";
+            return "SELECT name, COUNT([Contract].id) as onrentTimes " +
+                    "FROM[Order] " +
+                    "JOIN[Contract] on[Order].id = [Contract].orderId " +
+                    "JOIN[Car] on[Order].carId = [Car].id " +
+                    "GROUP BY name";
         }
 
         public string countBrokenTimes()
         {
-            return "SELECT [Order].carId, COUNT([Contract].id) as brokenTimes " +
-                "FROM[Contract] " +
-                "JOIN[Order] ON[Contract].orderId = [Order].id " +
-                "WHERE[Contract].returnCarStatus = 'BROKEN' " +
-                "GROUP BY[Order].carId";
+            return "SELECT name, COUNT([Contract].id) as brokenTimes " +
+                "FROM [Contract] " +
+                "JOIN [Order] ON[Contract].orderId = [Order].id " +
+                "JOIN [Car] on [Order].carId = [Car].id " +
+                "WHERE [Contract].returnCarStatus = 'BROKEN' " +
+                "GROUP BY name";
         }
     }
 }

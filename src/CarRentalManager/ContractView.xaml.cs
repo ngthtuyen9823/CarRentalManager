@@ -26,12 +26,30 @@ namespace CarRentalManager
         public ContractView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] { "Status" };
+            FilterBy.ItemsSource = new string[] {"ID", "OrderId", "ReturnCarStatus", "Note" };
         }
-        private bool StatusFilter(object obj)
+        private bool IDFilter(object obj)
         {
             var Filterobj = obj as Contract;
-            string filterobj = Filterobj.Status.ToString().ToLower();
+            string filterobj = Filterobj.ID.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool OrderIdFilter(object obj)
+        {
+            var Filterobj = obj as Contract;
+            string filterobj = Filterobj.OrderId.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool NoteFilter(object obj)
+        {
+            var Filterobj = obj as Contract;
+            string filterobj = Filterobj.Note.ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool ReturnCarStatusFilter(object obj)
+        {
+            var Filterobj = obj as Contract;
+            string filterobj = Filterobj.ReturnCarStatus.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
 
@@ -39,10 +57,16 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case nameof(Status):
-                    return StatusFilter;
+                case nameof(ID):
+                    return IDFilter;
+                case nameof(OrderId):
+                    return OrderIdFilter;
+                case nameof(ReturnCarStatus):
+                    return ReturnCarStatusFilter;
+                case nameof(Note):
+                    return NoteFilter;
             }
-            return StatusFilter;
+            return ReturnCarStatusFilter;
         }
         private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -75,6 +99,9 @@ namespace CarRentalManager
                 OrderId.Text = selectedContract.OrderId.ToString();
                 Price.Text = selectedContract.Price.ToString();
                 Status.Text = selectedContract.Status.ToString();
+                ReturnCarStatus.Text = selectedContract.ReturnCarStatus.ToString();
+                Feedback.Text = selectedContract.Feedback.ToString();
+                Note.Text = selectedContract.Note.ToString();       
             }
         }
     }

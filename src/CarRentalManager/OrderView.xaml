@@ -44,14 +44,16 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Orders" Grid.Column="0" FontSize="32" FontWeight="SemiBold" 
                            Margin="10 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
-                <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
-                    <Button Margin="0 20 10 0" Command="{Binding DeleteCommand}" Style="{StaticResource cancelButton}">
-                        <TextBlock Text ="Cancel" FontWeight="SemiBold"/>
-                    </Button>
-                    <Button Command="{Binding ConfirmCommand}" Style="{StaticResource confirmButton}">
-                        <TextBlock Text="Confirm" FontWeight="SemiBold"/>
-                    </Button>
-                </WrapPanel>
+                <Button Grid.Column="1" Command="{Binding AddCommand}" HorizontalAlignment="Right"
+                            x:Name="Button_OpenPopup"
+                            Width="140"
+                            Height="40"
+                            Margin="10"
+                            Content="+ Add new order"
+                            BorderThickness="20"
+                            BorderBrush="#3AA9AD"
+                            />
+
             </Grid>
             <Separator Grid.Row="1" Margin="8" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
             <Grid Grid.Row="2">
@@ -74,7 +76,10 @@
                             COMPLETE
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            CANCELLED
+                            CANCELBYUSER
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            CANCELBYADMIN
                         </ComboBoxItem>
                         <ComboBoxItem>
                             PENDING
@@ -95,17 +100,30 @@
                 </WrapPanel>
             </Grid>
             <Separator Grid.Row="3" Margin="8 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
-            <Grid Grid.Row="4">
+            <!--<Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Available" BorderBrush="#218c74"/>
-                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Unavailable "/>
-                    <Button FontWeight="Medium" FontSize="12" Style="{StaticResource tabButton}" Content="Onrent"/>
-                </StackPanel>
+                <WrapPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Command="{Binding DeleteCommand}"
+                            Width="120"
+                            Height="38"
+                            Margin="5"
+                            Content="CANCEL"
+                            Background="#ee5253"
+                            VerticalAlignment="Bottom"
+                            />
+                    <Button Command="{Binding ConfirmCommand}"
+                            Width="120"
+                            Height="38"
+                            Margin="5"
+                            Content="CONFIRM"
+                            Background="#3AA9AD"
+                            VerticalAlignment="Bottom"
+                            />
+                </WrapPanel>
                 <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="1" Margin="30 20 30 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 </ComboBox>
                 <Grid Margin="0 10 0 0" Grid.Column ="2" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -115,6 +133,78 @@
                     <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="35" Style="{StaticResource searchTextbox}" VerticalContentAlignment="Center"/>
 
                     <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
+                </Grid>
+            </Grid>-->
+            <Grid Grid.Row="4" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Command="{Binding DeleteCommand}"
+                            Width="100"
+                            Height="40"
+                            Content="Cancel"
+                            VerticalAlignment="Center"
+                            BorderThickness="20"
+                            BorderBrush="#ee5253"
+                            >
+                    </Button>
+                    <Button Command="{Binding ConfirmCommand}"
+                            Margin="15 0 0 0"
+                            Width="100"
+                            Height="40"
+                            Content="Confirm"
+                            VerticalAlignment="Center"
+                            BorderThickness="20"
+                            BorderBrush="#3AA9AD"
+                            ></Button>
+                </WrapPanel>
+                <ComboBox Grid.Column="1" Name="FilterBy" Margin="20 10 10 10" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0"  materialDesign:HintAssist.Hint="Search by" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                </ComboBox>
+                <Grid Margin="0 10 0 0" Grid.Column ="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <materialDesign:ColorZone
+                        Mode="Standard"
+                        Padding="8 4 8 4"
+                        CornerRadius="20"
+                        Panel.ZIndex="1"
+                        Margin="16 0 0 0"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+                                    Kind="Magnify"
+                                    Opacity=".56" />
+                            </Button>
+                            <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged"
+                                     Grid.Column="1"
+                                     Margin="8 0 0 0"
+                                     materialDesign:HintAssist.Hint="Search here..."
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0"
+                                     MinWidth="200"
+                                     VerticalAlignment="Center" />
+                            <Button
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                Grid.Column="2">
+                                <materialDesign:PackIcon
+                                    Kind="Microphone"
+                                    Opacity=".56"
+                                    Margin="0 0 0 0" />
+                            </Button>
+                        </Grid>
+                    </materialDesign:ColorZone>
                 </Grid>
             </Grid>
         </Grid>
@@ -146,7 +236,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="Height" Value="40"/>
                         <EventSetter Event="PreviewMouseLeftButtonDown" 
                                      Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                     </Style>

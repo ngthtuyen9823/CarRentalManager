@@ -107,31 +107,40 @@ namespace CarRentalManager.services
             return dict;
         }
 
-        public List<Dictionary<string, object>> getDictOnrentTimes()
+        public Dictionary<string, int> getDictOnrentTimes()
         {
             DataTable dataTable = commonDAO.countOnrentTimes();
-            List<Dictionary<string, object>> result = getDictionary(dataTable);
+            Dictionary<string, int> result = getDictionary(dataTable);
             return result;
         }
 
-        public List<Dictionary<string, object>> getDictBrokennTimes()
+        public Dictionary<string, int> getDictBrokennTimes()
         {
             DataTable dataTable = commonDAO.countBrokenTimes();
-            List<Dictionary<string, object>> result = getDictionary(dataTable);
+            Dictionary<string, int> result = getDictionary(dataTable);
             return result;
         }
 
-        public List<Dictionary<string, object>> getDictionary(DataTable dataTable)
+        public Dictionary<string, int> getDictionary(DataTable dataTable)
         {
-            List<Dictionary<string, object>> result = new List<Dictionary<string, object>>();
+            Dictionary<string, int> result = new Dictionary<string, int>();
             foreach (DataRow row in dataTable.Rows)
             {
-                Dictionary<string, object> dict = new Dictionary<string, object>();
+                string name = "";
+                int times = 0;
                 foreach (DataColumn col in dataTable.Columns)
                 {
-                    dict.Add(col.ColumnName, row[col]);
+                    object value = row[col]; 
+                    if (value is string)
+                    {
+                        name = value.ToString().Trim();
+                    }
+                    else if (value is int)
+                    {
+                        times = (int)value;
+                    }
                 }
-                result.Add(dict);
+                result.Add(name, times);
             }
             return result;
         }

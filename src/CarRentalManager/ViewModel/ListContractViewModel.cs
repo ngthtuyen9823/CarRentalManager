@@ -27,7 +27,10 @@ namespace CarRentalManager.ViewModel
         public ICommand PayCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
-
+        private bool _IsOpenPopup_CarInfor;
+        public bool IsOpenPopup_CarInfor { get { return _IsOpenPopup_CarInfor; } set { _IsOpenPopup_CarInfor = value; OnPropertyChanged(); } }
+        public ICommand ClosePopup_CarInfor_Command { get; set; }
+        public ICommand OpenPopup_Command { get; set; }
 
         //*INFO: Value binding
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
@@ -38,8 +41,9 @@ namespace CarRentalManager.ViewModel
         private int fee; public int Fee { get => fee; set => SetProperty(ref fee, value, nameof(Fee)); }
         private int paid; public int Paid { get => paid; set => SetProperty(ref paid, value, nameof(Paid)); }
         private int remain; public int Remain { get => remain; set => SetProperty(ref remain, value, nameof(Remain)); }
-
-
+        private string returnCarStatus; public string ReturnCarStatus { get => returnCarStatus; set => SetProperty(ref returnCarStatus, value, nameof(ReturnCarStatus)); }
+        private string feedback; public string Feedback { get => feedback; set => SetProperty(ref feedback, value, nameof(Feedback)); }
+        private string note; public string Note { get => note; set => SetProperty(ref note, value, nameof(Note)); }
         public ListContractViewModel()
         {
             List = getListObservableContract();
@@ -47,6 +51,31 @@ namespace CarRentalManager.ViewModel
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             PayCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handlePayCommand());
+            IsOpenPopup_CarInfor = false;
+            ClosePopup_CarInfor_Command = new RelayCommand<object>((o) => { return true; }, (o) =>
+            {
+                IsOpenPopup_CarInfor = false;
+            });
+            OpenPopup_Command = new RelayCommand<string>((content) => { return true; }, (content) =>
+            {
+                if (Status is null)
+                {
+                    MessageBox.Show("Vui lòng chọn hợp đồng để thanh toán!");
+                }
+                else
+                {
+                    bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                    if (!isError)
+                    {
+                        IsOpenPopup_CarInfor = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The contract was paid completely");
+                    }
+                }
+            });
+
         }
         private void reSetForm()
         {
@@ -115,6 +144,7 @@ namespace CarRentalManager.ViewModel
             return new Contract(ID, OrderId, UserId,
                     variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
                     Price, Paid, Remain,
+                    Feedback, variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38)), Note,
                     DateTime.Now, DateTime.Now);
         }
 
@@ -149,20 +179,24 @@ namespace CarRentalManager.ViewModel
         {
             try
             {
-                bool isError = Fee <= 0 || 
-                    variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                bool isError = Fee <= 0; 
                 if (!isError)
                 {
+                    IsOpenPopup_CarInfor = false;
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
                     currentContract.Paid += Fee;
                     currentContract.Remain -= Fee;
                     currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
                     currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
+                    currentContract.Feedback = Feedback;
+                    currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
+                    currentContract.Note = Note;
                     contractDAO.updateContract(currentContract);
                     updateListUI();
                 }
                 else
                 {
+                    IsOpenPopup_CarInfor = false;
                     MessageBox.Show("The contract has been paid completely");
                 }
             }

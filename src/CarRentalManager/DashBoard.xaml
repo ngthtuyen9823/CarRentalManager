@@ -87,7 +87,7 @@
                         </Grid>
 
                         <!--Menu Seprator-->
-                        <Separator Margin="25" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>
+                        <Separator Margin="10 10 10 5" Background="#ffffff" DockPanel.Dock="Top" Height="0.8"/>
 
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top" >
@@ -120,6 +120,12 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Contracts" FontWeight="SemiBold" FontSize="16"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton x:Name="btnHelp" Style="{StaticResource menuRadioButton}" Command="{Binding HelpCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="CommentQuestion" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Help" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </RadioButton>
 

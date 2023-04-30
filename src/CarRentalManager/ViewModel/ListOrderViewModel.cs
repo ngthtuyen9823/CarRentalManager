@@ -172,7 +172,7 @@ namespace CarRentalManager.ViewModel
                 if(currentCar != null && currentCar.Status == ECarStatus.AVAILABLE)
                 {
                     int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
-                    Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, 0, TotalFee, DateTime.Now, DateTime.Now);
+                    Contract contract = new Contract(lastContractID + 1, ID, CustomerId, variableService.parseStringToEnum<EContractStatus>("UNPAID"), TotalFee, 0, TotalFee, "" , variableService.parseStringToEnum<EReturnCarStatus>("INTACT"), "", DateTime.Now, DateTime.Now);
                     Order order = getOrder();
                     orderDao.updateStatusOfOrder(order);
                     contractDao.createContract(contract);
