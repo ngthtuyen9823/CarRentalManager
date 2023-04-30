@@ -1,4 +1,4 @@
-﻿using CarRentalManager.models;
+using CarRentalManager.models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,8 +29,8 @@ namespace CarRentalManager.ViewModel
         public ICommand EditCommand { get; set; }
         private bool _IsOpenPopup_CarInfor;
         public bool IsOpenPopup_CarInfor { get { return _IsOpenPopup_CarInfor; } set { _IsOpenPopup_CarInfor = value; OnPropertyChanged(); } }
-        public ICommand ClosePopup_CarInfor_Command { get; set; }
-        public ICommand OpenPopup_Command { get; set; }
+        public ICommand ClosePopupCarInforCommand { get; set; }
+        public ICommand OpenPopupCommand { get; set; }
 
         //*INFO: Value binding
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
@@ -52,29 +52,8 @@ namespace CarRentalManager.ViewModel
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             PayCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handlePayCommand());
             IsOpenPopup_CarInfor = false;
-            ClosePopup_CarInfor_Command = new RelayCommand<object>((o) => { return true; }, (o) =>
-            {
-                IsOpenPopup_CarInfor = false;
-            });
-            OpenPopup_Command = new RelayCommand<string>((content) => { return true; }, (content) =>
-            {
-                if (Status is null)
-                {
-                    MessageBox.Show("Vui lòng chọn hợp đồng để thanh toán!");
-                }
-                else
-                {
-                    bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
-                    if (!isError)
-                    {
-                        IsOpenPopup_CarInfor = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("The contract was paid completely");
-                    }
-                }
-            });
+            ClosePopupCarInforCommand = new RelayCommand<object>((o) => { return true; }, (o) => handleClosePopupCommand());
+            OpenPopupCommand = new RelayCommand<string>((content) => { return true; }, (content) => handleOpenPopupCommand());
 
         }
         private void reSetForm()
@@ -203,6 +182,32 @@ namespace CarRentalManager.ViewModel
             catch
             {
                 MessageBox.Show(Error);
+            }
+
+            
+        }
+        private void handleClosePopupCommand()
+        {
+            IsOpenPopup_CarInfor = false;
+        }
+
+        private void handleOpenPopupCommand()
+        {
+            if (Status is null)
+            {
+                MessageBox.Show("Vui lòng chọn hợp đồng để thanh toán!");
+            }
+            else
+            {
+                bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
+                if (!isError)
+                {
+                    IsOpenPopup_CarInfor = true;
+                }
+                else
+                {
+                    MessageBox.Show("The contract was paid completely");
+                }
             }
         }
     }

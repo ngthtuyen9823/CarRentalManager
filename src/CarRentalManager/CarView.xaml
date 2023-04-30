@@ -104,6 +104,9 @@
                         <ComboBoxItem>
                             ONRENT
                         </ComboBoxItem>
+                        <ComboBoxItem>
+                            READYTORENT
+                        </ComboBoxItem>
                     </ComboBox>
                     <ComboBox Name="DrivingType" Width="100" Margin="10 8 10 8" SelectedValue="{Binding DrivingType,ValidatesOnDataErrors=True}" materialDesign:HintAssist.Hint="Driving Type" 
                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}">

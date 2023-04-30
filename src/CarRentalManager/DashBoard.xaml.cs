@@ -83,7 +83,19 @@ namespace CarRentalManager
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            txtUserName.Text = "Hi, " + LoginInInforState.Name;
+            if(LoginInInforState.Name == null) {
+                MessageBox.Show("Please login");
+                LandingPage landingPage = new LandingPage();
+                landingPage.Show();
+
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+                Close();
+            }
+            else
+            {
+                txtUserName.Text = "Hi, " + LoginInInforState.Name;
+            }
         }
     }
 }

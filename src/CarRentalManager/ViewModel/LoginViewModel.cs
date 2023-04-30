@@ -38,7 +38,7 @@ namespace CarRentalManager.ViewModel
             User currentUser = userDAO.getUserWithEmail(Email);
             if(currentUser == null)
             {
-                MessageBox.Show("Tài khoản không tồn tại, xin vui lòng đăng ký");
+                MessageBox.Show("Your account is not exist, please sign up!");
             } 
             else
             {
@@ -48,14 +48,13 @@ namespace CarRentalManager.ViewModel
                     LoginInInforState.ID = currentUser.ID;
                     LoginInInforState.Name = currentUser.Name;
                     LoginInInforState.Role = currentUser.Role;
-                    MessageBox.Show(LoginInInforState.Name);
                     var mainWindow = new DashBoard();
                     mainWindow.Show();
                     p.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Sai mật khẩu!");
+                    MessageBox.Show("Password is invalid!");
                 }
             }
         }

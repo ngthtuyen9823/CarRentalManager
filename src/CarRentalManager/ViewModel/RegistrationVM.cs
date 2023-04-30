@@ -11,11 +11,13 @@ using CarRentalManager.services;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
 
 namespace CarRentalManager.ViewModel
 {
     public class RegistrationVM : BaseViewModel, IDataErrorInfo
     {
+        readonly CarDAO carDao = new CarDAO();
         public ObservableCollection<Order> List { get; set; }
         public string Error { get { return null; } }
         public ICommand RegisterCommand { get; set; }
@@ -48,10 +50,7 @@ namespace CarRentalManager.ViewModel
         
         public RegistrationVM() 
         {
-            RegisterCommand = new RelayCommand<object>((p) =>
-            {
-                return true;
-            }, (p) => handleRegisterCommand());
+            RegisterCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleRegisterCommand());
         }
 
         private void resetForm()
@@ -87,12 +86,14 @@ namespace CarRentalManager.ViewModel
                             if (!validatePhoneNumberRegex.IsMatch(PhoneNumber))
                                 result = "not exist";
                         }
-                        //ErrorCollection.Remove(name);
+                        break;
+                    case nameof(DepositAmount):
+                        if (DepositAmount <= 0)
+                            result = "you must enter the deposit amount to rent this car";
                         break;
                     default:
                         if (string.IsNullOrEmpty(typeof(RegistrationVM).GetProperty(columnName).GetValue(this)?.ToString()))
                             result = string.Format("{0} can not be empty", columnName);
-                        //ErrorCollection.Remove(name);
                         break;
                 }
                 if (ErrorCollection.ContainsKey(columnName))
@@ -106,6 +107,14 @@ namespace CarRentalManager.ViewModel
                 OnPropertyChanged(nameof(ErrorCollection));
                 return result;
             }
+        }
+
+        private bool checkIsError()
+        {
+            if (ErrorCollection.Count > 0)
+                return false;
+            else
+                return true;
         }
 
         private Customer getCustomer(int lastCustomerId)
@@ -136,18 +145,41 @@ namespace CarRentalManager.ViewModel
 
         private void handleRegisterCommand()
         {
-            int lastOrderId = commonDAO.getLastId(ETableName.ORDER);
-            int lastCustomerId = commonDAO.getLastId(ETableName.CUSTOMER);
-            Customer customer = getCustomer(lastCustomerId);
-            Order Order = getOrder(lastOrderId, lastCustomerId);
+            try
+            {
+                if(TotalFee <= 0)
+                {
+                    MessageBox.Show("Please press button to calculate your fee");
+                    return;
+                }
+                Car currentCar = carDao.getCarById(CarId.ToString());
+                if (currentCar != null && currentCar.Status == ECarStatus.AVAILABLE)
+                {
+                    int lastOrderId = commonDAO.getLastId(ETableName.ORDER);
+                    int lastCustomerId = commonDAO.getLastId(ETableName.CUSTOMER);
+                    Customer customer = getCustomer(lastCustomerId);
+                    Order Order = getOrder(lastOrderId, lastCustomerId);
 
-            customerDAO.createCustomer(customer);
-            orderDAO.createOrder(Order);
-            MessageBox.Show("Success!");
+                    customerDAO.createCustomer(customer);
+                    orderDAO.createOrder(Order);
 
-            int createdOrderID = commonDAO.getLastId(ETableName.ORDER);
-            MessageBox.Show(createdOrderID.ToString());
-            resetForm();
+                    int createdOrderID = commonDAO.getLastId(ETableName.ORDER);
+                    currentCar.Status = ECarStatus.READYTORENT;
+                    carDao.updateCar(currentCar);
+                    MessageBox.Show("Register Successfully!");
+                    MessageBox.Show($"Your Order Id is {createdOrderID}");
+                    resetForm();
+                }
+                else
+
+                {
+                    MessageBox.Show("The Car is onrent or not available to rent for now");
+                }
+            }catch
+            {
+                MessageBox.Show("Server is not available for now");
+            }
+            
         }
     }
 }

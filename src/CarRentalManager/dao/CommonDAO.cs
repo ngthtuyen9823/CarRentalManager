@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Security.Policy;
 using System.Windows.Media;
 using System.Xml.Linq;
+using System.Data.SqlTypes;
 
 namespace CarRentalManager.dao
 {
@@ -49,6 +50,23 @@ namespace CarRentalManager.dao
             string sqlStringGetTable = sqlService.countBrokenTimes();
             return dbConnectionDAO.getDataTable(sqlStringGetTable);
            
+        }
+
+        public Dictionary<string, string> getListFeedbackOfCustomer()
+        {
+            string sqlStringGetTable = sqlService.getListFeedbackOfCustomer();
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return getDictionary(dataTable);
+        }
+
+        public Dictionary<string, string> getDictionary(DataTable dataTable)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                result.Add(row[0].ToString(), row[1].ToString());
+            }
+            return result;
         }
     }
 }

@@ -50,15 +50,19 @@ namespace CarRentalManager
         }
         private void drawPieChart(Dictionary<string, int> dict)
         {
-            var sortedDict = from entry in dict orderby entry.Value descending select entry;
-            Piece1.Title = sortedDict.ElementAt(0).Key;
-            Piece1.Values = new ChartValues<double> { sortedDict.ElementAt(0).Value };
-            Piece2.Title = sortedDict.ElementAt(1).Key;
-            Piece2.Values = new ChartValues<double> { sortedDict.ElementAt(1).Value };
-            Piece3.Title = sortedDict.ElementAt(2).Key;
-            Piece3.Values = new ChartValues<double> { sortedDict.ElementAt(2).Value };
-            Piece4.Title = sortedDict.ElementAt(3).Key;
-            Piece4.Values = new ChartValues<double> { sortedDict.ElementAt(3).Value };
+            try
+            {
+                var sortedDict = from entry in dict orderby entry.Value descending select entry;
+                Piece1.Title = sortedDict.ElementAt(0).Key;
+                Piece1.Values = new ChartValues<double> { sortedDict.ElementAt(0).Value };
+                Piece2.Title = sortedDict.ElementAt(1).Key;
+                Piece2.Values = new ChartValues<double> { sortedDict.ElementAt(1).Value };
+                Piece3.Title = sortedDict.ElementAt(2).Key;
+                Piece3.Values = new ChartValues<double> { sortedDict.ElementAt(2).Value };
+                Piece4.Title = sortedDict.ElementAt(3).Key;
+                Piece4.Values = new ChartValues<double> { sortedDict.ElementAt(3).Value };
+            }
+            catch{}
         }
         private void drawChartByPreciouse()
         {

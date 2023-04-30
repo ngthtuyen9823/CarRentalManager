@@ -37,9 +37,12 @@ namespace CarRentalManager
 
         private void loadViewModel(Car car)
         {
+            bool isExistImage = System.IO.File.Exists(car.ImagePath);
             priceCar = car.Price;
             lblIDCar.Content = "ID Car : " + car.ID;
-            describeIMG.Source = car.ImagePath.IndexOf("asset") == 1 ? new BitmapImage(new Uri(car.ImagePath, UriKind.Relative)) : new BitmapImage(new Uri(car.ImagePath));
+            describeIMG.Source = car.ImagePath.ToLower().IndexOf("asset") == 1 
+                ? new BitmapImage(new Uri(car.ImagePath, UriKind.Relative)) 
+                : isExistImage ? new BitmapImage(new Uri(car.ImagePath)) : new BitmapImage();
             lblNameCar.Content = "Name : "+ car.Name;
             lblBranchCar.Content = "Brand : " + car.Brand;
             lblPublishYear.Content = "Publish Year : " + car.PublishYear;
