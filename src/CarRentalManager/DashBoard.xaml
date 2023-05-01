@@ -40,9 +40,6 @@
         <DataTemplate DataType="{x:Type viewModel:StatisticViewModel}">
             <local:StatisticView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:StoreViewModel}">
-            <local:StoreView/>
-        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
@@ -122,15 +119,7 @@
                                     <TextBlock Text="Contracts" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="btnHelp" Style="{StaticResource menuRadioButton}" Command="{Binding HelpCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CommentQuestion" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Help" FontWeight="SemiBold" FontSize="16"/>
-                                </StackPanel>
-                            </RadioButton>
-
                         </StackPanel>
-
                         <Button Click="Button_Click" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
@@ -163,9 +152,6 @@
                         </RadioButton>
                         <RadioButton Command="{Binding StatisticCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
                             <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
-                        </RadioButton>
-                        <RadioButton Command="{Binding StoreCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
-                            <TextBlock Text="Store" FontWeight="SemiBold" FontSize="16"/>
                         </RadioButton>
                     </WrapPanel>
                     <WrapPanel Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,0,35">
