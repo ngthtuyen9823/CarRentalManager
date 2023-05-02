@@ -8,60 +8,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CarRentalManager.models;
+
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using MaterialDesignThemes.Wpf;
 using System.Net;
 using System.Xml.Linq;
 using System.Data.SqlTypes;
+using System.Data.Entity.Migrations;
 
 namespace CarRentalManager.dao
 {
     public class CustomerDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
-
         public CustomerDAO() { }
 
         public List<Customer> getListCustomer()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable);
+            using (var db = new CRMContext())
+            {
+                return db.Customers.ToList();
+            }
         }
 
         public void createCustomer(Customer newCustomer)
         {
-            string sqlString = sqlService.createCustomer(newCustomer);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                db.Customers.Add(newCustomer);
+                db.SaveChanges();
+            }
         }
 
         public void removeCustomer(int id)
         {
-            string sqlString = sqlService.removeById(ETableName.CUSTOMER, id);
-            dbConnectionDAO.getDataTable(sqlString);
-        }
-    
-        public List<Customer> getListCustomerByDescOrAsc(bool isDescrease, string fieldName)
-        {
-            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable);
+            using (var db = new CRMContext())
+            {
+                var customer = db.Customers.Find(id);
+                db.Customers.Remove(customer);
+                db.SaveChanges();
+            }
         }
 
         public Customer getCustomerById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id,ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable)?.First();
+            using (var db = new CRMContext())
+            {
+                return db.Customers.Find(id);
+            }
         }
 
         public void updateCustomer(Customer customer)
         {
-            string sqlString = sqlService.updateCustomer(customer);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                db.Customers.AddOrUpdate(customer);
+                db.SaveChanges();
+            }
         }
         public Customer getCustomerByIdCard(string idCard)
         {

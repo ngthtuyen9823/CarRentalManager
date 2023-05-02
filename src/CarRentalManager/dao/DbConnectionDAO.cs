@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CarRentalManager.models;
+
 using System.Diagnostics;
 using System.Security.Policy;
 using System.Windows.Media;
 using System.Xml.Linq;
+using System.Data.Entity.Core.EntityClient;
 
 namespace CarRentalManager.dao
 {
@@ -27,22 +28,18 @@ namespace CarRentalManager.dao
 
         public DataTable getDataTable (string sqlString)
         {
-            try
+            using (var db = new CRMContext())
             {
-                conn.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlString, conn);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                return dataTable;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fail!" + ex);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
+                var blog = new Blog
+                {
+                    id = 1,
+                    name = "Blog ve hoc sinh"
+                };
+                db.Posts.Add(blog);
+                db.SaveChanges();
+
+                var query = from q in db.Posts
+                            select q;
             }
         }
         public void executing(string sqlString, ETableName tableName)

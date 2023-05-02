@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CarRentalManager.customcontrols;
 using CarRentalManager.dao;
-using CarRentalManager.models;
+
 using CarRentalManager.ViewModel;
 using MaterialDesignThemes.Wpf;
 

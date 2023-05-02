@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CarRentalManager.models;
 using System.Diagnostics;
 using System.Security.Policy;
 using System.Windows.Media;

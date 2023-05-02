@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using CarRentalManager.models;
+
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace CarRentalManager.dao

@@ -1,26 +1,26 @@
 using CarRentalManager.enums;
 using CarRentalManager.services;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using CarRentalManager.models;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace CarRentalManager.dao
 {
     public class OrderDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
-
         public OrderDAO() { }
 
         public List<Order> getListOrder()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.ORDER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Order>(dataTable);
+            using (var db = new CRMContext())
+            {
+                return db.Orders.ToList();
+            }
         }
         public List<ExtraOrder> getListExtraOrder()
         {
@@ -30,34 +30,31 @@ namespace CarRentalManager.dao
         }
         public void createOrder(Order order)
         {
-            string sqlString = sqlService.createOrder(order);
-            dbConnectionDAO.getDataTable(sqlString);
-        }
-
-        public List<Order> getListOrderByDescOrAsc(bool isDescrease, string fieldName)
-        {
-            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.ORDER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Order>(dataTable);
+            using (var db = new CRMContext())
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
         }
 
         public Order getOrderById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id, ETableName.ORDER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            if(dataTable.Rows.Count > 0)
+            using (var db = new CRMContext())
             {
-                return commondDataService.dataTableToList<Order>(dataTable)?.First();
+                return db.Orders.Find(id);
             }
-            return null;
         }
 
         public void removeOrder(int id)
         {
             try
             {
-                string sqlString = sqlService.removeById(ETableName.ORDER, id);
-                dbConnectionDAO.executing(sqlString, ETableName.ORDER);
+                using (var db = new CRMContext())
+                {
+                    var contract = db.Orders.Find(id);
+                    db.Orders.Remove(contract);
+                    db.SaveChanges();
+                }
             }
             catch
             {
@@ -66,19 +63,29 @@ namespace CarRentalManager.dao
         }
         public void updateOrder(Order order)
         {
-            string sqlString = sqlService.updateOrder(order);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                order.updatedAt = DateTime.Now;
+                db.Orders.AddOrUpdate(order);
+                db.SaveChanges();
+            }
         }
         public void updateStatusOfOrder(Order order)
         {
-            string sqlString = sqlService.updateStatusOfOrder(order);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                order.status = EOrderStatus.COMPLETE.ToString();
+                order.updatedAt = DateTime.Now;
+                db.Orders.AddOrUpdate(order);
+                db.SaveChanges();
+            }
         }
 
         public List<Order> getListOrderByCondition(string condition) {
-            string sqlString = sqlService.getListByCondition(ETableName.ORDER, condition);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlString);
-            return commondDataService.dataTableToList<Order>(dataTable);
+            using (var db = new CRMContext())
+            {
+                return db.Orders.Where(condition).ToList();
+            }
         }
     }
 }

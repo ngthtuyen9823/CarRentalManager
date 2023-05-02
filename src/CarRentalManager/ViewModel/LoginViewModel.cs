@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using CarRentalManager.models;
+
 using System;
 using CarRentalManager.state;
 using CarRentalManager.enums;

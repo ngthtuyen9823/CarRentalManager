@@ -2,7 +2,8 @@
 using CarRentalManager.services;
 using System.Collections.Generic;
 using System.Data;
-using CarRentalManager.models;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Windows;
 using System.Linq;
 
@@ -10,32 +11,40 @@ namespace CarRentalManager.dao
 {
     public class SupplierDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
         public SupplierDAO() { }
 
         public List<Supplier> getListSupplier()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.SUPPLIER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Supplier>(dataTable);
+            using (var db = new CRMContext())
+            {
+                return db.Suppliers.ToList();
+            }
         }
 
         public void createSupplier(Supplier supplier)
         {
-            string sqlString = sqlService.createSupplier(supplier);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                db.Suppliers.Add(supplier);
+                db.SaveChanges();
+            }
         }
         public void removeSupplier(int id)
         {
-            string sqlString = sqlService.removeById(ETableName.SUPPLIER, id);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                var supplier = db.Suppliers.FirstOrDefault(s => s.id == id);
+                db.Suppliers.Remove(supplier);
+                db.SaveChanges();
+            }
         }
         public void updatSupplier(Supplier supplier)
         {
-            string sqlString = sqlService.updateSupplier(supplier);
-            dbConnectionDAO.getDataTable(sqlString);
+            using (var db = new CRMContext())
+            {
+                db.Suppliers.AddOrUpdate(supplier);
+                db.SaveChanges();
+            }
         }
         public Supplier getInforByEmail(string email)
         {

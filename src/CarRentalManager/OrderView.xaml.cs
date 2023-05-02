@@ -1,6 +1,6 @@
-﻿using CarRentalManager.dao;
+using CarRentalManager.dao;
 using CarRentalManager.enums;
-using CarRentalManager.models;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using CarRentalManager.models;
+
 using CarRentalManager.enums;
 using System.Windows.Input;
 using CarRentalManager.dao;
