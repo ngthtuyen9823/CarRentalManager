@@ -15,6 +15,7 @@ namespace CarRentalManager.services
     public class StatisticsService
     {
         readonly ContractDAO contractDAO = new ContractDAO();
+        readonly CarDAO carDAO = new CarDAO();
         readonly OrderDAO orderDAO = new OrderDAO();
         readonly CommonDAO commonDAO = new CommonDAO(); 
         public StatisticsService() { } 
@@ -27,7 +28,18 @@ namespace CarRentalManager.services
 
             return getTotalRevenueGiven(contractList, orderList);
         }
-
+        public int getTotalOrder()
+        {
+            return orderDAO.getListOrder().Count();
+        }
+        public int getTotalContract()
+        {
+            return contractDAO.getListContract().Count();
+        }
+        public int getTotalCar()
+        {
+            return carDAO.getListCar().Count();
+        }
         public int getTotalRevenueGiven(List<Contract> contractList, List<Order> orderList)
         {
             int total = 0;
@@ -44,8 +56,6 @@ namespace CarRentalManager.services
 
             return total;
         }
-
-
         public int getTotalRevenueByMonth(int month)
         {
             int currenYear = DateTime.Now.Year;
