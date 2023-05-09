@@ -55,7 +55,7 @@ namespace CarRentalManager.dao
         {
             string sqlStringGetTable = sqlService.getValueById(id, ETableName.CUSTOMER);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable).First();
+            return commondDataService.dataTableToList<Customer>(dataTable)?.First();
         }
 
         public void updateCustomer(Customer customer)

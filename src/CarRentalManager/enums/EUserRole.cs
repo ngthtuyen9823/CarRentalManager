@@ -9,6 +9,7 @@ namespace CarRentalManager.enums
     public enum EUserRole
     {
         USER,
-        ADMIN
+        ADMIN,
+        SUPPLIER
     }
 }

@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
+using CarRentalManager.enums;
 using CarRentalManager.models;
 using CarRentalManager.services;
 
@@ -15,11 +16,11 @@ namespace CarRentalManager.dao
         readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
         public UserDAO() { }
 
-        public User getUserWithEmail(string email)
+        public User getInforByEmail(string email)
         {
-            string sqlStringGetTable = sqlService.getUserWithEmail(email);
+            string sqlStringGetTable = sqlService.getCreadentialWithEmail(ETableName.USER, email);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<User>(dataTable).First();
+            return commondDataService.dataTableToList<User>(dataTable)?.First();
         } 
     }
 }

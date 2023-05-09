@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarRentalManager.enums;
 
 namespace CarRentalManager.services
 {
@@ -16,7 +17,7 @@ namespace CarRentalManager.services
         {
             try
             {
-                string queryString = sqlQueryService.getUserWithEmail(email);
+                string queryString = sqlQueryService.getCreadentialWithEmail(ETableName.USER, email);
             }
             catch(Exception exc) {
                MessageBox.Show("services/User.service.cs", exc.Message);

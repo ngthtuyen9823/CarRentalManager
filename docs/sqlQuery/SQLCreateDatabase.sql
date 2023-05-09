@@ -30,6 +30,7 @@ CREATE TABLE [dbo].[User] (
 CREATE TABLE [dbo].[Supplier] (
 	id int primary key,
 	email char(50) NULL,
+	password char(50) NULL,
 	phoneNumber char(10) NULL,
 	name char(50) NULL,
 	address char(50) NULL,
@@ -101,12 +102,12 @@ CREATE TABLE [dbo].[Receipt] (
 	updatedAt date,
 )
 
-insert into [dbo].[Supplier] values(0, 'carhelp@gmail.com', '0686868686', 'Car Help', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
-insert into [dbo].[Supplier] values(1, 'honda@gmail.com', '0656565565', 'Honda', 'Thu Duc', '2022-03-23', '2022-03-23')
-insert into [dbo].[Supplier] values(2, 'toyota@gmail.com', '0987654321', 'Toyota', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
-insert into [dbo].[Supplier] values(3, 'ford@gmail.com', '0123456789', 'Ford', 'Hanoi', '2023-03-23', '2023-03-23')
-insert into [dbo].[Supplier] values(4, 'mercedes@gmail.com', '0369874123', 'Mercedes-Benz', 'Da Nang', '2023-03-23', '2023-03-23')
-insert into [dbo].[Supplier] values(5, 'bmw@gmail.com', '0656565656', 'BMW', 'Can Tho', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(0, 'carhelp@gmail.com', '123456', '0686868686', 'Car Help', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(1, 'honda@gmail.com', '123456', '0656565565', 'Honda', 'Thu Duc', '2022-03-23', '2022-03-23')
+insert into [dbo].[Supplier] values(2, 'toyota@gmail.com', '123456', '0987654321', 'Toyota', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(3, 'ford@gmail.com', '123456', '0123456789', 'Ford', 'Hanoi', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(4, 'mercedes@gmail.com', '123456', '0369874123', 'Mercedes-Benz', 'Da Nang', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(5, 'bmw@gmail.com', '123456', '0656565656', 'BMW', 'Can Tho', '2023-03-23', '2023-03-23')
 
 INSERT INTO [dbo].[Car] VALUES (1, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7606', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p3.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (2, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7553', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p2.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')

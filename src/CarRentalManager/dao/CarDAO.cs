@@ -52,7 +52,7 @@ namespace CarRentalManager.dao
         {
             string sqlStringGetTable = sqlService.getValueById(id, ETableName.CAR);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable).First();
+            return commondDataService.dataTableToList<Car>(dataTable)?.First();
         }
 
         public List<Car> getListCarByType(ECarType eCarType)
