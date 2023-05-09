@@ -104,7 +104,7 @@ namespace CarRentalManager
                 CarId.Text = selectedOrder.CarId.ToString();
                 Status.Text = selectedOrder.Status.ToString();
                 StartDate.SelectedDate = selectedOrder.StartDate;
-                EndDate.SelectedDate = selectedOrder.StartDate;
+                EndDate.SelectedDate = selectedOrder.EndDate;
             }
         }
     }

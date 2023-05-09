@@ -92,54 +92,108 @@ namespace CarRentalManager.ViewModel
 
         private void initializeValue()
         {
-            CarList = this.getListObservableCar();
-            ListCarBrand = this.getListDistinctValue(nameof(brand));
-            ListCity = this.getListDistinctValue(nameof(city));
-            ListSeats = this.getListDistinctValue(nameof(seats));
+            try
+            {
+                CarList = this.getListObservableCar();
+                ListCarBrand = this.getListDistinctValue(nameof(brand));
+                ListCity = this.getListDistinctValue(nameof(city));
+                ListSeats = this.getListDistinctValue(nameof(seats));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public ObservableCollection<Car> getListObservableCar()
         {
-            List<Car> cars = carDao.getListCar();
-            ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
-            return carList;
+            try
+            {
+                List<Car> cars = carDao.getListCar();
+                ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
+                return carList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public ObservableCollection<string> getListDistinctValue(string fieldName)
         {
-            List<string> data = carDao.getListCarBrand(fieldName);
-            if (data[0] == "") data.RemoveAt(0);
-            data.Insert(0, null);
-            ObservableCollection<string> carBrandList = new ObservableCollection<string>(data);
-            return carBrandList;
+            try
+            {
+                List<string> data = carDao.getListCarBrand(fieldName);
+                if (data[0] == "") data.RemoveAt(0);
+                data.Insert(0, null);
+                ObservableCollection<string> carBrandList = new ObservableCollection<string>(data);
+                return carBrandList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public void getListCarSortByDescOrAsc(bool isDescrease, string fieldName)
         {
-            List<Car> cars = carDao.getListCarByDescOrAsc(isDescrease, fieldName);
-            CarList = new ObservableCollection<Car>(cars);
-            OnPropertyChanged(nameof(CarList));
+            try
+            {
+                List<Car> cars = carDao.getListCarByDescOrAsc(isDescrease, fieldName);
+                CarList = new ObservableCollection<Car>(cars);
+                OnPropertyChanged(nameof(CarList));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void getListByCarType(ECarType eCarType)
         {
-            List<Car> cars = carDao.getListCarByType(eCarType);
-            CarList = new ObservableCollection<Car>(cars);
-            OnPropertyChanged(nameof(CarList));
+            try
+            {
+                List<Car> cars = carDao.getListCarByType(eCarType);
+                CarList = new ObservableCollection<Car>(cars);
+                OnPropertyChanged(nameof(CarList));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void getListSortByRange(int fromPrice, int toPrice)
         {
-            List<Car> cars = carDao.getListByRange(fromPrice, toPrice);
-            CarList = new ObservableCollection<Car>(cars);
-            OnPropertyChanged(nameof(CarList));
+            try
+            {
+                List<Car> cars = carDao.getListByRange(fromPrice, toPrice);
+                CarList = new ObservableCollection<Car>(cars);
+                OnPropertyChanged(nameof(CarList));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void searchCarHandler()
         {
-            List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats);
-            CarList = new ObservableCollection<Car>(cars);
-            OnPropertyChanged(nameof(CarList));
+            try
+            {
+                if(City == null && Brand == null && Seats == 0)
+                {
+                    return;
+                }
+                List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats);
+                CarList = new ObservableCollection<Car>(cars);
+                OnPropertyChanged(nameof(CarList));
+            }
+            catch(Exception ex) { 
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

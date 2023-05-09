@@ -19,6 +19,8 @@ namespace CarRentalManager.ViewModel
     {
         readonly VariableService variableService = new VariableService();
         readonly ContractDAO contractDAO = new ContractDAO();
+        readonly OrderDAO orderDAO = new OrderDAO();
+        readonly CarDAO carDAO = new CarDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Contract> list;
@@ -163,6 +165,8 @@ namespace CarRentalManager.ViewModel
                 {
                     IsOpenPopup_CarInfor = false;
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
+                    Order currentOrder = orderDAO.getOrderById(currentContract.OrderId.ToString());
+                    Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
                     currentContract.Paid += Fee;
                     currentContract.Remain -= Fee;
                     currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
@@ -170,6 +174,11 @@ namespace CarRentalManager.ViewModel
                     currentContract.Feedback = Feedback;
                     currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
                     currentContract.Note = Note;
+                    if(currentContract.Status == EContractStatus.COMPLETE)
+                        currentCar.Status = ECarStatus.AVAILABLE;
+                    if(currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)
+                        currentCar.Status = ECarStatus.UNAVAILABLE;
+                    carDAO.updateCar(currentCar);
                     contractDAO.updateContract(currentContract);
                     updateListUI();
                 }
