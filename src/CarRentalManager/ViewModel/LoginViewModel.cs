@@ -5,6 +5,7 @@ using System.Windows.Input;
 using CarRentalManager.models;
 using System;
 using CarRentalManager.state;
+using CarRentalManager.enums;
 
 namespace CarRentalManager.ViewModel
 {
@@ -16,6 +17,7 @@ namespace CarRentalManager.ViewModel
         private string password;
         public string Password { get => password; set { password = value; OnPropertyChanged(); } }
         readonly UserDAO userDAO = new UserDAO();
+        readonly SupplierDAO supplierDAO = new SupplierDAO();   
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -31,12 +33,21 @@ namespace CarRentalManager.ViewModel
             return currentPassword == oldPassword;
         }
 
+        private void closeLoginWindowAndOpenDashboard(Window p)
+        {
+            Application.Current.Windows[0].Close();
+            var mainWindow = new DashBoard();
+            mainWindow.Show();
+            p.Close();
+        }
+
         void Login(Window p)
         {
             if (p == null)
                 return;
-            User currentUser = userDAO.getUserWithEmail(Email);
-            if(currentUser == null)
+            User currentUser = userDAO.getInforByEmail(Email);
+            Supplier currentSupplier = supplierDAO.getInforByEmail(Email);
+            if (currentUser == null && currentSupplier == null)
             {
                 MessageBox.Show("Your account is not exist, please sign up!");
             } 
@@ -44,13 +55,13 @@ namespace CarRentalManager.ViewModel
             {
                 if (comparePassword(Password, currentUser?.Password?.Trim()))
                 {
-                    Application.Current.Windows[0].Close();
-                    LoginInInforState.ID = currentUser.ID;
-                    LoginInInforState.Name = currentUser.Name;
-                    LoginInInforState.Role = currentUser.Role;
-                    var mainWindow = new DashBoard();
-                    mainWindow.Show();
-                    p.Close();
+                    LoginInInforState.setState(currentUser.ID, currentUser.Name, currentUser.Role);
+                    closeLoginWindowAndOpenDashboard(p);
+                }
+                else if(comparePassword(Password, currentSupplier?.Password?.Trim()))
+                {
+                    LoginInInforState.setState(currentSupplier.ID, currentSupplier.Name, EUserRole.SUPPLIER);
+                    closeLoginWindowAndOpenDashboard(p);
                 }
                 else
                 {

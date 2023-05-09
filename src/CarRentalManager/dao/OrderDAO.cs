@@ -41,7 +41,7 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             if(dataTable.Rows.Count > 0)
             {
-                return commondDataService.dataTableToList<Order>(dataTable).First();
+                return commondDataService.dataTableToList<Order>(dataTable)?.First();
             }
             return null;
         }

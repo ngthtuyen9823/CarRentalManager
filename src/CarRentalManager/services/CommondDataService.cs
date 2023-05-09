@@ -62,7 +62,7 @@ namespace CarRentalManager.services
                     list.Add(obj);
                 }
 
-                return list;
+                return list.Count == 0 ? null : list;
             }
             catch
             {

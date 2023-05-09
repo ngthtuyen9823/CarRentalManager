@@ -25,7 +25,6 @@ namespace CarRentalManager.ViewModel
 {
     public class ListSupplierViewModel : BaseViewModel, IDataErrorInfo
     {
-        readonly VariableService variableService = new VariableService();
         readonly ImageService imgService = new ImageService();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
@@ -45,22 +44,16 @@ namespace CarRentalManager.ViewModel
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
         private string phoneNumber; public string PhoneNumber { get => phoneNumber; set => SetProperty(ref phoneNumber, value, nameof(PhoneNumber)); }
         private string email; public string Email { get => email; set => SetProperty(ref email, value, nameof(Email)); }
+        private string password; public string Password { get => password; set => SetProperty(ref password, value, nameof(Password)); }
         private string address; public string Address { get => address; set => SetProperty(ref address, value, nameof(Address)); }
         private string nameCar; public string NameCar { get => nameCar; set => SetProperty(ref nameCar, value, nameof(NameCar)); }
         private string brandCar; public string BrandCar { get => brandCar; set => SetProperty(ref brandCar, value, nameof(BrandCar)); }
         private string colorCar; public string ColorCar { get => colorCar; set => SetProperty(ref colorCar, value, nameof(ColorCar)); }
         private int priceCar; public int PriceCar { get => priceCar; set => SetProperty(ref priceCar, value, nameof(PriceCar)); }
         private string imageCar; public string ImageCar { get => imageCar; set => SetProperty(ref imageCar, value, nameof(ImageCar)); }
-        private string tutorialCar; public string TutorialCar { get => tutorialCar; set => SetProperty(ref tutorialCar, value, nameof(TutorialCar)); }
-        private int publishYear; public int PublishYear { get => publishYear; set => SetProperty(ref publishYear, value, nameof(PublishYear)); }
-        private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
         private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
-        private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
-        private string city; public string City { get => city; set => SetProperty(ref city, value, nameof(City)); }
-        private string createdAt; public string CreatedAt { get => createdAt; set => SetProperty(ref createdAt, value, nameof(CreatedAt)); }
-        private string updatedAt; public string UpdatedAt { get => updatedAt; set => SetProperty(ref updatedAt, value, nameof(UpdatedAt)); }
 
 
         public ListSupplierViewModel()
@@ -78,6 +71,7 @@ namespace CarRentalManager.ViewModel
             Name = string.Empty;
             PhoneNumber = string.Empty;
             Email = string.Empty;
+            Password = string.Empty;
             Address = string.Empty;
             NameCar = string.Empty;
             BrandCar = string.Empty;
@@ -139,7 +133,7 @@ namespace CarRentalManager.ViewModel
         }
         private Supplier getSupplier()
         {
-            return new Supplier(ID, Name, PhoneNumber, Email, Address, DateTime.Now, DateTime.Now);
+            return new Supplier(ID, Email, Password, PhoneNumber, Name, Address, DateTime.Now, DateTime.Now);
         }
         private void getaddCar()
         {

@@ -94,6 +94,7 @@ namespace CarRentalManager
             }
             else
             {
+                MessageBox.Show(LoginInInforState.Role.ToString());
                 txtUserName.Text = "Hi, " + LoginInInforState.Name;
             }
         }

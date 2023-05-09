@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using CarRentalManager.models;
 using System.Windows;
+using System.Linq;
 
 namespace CarRentalManager.dao
 {
@@ -35,6 +36,12 @@ namespace CarRentalManager.dao
         {
             string sqlString = sqlService.updateSupplier(supplier);
             dbConnectionDAO.getDataTable(sqlString);
+        }
+        public Supplier getInforByEmail(string email)
+        {
+            string sqlStringGetTable = sqlService.getCreadentialWithEmail(ETableName.SUPPLIER, email);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Supplier>(dataTable)?.First();
         }
     }
 }

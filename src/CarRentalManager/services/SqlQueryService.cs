@@ -57,6 +57,10 @@ namespace CarRentalManager.services
                 $" AND feedback IS NOT NULL AND FEEDBACK <> ''" +
                 $" GROUP BY name";
         }
+        public string getCreadentialWithEmail(ETableName tableName, string email)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", tableName, email);
+        }
 
 
         //*INFO: CAR
@@ -101,11 +105,7 @@ namespace CarRentalManager.services
                 updatedCar.Price, updatedCar.ImagePath,
                 updatedCar.SupplierId, DateTime.Now, updatedCar.ID);
         }
-        //*INFO: USER
-        public string getUserWithEmail(string email)
-        {
-            return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", ETableName.USER, email);
-        }
+        
 
         //*INFO: CUSTOMER
 
@@ -134,12 +134,12 @@ namespace CarRentalManager.services
 
         public string createSupplier(Supplier newSupplier)
         {
-            return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
+            return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
                     ETableName.SUPPLIER,
-                    newSupplier.ID, newSupplier.PhoneNumber,
-                    newSupplier.Name, newSupplier.Email,
-                    newSupplier.Address, DateTime.Now,
-                    DateTime.Now);
+                    newSupplier.ID, newSupplier.Email, 
+                    newSupplier.Password, newSupplier.PhoneNumber,
+                    newSupplier.Name, newSupplier.Address, 
+                    DateTime.Now, DateTime.Now);
         }
 
         public string updateSupplier(Supplier updatedSupplier)

@@ -21,7 +21,7 @@ namespace CarRentalManager.dao
         {
             string sqlStringGetTable = sqlService.getValueById(id, ETableName.CONTRACT);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Contract>(dataTable).First();
+            return commondDataService.dataTableToList<Contract>(dataTable)?.First();
 
         }
         public void createContract(Contract newContract)

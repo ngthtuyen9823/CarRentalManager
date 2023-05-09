@@ -40,14 +40,14 @@ namespace CarRentalManager.dao
             
             string sqlStringGetTable = sqlService.getValueById(id, ETableName.RECEIPT);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Receipt>(dataTable).First();
+            return commondDataService.dataTableToList<Receipt>(dataTable)?.First();
         }
 
         public Receipt createReceipt(Receipt receipt)
         {
             string sqlStringGetTable = sqlService.createReceipt(receipt);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Receipt>(dataTable).First();
+            return commondDataService.dataTableToList<Receipt>(dataTable)?.First();
         }
 
         public void removeReceipt(int id)
