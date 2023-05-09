@@ -168,10 +168,20 @@ namespace CarRentalManager.ViewModel
 
         private void handleDeleteCommand()
         {
-            Order order = orderDao.getOrderById(ID.ToString());
-            order.Status = EOrderStatus.CANCELBYADMIN;
-            orderDao.updateOrder(order);
-            updateListUI();
+            try
+            {
+                Order order = orderDao.getOrderById(ID.ToString());
+                Car currentCar = carDao.getCarById(order.CarId.ToString());
+                currentCar.Status = ECarStatus.AVAILABLE;
+                order.Status = EOrderStatus.CANCELBYADMIN;
+                carDao.updateCar(currentCar);
+                orderDao.updateOrder(order);
+                updateListUI();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void handleConfirmCommand()
         {

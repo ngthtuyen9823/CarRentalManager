@@ -5,6 +5,7 @@ using System.Data;
 using CarRentalManager.models;
 using System.Linq;
 using System.Windows;
+using System;
 
 namespace CarRentalManager.dao
 {
@@ -77,9 +78,19 @@ namespace CarRentalManager.dao
         }
         public List<Car> getListCarByCondition(string City, string Brand, int Seats)
         {
-            string sqlStringGetTable = sqlService.getListCarByCondition(City, Brand, Seats);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable);
+            try
+            {
+                string sqlStringGetTable = sqlService.getListCarByCondition(City, Brand, Seats);
+                DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+                if (dataTable?.Rows?.Count != 0)
+                    return commondDataService.dataTableToList<Car>(dataTable);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
     }
 }
