@@ -32,6 +32,9 @@ namespace CarRentalManager
         public StatisticView()
         {
             InitializeComponent();
+            TotalOrder.Text = statisticsService.getTotalOrder().ToString();
+            TotalCar.Text = statisticsService.getTotalCar().ToString();
+            TotalContract.Text = statisticsService.getTotalContract().ToString();
             PointLabel = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
             drawChartByOnrentTimes();
             Values = new ChartValues<double>();
