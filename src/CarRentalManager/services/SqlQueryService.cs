@@ -15,7 +15,10 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}]", tableName);
         }
-
+        public string getSupplierListTableData(string supplierId, ETableName tableName)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE supplierId = '{1}'", tableName, supplierId);
+        }
         public string getValueById(string id, ETableName tableName)
         {
             return string.Format("SELECT * FROM [{0}] WHERE id='{1}'", tableName, id);

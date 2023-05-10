@@ -39,7 +39,6 @@ namespace CarRentalManager.ViewModel
 
         //*INFO: Value binding
         private string color; public string Color { get => color; set => SetProperty(ref color, value, nameof(Color)); }
-        
         public int PublishYear { get => publishYear; set => SetProperty(ref publishYear, value, nameof(PublishYear)); }
         private int publishYear;
         private DateTime createdAt; public DateTime CreatedAt { get => createdAt; set => SetProperty(ref createdAt, value, nameof(CreatedAt)); }
@@ -56,16 +55,13 @@ namespace CarRentalManager.ViewModel
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
         private int price; int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
-
-
-        public ListCarViewModel()
+        public ListCarViewModel(bool isAdmin, string supplierId)
         {
-            List = getListObservableCar();
+            List = isAdmin? getListObservableCar() : getSupplierListObservableCar(supplierId);
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
         }
-
         private void reSetForm()
         {
             ID = 0;
@@ -123,6 +119,12 @@ namespace CarRentalManager.ViewModel
         public ObservableCollection<Car> getListObservableCar()
         {
             List<Car> cars = carDAO.getListCar();
+            ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
+            return carList;
+        }
+        public ObservableCollection<Car> getSupplierListObservableCar(string supplierId)
+        {
+            List<Car> cars = carDAO.getSupplierListCar(supplierId);
             ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
         }

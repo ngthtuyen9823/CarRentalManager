@@ -60,9 +60,6 @@ namespace CarRentalManager
                 this.DragMove();
             }
         }
-        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var landingPage = new LandingPage();
