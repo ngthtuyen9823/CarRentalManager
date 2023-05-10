@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors;
 using System.Runtime.Remoting.Messaging;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace CarRentalManager
 {
@@ -30,6 +31,8 @@ namespace CarRentalManager
         public CarView()
         {
             InitializeComponent();
+            StartFreeDate.SelectedDate = DateTime.Now;
+            EndFreeDate.SelectedDate= DateTime.Now;
             FilterBy.ItemsSource = new string[] {"ID", "SupplierId", "Name", "Brand" };
         }
         private bool IDFilter(object obj)
@@ -128,6 +131,8 @@ namespace CarRentalManager
                 LicensePlate.Text = selectedCar.LicensePlate;
                 Price.Text = selectedCar.Price.ToString();
                 ImagePath.Text = selectedCar.ImagePath;
+                StartFreeDate.SelectedDate = selectedCar.StartFreeDate;
+                EndFreeDate.SelectedDate = selectedCar.EndFreeDate;
             }
         }
     }

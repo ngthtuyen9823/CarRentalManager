@@ -43,6 +43,8 @@ namespace CarRentalManager.ViewModel
         private int publishYear;
         private DateTime createdAt; public DateTime CreatedAt { get => createdAt; set => SetProperty(ref createdAt, value, nameof(CreatedAt)); }
         private DateTime updatedAt; public DateTime UpdatedAt { get => updatedAt; set => SetProperty(ref updatedAt, value, nameof(UpdatedAt)); }
+        private DateTime startFreeDate; public DateTime StartFreeDate { get => startFreeDate; set => SetProperty(ref startFreeDate, value, nameof(StartFreeDate)); }
+        private DateTime endFreeDate; public DateTime EndFreeDate { get => endFreeDate; set => SetProperty(ref endFreeDate, value, nameof(EndFreeDate)); }
         private int supplierId; public int SupplierId { get => supplierId; set => SetProperty(ref supplierId, value, nameof(SupplierId)); }
         private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
         private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
@@ -58,9 +60,9 @@ namespace CarRentalManager.ViewModel
         public ListCarViewModel(bool isAdmin, string supplierId)
         {
             List = isAdmin? getListObservableCar() : getSupplierListObservableCar(supplierId);
-            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
-            EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
-            DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
+            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand(isAdmin, supplierId));
+            EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand(isAdmin, supplierId));
+            DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand(isAdmin, supplierId));
         }
         private void reSetForm()
         {
@@ -77,6 +79,9 @@ namespace CarRentalManager.ViewModel
             LicensePlate = null;
             Price = 0;
             ImagePath = null;
+            Price = 0;
+            StartFreeDate = DateTime.Today;
+            EndFreeDate = DateTime.Today;
             CreatedAt = DateTime.Today;
             UpdatedAt = DateTime.Today;
         }
@@ -136,10 +141,10 @@ namespace CarRentalManager.ViewModel
             else
                 return true;
         }
-        private void updateListUI()
+        private void updateListUI(bool isAdmin, string supplierId)
         {
             MessageBox.Show("Success!");
-            List = getListObservableCar();
+            List = isAdmin? getListObservableCar() : getSupplierListObservableCar(supplierId);
             OnPropertyChanged(nameof(List));
             reSetForm();
         }
@@ -157,26 +162,25 @@ namespace CarRentalManager.ViewModel
                     ImagePath, imagePath,
                     City != null ? variableService.parseStringToEnum<ECityName>(City.Substring(38)) : ECityName.HCM,
                     SupplierId,
+                    StartFreeDate, EndFreeDate,
                     CreatedAt, UpdatedAt);
         }
-        private void handleAddCommand()
+        private void handleAddCommand(bool isAdmin, string supplierId)
         {
             Car car = getCar();
             carDAO.createCar(car);
-            updateListUI();
+            updateListUI(isAdmin, supplierId);
         }
-
-        private void handleEditCommand()
+        private void handleEditCommand(bool isAdmin, string supplierId)
         {
             Car car = getCar();
             carDAO.updateCar(car);
-            updateListUI();
+            updateListUI(isAdmin, supplierId);
         }
-
-        private void handleDeleteCommand()
+        private void handleDeleteCommand(bool isAdmin, string supplierId)
         {
             carDAO.removeCar(ID);
-            updateListUI();
+            updateListUI(isAdmin, supplierId);
         }
     }
 }
