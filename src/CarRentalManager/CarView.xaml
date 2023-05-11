@@ -123,16 +123,6 @@
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="Price"  Width="120" Margin="10 8 10 8" Text="{Binding Price,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Giá thuê"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <DatePicker Width="120" Margin = "10 8 10 8" Text="{Binding StartFreeDate}" 
-                       Name="StartFreeDate"
-                       SelectedDate="{Binding StartFreeDate, UpdateSourceTrigger=PropertyChanged}"
-                       materialDesign:HintAssist.Hint="Start Free Day"
-                       Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                    <DatePicker Width="120" Margin = "10 8 10 8" Text="{Binding EndFreeDate}" 
-                       Name="EndFreeDate"
-                       SelectedDate="{Binding EndFreeDate, UpdateSourceTrigger=PropertyChanged}"
-                       materialDesign:HintAssist.Hint="End Free Day"
-                       Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                     <TextBox Name ="ImagePath"  Width="120" Margin="10 5 15 5" Text="{Binding ImagePath,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Browse a image"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ToggleButton
@@ -227,8 +217,6 @@
                         <GridViewColumn Header="License Plate" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
                         <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
                         <GridViewColumn Header="Image" Width="220" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
-                        <GridViewColumn Header="Start Free Date" DisplayMemberBinding="{Binding StartFreeDate}"></GridViewColumn>
-                        <GridViewColumn Header="End Free Date" DisplayMemberBinding="{Binding EndFreeDate}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>

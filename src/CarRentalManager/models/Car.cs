@@ -20,8 +20,6 @@ namespace CarRentalManager.models
         string tutorialPath;
         ECityName city;
         int? supplierId;
-        DateTime startFreeDate;
-        DateTime endFreeDate;
         DateTime createdAt;
         DateTime updatedAt;
         public Car(int id,
@@ -39,8 +37,6 @@ namespace CarRentalManager.models
             string tutorialPath,
             ECityName city,
             int? supplierId,
-            DateTime startFreeDate,
-            DateTime endFreeDate,
             DateTime createdAt,
             DateTime updatedAt)
         {
@@ -57,8 +53,6 @@ namespace CarRentalManager.models
             this.imagePath = imagePath;
             this.seats = seats;
             this.tutorialPath = tutorialPath;
-            this.startFreeDate = startFreeDate;
-            this.endFreeDate = endFreeDate;
             this.createdAt = createdAt;
             this.updatedAt = updatedAt;
             this.city = city;
@@ -84,7 +78,5 @@ namespace CarRentalManager.models
         public int? SupplierId { get { return supplierId; } set { supplierId = value; } }
         public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
         public DateTime UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
-        public DateTime StartFreeDate { get { return startFreeDate; } set { startFreeDate = value; } }
-        public DateTime EndFreeDate { get { return endFreeDate; } set { endFreeDate = value; } }
     }
 }

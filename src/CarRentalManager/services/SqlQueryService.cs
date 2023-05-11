@@ -74,14 +74,14 @@ namespace CarRentalManager.services
         }
         public string createNewCar(Car newCar)
         {
-            return string.Format("INSERT INTO [{17}](id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, startFreeDate, endFreeDate, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}')",
+            return string.Format("INSERT INTO [{15}](id, name, brand, color, publishYear, type, status, drivingType, seats, licensePlate, price, imagePath, supplierId, createdAt, updatedAt) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')",
                     newCar.ID, newCar.Name,
                     newCar.Brand, newCar.Color,
                     newCar.PublishYear, newCar.Type,
                     newCar.Status, newCar.DrivingType,
                     newCar.Seats, newCar.LicensePlate,
                     newCar.Price, newCar.ImagePath,
-                    newCar.SupplierId, newCar.StartFreeDate, newCar.EndFreeDate, 
+                    newCar.SupplierId, 
                     DateTime.Now, DateTime.Now, ETableName.CAR);
         }
         public string getListByRange(int fromPrice, int toPrice)
@@ -106,7 +106,7 @@ namespace CarRentalManager.services
 
         public string updateCar(Car updatedCar)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}', startFreeDate = '{14}', endFreeDate = '{15}' where id = '{16}'",
+            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}' where id = '{14}'",
                 ETableName.CAR, updatedCar.Name,
                 updatedCar.Brand, updatedCar.Color,
                 updatedCar.PublishYear, updatedCar.Type,
@@ -114,7 +114,6 @@ namespace CarRentalManager.services
                 updatedCar.Seats, updatedCar.LicensePlate,
                 updatedCar.Price, updatedCar.ImagePath,
                 updatedCar.SupplierId, DateTime.Now, 
-                updatedCar.StartFreeDate, updatedCar.EndFreeDate,
                 updatedCar.ID);
         }
 

@@ -43,8 +43,6 @@ namespace CarRentalManager.ViewModel
         private int publishYear;
         private DateTime createdAt; public DateTime CreatedAt { get => createdAt; set => SetProperty(ref createdAt, value, nameof(CreatedAt)); }
         private DateTime updatedAt; public DateTime UpdatedAt { get => updatedAt; set => SetProperty(ref updatedAt, value, nameof(UpdatedAt)); }
-        private DateTime startFreeDate; public DateTime StartFreeDate { get => startFreeDate; set => SetProperty(ref startFreeDate, value, nameof(StartFreeDate)); }
-        private DateTime endFreeDate; public DateTime EndFreeDate { get => endFreeDate; set => SetProperty(ref endFreeDate, value, nameof(EndFreeDate)); }
         private int supplierId; public int SupplierId { get => supplierId; set => SetProperty(ref supplierId, value, nameof(SupplierId)); }
         private int seats; public int Seats { get => seats; set => SetProperty(ref seats, value, nameof(Seats)); }
         private string drivingType; public string DrivingType { get => drivingType; set => SetProperty(ref drivingType, value, nameof(DrivingType)); }
@@ -80,8 +78,6 @@ namespace CarRentalManager.ViewModel
             Price = 0;
             ImagePath = null;
             Price = 0;
-            StartFreeDate = DateTime.Today;
-            EndFreeDate = DateTime.Today;
             CreatedAt = DateTime.Today;
             UpdatedAt = DateTime.Today;
         }
@@ -162,7 +158,6 @@ namespace CarRentalManager.ViewModel
                     ImagePath, imagePath,
                     City != null ? variableService.parseStringToEnum<ECityName>(City.Substring(38)) : ECityName.HCM,
                     SupplierId,
-                    StartFreeDate, EndFreeDate,
                     CreatedAt, UpdatedAt);
         }
         private void handleAddCommand(bool isAdmin, string supplierId)
