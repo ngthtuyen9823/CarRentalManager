@@ -23,7 +23,7 @@
             <local:CarView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ListContractViewModel}">
-            <local:ContractView/>
+            <local:SubContractView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
@@ -86,7 +86,7 @@
                                     <TextBlock Text="Cars" FontWeight="SemiBold" FontSize="16" />
                                 </StackPanel>
                             </RadioButton>
-                            <RadioButton x:Name="btnContract" Style="{StaticResource menuRadioButton}" Command="{Binding ContractCommand}">
+                            <RadioButton x:Name="btnContract" Style="{StaticResource menuRadioButton}" Command="{Binding SubContractCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Contracts" FontWeight="SemiBold" FontSize="16"/>

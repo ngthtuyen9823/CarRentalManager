@@ -21,12 +21,12 @@ namespace CarRentalManager
     /// <summary>
     /// Interaction logic for ContractView.xaml
     /// </summary>
-    public partial class ContractView : UserControl
+    public partial class SubContractView : UserControl
     {
-        public ContractView()
+        public SubContractView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"ID", "OrderId", "ReturnCarStatus", "Note" };
+            FilterBy.ItemsSource = new string[] { "ID", "OrderId"};
         }
         private bool IDFilter(object obj)
         {
@@ -38,12 +38,6 @@ namespace CarRentalManager
         {
             var Filterobj = obj as Contract;
             string filterobj = Filterobj.OrderId.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
-        }
-        private bool NoteFilter(object obj)
-        {
-            var Filterobj = obj as Contract;
-            string filterobj = Filterobj.Note.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool ReturnCarStatusFilter(object obj)
@@ -61,10 +55,6 @@ namespace CarRentalManager
                     return IDFilter;
                 case nameof(OrderId):
                     return OrderIdFilter;
-                case nameof(ReturnCarStatus):
-                    return ReturnCarStatusFilter;
-                case nameof(Note):
-                    return NoteFilter;
             }
             return ReturnCarStatusFilter;
         }
@@ -79,7 +69,6 @@ namespace CarRentalManager
                 lsvContract.Items.Filter = GetFilter();
             }
         }
-
         private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             lsvContract.Items.Filter = GetFilter();
@@ -95,14 +84,10 @@ namespace CarRentalManager
                 {
                     return;
                 }
-                ID.Text = selectedContract.ID.ToString();
                 OrderId.Text = selectedContract.OrderId.ToString();
                 Price.Text = selectedContract.Price.ToString();
-                Remain.Text = selectedContract.Remain.ToString();
+                ReceivedFee.Text = selectedContract.ReceivedFee.ToString(); 
                 Status.Text = selectedContract.Status.ToString();
-                ReturnCarStatus.Text = selectedContract.ReturnCarStatus.ToString();
-                Feedback.Text = selectedContract.Feedback.ToString();
-                Note.Text = selectedContract.Note.ToString();       
             }
         }
     }

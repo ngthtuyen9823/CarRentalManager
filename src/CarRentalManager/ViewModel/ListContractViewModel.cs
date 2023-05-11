@@ -12,6 +12,7 @@ using System.Net;
 using System.Xml.Linq;
 using System.Windows;
 using System.Data.Entity.Core.Objects;
+using CarRentalManager.state;
 
 namespace CarRentalManager.ViewModel
 {
@@ -42,6 +43,7 @@ namespace CarRentalManager.ViewModel
         private int fee; public int Fee { get => fee; set => SetProperty(ref fee, value, nameof(Fee)); }
         private int paid; public int Paid { get => paid; set => SetProperty(ref paid, value, nameof(Paid)); }
         private int remain; public int Remain { get => remain; set => SetProperty(ref remain, value, nameof(Remain)); }
+        private int receivedFee; public int ReceivedFee { get => receivedFee; set => SetProperty(ref receivedFee, value, nameof(ReceivedFee)); }
         private string returnCarStatus; public string ReturnCarStatus { get => returnCarStatus; set => SetProperty(ref returnCarStatus, value, nameof(ReturnCarStatus)); }
         private string feedback; public string Feedback { get => feedback; set => SetProperty(ref feedback, value, nameof(Feedback)); }
         private string note; public string Note { get => note; set => SetProperty(ref note, value, nameof(Note)); }
@@ -55,7 +57,6 @@ namespace CarRentalManager.ViewModel
             IsOpenPopupCarInfor = false;
             ClosePopupCarInforCommand = new RelayCommand<object>((o) => { return true; }, (o) => handleClosePopupCommand());
             OpenPopupCommand = new RelayCommand<string>((content) => { return true; }, (content) => handleOpenPopupCommand());
-
         }
         private void reSetForm()
         {
@@ -123,11 +124,10 @@ namespace CarRentalManager.ViewModel
         {
             return new Contract(ID, OrderId, UserId,
                     variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
-                    Price, Paid, Remain,
+                    Price, Paid, Remain, ReceivedFee,
                     Feedback, variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38)), Note,
                     DateTime.Now, DateTime.Now);
         }
-
         private void updateListUI()
         {
             MessageBox.Show("Success!");
@@ -149,7 +149,6 @@ namespace CarRentalManager.ViewModel
             contractDAO.updateContract(contract);
             updateListUI();
         }
-
         private void handleDeleteCommand()
         {
             contractDAO.removeContract(ID);
@@ -168,6 +167,11 @@ namespace CarRentalManager.ViewModel
                     Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
                     currentContract.Paid += Fee;
                     currentContract.Remain -= Fee;
+
+                    currentContract.ReceivedFee = LoginInInforState.ID == 0 ? 0 : 70 * currentContract.Paid / 100;
+             
+
+                    MessageBox.Show(currentContract.ReceivedFee.ToString());
                     currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
                     currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
                     currentContract.Feedback = Feedback;
@@ -191,8 +195,6 @@ namespace CarRentalManager.ViewModel
             {
                 MessageBox.Show(Error);
             }
-
-            
         }
         private void handleClosePopupCommand()
         {

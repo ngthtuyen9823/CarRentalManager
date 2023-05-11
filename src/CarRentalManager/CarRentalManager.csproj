@@ -187,6 +187,9 @@
     <Compile Include="StatisticView.xaml.cs">
       <DependentUpon>StatisticView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubContractView.xaml.cs">
+      <DependentUpon>SubContractView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SupplierDashBoard.xaml.cs">
       <DependentUpon>SupplierDashBoard.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatisticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubContractView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

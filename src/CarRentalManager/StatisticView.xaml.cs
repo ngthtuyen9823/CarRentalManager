@@ -28,7 +28,6 @@ namespace CarRentalManager
         readonly StatisticsService statisticsService = new StatisticsService();
         public Func<ChartPoint, string> PointLabel { get; set; }
         public ChartValues<double> Values { get; set; }
-
         public StatisticView()
         {
             InitializeComponent();

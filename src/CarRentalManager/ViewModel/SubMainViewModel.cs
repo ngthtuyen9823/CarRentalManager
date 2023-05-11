@@ -17,6 +17,7 @@ namespace CarRentalManager.ViewModel
         public bool isLoaded = false;
         public ICommand CarCommand { get; set; }
         public ICommand ContractCommand { get; set; }
+        public ICommand SubContractCommand { get; set; }
         public ICommand RegisterFormCommand { get; set; }
         public ICommand HomeCommand { get; set; }
         public ICommand StatisticCommand { get; set; }
@@ -31,6 +32,7 @@ namespace CarRentalManager.ViewModel
         {
             CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListCarViewModel(false); });
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListContractViewModel(); });
+            SubContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListContractViewModel(); });
             HomeCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new HomeViewModel(); });
             StatisticCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new StatisticViewModel(); });
         }

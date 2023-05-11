@@ -196,7 +196,7 @@ namespace CarRentalManager.ViewModel
                     Contract contract = new Contract(lastContractID + 1, ID, 
                         CustomerId, EContractStatus.UNPAID, 
                         TotalFee, currentOrder.DepositAmount, 
-                        TotalFee - currentOrder.DepositAmount, "" , 
+                        TotalFee - currentOrder.DepositAmount, currentOrder.DepositAmount * 70 / 100,  "" , 
                         EReturnCarStatus.ISNOTRETURN, "", DateTime.Now, DateTime.Now);
                     Order order = getOrder();
                     currentCar.Status = ECarStatus.ONRENT;
