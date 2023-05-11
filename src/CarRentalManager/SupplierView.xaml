@@ -69,9 +69,6 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Text="{Binding ID, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                    Width="200" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="ID"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name ="Name" Width=" 200" Margin = "10 8 10 8" Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="Address" Width="200" Margin = "10 8 10 8" Text="{Binding Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Địa chỉ"
@@ -153,7 +150,6 @@
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" Grid.ColumnSpan="2">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                         <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                         <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>

@@ -29,11 +29,10 @@ namespace CarRentalManager.ViewModel
         public ICommand PayCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
-        private bool _IsOpenPopup_CarInfor;
-        public bool IsOpenPopup_CarInfor { get { return _IsOpenPopup_CarInfor; } set { _IsOpenPopup_CarInfor = value; OnPropertyChanged(); } }
+        private bool isOpenPopupCarInfor;
+        public bool IsOpenPopupCarInfor { get { return isOpenPopupCarInfor; } set { isOpenPopupCarInfor = value; OnPropertyChanged(); } }
         public ICommand ClosePopupCarInforCommand { get; set; }
         public ICommand OpenPopupCommand { get; set; }
-
         //*INFO: Value binding
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
         private int orderId; public int OrderId { get => orderId; set => SetProperty(ref orderId, value, nameof(OrderId)); }
@@ -53,7 +52,7 @@ namespace CarRentalManager.ViewModel
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             PayCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handlePayCommand());
-            IsOpenPopup_CarInfor = false;
+            IsOpenPopupCarInfor = false;
             ClosePopupCarInforCommand = new RelayCommand<object>((o) => { return true; }, (o) => handleClosePopupCommand());
             OpenPopupCommand = new RelayCommand<string>((content) => { return true; }, (content) => handleOpenPopupCommand());
 
@@ -163,7 +162,7 @@ namespace CarRentalManager.ViewModel
                 bool isError = Fee <= 0; 
                 if (!isError)
                 {
-                    IsOpenPopup_CarInfor = false;
+                    IsOpenPopupCarInfor = false;
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
                     Order currentOrder = orderDAO.getOrderById(currentContract.OrderId.ToString());
                     Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
@@ -184,7 +183,7 @@ namespace CarRentalManager.ViewModel
                 }
                 else
                 {
-                    IsOpenPopup_CarInfor = false;
+                    IsOpenPopupCarInfor = false;
                     MessageBox.Show("The contract has been paid completely");
                 }
             }
@@ -197,7 +196,7 @@ namespace CarRentalManager.ViewModel
         }
         private void handleClosePopupCommand()
         {
-            IsOpenPopup_CarInfor = false;
+            IsOpenPopupCarInfor = false;
         }
 
         private void handleOpenPopupCommand()
@@ -211,7 +210,7 @@ namespace CarRentalManager.ViewModel
                 bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
                 if (!isError)
                 {
-                    IsOpenPopup_CarInfor = true;
+                    IsOpenPopupCarInfor = true;
                 }
                 else
                 {

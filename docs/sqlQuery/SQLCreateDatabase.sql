@@ -4,7 +4,7 @@ go
 
 CREATE TABLE [dbo].[Customer] (
 	id int primary key,
-	phoneNumber char(10),
+	phoneNumber char(20),
 	name char(200) NULL,
 	email char(50) NULL,
 	idCard char(15) NULL,
@@ -102,36 +102,36 @@ CREATE TABLE [dbo].[Receipt] (
 	updatedAt date,
 )
 
-insert into [dbo].[Supplier] values(0, 'carhelp@gmail.com', '123456', '0686868686', 'Car Help', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(1, 'honda@gmail.com', '123456', '0656565565', 'Honda', 'Thu Duc', '2022-03-23', '2022-03-23')
 insert into [dbo].[Supplier] values(2, 'toyota@gmail.com', '123456', '0987654321', 'Toyota', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(3, 'ford@gmail.com', '123456', '0123456789', 'Ford', 'Hanoi', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(4, 'mercedes@gmail.com', '123456', '0369874123', 'Mercedes-Benz', 'Da Nang', '2023-03-23', '2023-03-23')
 insert into [dbo].[Supplier] values(5, 'bmw@gmail.com', '123456', '0656565656', 'BMW', 'Can Tho', '2023-03-23', '2023-03-23')
+insert into [dbo].[Supplier] values(6, 'carhelp@gmail.com', '123456', '0686868686', 'Car Help', 'Ho Chi Minh', '2023-03-23', '2023-03-23')
 
 INSERT INTO [dbo].[Car] VALUES (1, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7606', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p3.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (2, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7553', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p2.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (3, 'TOYOTA RUSH 2019', 'TOYOTA', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8095', 900, '/assets/images/cars/3.jpg', '/assets/images/avatar/p3.jpg', 'HANOI', 2, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (4, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A3361', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p4.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (4, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A3361', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p4.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
 INSERT INTO [dbo].[Car] VALUES (5, 'TOYOTA INNOVA G 2016', 'TOYOTA', 'Black', '2016', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1900', 920, '/assets/images/cars/5.jpg', '/assets/images/avatar/p4.jpg', 'HCM', 2, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (6, 'TOYOTA RUSH 2020', 'TOYOTA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A6272', 720, '/assets/images/cars/6.jpg', '/assets/images/avatar/p5.jpg', 'HCM', NULL, '2022-01-01' , '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (7, 'MITSUBISHI XPANDER 2019', 'MITSUBISHI', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1933', 450, '/assets/images/cars/7.jpg', '/assets/images/avatar/p5.jpg', 'HANOI', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (8, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8337', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p4.jpg', 'DANANG', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (9, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8562', 1050, '/assets/images/cars/3.jpg', '/assets/images/avatar/p3.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (10, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1758', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p2.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (11, 'MITSUBISHI XPANDER 2019', 'MITSUBISHI', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A3897', 450, '/assets/images/cars/7.jpg', '/assets/images/avatar/p3.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (12, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A4001', 650, '/assets/images/cars/6.jpg', '/assets/images/avatar/p3.jpg', 'HANOI', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (13, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A4681', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p4.jpg', 'DANANG', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (14, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7249', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p4.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (15, 'TOYOTA RUSH 2020', 'TOYOTA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7835', 720, '/assets/images/cars/6.jpg', '/assets/images/avatar/p5.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (16, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A6895', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p5.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (17, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A9446', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p4.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (18, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A2899', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p5.jpg', 'DANANG', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (19, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1216', 1050, '/assets/images/cars/3.jpg', '/assets/images/avatar/p5.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (20, 'TOYOTA INNOVA G 2016', 'TOYOTA', 'Black', '2016', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7688', 920, '/assets/images/cars/5.jpg', '/assets/images/avatar/p2.jpg', 'HCM', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (21, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A4104', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p3.jpg', 'HANOI', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (22, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A6718', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p4.jpg', 'HANOI', NULL, '2022-01-01', '2022-01-01')
-INSERT INTO [dbo].[Car] VALUES (23, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8145', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p5.jpg', 'DANANG', NULL, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (6, 'TOYOTA RUSH 2020', 'TOYOTA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A6272', 720, '/assets/images/cars/6.jpg', '/assets/images/avatar/p5.jpg', 'HCM', 0, '2022-01-01' , '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (7, 'MITSUBISHI XPANDER 2019', 'MITSUBISHI', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1933', 450, '/assets/images/cars/7.jpg', '/assets/images/avatar/p5.jpg', 'HANOI', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (8, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8337', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p4.jpg', 'DANANG', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (9, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8562', 1050, '/assets/images/cars/3.jpg', '/assets/images/avatar/p3.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (10, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1758', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p2.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (11, 'MITSUBISHI XPANDER 2019', 'MITSUBISHI', 'Black', '2019', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A3897', 450, '/assets/images/cars/7.jpg', '/assets/images/avatar/p3.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (12, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A4001', 650, '/assets/images/cars/6.jpg', '/assets/images/avatar/p3.jpg', 'HANOI', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (13, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A4681', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p4.jpg', 'DANANG', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (14, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7249', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p4.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (15, 'TOYOTA RUSH 2020', 'TOYOTA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7835', 720, '/assets/images/cars/6.jpg', '/assets/images/avatar/p5.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (16, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A6895', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p5.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (17, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A9446', 650, '/assets/images/cars/8.jpg', '/assets/images/avatar/p4.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (18, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A2899', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p5.jpg', 'DANANG', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (19, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A1216', 1050, '/assets/images/cars/3.jpg', '/assets/images/avatar/p5.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (20, 'TOYOTA INNOVA G 2016', 'TOYOTA', 'Black', '2016', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A7688', 920, '/assets/images/cars/5.jpg', '/assets/images/avatar/p2.jpg', 'HCM', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (21, 'MITSUBISHI ATTRAGE 2020', 'MITSUBISHI', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A4104', 700, '/assets/images/cars/4.jpg', '/assets/images/avatar/p3.jpg', 'HANOI', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (22, 'VINFAST LUX A 2.0 2021', 'VINFAST', 'Black', '2021', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A6718', 1300, '/Assets/images/cars/1.jpg', '/assets/images/avatar/p4.jpg', 'HANOI', 0, '2022-01-01', '2022-01-01')
+INSERT INTO [dbo].[Car] VALUES (23, 'MAZDA CX5 2020', 'MAZDA', 'Black', '2020', 'CAR', 'AVAILABLE', 'SELF_DRIVING', 4, 'A8145', 1050, '/assets/images/cars/2.jpg', '/assets/images/avatar/p5.jpg', 'DANANG', 0, '2022-01-01', '2022-01-01')
 
 INSERT INTO [dbo].[User] VALUES (1, 'carrental@gmail.com', 'staff@123456', '0123456789', 'Staff', 'ADMIN', '2022-03-08', '2022-03-08')
 INSERT INTO [dbo].[User] VALUES (2, 'carrental@gmail.com', 'staff1@123456', '0558967523', 'Staff1', 'ADMIN', '2022-03-08', '2022-03-08')

@@ -32,7 +32,7 @@
         <Popup StaysOpen="True" 
                Placement="Center"
                x:Name="Popup_CarInfor" 
-               IsOpen="{Binding IsOpenPopup_CarInfor}"
+               IsOpen="{Binding IsOpenPopupCarInfor}"
                Width="400"
                >
             <Border Background="#ffffff" BorderBrush="Transparent" Padding="5" BorderThickness="3" CornerRadius="5">

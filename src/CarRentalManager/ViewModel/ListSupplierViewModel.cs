@@ -133,7 +133,8 @@ namespace CarRentalManager.ViewModel
         }
         private Supplier getSupplier()
         {
-            return new Supplier(ID, Email, Password, PhoneNumber, Name, Address, DateTime.Now, DateTime.Now);
+            int lastSupplier = commonDAO.getLastId(ETableName.SUPPLIER);
+            return new Supplier(lastSupplier + 1, Email, Password, PhoneNumber, Name, Address, DateTime.Now, DateTime.Now);
         }
         private void getaddCar()
         {

@@ -1,3 +1,4 @@
+using CarRentalManager.state;
 using CarRentalManager.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace CarRentalManager.ViewModel
         }
         private void SetCommands()
         {
-            CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListCarViewModel(true, null); });
+            CarCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListCarViewModel(true); });
             CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListCustomerViewModel(); });
             ContractCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListContractViewModel(); });
             OrderCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentChildView = new ListOrderViewModel(); });

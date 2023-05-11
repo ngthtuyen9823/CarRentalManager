@@ -69,8 +69,6 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Width="120" Margin="10 8 10 8" Text="{Binding ID,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="SupplierId" Width="120" Margin="10 8 10 8" Text="{Binding SupplierId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name ="Name" Width="120" Margin="10 8 10 8" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
@@ -205,8 +203,6 @@
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
                         <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
                         <GridViewColumn Header="Brand" Width="220" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                         <GridViewColumn Header="Color" Width="120" DisplayMemberBinding="{Binding Color}"></GridViewColumn>

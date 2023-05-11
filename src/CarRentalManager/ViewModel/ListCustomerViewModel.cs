@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
 using CarRentalManager.services;
+using CarRentalManager.enums;
 
 namespace CarRentalManager.ViewModel
 {
@@ -14,6 +15,7 @@ namespace CarRentalManager.ViewModel
     {
         readonly ImageService imgService = new ImageService();
         readonly CustomerDAO customerDAO = new CustomerDAO();
+        readonly CommonDAO commonDAO = new CommonDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Customer> list;
@@ -95,10 +97,10 @@ namespace CarRentalManager.ViewModel
         }
         private Customer getCustomer()
         {
-            string imageIdCardFront = imgService.getProjectImagePath(ImageIdCardFront ?? "", "customers", ID.ToString());
-            string imageIdCardBack = imgService.getProjectImagePath(ImageIdCardBack ?? "", "customers", ID.ToString());
-
-            return new Customer(ID, Name, PhoneNumber, Email, IdCard, Address,
+            int lastCustomer = commonDAO.getLastId(ETableName.CUSTOMER);
+            ImageIdCardFront = imgService.getProjectImagePath(ImageIdCardFront ?? "", "customers", (lastCustomer + 1).ToString());
+            ImageIdCardFront = imgService.getProjectImagePath(ImageIdCardBack ?? "", "customers", (lastCustomer + 1).ToString());
+            return new Customer(lastCustomer + 1, PhoneNumber, Name, Email, IdCard, Address,
                     ImageIdCardFront != null ? ImageIdCardFront : "",
                     ImageIdCardBack != null ? ImageIdCardBack : "",
                     DateTime.Now, DateTime.Now);

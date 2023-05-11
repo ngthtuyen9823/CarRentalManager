@@ -26,13 +26,7 @@ namespace CarRentalManager
         public SupplierView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"ID", "Name", "Address", "Email", "PhoneNumber" };
-        }
-        private bool IDFilter(object obj)
-        {
-            var Filterobj = obj as Supplier;
-            string filterobj = Filterobj.ID.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
+            FilterBy.ItemsSource = new string[] {"Name", "Address", "Email", "PhoneNumber" };
         }
         private bool NameFilter(object obj)
         {
@@ -62,8 +56,6 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case nameof(ID):
-                    return IDFilter;
                 case nameof(Name):
                     return NameFilter;
                 case nameof(Address):
@@ -102,7 +94,6 @@ namespace CarRentalManager
                 {
                     return;
                 }
-                ID.Text = selectedCustomer.ID.ToString();
                 Name.Text = selectedCustomer.Name;
                 Address.Text = selectedCustomer.Address;
                 PhoneNumber.Text = selectedCustomer.PhoneNumber;

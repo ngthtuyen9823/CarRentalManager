@@ -20,6 +20,7 @@ using CarRentalManager.enums;
 using MaterialDesignThemes.Wpf;
 using System.Runtime.InteropServices.ComTypes;
 using System.IO;
+using CarRentalManager.state;
 
 namespace CarRentalManager.ViewModel
 {
@@ -36,6 +37,7 @@ namespace CarRentalManager.ViewModel
         public ICommand SetInformationCommand { get; set; }
         
         readonly CarDAO carDAO = new CarDAO();
+        readonly CommonDAO commonDAO = new CommonDAO(); 
 
         //*INFO: Value binding
         private string color; public string Color { get => color; set => SetProperty(ref color, value, nameof(Color)); }
@@ -55,12 +57,12 @@ namespace CarRentalManager.ViewModel
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
         private int price; int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
-        public ListCarViewModel(bool isAdmin, string supplierId)
+        public ListCarViewModel(bool isAdmin)
         {
-            List = isAdmin? getListObservableCar() : getSupplierListObservableCar(supplierId);
-            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand(isAdmin, supplierId));
-            EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand(isAdmin, supplierId));
-            DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand(isAdmin, supplierId));
+            List = isAdmin? getListObservableCar() : getSupplierListObservableCar(LoginInInforState.ID.ToString());
+            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand(isAdmin, LoginInInforState.ID.ToString()));
+            EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand(isAdmin, LoginInInforState.ID.ToString()));
+            DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand(isAdmin, LoginInInforState.ID.ToString()));
         }
         private void reSetForm()
         {
@@ -119,6 +121,7 @@ namespace CarRentalManager.ViewModel
         }    
         public ObservableCollection<Car> getListObservableCar()
         {
+            LoginInInforState.ID = 0;
             List<Car> cars = carDAO.getListCar();
             ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
             return carList;
@@ -147,8 +150,8 @@ namespace CarRentalManager.ViewModel
         private Car getCar()
         {
             string imagePath = imgService.getProjectImagePath(ImagePath, "cars", ID.ToString());
-
-            return new Car(ID, Name,
+            int lastCarID = commonDAO.getLastId(ETableName.CAR);
+            return new Car(lastCarID + 1, Name,
                     Brand, PublishYear,
                     Color, Price,
                     variableService.parseStringToEnum<ECarStatus>(Status.Substring(38)),
@@ -157,7 +160,7 @@ namespace CarRentalManager.ViewModel
                     Seats, LicensePlate,
                     ImagePath, imagePath,
                     City != null ? variableService.parseStringToEnum<ECityName>(City.Substring(38)) : ECityName.HCM,
-                    SupplierId,
+                    LoginInInforState.ID,
                     CreatedAt, UpdatedAt);
         }
         private void handleAddCommand(bool isAdmin, string supplierId)

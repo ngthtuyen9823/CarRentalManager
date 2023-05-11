@@ -31,19 +31,7 @@ namespace CarRentalManager
         public CarView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"ID", "SupplierId", "Name", "Brand" };
-        }
-        private bool IDFilter(object obj)
-        {
-            var Filterobj = obj as Car;
-            string filterobj = Filterobj.ID.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
-        }
-        private bool SupplierIdFilter(object obj)
-        {
-            var Filterobj = obj as Car;
-            string filterobj = Filterobj.SupplierId.ToString().ToLower();
-            return filterobj.Contains(FilterTextBox.Text.ToLower());
+            FilterBy.ItemsSource = new string[] {"Name", "Brand" };
         }
         private bool NameFilter(object obj)
         {
@@ -61,10 +49,6 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case nameof(ID):
-                    return IDFilter;
-                case nameof(SupplierId):
-                    return SupplierIdFilter;
                 case nameof(Name):
                     return NameFilter;
                 case nameof(Brand):
@@ -116,7 +100,6 @@ namespace CarRentalManager
                 {
                     return;
                 }
-                ID.Text = selectedCar.ID.ToString();
                 SupplierId.Text = selectedCar.SupplierId.ToString();
                 Name.Text = selectedCar.Name;
                 Brand.Text = selectedCar.Brand;

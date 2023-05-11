@@ -135,7 +135,8 @@ namespace CarRentalManager.ViewModel
 
         private Order getOrder()
         {
-            return new Order(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
+            int lastOrder = commonDAO.getLastId(ETableName.ORDER);
+            return new Order(lastOrder + 1, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
                     variableService.parseStringToEnum<EOrderStatus>(Status.Substring(38)),
                     DepositAmount.ToString() != null ? DepositAmount : 0,
                     ImageEvidence != null ? ImageEvidence : "",
