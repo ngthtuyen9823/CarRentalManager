@@ -143,11 +143,11 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Width="200" Margin = "10 8 10 8" Text="{Binding ID, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã hợp đồng"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="OrderId" Width="200" Margin = "10 8 10 8" Text="{Binding OrderId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="Price" Width=" 200" Margin = "10 8 10 8" Text="{Binding Price, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trị giá"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name="Remain" Width=" 200" Margin = "10 8 10 8" Text="{Binding Remain, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Remain"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox Name="Status" Width="200" SelectedValue="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -238,8 +238,6 @@
                         <GridViewColumn Header="Feedback" Width="200" DisplayMemberBinding="{Binding Feedback}"></GridViewColumn>
                         <GridViewColumn Header="ReturnCarStatus" Width="190" DisplayMemberBinding="{Binding ReturnCarStatus}"></GridViewColumn>
                         <GridViewColumn Header="Note" Width="200" DisplayMemberBinding="{Binding Note}"></GridViewColumn>
-                        <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
-                        <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>

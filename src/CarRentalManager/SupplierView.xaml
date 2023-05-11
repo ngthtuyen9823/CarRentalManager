@@ -150,12 +150,11 @@
                                   SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" Grid.ColumnSpan="2">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                         <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
-                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
+                        <GridViewColumn Width="180" Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
                         <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                        <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
-                        <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>

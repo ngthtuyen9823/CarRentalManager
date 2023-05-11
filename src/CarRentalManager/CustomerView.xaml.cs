@@ -26,9 +26,15 @@ namespace CarRentalManager
         public CustomerView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"Name", "Address", "Email", "PhoneNumber", "IdCard" };
+            FilterBy.ItemsSource = new string[] { "ID", "Name", "Address", "Email", "PhoneNumber", "IdCard" };
         }
-        private bool NameFilter(object obj)
+        private bool IDFilter(object obj)
+        {
+            var Filterobj = obj as Customer;
+            string filterobj = Filterobj.ID.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+            private bool NameFilter(object obj)
         {
             var Filterobj = obj as Customer;
             string filterobj = Filterobj.Name.ToLower();
@@ -62,7 +68,9 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case nameof(Name):
+                case "ID":
+                    return IDFilter;
+                case "Name":
                     return NameFilter;
                 case nameof(Address):
                     return AddressFilter;
