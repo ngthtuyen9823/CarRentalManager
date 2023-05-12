@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:util="clr-namespace:CarRentalManager.utils"
         xmlns:local="clr-namespace:CarRentalManager" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -394,7 +395,34 @@
                              Margin="10,0,0,0"/>
                         </Grid>
                     </Border>
+                    <Border     Margin="30,0,0,0"
+                                BorderBrush="DarkGray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                        <Grid
+                            Width="150">
+                            <TextBox 
+                             Text="{Binding Password, 
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Arial"
+                             FontWeight="Light"
+                             materialDesign:HintAssist.Hint="Password"
+                             BorderBrush="White"
+                             FontSize="13"
+                             HorizontalAlignment="Left"
+                             Foreground="Black"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="140"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="26"
+                             Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
+                
 
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
 

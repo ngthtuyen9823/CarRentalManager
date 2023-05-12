@@ -153,7 +153,7 @@ namespace CarRentalManager.ViewModel
                     return;
                 }
                 Car currentCar = carDao.getCarById(CarId.ToString());
-                if (currentCar != null && currentCar.Status == ECarStatus.AVAILABLE)
+                if (currentCar != null && carDao.checkIsAvailable(StartDate, EndDate, CarId))
                 {
                     int lastOrderId = commonDAO.getLastId(ETableName.ORDER);
                     int lastCustomerId = commonDAO.getLastId(ETableName.CUSTOMER);

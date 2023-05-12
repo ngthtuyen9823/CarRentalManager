@@ -487,7 +487,7 @@
                     CornerRadius="10"
                     Background="#3AADA1"
                     HorizontalAlignment="Center"
-                    Height="140"
+                    Height="200"
                     Margin="0,120,0,0"
                     VerticalAlignment="Center"
                     Width="1000" Grid.Row="1">
@@ -516,7 +516,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="55"/>
                                             <RowDefinition Height="60"/>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="60"/>
                                         </Grid.RowDefinitions>
                                         <Border
                                     Background="White"
@@ -532,7 +532,8 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="45"/>
                                                     <!--for icon-->
-                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="50*"/>
+                                                    <ColumnDefinition Width="381*"/>
                                                     <!--describe-->
                                                 </Grid.ColumnDefinitions>
                                                 <!--Icon-->
@@ -548,13 +549,13 @@
                                         Width="115"
                                         FontSize="20"
                                         Content="Location"
-                                        VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="50,0,0,0" FontFamily="Calibri"/>
+                                        VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="5,0,0,0" FontFamily="Calibri" Grid.Column="1"/>
                                                 <ComboBox x:Name="cbDiaChi" Style="{DynamicResource MaterialDesignComboBox}"                             
                                         BorderThickness="0"
                                         Foreground="Black"
                                         FontSize="20"
-                                        Grid.Column="1"
-                                        Margin="115,0,0,0"
+                                        Grid.Column="2"
+                                        Margin="65,0,0,0"
                                         FontWeight="SemiBold"
                                         SelectedItem="{Binding City}"
                                         ItemsSource="{Binding ListCity}"
@@ -789,7 +790,117 @@
                                                 </Menu>
                                             </Grid>
                                         </Border>
+                                        <Border
+                                Grid.Row="2"
+                                Width="480"
+                                Height="45"
+                                Margin="10,0,5,0"
+                                Background="White"
+                                HorizontalAlignment="Left"
+                                BorderBrush="Silver"
+                                BorderThickness="2"                              
+                                CornerRadius="4">
+                                            <Grid
+                                        Height="45">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <!--for icon-->
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition/>
+                                                    <!--describe-->
+                                                </Grid.ColumnDefinitions>
+                                                <!--Icon-->
+                                                <materialDesign:PackIcon 
+                                                Grid.Column="0"
+                                                Kind="StoreTime"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" 
+                                                Height="40" Width="40"
+                                                Foreground="Gray"
+                                                />
+                                                <Label
+                                        Grid.Column="1"
+                                        
+                                        BorderThickness="0"
+                                        Foreground="Black"
+                                        Width="100"
+                                        FontSize="20"
+                                        Content="Start"
+                                        VerticalAlignment="Center" Grid.ColumnSpan="3" HorizontalAlignment="Left" FontFamily="Calibri" />
+                                                <DatePicker
+                                                    BorderThickness="0"                                                                                     
+                                        x:Name="dpStart" 
+                                        SelectedDateFormat ="Short"    
+                                        
+                                        Margin="109,0,0,0"
+                                        Width="311"
+                                        Foreground="Black"
+                                        FontWeight="SemiBold"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        FontSize="20"
+                                        Grid.ColumnSpan="2" 
+                                        BorderBrush="White"
+                                        SelectedDate="{Binding Start, UpdateSourceTrigger=PropertyChanged}"
+                                                    />
+                                            </Grid>
+                                        </Border>
+                                        <Border
+                                Grid.Row="2"
+                                Height="45"
+                                Margin="0,0,10,0"
+                                Background="White"
+                                BorderBrush="Silver"
+                                BorderThickness="2"
+                                CornerRadius="4"
+                                HorizontalAlignment="Right"
+                                Width="480">
+                                            <Grid
+                                        Height="45">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <!--for icon-->
+                                                    <ColumnDefinition Width="129"/>
+                                                    <ColumnDefinition />
+                                                    <!--describe-->
+                                                </Grid.ColumnDefinitions>
+                                                <!--Icon-->
 
+                                                <materialDesign:PackIcon 
+                                                    Grid.Column="0"
+                                                    Kind="SunTime" 
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center" 
+                                                    Height="45" Width="50"
+                                                    Foreground="Gray"/>
+                                                <Label 
+                                        Grid.Column="1"                                        
+                                        BorderThickness="0"
+                                        Foreground="Black"
+                                        Width="100"
+                                        FontSize="20"
+                                        Content="End"
+                                        VerticalAlignment="Center" 
+                                        Grid.ColumnSpan="2" 
+                                        HorizontalAlignment="Left" FontFamily="Calibri"/>
+                                                <DatePicker
+                                                    BorderThickness="0"                                                                                     
+                                        x:Name="dpEnd"
+                                        SelectedDateFormat="Short"
+                                        Margin="109,0,0,0"
+                                        Width="311"
+                                        Foreground="Black"
+                                        FontWeight="SemiBold"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        FontSize="20"
+                                        Grid.ColumnSpan="2" 
+                                        BorderBrush="White"
+                                        SelectedDate="{Binding End, UpdateSourceTrigger=PropertyChanged}"
+                                                    />
+                                            </Grid>
+
+                                        </Border>
 
 
 

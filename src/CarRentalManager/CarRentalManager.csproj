@@ -119,7 +119,6 @@
     <Compile Include="CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="constants\Constant.cs" />
     <Compile Include="ContractView.xaml.cs">
       <DependentUpon>ContractView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +143,7 @@
     <Compile Include="DashBoard.xaml.cs">
       <DependentUpon>DashBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="enums\ECarPrice.cs" />
     <Compile Include="enums\ECarStatus.cs" />
     <Compile Include="enums\ECarType.cs" />
     <Compile Include="enums\ECityName.cs" />
