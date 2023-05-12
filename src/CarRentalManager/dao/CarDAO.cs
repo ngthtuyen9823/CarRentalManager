@@ -76,11 +76,11 @@ namespace CarRentalManager.dao
                 .Select(row => row[fieldName].ToString())
                 .ToList();
         }
-        public List<Car> getListCarByCondition(string City, string Brand, int Seats)
+        public List<Car> getListCarByCondition(string City, string Brand, int Seats, DateTime Start, DateTime End)
         {
             try
             {
-                string sqlStringGetTable = sqlService.getListCarByCondition(City, Brand, Seats);
+                string sqlStringGetTable = sqlService.getListCarByCondition(City, Brand, Seats, Start, End);
                 DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
                 if (dataTable?.Rows?.Count != 0)
                     return commondDataService.dataTableToList<Car>(dataTable);

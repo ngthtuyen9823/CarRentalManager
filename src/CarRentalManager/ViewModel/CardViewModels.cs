@@ -9,6 +9,7 @@ using CarRentalManager.dao;
 using System.Windows.Documents;
 using CarRentalManager.constants;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace CarRentalManager.ViewModel
 {
@@ -41,6 +42,8 @@ namespace CarRentalManager.ViewModel
         private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
+        private DateTime start; public DateTime Start { get => start; set => SetProperty(ref start, value, nameof(Start)); }
+        private DateTime end; public DateTime End { get => end; set => SetProperty(ref end, value, nameof(End)); }
         private ObservableCollection<string> listCarBrand; public ObservableCollection<string> ListCarBrand { get => listCarBrand; set => SetProperty(ref listCarBrand, value, nameof(ListCarBrand)); }
         private ObservableCollection<string> listCity; public ObservableCollection<string> ListCity { get => listCity; set => SetProperty(ref listCity, value, nameof(ListCity)); }
         private ObservableCollection<string> listSeats; public ObservableCollection<string> ListSeats { get => listSeats; set => SetProperty(ref listSeats, value, nameof(ListSeats)); }
@@ -183,11 +186,11 @@ namespace CarRentalManager.ViewModel
         {
             try
             {
-                if(City == null && Brand == null && Seats == 0)
+                if(City == null && Brand == null && Seats == 0 && Start == null && End == null)
                 {
                     return;
                 }
-                List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats);
+                List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats,Start,End);
                 CarList = new ObservableCollection<Car>(cars);
                 OnPropertyChanged(nameof(CarList));
             }
