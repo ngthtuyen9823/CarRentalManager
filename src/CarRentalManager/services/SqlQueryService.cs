@@ -86,13 +86,19 @@ namespace CarRentalManager.services
             return string.Format("SELECT * FROM [{0}] WHERE price > {1} and price <= {2}", ETableName.CAR, fromPrice, toPrice);
         }
 
+        public string getListCarAvailable(DateTime Start, DateTime End)
+        {
+            string availbleCondition = $"SELECT carId FROM [{ETableName.ORDER}] WHERE startDate >= '{Start}' and endDate <= '{End}' and status <> '{EOrderStatus.CANCELBYADMIN}' and status <> '{EOrderStatus.CANCELBYUSER}'";
+            return $"SELECT [{ETableName.CAR}].* FROM [{ETableName.CAR}] LEFT JOIN ({availbleCondition})A on [{ETableName.CAR}].id = A.carId WHERE A.carId is null";
+        }
+
         public string getListCarByCondition(string City, string Brand, int Seats, DateTime Start, DateTime End)
         {
             string cityCondition = City != null ? string.Format("city = '{0}'", City) : "";
             string brandCondition = (Brand != null ? (City != null ? " and " : "") + string.Format("brand = '{0}'", Brand) : "");
             string seatsCondition = (Seats != 0 ? (Brand != null || City != null ? " and " : "") + string.Format("seats = '{0}'", Seats) : "");
-            string availbleCondition = string.Format(format: "SELECT DISTINCT carId FROM [Order] WHERE startDate >= '{0}' OR endDate <= '{1}' and status != 'COMPLETE'", End, Start);
-            return string.Format("SELECT DISTINCT * FROM [{0}] RIGHT JOIN ({2})A on [{0}].id = A.carId WHERE {1}", ETableName.CAR, cityCondition + brandCondition + seatsCondition,availbleCondition);
+            string carPropCondtion = cityCondition + brandCondition + seatsCondition != "" ? "and " + cityCondition + brandCondition + seatsCondition : "";
+            return $"{getListCarAvailable(Start, End)} {carPropCondtion}";
         }
 
         public string updateCar(Car updatedCar)
@@ -106,7 +112,12 @@ namespace CarRentalManager.services
                 updatedCar.Price, updatedCar.ImagePath,
                 updatedCar.SupplierId, DateTime.Now, updatedCar.ID);
         }
-        
+
+        public string checkIsAvailable(DateTime start, DateTime end, int carId)
+        {
+            return $"SELECT COUNT(*)isExist FROM ({getListCarAvailable(start, end)})A WHERE id = '{carId}'";
+        }
+
 
         //*INFO: CUSTOMER
 

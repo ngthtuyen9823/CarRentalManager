@@ -92,5 +92,13 @@ namespace CarRentalManager.dao
                 return null;
             }
         }
+
+        public bool checkIsAvailable(DateTime start, DateTime end, int carId)
+        {
+            string sqlStringGetTable = sqlService.checkIsAvailable(start, end, carId);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return (int)dataTable.Rows[0][0] == 1;
+        }
+
     }
 }

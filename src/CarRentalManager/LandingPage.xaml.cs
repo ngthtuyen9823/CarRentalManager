@@ -29,6 +29,8 @@ namespace CarRentalManager
         public LandingPage()
         {
             InitializeComponent();
+            dpStart.SelectedDate= DateTime.Now;
+            dpEnd.SelectedDate= DateTime.Now;
         }
 
         private void Polygon_MouseDown(object sender, MouseButtonEventArgs e)

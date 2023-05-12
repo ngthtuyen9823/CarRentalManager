@@ -841,7 +841,7 @@
                                         FontSize="20"
                                         Grid.ColumnSpan="2" 
                                         BorderBrush="White"
-                                        SelectedDate="{Binding Start}"
+                                        SelectedDate="{Binding Start, UpdateSourceTrigger=PropertyChanged}"
                                                     />
                                             </Grid>
                                         </Border>
@@ -896,7 +896,7 @@
                                         FontSize="20"
                                         Grid.ColumnSpan="2" 
                                         BorderBrush="White"
-                                        SelectedDate="{Binding End}"
+                                        SelectedDate="{Binding End, UpdateSourceTrigger=PropertyChanged}"
                                                     />
                                             </Grid>
 

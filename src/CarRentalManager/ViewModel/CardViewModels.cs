@@ -7,7 +7,6 @@ using CarRentalManager.enums;
 using System.Windows.Input;
 using CarRentalManager.dao;
 using System.Windows.Documents;
-using CarRentalManager.constants;
 using System.Windows.Controls;
 using System.Diagnostics;
 
@@ -20,7 +19,6 @@ namespace CarRentalManager.ViewModel
         //        ResourceDictionary dictionary = new ResourceDictionary();
         
         readonly CarDAO carDao = new CarDAO();
-        readonly Constant constant = new Constant();
 
         public ICommand SortByAscCommand { get; set; }
         public ICommand SortByDscCommand { get; set; }
@@ -75,7 +73,7 @@ namespace CarRentalManager.ViewModel
 
             SortLowerThan200 = new RelayCommand<object>((p) => {
                 return true;
-            }, (p) => getListSortByRange(constant.MinPriceOfCar, 200));
+            }, (p) => getListSortByRange(((int)ECarPrice.MINPRICECAR), 200));
 
             SortLowerThan500 = new RelayCommand<object>((p) => {
                 return true;
@@ -87,7 +85,7 @@ namespace CarRentalManager.ViewModel
 
             SortBiggerThan1000 = new RelayCommand<object>((p) => {
                 return true;
-            }, (p) => getListSortByRange(1000, constant.MaxPriceCar));
+            }, (p) => getListSortByRange(1000, ((int)ECarPrice.MAXPRICECAR)));
             SearchCommand = new RelayCommand<object>((p) => {
                 return true;
             }, (p) => searchCarHandler());
@@ -190,7 +188,7 @@ namespace CarRentalManager.ViewModel
                 {
                     return;
                 }
-                List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats,Start,End);
+                List<Car> cars = carDao.getListCarByCondition(City, Brand, Seats, Start, End);
                 CarList = new ObservableCollection<Car>(cars);
                 OnPropertyChanged(nameof(CarList));
             }
