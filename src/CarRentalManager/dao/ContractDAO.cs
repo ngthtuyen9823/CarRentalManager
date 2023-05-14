@@ -47,7 +47,17 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Contract>(dataTable);
         }
-
+        public List<Contract> getSupplierListContract(List<int> orderId)
+        {
+            DataTable dataTable = new DataTable();  
+            foreach (int id in orderId)
+            {
+                string sqlStringGetTable = sqlService.getListTableDataByOrderId(id, ETableName.CONTRACT);
+                DataTable tempDatatable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+                dataTable.Merge(tempDatatable);
+            }
+            return commondDataService.dataTableToList<Contract>(dataTable);
+        }
         public List<Contract> getListContractByDescOrAsc(bool isDescrease, string fieldName)
         {
             string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CONTRACT);

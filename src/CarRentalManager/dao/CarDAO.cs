@@ -24,7 +24,7 @@ namespace CarRentalManager.dao
         }
         public List<Car> getSupplierListCar(string supplierId)
         {
-            string sqlStringGetTable = sqlService.getSupplierListTableData(supplierId, ETableName.CAR);
+            string sqlStringGetTable = sqlService.getListTableDataBySupplierId(supplierId, ETableName.CAR);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Car>(dataTable);
         }

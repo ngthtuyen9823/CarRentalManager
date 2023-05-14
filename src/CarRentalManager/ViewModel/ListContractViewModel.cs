@@ -22,6 +22,7 @@ namespace CarRentalManager.ViewModel
         readonly ContractDAO contractDAO = new ContractDAO();
         readonly OrderDAO orderDAO = new OrderDAO();
         readonly CarDAO carDAO = new CarDAO();
+        readonly CommonDAO commonDAO = new CommonDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Contract> list;
@@ -47,9 +48,9 @@ namespace CarRentalManager.ViewModel
         private string returnCarStatus; public string ReturnCarStatus { get => returnCarStatus; set => SetProperty(ref returnCarStatus, value, nameof(ReturnCarStatus)); }
         private string feedback; public string Feedback { get => feedback; set => SetProperty(ref feedback, value, nameof(Feedback)); }
         private string note; public string Note { get => note; set => SetProperty(ref note, value, nameof(Note)); }
-        public ListContractViewModel()
+        public ListContractViewModel(bool isAdmin)
         {
-            List = getListObservableContract();
+            List = isAdmin ? getListObservableContract() : getSupplierListObservableContract(LoginInInforState.ID.ToString());
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
@@ -113,6 +114,13 @@ namespace CarRentalManager.ViewModel
             ObservableCollection<Contract> contractList = new ObservableCollection<Contract>(contracts);
             return contractList;
         }
+        public ObservableCollection<Contract> getSupplierListObservableContract(string supplierId)
+        {
+            List<int> orderId = commonDAO.getOrderId(supplierId);
+            List<Contract> contracts = contractDAO.getSupplierListContract(orderId);
+            ObservableCollection<Contract> contractList = new ObservableCollection<Contract>(contracts);
+            return contractList;
+        }
         private bool checkIsError()
         {
             if (ErrorCollection.Count > 0)
@@ -165,21 +173,17 @@ namespace CarRentalManager.ViewModel
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
                     Order currentOrder = orderDAO.getOrderById(currentContract.OrderId.ToString());
                     Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
-                    currentContract.Paid += Fee;
-                    currentContract.Remain -= Fee;
-
-                    currentContract.ReceivedFee = LoginInInforState.ID == 0 ? 0 : 70 * currentContract.Paid / 100;
-             
-
-                    MessageBox.Show(currentContract.ReceivedFee.ToString());
+                    currentContract.Paid += fee;
+                    currentContract.Remain -= fee;
+                    currentContract.ReceivedFee = commonDAO.getSupplierId(ID.ToString()) == 0 ? 0 : 70 * currentContract.Paid / 100;
                     currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
                     currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
                     currentContract.Feedback = Feedback;
                     currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
                     currentContract.Note = Note;
-                    if(currentContract.Status == EContractStatus.COMPLETE)
+                    if (currentContract.Status == EContractStatus.COMPLETE)
                         currentCar.Status = ECarStatus.AVAILABLE;
-                    if(currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)
+                    if (currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)
                         currentCar.Status = ECarStatus.UNAVAILABLE;
                     carDAO.updateCar(currentCar);
                     contractDAO.updateContract(currentContract);

@@ -25,7 +25,28 @@ namespace CarRentalManager.dao
         readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
 
         public CommonDAO() { }
-
+        public int getSupplierId(string contractId)
+        {
+            string sqlStringGetTable = sqlService.getSupplierId(contractId, ETableName.CAR, ETableName.ORDER, ETableName.CONTRACT);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            if (dataTable.Rows.Count == 0)
+            {
+                return 0;
+            }
+            int id = variableService.parseStringToInt(dataTable.Rows[0][0].ToString());
+            return id;
+        }
+        public List<int> getOrderId(string supplierId)
+        {
+            List<int> orderId = new List<int>();
+            string sqlStringGetTable = sqlService.getOrderId(supplierId, ETableName.CAR, ETableName.ORDER, ETableName.SUPPLIER);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                orderId.Add(variableService.parseStringToInt(dataTable.Rows[i][0].ToString()));
+            }
+            return orderId;
+        }
         public int getLastId(ETableName eTableName)
         {
             string sqlStringGetTable = sqlService.getLastId(eTableName);
