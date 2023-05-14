@@ -936,51 +936,66 @@
                             </Grid>
                             <!--cardcar-->
                         </Grid>
-                        <Grid
-                        Grid.Row="1">
-                            <ItemsControl x:Name="itemsCotrolCards"
+                        <StackPanel
+                            Grid.Row="1">
+                            
+                                <Expander
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"                                
+                                Header="Show Available Vehicles">
+                                    <StackPanel
+                                        Orientation="Vertical">
+                                        <ItemsControl x:Name="itemsCotrolCards"
                         Margin="2,0,1,230"
                         VerticalContentAlignment="Center"
                         ItemsSource="{Binding CarList, UpdateSourceTrigger=PropertyChanged}" Width="1300">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <local:CustomCard Width="250"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                        <Grid
-                            Grid.Row="2">
-                            <Image Source="assets/images/background/discoutbanner.png" Stretch="Fill"/>
-                        </Grid>
-                        <!--feedback-->
-
-                        <Grid
-                            Grid.Row="3">
-                            <!-- and here's another -->
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <local:CustomCard Width="250"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"                                
+                                Header="Show Discount">
+                                    <StackPanel
+                                        Orientation="Vertical">
+                                        <Image Source="assets/images/background/bannerdiscount.png" Stretch="Fill"/>
+                                    </StackPanel>
+                                </Expander>
+                            <Expander
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"                                
+                                Header="Show Featured Feedback">
+                                <StackPanel
+                                    Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid
                                 Grid.Column="1">
-                                <Line
+                                            <Line
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 X1="-450" Y1="20" X2="-150" Y2="20" Stroke="DarkGray" StrokeThickness="1"/>
-                                <materialDesign:PackIcon
+                                            <materialDesign:PackIcon
                                     Foreground="DarkGray"
                                     VerticalAlignment="Center"
                                     Height="50"
@@ -989,7 +1004,7 @@
                                     Kind="User"
                                     Margin="0,0,250,0"
                                     />
-                                <TextBlock
+                                            <TextBlock
                                     Foreground="DarkGray"
                                     FontWeight="SemiBold"
                                     VerticalAlignment="Center"
@@ -997,13 +1012,13 @@
                                     HorizontalAlignment="Center"
                                     Margin="100,0,0,0">
                                     KHÁCH HÀNG NHẬN XÉT
-                                </TextBlock>
-                                <Line
+                                            </TextBlock>
+                                            <Line
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 X1="650" Y1="20" X2="900" Y2="20" Stroke="DarkGray" StrokeThickness="1"/>
-                            </Grid>
-                            <materialDesign:Chip
+                                        </Grid>
+                                        <materialDesign:Chip
                                     Grid.Row="1"
                                     VerticalAlignment="Top"
                                     Background="#3AB19B"
@@ -1012,16 +1027,16 @@
                                     HorizontalAlignment="Center"
                                     Margin="0,0,0,5"
                                     />
-                            <StackPanel
+                                        <StackPanel
                                         Margin="8 0 0 5"
                                         Grid.Row="1"
                                         Grid.Column="1">
-                                <TextBlock FontWeight="Bold"
+                                            <TextBlock FontWeight="Bold"
                                             Name ="txtbloName1"
                                                 />
-                                <TextBlock Name="txtContent1" />
-                            </StackPanel>
-                            <materialDesign:Chip
+                                            <TextBlock Name="txtContent1" />
+                                        </StackPanel>
+                                        <materialDesign:Chip
                                             Grid.Row="2"
                                             VerticalAlignment="Top"
                                             Background="Beige"
@@ -1030,16 +1045,16 @@
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
-                            <StackPanel
+                                        <StackPanel
                                             Grid.Row="2"
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
-                                <TextBlock FontWeight="Bold"
+                                            <TextBlock FontWeight="Bold"
                                            Name ="txtbloName2"
                                                     />
-                                <TextBlock Name="txtContent2"/>
-                            </StackPanel>
-                            <materialDesign:Chip
+                                            <TextBlock Name="txtContent2"/>
+                                        </StackPanel>
+                                        <materialDesign:Chip
                                             Grid.Row="3"
                                             VerticalAlignment="Top"
                                             Background="MediumPurple"
@@ -1048,16 +1063,16 @@
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
-                            <StackPanel
+                                        <StackPanel
                                             Grid.Row="3"
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
-                                <TextBlock FontWeight="Bold"
+                                            <TextBlock FontWeight="Bold"
                                            Name ="txtbloName3"
                                                    />
-                                <TextBlock Name="txtContent3"/>
-                            </StackPanel>
-                            <materialDesign:Chip
+                                            <TextBlock Name="txtContent3"/>
+                                        </StackPanel>
+                                        <materialDesign:Chip
                                             Grid.Row="4"
                                             VerticalAlignment="Top"
                                             Background="YellowGreen"
@@ -1066,16 +1081,33 @@
                                             HorizontalAlignment="Center"
                                             Margin="0,0,0,0"
                                             />
-                            <StackPanel
+                                        <StackPanel
                                             Grid.Row="4"
                                             Margin="8 0 0 0"
                                             Grid.Column="1">
-                                <TextBlock FontWeight="Bold"
+                                            <TextBlock FontWeight="Bold"
                                            Name ="txtbloName4"
                                                     />
-                                <TextBlock Name="txtContent4" />
-                            </StackPanel>
-                        </Grid>
+                                            <TextBlock Name="txtContent4" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                        
+                        <!--<Grid
+                            Grid.Row="2">
+                            <Expander
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"                                
+                                Header="Show Available Vehicles">
+                                <Image Source="assets/images/background/discoutbanner.png" Stretch="Fill"/>
+                            </Expander>
+                            
+                        </Grid>-->
+                        <!--feedback-->
+                      
                     </Grid>
                 </Viewbox>
             </ScrollViewer>
