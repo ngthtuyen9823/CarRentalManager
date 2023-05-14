@@ -78,7 +78,7 @@ namespace CarRentalManager.services
                 " from " +
                 " (select [{1}].id as id from" +
                 " ([{3}] inner join [{1}] on [{3}].id = [{1}].supplierId)" +
-                " where [{3}].id = 1) d inner join [{2}]" +
+                " where [{3}].id = {0}) d inner join [{2}]" +
                 " on [d].id = [{2}].carId ", supplierId, carTable, orderTable, supplierTable);
         }
         public string getCreadentialWithEmail(ETableName tableName, string email)

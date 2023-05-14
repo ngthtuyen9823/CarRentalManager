@@ -120,12 +120,6 @@
                         <ColumnDefinition Width="5*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <WrapPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,35">
-                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" IsChecked="True" >
-                            <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
-                        </RadioButton>
-                        <RadioButton Command="{Binding StatisticCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
-                            <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
-                        </RadioButton>
                     </WrapPanel>
                     <WrapPanel Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,0,35">
                         <Button Style="{StaticResource topButton}">

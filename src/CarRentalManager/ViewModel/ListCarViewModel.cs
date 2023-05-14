@@ -129,7 +129,7 @@ namespace CarRentalManager.ViewModel
         public ObservableCollection<Car> getSupplierListObservableCar(string supplierId)
         {
             List<Car> cars = carDAO.getSupplierListCar(supplierId);
-            ObservableCollection<Car> carList = new ObservableCollection<Car>(cars);
+            ObservableCollection<Car> carList = cars != null ? new ObservableCollection<Car>(cars) : null;
             return carList;
         }
 

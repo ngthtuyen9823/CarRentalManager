@@ -118,7 +118,7 @@ namespace CarRentalManager.ViewModel
         {
             List<int> orderId = commonDAO.getOrderId(supplierId);
             List<Contract> contracts = contractDAO.getSupplierListContract(orderId);
-            ObservableCollection<Contract> contractList = new ObservableCollection<Contract>(contracts);
+            ObservableCollection<Contract> contractList = contracts != null ? new ObservableCollection<Contract>(contracts) : null;
             return contractList;
         }
         private bool checkIsError()

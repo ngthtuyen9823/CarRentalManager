@@ -88,11 +88,23 @@
 
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top" >
-
+                            <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource menuRadioButton}" 
+                                         FontSize="18" IsChecked="True" Background="#3AA9AD" Foreground="#ffffff">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Home" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Command="{Binding StatisticCommand}" Style="{StaticResource menuRadioButton}" FontSize="18">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="ChartArc" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
+                                </StackPanel>
+                            </RadioButton>
                             <RadioButton x:Name="btnCar" Style="{StaticResource menuRadioButton}" Command="{Binding CarCommand}" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Car" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Cars" FontWeight="SemiBold" FontSize="16" />
+                                    <TextBlock Text="Cars" FontWeight="SemiBold" FontSize="16"/>
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton x:Name="btnSupplier" Style="{StaticResource menuRadioButton}" Command="{Binding SupplierCommand}" >
@@ -120,7 +132,7 @@
                                 </StackPanel>
                             </RadioButton>
                         </StackPanel>
-                        <Button Click="Button_Click" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
+                        <Button Click="Button_Click" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 10">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Logout" FontWeight="SemiBold" FontSize="16"/>
@@ -146,14 +158,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="5*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <WrapPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,35">
-                        <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" IsChecked="True" >
-                            <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>
-                        </RadioButton>
-                        <RadioButton Command="{Binding StatisticCommand}" Style="{StaticResource tabRadioButton}" FontSize="18" >
-                            <TextBlock Text="Statistic" FontWeight="SemiBold" FontSize="16"/>
-                        </RadioButton>
-                    </WrapPanel>
+              
                     <WrapPanel Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,0,35">
                         <Button Style="{StaticResource topButton}">
                             <Icon:PackIconMaterial Kind="Cog"/>
