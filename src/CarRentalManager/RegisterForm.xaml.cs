@@ -158,15 +158,15 @@ namespace CarRentalManager
 
             if (price >= 1000 && price < 2000)
             {
-                return ((double)EDiscout.VOUCHER1M);
+                return ((double)EDiscount.VOUCHER1M);
             }
             else if (price >= 2000 && price < 3000)
             {
-                return ((double)EDiscout.VOUCHER2M);
+                return ((double)EDiscount.VOUCHER2M);
             }
             else if (price >= 3000)
             {
-                return ((double)EDiscout.VOUCHERMORE3M);
+                return ((double)EDiscount.VOUCHERMORE3M);
             }
             else
                 return 0;

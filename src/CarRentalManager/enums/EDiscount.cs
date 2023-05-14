@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalManager.enums
 {
-    public enum EDiscout
+    public enum EDiscount
     {
         VOUCHER1M = 50,
         VOUCHER2M = 100,

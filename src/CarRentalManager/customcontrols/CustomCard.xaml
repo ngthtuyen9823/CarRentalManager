@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:CarRentalManager" xmlns:viewmodel="clr-namespace:CarRentalManager.ViewModel" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{StaticResource CarViewModel}"
              mc:Ignorable="d" 
+             Name="Cards"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <PathGeometry x:Key="play" Figures="M20.207031,11.855469L6.902344,5.261719C6.5,5.058594 6.019531,5.078125 5.632813,5.3125 5.246094,5.542969 5.015625,5.957031 5.015625,6.402344L5.015625,19.601563C5.015625,20.042969 5.246094,20.457031 5.632813,20.6875 5.84375,20.816406 6.078125,20.878906 6.316406,20.878906 6.519531,20.878906 6.71875,20.832031 6.902344,20.742188L20.210938,14.140625C20.648438,13.925781 20.925781,13.484375 20.925781,13 20.925781,12.515625 20.644531,12.074219 20.207031,11.855469z"/>
@@ -53,7 +54,7 @@
         <materialDesign:Card
         Height="240"
         Width="200">
-        <Grid>
+        <Grid Margin="1,2,-1,-2">
             <Grid.RowDefinitions>
                 <RowDefinition
                                 Height="140" />
@@ -67,7 +68,7 @@
                   Height="140"
                   Width="196"
                   Stretch="UniformToFill" />    
-            <Button
+            <Button x:Name="btnRegister"
               Grid.Row="0"
               Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
               HorizontalAlignment="Right"
@@ -100,24 +101,19 @@
                   Grid.Row="2"
                   Orientation="Horizontal"
                   VerticalAlignment="Top"
-                  Margin="8">   
-                <Button
-                    Style="{StaticResource MaterialDesignToolButton}"
-                    Width="30"
-                    Padding="2 0 2 0"
-                    materialDesign:RippleAssist.IsCentered="True">
-                    <materialDesign:PackIcon
-                             Kind="ShareVariant" />
-                </Button>
-                <Button
-        Style="{StaticResource MaterialDesignToolButton}"
-        Width="30"
-        Padding="2 0 2 0"
-        materialDesign:RippleAssist.IsCentered="True">
-                    <materialDesign:PackIcon
-                        Kind="Heart" />
-                </Button>
-            </StackPanel>
+                  Margin="8">
+                    <Viewbox
+            Margin="0 4 0 8"
+            Height="14">
+                        <materialDesign:RatingBar  
+              Tag="{Binding ID}"
+              x:Name="rbStar"
+              Orientation="Horizontal"
+              Foreground="Gold"
+              Margin="0" RenderTransformOrigin="0.292,0.292" 
+              LayoutUpdated="rbStar_LayoutUpdated"/>
+                    </Viewbox>
+                </StackPanel>
         </Grid>
     </materialDesign:Card>
     </Border>
