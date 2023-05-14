@@ -22,7 +22,12 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);   
             return commondDataService.dataTableToList<Car>(dataTable);
         }
-
+        public List<Car> getSupplierListCar(string supplierId)
+        {
+            string sqlStringGetTable = sqlService.getListTableDataBySupplierId(supplierId, ETableName.CAR);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Car>(dataTable);
+        }
         public void createCar(Car newCar)
         {
             string sqlString = sqlService.createNewCar(newCar);

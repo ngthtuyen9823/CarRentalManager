@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Windows.Documents;
 using System.Xml.Linq;
 using CarRentalManager.enums;
 using CarRentalManager.models;
@@ -15,7 +17,14 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}]", tableName);
         }
-
+        public string getListTableDataBySupplierId(string supplierId, ETableName tableName)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE supplierId = '{1}'", tableName, supplierId);
+        }
+        public string getListTableDataByOrderId(int orderId, ETableName tableName)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE orderId = '{1}'", tableName, orderId);
+        }
         public string getValueById(string id, ETableName tableName)
         {
             return string.Format("SELECT * FROM [{0}] WHERE id='{1}'", tableName, id);
@@ -57,12 +66,25 @@ namespace CarRentalManager.services
                 $" AND feedback IS NOT NULL AND FEEDBACK <> ''" +
                 $" GROUP BY name";
         }
+        public string getSupplierId(string contractId, ETableName carTable, ETableName orderTable, ETableName contractTable)
+        {
+            return string.Format("Select [{1}].supplierId from (select [{2}].carId as" +
+                " carId from ([{3}] inner join [{2}] on [{3}].orderId = [{2}].id)" +
+                " where [{3}].id = '{0}') d inner join [{1}] on [d].carId = [{1}].id", contractId, carTable, orderTable, contractTable);
+        }
+        public string getOrderId(string supplierId, ETableName carTable, ETableName orderTable, ETableName supplierTable)
+        {
+            return string.Format("Select [{2}].id" +
+                " from " +
+                " (select [{1}].id as id from" +
+                " ([{3}] inner join [{1}] on [{3}].id = [{1}].supplierId)" +
+                " where [{3}].id = {0}) d inner join [{2}]" +
+                " on [d].id = [{2}].carId ", supplierId, carTable, orderTable, supplierTable);
+        }
         public string getCreadentialWithEmail(ETableName tableName, string email)
         {
             return string.Format("SELECT * FROM [{0}] WHERE email = '{1}'", tableName, email);
         }
-
-
         //*INFO: CAR
 
         public string getListCarByType(ECarType eCarType)
@@ -78,8 +100,8 @@ namespace CarRentalManager.services
                     newCar.Status, newCar.DrivingType,
                     newCar.Seats, newCar.LicensePlate,
                     newCar.Price, newCar.ImagePath,
-                    newCar.SupplierId, DateTime.Now,
-                    DateTime.Now, ETableName.CAR);
+                    newCar.SupplierId, 
+                    DateTime.Now, DateTime.Now, ETableName.CAR);
         }
         public string getListByRange(int fromPrice, int toPrice)
         {
@@ -110,7 +132,8 @@ namespace CarRentalManager.services
                 updatedCar.Status, updatedCar.DrivingType,
                 updatedCar.Seats, updatedCar.LicensePlate,
                 updatedCar.Price, updatedCar.ImagePath,
-                updatedCar.SupplierId, DateTime.Now, updatedCar.ID);
+                updatedCar.SupplierId, DateTime.Now, 
+                updatedCar.ID);
         }
 
         public string checkIsAvailable(DateTime start, DateTime end, int carId)

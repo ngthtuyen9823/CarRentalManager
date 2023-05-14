@@ -12,6 +12,7 @@ using System.Net;
 using System.Xml.Linq;
 using System.Windows;
 using System.Data.Entity.Core.Objects;
+using CarRentalManager.state;
 
 namespace CarRentalManager.ViewModel
 {
@@ -21,6 +22,7 @@ namespace CarRentalManager.ViewModel
         readonly ContractDAO contractDAO = new ContractDAO();
         readonly OrderDAO orderDAO = new OrderDAO();
         readonly CarDAO carDAO = new CarDAO();
+        readonly CommonDAO commonDAO = new CommonDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         private ObservableCollection<Contract> list;
@@ -29,11 +31,10 @@ namespace CarRentalManager.ViewModel
         public ICommand PayCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
-        private bool _IsOpenPopup_CarInfor;
-        public bool IsOpenPopup_CarInfor { get { return _IsOpenPopup_CarInfor; } set { _IsOpenPopup_CarInfor = value; OnPropertyChanged(); } }
+        private bool isOpenPopupCarInfor;
+        public bool IsOpenPopupCarInfor { get { return isOpenPopupCarInfor; } set { isOpenPopupCarInfor = value; OnPropertyChanged(); } }
         public ICommand ClosePopupCarInforCommand { get; set; }
         public ICommand OpenPopupCommand { get; set; }
-
         //*INFO: Value binding
         private int id; public int ID { get => id; set => SetProperty(ref id, value, nameof(ID)); }
         private int orderId; public int OrderId { get => orderId; set => SetProperty(ref orderId, value, nameof(OrderId)); }
@@ -43,20 +44,20 @@ namespace CarRentalManager.ViewModel
         private int fee; public int Fee { get => fee; set => SetProperty(ref fee, value, nameof(Fee)); }
         private int paid; public int Paid { get => paid; set => SetProperty(ref paid, value, nameof(Paid)); }
         private int remain; public int Remain { get => remain; set => SetProperty(ref remain, value, nameof(Remain)); }
+        private int receivedFee; public int ReceivedFee { get => receivedFee; set => SetProperty(ref receivedFee, value, nameof(ReceivedFee)); }
         private string returnCarStatus; public string ReturnCarStatus { get => returnCarStatus; set => SetProperty(ref returnCarStatus, value, nameof(ReturnCarStatus)); }
         private string feedback; public string Feedback { get => feedback; set => SetProperty(ref feedback, value, nameof(Feedback)); }
         private string note; public string Note { get => note; set => SetProperty(ref note, value, nameof(Note)); }
-        public ListContractViewModel()
+        public ListContractViewModel(bool isAdmin)
         {
-            List = getListObservableContract();
+            List = isAdmin ? getListObservableContract() : getSupplierListObservableContract(LoginInInforState.ID.ToString());
             AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             PayCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handlePayCommand());
-            IsOpenPopup_CarInfor = false;
+            IsOpenPopupCarInfor = false;
             ClosePopupCarInforCommand = new RelayCommand<object>((o) => { return true; }, (o) => handleClosePopupCommand());
             OpenPopupCommand = new RelayCommand<string>((content) => { return true; }, (content) => handleOpenPopupCommand());
-
         }
         private void reSetForm()
         {
@@ -113,6 +114,13 @@ namespace CarRentalManager.ViewModel
             ObservableCollection<Contract> contractList = new ObservableCollection<Contract>(contracts);
             return contractList;
         }
+        public ObservableCollection<Contract> getSupplierListObservableContract(string supplierId)
+        {
+            List<int> orderId = commonDAO.getOrderId(supplierId);
+            List<Contract> contracts = contractDAO.getSupplierListContract(orderId);
+            ObservableCollection<Contract> contractList = contracts != null ? new ObservableCollection<Contract>(contracts) : null;
+            return contractList;
+        }
         private bool checkIsError()
         {
             if (ErrorCollection.Count > 0)
@@ -124,11 +132,10 @@ namespace CarRentalManager.ViewModel
         {
             return new Contract(ID, OrderId, UserId,
                     variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
-                    Price, Paid, Remain,
+                    Price, Paid, Remain, ReceivedFee,
                     Feedback, variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38)), Note,
                     DateTime.Now, DateTime.Now);
         }
-
         private void updateListUI()
         {
             MessageBox.Show("Success!");
@@ -150,7 +157,6 @@ namespace CarRentalManager.ViewModel
             contractDAO.updateContract(contract);
             updateListUI();
         }
-
         private void handleDeleteCommand()
         {
             contractDAO.removeContract(ID);
@@ -163,20 +169,21 @@ namespace CarRentalManager.ViewModel
                 bool isError = Fee <= 0; 
                 if (!isError)
                 {
-                    IsOpenPopup_CarInfor = false;
+                    IsOpenPopupCarInfor = false;
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
                     Order currentOrder = orderDAO.getOrderById(currentContract.OrderId.ToString());
                     Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
-                    currentContract.Paid += Fee;
-                    currentContract.Remain -= Fee;
+                    currentContract.Paid += fee;
+                    currentContract.Remain -= fee;
+                    currentContract.ReceivedFee = commonDAO.getSupplierId(ID.ToString()) == 0 ? 0 : 70 * currentContract.Paid / 100;
                     currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
                     currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
                     currentContract.Feedback = Feedback;
                     currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
                     currentContract.Note = Note;
-                    if(currentContract.Status == EContractStatus.COMPLETE)
+                    if (currentContract.Status == EContractStatus.COMPLETE)
                         currentCar.Status = ECarStatus.AVAILABLE;
-                    if(currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)
+                    if (currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)
                         currentCar.Status = ECarStatus.UNAVAILABLE;
                     carDAO.updateCar(currentCar);
                     contractDAO.updateContract(currentContract);
@@ -184,7 +191,7 @@ namespace CarRentalManager.ViewModel
                 }
                 else
                 {
-                    IsOpenPopup_CarInfor = false;
+                    IsOpenPopupCarInfor = false;
                     MessageBox.Show("The contract has been paid completely");
                 }
             }
@@ -192,12 +199,10 @@ namespace CarRentalManager.ViewModel
             {
                 MessageBox.Show(Error);
             }
-
-            
         }
         private void handleClosePopupCommand()
         {
-            IsOpenPopup_CarInfor = false;
+            IsOpenPopupCarInfor = false;
         }
 
         private void handleOpenPopupCommand()
@@ -211,7 +216,7 @@ namespace CarRentalManager.ViewModel
                 bool isError = variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)) == EContractStatus.COMPLETE;
                 if (!isError)
                 {
-                    IsOpenPopup_CarInfor = true;
+                    IsOpenPopupCarInfor = true;
                 }
                 else
                 {

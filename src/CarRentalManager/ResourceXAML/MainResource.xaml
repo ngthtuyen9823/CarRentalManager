@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:CarRentalManager.ViewModel">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <!--<viewmodel:SubMainViewModel x:Key="SubMainVM"></viewmodel:SubMainViewModel>-->
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:ListCarViewModel x:Key="CarVM"></viewmodel:ListCarViewModel>
     <viewmodel:ListCustomerViewModel x:Key="CustomerVM"></viewmodel:ListCustomerViewModel>
     <viewmodel:ListSupplierViewModel x:Key="SupplierVM"></viewmodel:ListSupplierViewModel>
-
     <viewmodel:ListOrderViewModel x:Key="OrderVM"></viewmodel:ListOrderViewModel>
     <viewmodel:ListContractViewModel x:Key="ContractVM"></viewmodel:ListContractViewModel>
     <viewmodel:CardViewModels x:Key="CarViewModel"></viewmodel:CardViewModels>

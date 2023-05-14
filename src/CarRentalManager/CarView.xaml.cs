@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors;
 using System.Runtime.Remoting.Messaging;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace CarRentalManager
 {
@@ -30,7 +31,7 @@ namespace CarRentalManager
         public CarView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"ID", "SupplierId", "Name", "Brand" };
+            FilterBy.ItemsSource = new string[] { "ID", "SupplierId", "Name", "Brand" };
         }
         private bool IDFilter(object obj)
         {
@@ -60,9 +61,9 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case nameof(ID):
+                case "ID":
                     return IDFilter;
-                case nameof(SupplierId):
+                case "SupplierId":
                     return SupplierIdFilter;
                 case nameof(Name):
                     return NameFilter;
@@ -115,8 +116,6 @@ namespace CarRentalManager
                 {
                     return;
                 }
-                ID.Text = selectedCar.ID.ToString();
-                SupplierId.Text = selectedCar.SupplierId.ToString();
                 Name.Text = selectedCar.Name;
                 Brand.Text = selectedCar.Brand;
                 Color.Text = selectedCar.Color;

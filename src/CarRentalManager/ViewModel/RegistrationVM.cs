@@ -129,7 +129,6 @@ namespace CarRentalManager.ViewModel
                     ImageIdCardBack != null ? ImageIdCardBack : "",
                     DateTime.Now, DateTime.Now);
         }
-
         private Order getOrder(int lastOrderId, int lastCustomerId)
         {
             return new Order(lastOrderId + 1,
@@ -171,7 +170,6 @@ namespace CarRentalManager.ViewModel
                     resetForm();
                 }
                 else
-
                 {
                     MessageBox.Show("The Car is onrent or not available to rent for now");
                 }

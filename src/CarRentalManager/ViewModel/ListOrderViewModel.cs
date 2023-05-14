@@ -135,7 +135,8 @@ namespace CarRentalManager.ViewModel
 
         private Order getOrder()
         {
-            return new Order(ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
+            int lastOrder = commonDAO.getLastId(ETableName.ORDER);
+            return new Order(lastOrder + 1, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
                     variableService.parseStringToEnum<EOrderStatus>(Status.Substring(38)),
                     DepositAmount.ToString() != null ? DepositAmount : 0,
                     ImageEvidence != null ? ImageEvidence : "",
@@ -195,7 +196,7 @@ namespace CarRentalManager.ViewModel
                     Contract contract = new Contract(lastContractID + 1, ID, 
                         CustomerId, EContractStatus.UNPAID, 
                         TotalFee, currentOrder.DepositAmount, 
-                        TotalFee - currentOrder.DepositAmount, "" , 
+                        TotalFee - currentOrder.DepositAmount, currentOrder.DepositAmount * 70 / 100,  "" , 
                         EReturnCarStatus.ISNOTRETURN, "", DateTime.Now, DateTime.Now);
                     Order order = getOrder();
                     currentCar.Status = ECarStatus.ONRENT;

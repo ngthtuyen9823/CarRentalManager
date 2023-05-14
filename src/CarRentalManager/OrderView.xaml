@@ -62,8 +62,6 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
-                    <TextBox Name="ID" Width="200" Margin = "10 8 10 8" Text="{Binding ID, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã đơn hàng"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="CarId" Width="200" Margin = "10 8 10 8" Text="{Binding CarId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="CustomerId" Width="200" Margin = "10 8 10 8" Text="{Binding CustomerId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
@@ -100,41 +98,6 @@
                 </WrapPanel>
             </Grid>
             <Separator Grid.Row="3" Margin="8 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
-            <!--<Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition ></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <WrapPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Button Command="{Binding DeleteCommand}"
-                            Width="120"
-                            Height="38"
-                            Margin="5"
-                            Content="CANCEL"
-                            Background="#ee5253"
-                            VerticalAlignment="Bottom"
-                            />
-                    <Button Command="{Binding ConfirmCommand}"
-                            Width="120"
-                            Height="38"
-                            Margin="5"
-                            Content="CONFIRM"
-                            Background="#3AA9AD"
-                            VerticalAlignment="Bottom"
-                            />
-                </WrapPanel>
-                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" Grid.Column="1" Margin="30 20 30 20" materialDesign:HintAssist.Hint="Search" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                </ComboBox>
-                <Grid Margin="0 10 0 0" Grid.Column ="2" Width="300" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text="Search here ..."
-                           Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
-                    <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="35" Style="{StaticResource searchTextbox}" VerticalContentAlignment="Center"/>
-
-                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
-                </Grid>
-            </Grid>-->
             <Grid Grid.Row="4" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -229,8 +192,6 @@
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                         <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>
                         <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}"></GridViewColumn>
-                        <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"></GridViewColumn>
-                        <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding UpdatedAt}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>

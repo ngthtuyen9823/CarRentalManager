@@ -12,13 +12,14 @@ namespace CarRentalManager.models
         int price;
         int paid;
         int remain;
+        int receivedFee;
         string feedback;
         EReturnCarStatus returnCarStatus;
         string note;
         DateTime createdAt;
         DateTime updatedAt;
 
-        public Contract(int id, int orderId, int userId, EContractStatus status, int price, int paid, int remain, string feedback, EReturnCarStatus returnCarStatus, string note,
+        public Contract(int id, int orderId, int userId, EContractStatus status, int price, int paid, int remain,int receivedFee, string feedback, EReturnCarStatus returnCarStatus, string note,
         DateTime createdAt,
             DateTime updatedAt)
         {
@@ -28,7 +29,8 @@ namespace CarRentalManager.models
             this.status = status;
             this.price = price;
             this.paid = paid;
-            this.remain = remain; 
+            this.remain = remain;
+            this.receivedFee = receivedFee;
             this.feedback = feedback;
             this.returnCarStatus = returnCarStatus;
             this.note = note;
@@ -44,6 +46,7 @@ namespace CarRentalManager.models
         public int Price { get { return price; } set { price = value; } }
         public int Paid { get { return paid; } set { paid = value; } }
         public int Remain { get { return remain; } set { remain = value; } }
+        public int ReceivedFee { get { return receivedFee; } set { receivedFee = value; } }
         public string Feedback { get { return feedback; } set { feedback = value; } }
         public EReturnCarStatus ReturnCarStatus { get { return returnCarStatus; } set { returnCarStatus = value; } }
         public string Note { get { return note; } set { note = value; } }

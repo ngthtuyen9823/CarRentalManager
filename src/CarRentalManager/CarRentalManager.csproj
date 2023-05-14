@@ -187,6 +187,12 @@
     <Compile Include="StatisticView.xaml.cs">
       <DependentUpon>StatisticView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubContractView.xaml.cs">
+      <DependentUpon>SubContractView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierDashBoard.xaml.cs">
+      <DependentUpon>SupplierDashBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SupplierRegister.xaml.cs">
       <DependentUpon>SupplierRegister.xaml</DependentUpon>
     </Compile>
@@ -210,6 +216,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationVM.cs" />
     <Compile Include="ViewModel\StatisticViewModel.cs" />
+    <Compile Include="ViewModel\SubMainViewModel.cs" />
     <Page Include="Assets\icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -271,6 +278,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatisticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubContractView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupplierDashBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
