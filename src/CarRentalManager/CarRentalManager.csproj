@@ -148,7 +148,7 @@
     <Compile Include="enums\ECarType.cs" />
     <Compile Include="enums\ECityName.cs" />
     <Compile Include="enums\EContractStatus.cs" />
-    <Compile Include="enums\EDiscout.cs" />
+    <Compile Include="enums\EDiscount.cs" />
     <Compile Include="enums\EDrivingType.cs" />
     <Compile Include="enums\EnumDescriptionTypeConverter.cs" />
     <Compile Include="enums\EOrderStatus.cs" />
