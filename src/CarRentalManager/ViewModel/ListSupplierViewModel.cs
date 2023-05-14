@@ -152,6 +152,7 @@ namespace CarRentalManager.ViewModel
             car.ImagePath = ImageCar;
             car.TutorialPath = imagePath;
             car.Price = PriceCar;
+            car.Status = ECarStatus.UNAVAILABLE;
             carDAO.createCar(car);
         }
         private void updateListUI()
@@ -189,6 +190,8 @@ namespace CarRentalManager.ViewModel
             supplierDAO.createSupplier(supplier);
             getaddCar();
             updateListUI();
+            MessageBox.Show("Thank you to be our supplier! " +
+                "\n\nPlease using your email and password to login to our space to let we know the time your car is ready");
         }
     }
 }

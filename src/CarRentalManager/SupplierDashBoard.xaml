@@ -13,7 +13,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:viewModel="clr-namespace:CarRentalManager.ViewModel"
         ResizeMode="NoResize"
-        
+        Loaded="MainWindow_Loaded"
         x:Name="window">
     <Window.DataContext>
         <viewModel:SubMainViewModel/>

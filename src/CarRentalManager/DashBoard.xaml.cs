@@ -80,7 +80,7 @@ namespace CarRentalManager
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if(LoginInInforState.Name == null) {
+            if(!LoginInInforState.isLogin) {
                 MessageBox.Show("Please login");
                 LandingPage landingPage = new LandingPage();
                 landingPage.Show();
@@ -91,7 +91,6 @@ namespace CarRentalManager
             }
             else
             {
-                MessageBox.Show(LoginInInforState.Role.ToString());
                 txtUserName.Text = "Hi, " + LoginInInforState.Name;
             }
         }

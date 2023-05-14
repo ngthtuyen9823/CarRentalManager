@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRentalManager.state;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,24 @@ namespace CarRentalManager
             if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
+            }
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!LoginInInforState.isLogin)
+            {
+                MessageBox.Show("Please login");
+                LandingPage landingPage = new LandingPage();
+                landingPage.Show();
+
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+                Close();
+            }
+            else
+            {
+                txtUserName.Text = "Hi, " + LoginInInforState.Name;
             }
         }
     }
