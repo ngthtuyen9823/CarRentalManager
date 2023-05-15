@@ -35,8 +35,13 @@ namespace CarRentalManager
             RegisterForm loadRegister = new RegisterForm(myValue.ToString());            
             loadRegister.ShowDialog();
         }        
+        private double getRating(double total)
+        {
+            double allTotal = orderDAO.getListOrder().Count();
+            return 3.5+(total/allTotal)*5; // default rate of cars have any order = 3.5
+        }       
 
-        private void rbStar_LayoutUpdated(object sender, EventArgs e)
+        private void rbStar_Loaded(object sender, RoutedEventArgs e)
         {
             var myValue = rbStar.Tag;
             List<Order> orders = orderDAO.getListOrderByCondition(string.Format("carId = {0}", myValue.ToString()));
@@ -44,11 +49,6 @@ namespace CarRentalManager
                 rbStar.Value = getRating(orders.Count());
             else
                 rbStar.Value = 0;
-        }
-        private double getRating(double total)
-        {
-            double allTotal = orderDAO.getListOrder().Count();
-            return 3.5+(total/allTotal)*5; // default rate of cars have any order = 3.5
         }
     }
 }

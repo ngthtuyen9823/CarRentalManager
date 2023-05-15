@@ -54,21 +54,21 @@
         <materialDesign:Card
         Height="240"
         Width="200">
-        <Grid Margin="1,2,-1,-2">
-            <Grid.RowDefinitions>
-                <RowDefinition
+            <Grid Margin="1,2,-1,-2">
+                <Grid.RowDefinitions>
+                    <RowDefinition
                                 Height="140" />
-                <RowDefinition
+                    <RowDefinition
                                 Height="60" />
-                <RowDefinition
+                    <RowDefinition
                                 Height="40" />
-            </Grid.RowDefinitions>
-            <Image
+                </Grid.RowDefinitions>
+                <Image
                   Source="{Binding ImagePath}"
                   Height="140"
                   Width="196"
-                  Stretch="UniformToFill" />    
-            <Button x:Name="btnRegister"
+                  Stretch="UniformToFill" />
+                <Button x:Name="btnRegister"
               Grid.Row="0"
               Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
               HorizontalAlignment="Right"
@@ -79,24 +79,31 @@
               Cursor="Hand"
               Tag="{Binding ID}"
               Click="btnLoadRegister_Click">
-                <materialDesign:PackIcon Kind="Car" />
-            </Button>
-            <StackPanel
+                    <materialDesign:PackIcon Kind="Car" />
+                </Button>
+                <StackPanel
       Grid.Row="1"
-      Margin="8 24 8 0">
-                <TextBlock 
+                    Margin="0,22,0,0"
+      Grid.RowSpan="2">
+                    <TextBlock 
                     FontSize="15"
                     FontWeight="Bold">
                     <Run Text="{Binding Name}"/>
-                </TextBlock>
-                <TextBlock
-                    TextWrapping="Wrap"
-                    VerticalAlignment="Center">     
-                    <Run Text="{Binding Price}"/>
-                    <Run Text="K/NGÀY" />
-                </TextBlock>
-            </StackPanel>
-            <StackPanel
+                    </TextBlock>
+                    <materialDesign:Chip
+                    HorizontalAlignment="Left"
+                    Width="100"
+                    FontWeight="SemiBold"
+                    Background="#3AADA1" Height="25">
+                        <TextBlock>
+                            <Run Text="{Binding Price}"/>
+                            <Run Text="K/NGÀY" />
+                        </TextBlock>
+
+                    </materialDesign:Chip>
+
+                </StackPanel>
+                <StackPanel
                   HorizontalAlignment="Right"
                   Grid.Row="2"
                   Orientation="Horizontal"
@@ -110,12 +117,12 @@
               x:Name="rbStar"
               Orientation="Horizontal"
               Foreground="Gold"
-              Margin="0" RenderTransformOrigin="0.292,0.292" 
-              LayoutUpdated="rbStar_LayoutUpdated"/>
+              Margin="0" RenderTransformOrigin="0.292,0.292" Loaded="rbStar_Loaded" 
+              />
                     </Viewbox>
                 </StackPanel>
-        </Grid>
-    </materialDesign:Card>
+            </Grid>
+        </materialDesign:Card>
     </Border>
 
 
