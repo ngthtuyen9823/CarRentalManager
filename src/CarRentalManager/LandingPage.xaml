@@ -89,6 +89,145 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="Services_MenuItem_With_Dropdown"
+               TargetType="MenuItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Border x:Name="border"
+                                Background="#3AB19B"
+                                BorderThickness="0"
+                                Height="30"
+                                Width="145">
+                                <Grid>
+                                    <!--// Icon //-->
+                                    <ContentPresenter ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                  Height="25"
+                                                  Width="25"
+                                                  Margin="5,0,0,0" />
+
+                                    <!--// Text //-->
+                                    <ContentPresenter ContentSource="Header"
+                                                  TextBlock.Foreground="#D3D7DC"
+                                                  TextBlock.FontFamily="Dubai Medium"
+                                                  TextBlock.FontSize="15"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                  Margin="40,0,0,0" />
+
+                                    <!--// Dropdown Icon //-->
+                                    <Image Source="assets/img_services_dropdown.png"
+                                       Stretch="None"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,10,0" />
+
+                                    <!--// Popup //-->
+                                    <Popup x:Name="PART_Popup"
+                                       AllowsTransparency="True"
+                                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Placement="Bottom"
+                                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+
+                                        <Border x:Name="SubMenuBorder"
+                                            Background="#484546"
+                                            BorderBrush="#484546">
+
+                                            <ScrollViewer x:Name="SubMenuScrollViewer"
+                                                      Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer,TypeInTargetAssembly={x:Type FrameworkElement}}}">
+
+                                                <Grid RenderOptions.ClearTypeHint="Enabled">
+
+                                                    <Canvas HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top" />
+
+                                                    <ItemsPresenter x:Name="ItemsPresenter" />
+
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsSuspendingPopupAnimation"
+                                     Value="True">
+                                    <Setter Property="PopupAnimation"
+                                        TargetName="PART_Popup"
+                                        Value="None" />
+                                </Trigger>
+                                <Trigger Property="IsHighlighted"
+                                     Value="True">
+                                    <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="#524E4F" />
+                                    <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="#524E4F" />
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="Services_Sub_MenuItem"
+               TargetType="MenuItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Border x:Name="border"
+                                Background="#363435"
+                                BorderThickness="0">
+                                <Grid>
+                                    <!--// Icon //-->
+                                    <ContentPresenter ContentSource="Icon"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                  Height="18"
+                                                  Width="18"
+                                                  Margin="8,0,0,0" />
+                                    <!--// Text //-->
+                                    <ContentPresenter ContentSource="Header"
+                                                  TextBlock.Foreground="#D3D7DC"
+                                                  TextBlock.FontFamily="Dubai Medium"
+                                                  TextBlock.FontSize="15"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Center"
+                                                  Margin="35,0,0,0" />
+
+                                    <Grid x:Name="Highlighter"
+                                      Height="35"
+                                      Width="2"
+                                      Background="#FFFFFF"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Center"
+                                      Visibility="Collapsed" />
+
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsHighlighted"
+                                     Value="True">
+                                    <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="#3E3C3D" />
+                                    <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="#3E3C3D" />
+                                    <Setter Property="Visibility"
+                                        TargetName="Highlighter"
+                                        Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
             <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
             <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
@@ -310,8 +449,43 @@
                 Height="80"
                 Background="Black"
                 Margin="1090,0,0,0" Width="310">
-                <Grid
+                <Grid                   
                     Height="80">
+                    <Menu
+                        VerticalAlignment="Center" 
+                        Margin="0,0,166,0">
+                        <MenuItem Header="SERVICES"                                 
+                                  Style="{StaticResource Services_MenuItem_With_Dropdown}" Width="143">
+                            <MenuItem.Icon>
+                                   <Image                                    
+                                    Source="assets/image_services.png"
+                                    Stretch="Uniform" />
+                            </MenuItem.Icon>
+                            <MenuItem Header="Be Our Supplier"
+                          Height="35"
+                          Width="175"
+                          Style="{StaticResource Services_Sub_MenuItem}"
+                                      Click="CheckBox_Checked">
+                                <MenuItem.Icon>
+                                    <Image                                    
+                                    Source="assets/img_supplier.png"
+                                    Stretch="Uniform" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Cancel"
+                          Height="35"
+                          Width="175"
+                          Style="{StaticResource Services_Sub_MenuItem}"
+                                      Click="chipCancel_Click">
+                                <MenuItem.Icon>
+                                    <Image                                    
+                                    Source="assets/img_cancel.png"
+                                    Stretch="Uniform" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+
                     <materialDesign:Chip
                           VerticalAlignment="Top"
                           Margin="175,43,2,0"
@@ -326,22 +500,6 @@
                                 Kind="Login">
                             </materialDesign:PackIcon>
                         </materialDesign:Chip.Icon>
-                    </materialDesign:Chip>
-                    <materialDesign:Chip 
-                        Click="CheckBox_Checked"
-                        Height="25"                        
-                        Foreground="White"
-                        Background="#3AB19B"
-                        FontFamily="Dubai Medium" Margin="10,26,0,28" Width="106" FontSize="12">
-                        Be Our Supplier
-                    </materialDesign:Chip>
-                    <materialDesign:Chip x:Name="chipCancel" 
-                        Click="chipCancel_Click"
-                        Height="25"                        
-                        Foreground="White"
-                        Background="#3AB19B"
-                        FontFamily="Dubai Medium" Margin="122,26,0,28" Width="56" FontSize="12" >
-                        Cancel
                     </materialDesign:Chip>
 
                 </Grid>
@@ -959,7 +1117,7 @@
                             <Image Source="assets/images/background/bannertitle.png" Stretch="Fill"/>
                         </Grid>
                         <Grid
-                            Margin="0,5,0,0"
+                            Margin="0,0,0,0"
                             Grid.Row="3">
                             <StackPanel
                             Grid.Row="3">

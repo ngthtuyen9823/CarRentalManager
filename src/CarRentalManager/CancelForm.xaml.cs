@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarRentalManager.dao;
+using CarRentalManager.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,9 @@ namespace CarRentalManager
     /// </summary>
     public partial class CancelForm : Window
     {
+        CustomerDAO customerDAO = new CustomerDAO();
+        CarDAO carDAO= new CarDAO();
+        OrderDAO orderDAO= new OrderDAO();
         public CancelForm()
         {
             InitializeComponent();
@@ -33,6 +38,14 @@ namespace CarRentalManager
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var myValue = ((Button)sender).Tag;
+            Order order = orderDAO.getOrderById(myValue.ToString());
+            txtNameCustomer.Text = customerDAO.getCustomerById(order.CustomerId.ToString()).Name;
+            txtNameCar.Text = carDAO.getCarById(order.CarId.ToString()).Name;
         }
     }
 }
