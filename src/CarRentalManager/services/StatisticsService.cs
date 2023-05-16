@@ -46,7 +46,7 @@ namespace CarRentalManager.services
 
             contractList?.ForEach(contract =>
             {
-                total += contract?.Paid ?? 0;
+                total += contract?.ReceivedFee ?? 0;
             });
 
             orderList?.ForEach(order =>
@@ -76,7 +76,7 @@ namespace CarRentalManager.services
         public int getTotalRevenueByPrecious(int preciouse)
         {
             int currenYear = DateTime.Now.Year;
-            string conditionByPrecious = $"Month(updatedAt) = {(preciouse - 1) *3 } + 1" +
+            string conditionByPrecious = $"Month(updatedAt) = {(preciouse - 1) * 3 + 1}" +
                 $"or Month(updatedAt) = {(preciouse - 1) * 3 + 2} " +
                 $"or Month(updatedAt) = {(preciouse - 1) * 3 + 3}";
             List<Contract> contractList = contractDAO.getListByCondition($"({conditionByPrecious}) and Year(updatedAt) = {currenYear}");

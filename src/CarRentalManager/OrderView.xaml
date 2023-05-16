@@ -64,8 +64,12 @@
                 <WrapPanel Grid.Column="0">
                     <TextBox Name="CarId" Width="200" Margin = "10 8 10 8" Text="{Binding CarId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Name="CustomerId" Width="200" Margin = "10 8 10 8" Text="{Binding CustomerId, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã khách hàng"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name="CarName" Width=" 200" Margin = "10 8 10 8" Text="{Binding CarName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name="CustomerName" Width=" 200" Margin = "10 8 10 8" Text="{Binding CustomerName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên khách hàng"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name="CustomerIdCard" Width=" 200" Margin = "10 8 10 8" Text="{Binding CustomerIdCard, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND khách hàng"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name="BookingPlace" Width="200" Margin = "10 8 10 8" Text="{Binding BookingPlace, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Booking Place"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox Name="Status" Width="200" SelectedValue="{Binding Status, ValidatesOnDataErrors=True ,UpdateSourceTrigger=PropertyChanged}" Margin = "10 8 10 8" materialDesign:HintAssist.Hint="Trạng thái" 
@@ -186,7 +190,9 @@
                     <GridView>
                         <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Car ID" DisplayMemberBinding="{Binding CarId}"></GridViewColumn>
-                        <GridViewColumn Header="Customer ID" DisplayMemberBinding="{Binding CustomerId}"></GridViewColumn>
+                        <GridViewColumn Header="Car Name" DisplayMemberBinding="{Binding CarName}"></GridViewColumn>
+                        <GridViewColumn Header="Customer ID Card" DisplayMemberBinding="{Binding CustomerIdCard}"></GridViewColumn>
+                        <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding CustomerName}"></GridViewColumn>
                         <GridViewColumn Header="Booking Place" Width="200" DisplayMemberBinding="{Binding BookingPlace}"></GridViewColumn>
                         <GridViewColumn Header="Total Fee" DisplayMemberBinding="{Binding TotalFee}"></GridViewColumn>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>

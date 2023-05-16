@@ -1,4 +1,4 @@
-﻿using CarRentalManager.enums;
+using CarRentalManager.enums;
 using CarRentalManager.models;
 using CarRentalManager.services;
 using System;
@@ -47,7 +47,7 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Contract>(dataTable);
         }
-        public List<Contract> getSupplierListContract(List<int> orderId)
+        public List<ExtraContract> getSupplierListContract(List<int> orderId)
         {
             DataTable dataTable = new DataTable();  
             foreach (int id in orderId)
@@ -56,8 +56,16 @@ namespace CarRentalManager.dao
                 DataTable tempDatatable = dbConnectionDAO.getDataTable(sqlStringGetTable);
                 dataTable.Merge(tempDatatable);
             }
-            return commondDataService.dataTableToList<Contract>(dataTable);
+            return commondDataService.dataTableToList<ExtraContract>(dataTable);
         }
+
+        public List<ExtraContract> getListExtraContract()
+        {
+            string sqlStringGetTable = sqlService.getListExtraContract();
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<ExtraContract>(dataTable);
+        }
+
         public List<Contract> getListContractByDescOrAsc(bool isDescrease, string fieldName)
         {
             string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CONTRACT);

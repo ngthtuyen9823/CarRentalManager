@@ -2,25 +2,6 @@ CREATE DATABASE CARRENTALMANAGER
 use CARRENTALMANAGER
 go
 
---Select [CAR].supplierId from 
---(select [ORDER].carId as carId 
---from ([CONTRACT] inner join [ORDER]
---on [CONTRACT].orderId = [ORDER].id) where [CONTRACT].id = '6') d inner join [CAR]
---on [d].carId = [CAR].id
-
---select [Order].id
---from
---(select [Car].id as id
---from 
---([Supplier] inner join [Car] on [Supplier].id = [Car].supplierId) where [Supplier].id = 1) d 
---inner join [Order] on [d].id = [Order].carId
---Select [ORDER].id 
---from  
---(select [CAR].id as id 
---from 
---([SUPPLIER] inner join [CAR] on [SUPPLIER].id = [CAR].supplierId) where [SUPPLIER].id = 1) d
---inner join [ORDER] on [d].id = [ORDER].carId 
-
 CREATE TABLE [dbo].[Customer] (
 	id int primary key,
 	phoneNumber char(20),
@@ -247,59 +228,59 @@ insert into [dbo].[Order] Values(66,8,5,'Ho Chi Minh City', '2023-04-25', '2023-
 insert into [dbo].[Order] Values(67,9,6,'Ho Chi Minh City', '2023-02-20', '2023-02-21', 1003, 'PENDING', 200, '', 'Please contact me soon!', '2023-02-20', '2023-02-20')
 insert into [dbo].[Order] Values(68,12,7,'Ho Chi Minh City', '2023-04-29', '2023-04-30', 1403, 'PENDING', 200, '', 'Please contact me soon!', '2023-04-26', '2023-04-26')
 
-insert into [dbo].[Contract] values(1,1,1, 'PAID', 10100, 1010, 10100, 707, '', 'BROKEN','', '2019-01-01', '2019-01-03')
-insert into [dbo].[Contract] values(2,2,1, 'UNPAID', 2222, 0, 2222, 155, '', 'INTACT','', '2019-03-20', '2019-03-20')
-insert into [dbo].[Contract] values(3,3,1, 'UNPAID', 1234, 0, 1234, 86, '', 'INTACT','', '2019-03-20', '2019-03-20')
-insert into [dbo].[Contract] values(4,4,1, 'COMPLETE', 4888, 4888, 0, 3421, '', 'BROKEN','', '2019-03-20', '2019-03-20')
-insert into [dbo].[Contract] values(5,5,1, 'COMPLETE', 1000, 1000, 0, 700, '', 'INTACT','', '2019-01-20', '2019-01-20')
-insert into [dbo].[Contract] values(6,6,1, 'COMPLETE', 1000, 1000, 0, 700, '', 'INTACT','', '2019-01-20', '2019-01-20')
-insert into [dbo].[Contract] values(7,7,1, 'COMPLETE', 9876, 9876, 0, 6913, '', 'INTACT','', '2019-01-20', '2019-01-20')
-insert into [dbo].[Contract] values(8,8,1, 'COMPLETE', 7558, 7558, 0, 5290, '', 'INTACT','', '2019-01-20', '2019-01-20')
-insert into [dbo].[Contract] values(9,9,1, 'COMPLETE', 999, 999, 0, 699, '', 'INTACT','', '2019-02-20', '2019-02-20')
-insert into [dbo].[Contract] values(10,10,1, 'COMPLETE', 7890, 7890, 0, 5523, '', 'INTACT','', '2019-02-20', '2019-02-20')
-insert into [dbo].[Contract] values(11,11,1, 'COMPLETE', 2013, 2013, 0, 1409, '', 'INTACT','', '2019-04-20', '2019-04-20')
-insert into [dbo].[Contract] values(13,13,1, 'COMPLETE', 1003, 1003, 0, 702, '', 'BROKEN','', '2019-04-20', '2019-04-20')
-insert into [dbo].[Contract] values(14,14,1, 'COMPLETE', 1403, 1403, 0, 982, '', 'BROKEN','', '2019-04-26', '2019-04-26')
+insert into [dbo].[Contract] values(1,1,1, 'PAID', 10100, 1010, 9090, 505, '', 'BROKEN','', '2019-01-01', '2019-01-03')
+insert into [dbo].[Contract] values(2,2,1, 'UNPAID', 2222, 0, 2222, 0, '', 'INTACT','', '2019-03-20', '2019-03-20')
+insert into [dbo].[Contract] values(3,3,1, 'UNPAID', 1234, 0, 1234, 0, '', 'INTACT','', '2019-03-20', '2019-03-20')
+insert into [dbo].[Contract] values(4,4,1, 'COMPLETE', 4888, 4888, 0, 2444, '', 'BROKEN','', '2019-03-20', '2019-03-20')
+insert into [dbo].[Contract] values(5,5,1, 'COMPLETE', 1000, 1000, 0, 500, '', 'INTACT','', '2019-01-20', '2019-01-20')
+insert into [dbo].[Contract] values(6,6,1, 'COMPLETE', 1000, 1000, 0, 500, '', 'INTACT','', '2019-01-20', '2019-01-20')
+insert into [dbo].[Contract] values(7,7,1, 'COMPLETE', 9876, 9876, 0, 4938, '', 'INTACT','', '2019-01-20', '2019-01-20')
+insert into [dbo].[Contract] values(8,8,1, 'COMPLETE', 7558, 7558, 0, 3779, '', 'INTACT','', '2019-01-20', '2019-01-20')
+insert into [dbo].[Contract] values(9,9,1, 'COMPLETE', 999, 999, 0, 499, '', 'INTACT','', '2019-02-20', '2019-02-20')
+insert into [dbo].[Contract] values(10,10,1, 'COMPLETE', 7890, 7890, 0, 4194, '', 'INTACT','', '2019-02-20', '2019-02-20')
+insert into [dbo].[Contract] values(11,11,1, 'COMPLETE', 2013, 2013, 0, 1006, '', 'INTACT','', '2019-04-20', '2019-04-20')
+insert into [dbo].[Contract] values(13,13,1, 'COMPLETE', 1003, 1003, 0, 501, '', 'BROKEN','', '2019-04-20', '2019-04-20')
+insert into [dbo].[Contract] values(14,14,1, 'COMPLETE', 1403, 1403, 0, 701, '', 'BROKEN','', '2019-04-26', '2019-04-26')
 
-insert into [dbo].[Contract] values(15,15,1, 'PAID', 10100, 100, 0, 0, 'The service is good', 'INTACT','', '2020-01-01', '2020-01-03')
-insert into [dbo].[Contract] values(16,16,1, 'PAID', 700, 70, 0, 0,'', 'INTACT','', '2020-03-20', '2020-03-20')
-insert into [dbo].[Contract] values(17,17,1, 'PAID', 4534, 453, 0, 0, '', 'INTACT','', '2020-03-20', '2020-03-20')
-insert into [dbo].[Contract] values(18,18,1, 'UNPAID', 4888, 0, 0, 0, '', 'INTACT','', '2020-03-20', '2020-03-20')
-insert into [dbo].[Contract] values(19,19,1, 'UNPAID', 900, 0, 0, 0, '', 'INTACT','', '2020-01-20', '2020-01-20')
-insert into [dbo].[Contract] values(20,20,1, 'COMPLETE', 900, 900, 0, 0, 'The car is so old', 'BROKEN','', '2020-01-20', '2020-01-20')
-insert into [dbo].[Contract] values(21,21,1, 'COMPLETE', 9876, 9876, 0, 0, '', 'INTACT','', '2020-01-20', '2020-01-20')
-insert into [dbo].[Contract] values(22,22,1, 'COMPLETE', 500, 500, 0,  0, '', 'INTACT','', '2020-01-20', '2020-01-20')
-insert into [dbo].[Contract] values(23,23,1, 'COMPLETE', 999, 999, 0, 0,  '', 'INTACT','', '2020-02-20', '2020-02-20')
-insert into [dbo].[Contract] values(24,24,1, 'COMPLETE', 2000, 2000, 0, 0,  'I like this service', 'INTACT','', '2020-02-20', '2020-02-20')
-insert into [dbo].[Contract] values(25,25,1, 'COMPLETE', 4154, 4154, 0,  0, '', 'INTACT','', '2020-04-20', '2020-04-20')
-insert into [dbo].[Contract] values(26,26,1, 'COMPLETE', 1234, 1234, 0, 0, '', 'BROKEN','', '2020-04-20', '2020-04-20')
-insert into [dbo].[Contract] values(27,29,1, 'COMPLETE', 1403, 1403, 0, 0, '', 'INTACT','', '2021-01-01', '2021-01-03')
-insert into [dbo].[Contract] values(28,30,1, 'COMPLETE', 3567, 3567, 0, 0, '', 'INTACT','', '2021-03-20', '2021-03-20')
-insert into [dbo].[Contract] values(29,31,1, 'COMPLETE', 1111, 1111, 0, 0,  '', 'INTACT','', '2021-03-20', '2021-03-20')
-insert into [dbo].[Contract] values(30,32,1, 'COMPLETE', 4789, 4789, 0, 0,  '', 'INTACT','', '2021-03-20', '2021-03-20')
-insert into [dbo].[Contract] values(31,33,1, 'COMPLETE', 5000, 5000, 0, 0,  'This service is so good', 'BROKEN','', '2021-01-20', '2021-01-20')
-insert into [dbo].[Contract] values(32,34,1, 'COMPLETE', 5000, 5000, 0, 0,  '', 'INTACT','', '2021-01-20', '2021-01-20')
-insert into [dbo].[Contract] values(33,35,1, 'COMPLETE', 9876, 9876, 0, 0,  '', 'INTACT','', '2021-01-20', '2021-01-20')
-insert into [dbo].[Contract] values(34,36,1, 'COMPLETE', 2356, 2356, 0, 0,  '', 'INTACT','', '2021-01-20', '2021-01-20')
-insert into [dbo].[Contract] values(35,37,1, 'COMPLETE', 999, 999, 0, 0,  'I like this service', 'INTACT','', '2021-02-20', '2021-02-20')
-insert into [dbo].[Contract] values(36,38,1, 'COMPLETE', 893, 893, 0, 0,  'The car is so cool', 'INTACT','', '2021-02-20', '2021-02-20')
-insert into [dbo].[Contract] values(37,39,1, 'COMPLETE', 4154, 4154, 0, 0,  '', 'BROKEN','', '2021-04-20', '2021-04-20')
-insert into [dbo].[Contract] values(38,40,1, 'COMPLETE', 2150, 2150, 0, 0,  '', 'BROKEN','', '2021-04-20', '2021-04-20')
-insert into [dbo].[Contract] values(39,45,1, 'PAID', 571, 100, 471, 0,  'The car is so good', 'INTACT','', '2022-03-12', '2022-03-12')
+insert into [dbo].[Contract] values(15,15,1, 'PAID', 10100, 10100, 0, 5050, 'The service is good', 'INTACT','', '2020-01-01', '2020-01-03')
+insert into [dbo].[Contract] values(16,16,1, 'PAID', 700, 700, 0, 350,'', 'INTACT','', '2020-03-20', '2020-03-20')
+insert into [dbo].[Contract] values(17,17,1, 'PAID', 4534, 4534, 0, 2267, '', 'INTACT','', '2020-03-20', '2020-03-20')
+insert into [dbo].[Contract] values(18,18,1, 'UNPAID', 4888, 4888, 0, 2444, '', 'INTACT','', '2020-03-20', '2020-03-20')
+insert into [dbo].[Contract] values(19,19,1, 'UNPAID', 900, 900, 0, 450, '', 'INTACT','', '2020-01-20', '2020-01-20')
+insert into [dbo].[Contract] values(20,20,1, 'COMPLETE', 900, 900, 0, 450, 'The car is so old', 'BROKEN','', '2020-01-20', '2020-01-20')
+insert into [dbo].[Contract] values(21,21,1, 'COMPLETE', 9876, 9876, 0, 4938, '', 'INTACT','', '2020-01-20', '2020-01-20')
+insert into [dbo].[Contract] values(22,22,1, 'COMPLETE', 500, 500, 0,  250, '', 'INTACT','', '2020-01-20', '2020-01-20')
+insert into [dbo].[Contract] values(23,23,1, 'COMPLETE', 999, 999, 0, 499,  '', 'INTACT','', '2020-02-20', '2020-02-20')
+insert into [dbo].[Contract] values(24,24,1, 'COMPLETE', 2000, 2000, 0, 1000,  'I like this service', 'INTACT','', '2020-02-20', '2020-02-20')
+insert into [dbo].[Contract] values(25,25,1, 'COMPLETE', 4154, 4154, 0,  2077, '', 'INTACT','', '2020-04-20', '2020-04-20')
+insert into [dbo].[Contract] values(26,26,1, 'COMPLETE', 1234, 1234, 0, 617, '', 'BROKEN','', '2020-04-20', '2020-04-20')
+insert into [dbo].[Contract] values(27,29,1, 'COMPLETE', 1403, 1403, 0, 701, '', 'INTACT','', '2021-01-01', '2021-01-03')
+insert into [dbo].[Contract] values(28,30,1, 'COMPLETE', 3567, 3567, 0, 1783, '', 'INTACT','', '2021-03-20', '2021-03-20')
+insert into [dbo].[Contract] values(29,31,1, 'COMPLETE', 1111, 1111, 0, 555,  '', 'INTACT','', '2021-03-20', '2021-03-20')
+insert into [dbo].[Contract] values(30,32,1, 'COMPLETE', 4789, 4789, 0, 2394,  '', 'INTACT','', '2021-03-20', '2021-03-20')
+insert into [dbo].[Contract] values(31,33,1, 'COMPLETE', 5000, 5000, 0, 2500,  'This service is so good', 'BROKEN','', '2021-01-20', '2021-01-20')
+insert into [dbo].[Contract] values(32,34,1, 'COMPLETE', 5000, 5000, 0, 2500,  '', 'INTACT','', '2021-01-20', '2021-01-20')
+insert into [dbo].[Contract] values(33,35,1, 'COMPLETE', 9876, 9876, 0, 4938,  '', 'INTACT','', '2021-01-20', '2021-01-20')
+insert into [dbo].[Contract] values(34,36,1, 'COMPLETE', 2356, 2356, 0, 1178,  '', 'INTACT','', '2021-01-20', '2021-01-20')
+insert into [dbo].[Contract] values(35,37,1, 'COMPLETE', 999, 999, 0, 499,  'I like this service', 'INTACT','', '2021-02-20', '2021-02-20')
+insert into [dbo].[Contract] values(36,38,1, 'COMPLETE', 893, 893, 0, 446,  'The car is so cool', 'INTACT','', '2021-02-20', '2021-02-20')
+insert into [dbo].[Contract] values(37,39,1, 'COMPLETE', 4154, 4154, 0, 2077,  '', 'BROKEN','', '2021-04-20', '2021-04-20')
+insert into [dbo].[Contract] values(38,40,1, 'COMPLETE', 2150, 2150, 0, 1075,  '', 'BROKEN','', '2021-04-20', '2021-04-20')
+insert into [dbo].[Contract] values(39,45,1, 'PAID', 571, 100, 471, 50,  'The car is so good', 'INTACT','', '2022-03-12', '2022-03-12')
 insert into [dbo].[Contract] values(40,46,2, 'PAID', 9874, 0, 9874, 0,  'The car runs very smooth', 'BROKEN','Accidentally damage the car', '2022-05-22', '2022-05-22')
 insert into [dbo].[Contract] values(41,47,3, 'PAID', 744, 0, 744, 0,'The car is so good', 'INTACT','', '2022-12-20', '2022-12-20')
-insert into [dbo].[Contract] values(42,49,4, 'UNPAID', 1425, 200, 1225, 0, 'Xe hoi cu', 'BROKEN','', '2022-07-20', '2022-07-20')
-insert into [dbo].[Contract] values(43,51,4, 'UNPAID', 6000, 200, 5800, 0, '', 'INTACT','', '2023-01-20', '2023-01-20')
-insert into [dbo].[Contract] values(44,53,1, 'UNPAID', 100000, 2000, 8000, 0, 'The car is so good', 'INTACT','', '2023-01-20', '2023-01-20')
-insert into [dbo].[Contract] values(45,54,1, 'UNPAID', 10100, 200, 9900, 0, '', 'BROKEN','', '2023-01-01', '2023-01-03')
-insert into [dbo].[Contract] values(46,56,1, 'UNPAID', 3567, 200, 3167, 0, '', 'BROKEN','', '2023-03-20', '2023-03-20')
-insert into [dbo].[Contract] values(47,57,1, 'UNPAID', 4534, 200, 4234, 0, '', 'BROKEN','', '2023-03-20', '2023-03-20')
-insert into [dbo].[Contract] values(48,57,1, 'UNPAID', 4888, 200, 4688, 0, '', 'INTACT','', '2023-03-20', '2023-03-20')
-insert into [dbo].[Contract] values(49,59,1, 'UNPAID', 3453, 200, 3253, 0, '', 'INTACT','', '2023-01-20', '2023-01-20')
-insert into [dbo].[Contract] values(50,60,1, 'UNPAID', 3453, 200, 3253, 0, '', 'INTACT','', '2023-01-20', '2023-01-20')
-insert into [dbo].[Contract] values(51,61,1, 'UNPAID', 9876, 200, 9676, 0, '', 'INTACT','', '2023-01-20', '2023-01-20')
-insert into [dbo].[Contract] values(52,62,1, 'UNPAID', 7558, 200, 7358, 0, '', 'INTACT','', '2023-01-20', '2023-01-20')
-insert into [dbo].[Contract] values(53,63,1, 'UNPAID', 999, 200, 799, 0, '', 'INTACT','', '2023-02-20', '2023-02-20')
-insert into [dbo].[Contract] values(54,64,1, 'UNPAID', 7548, 200, 7348, 0, '', 'INTACT','', '2023-02-20', '2023-02-20')
-insert into [dbo].[Contract] values(55,65,1, 'UNPAID', 4154, 200, 3954, 0, '', 'INTACT','', '2023-04-20', '2023-04-20')
-insert into [dbo].[Contract] values(56,66,1, 'UNPAID', 3384, 200, 3184, 0, '', 'BROKEN','', '2023-04-20', '2023-04-20')
+insert into [dbo].[Contract] values(42,49,4, 'UNPAID', 1425, 200, 1225, 100, 'Xe hoi cu', 'BROKEN','', '2022-07-20', '2022-07-20')
+insert into [dbo].[Contract] values(43,51,4, 'UNPAID', 6000, 200, 5800, 100, '', 'INTACT','', '2023-01-20', '2023-01-20')
+insert into [dbo].[Contract] values(44,53,1, 'UNPAID', 100000, 2000, 8000, 1000, 'The car is so good', 'INTACT','', '2023-01-20', '2023-01-20')
+insert into [dbo].[Contract] values(45,54,1, 'UNPAID', 10100, 200, 9900, 100, '', 'BROKEN','', '2023-01-01', '2023-01-03')
+insert into [dbo].[Contract] values(46,56,1, 'UNPAID', 3567, 200, 3167, 100, '', 'BROKEN','', '2023-03-20', '2023-03-20')
+insert into [dbo].[Contract] values(47,57,1, 'UNPAID', 4534, 200, 4234, 100, '', 'BROKEN','', '2023-03-20', '2023-03-20')
+insert into [dbo].[Contract] values(48,57,1, 'UNPAID', 4888, 200, 4688, 100, '', 'INTACT','', '2023-03-20', '2023-03-20')
+insert into [dbo].[Contract] values(49,59,1, 'UNPAID', 3453, 200, 3253, 100, '', 'INTACT','', '2023-01-20', '2023-01-20')
+insert into [dbo].[Contract] values(50,60,1, 'UNPAID', 3453, 200, 3253, 100, '', 'INTACT','', '2023-01-20', '2023-01-20')
+insert into [dbo].[Contract] values(51,61,1, 'UNPAID', 9876, 200, 9676, 100, '', 'INTACT','', '2023-01-20', '2023-01-20')
+insert into [dbo].[Contract] values(52,62,1, 'UNPAID', 7558, 200, 7358, 100, '', 'INTACT','', '2023-01-20', '2023-01-20')
+insert into [dbo].[Contract] values(53,63,1, 'UNPAID', 999, 200, 799, 100, '', 'INTACT','', '2023-02-20', '2023-02-20')
+insert into [dbo].[Contract] values(54,64,1, 'UNPAID', 7548, 200, 7348, 100, '', 'INTACT','', '2023-02-20', '2023-02-20')
+insert into [dbo].[Contract] values(55,65,1, 'UNPAID', 4154, 200, 3954, 100, '', 'INTACT','', '2023-04-20', '2023-04-20')
+insert into [dbo].[Contract] values(56,66,1, 'UNPAID', 3384, 200, 3184, 100, '', 'BROKEN','', '2023-04-20', '2023-04-20')

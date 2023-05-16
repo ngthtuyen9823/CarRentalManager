@@ -163,6 +163,12 @@
                             COMPLETE
                         </ComboBoxItem>
                     </ComboBox>
+                    <TextBox Name="CustomerName" Width=" 200" Margin = "10 8 10 8" Text="{Binding CustomerName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên khách hàng"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name="CustomerIdCard" Width=" 200" Margin = "10 8 10 8" Text="{Binding CustomerIdCard, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="CMND khách hàng"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name="CustomerPhone" Width=" 200" Margin = "10 8 10 8" Text="{Binding CustomerPhone, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Số điện thoại khách hàng"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </Grid>
             <Separator Grid.Row="3" Margin="8 25 5 0" Background="#218c74" DockPanel.Dock="Top" Height="0.8"/>
@@ -233,6 +239,9 @@
                     <GridView>
                         <GridViewColumn Header="Contract ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrderId}"></GridViewColumn>
+                        <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding CustomerName}"></GridViewColumn>
+                        <GridViewColumn Header="Customer Id Card" DisplayMemberBinding="{Binding CustomerIdCard}"></GridViewColumn>
+                        <GridViewColumn Header="Customer Phone" DisplayMemberBinding="{Binding CustomerPhone}"></GridViewColumn>
                         <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
                         <GridViewColumn Header="Paid" DisplayMemberBinding="{Binding Paid}"></GridViewColumn>
                         <GridViewColumn Header="Remain" DisplayMemberBinding="{Binding Remain}"></GridViewColumn>

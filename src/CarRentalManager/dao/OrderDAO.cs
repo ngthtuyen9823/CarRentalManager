@@ -22,6 +22,12 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Order>(dataTable);
         }
+        public List<ExtraOrder> getListExtraOrder()
+        {
+            string sqlStringGetTable = sqlService.getListExtraOrder();
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<ExtraOrder>(dataTable);
+        }
         public void createOrder(Order order)
         {
             string sqlString = sqlService.createOrder(order);
