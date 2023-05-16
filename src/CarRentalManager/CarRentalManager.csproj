@@ -371,6 +371,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="Assets\img_login.png" />
     <Resource Include="Assets\img_cancel.png" />
     <Resource Include="Assets\img_supplier.png" />
     <Resource Include="Assets\image_services.png" />

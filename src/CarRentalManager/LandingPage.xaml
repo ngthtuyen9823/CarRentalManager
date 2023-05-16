@@ -483,24 +483,21 @@
                                     Stretch="Uniform" />
                                 </MenuItem.Icon>
                             </MenuItem>
+                            <MenuItem Header="Login"
+                          Height="35"
+                          Width="175"
+                          Style="{StaticResource Services_Sub_MenuItem}"
+                                      Click="Chip_Click">
+                                <MenuItem.Icon>
+                                    <Image                                    
+                                    Source="assets/img_login.png"
+                                    Stretch="Uniform" />
+                                </MenuItem.Icon>
+                            </MenuItem>
                         </MenuItem>
                     </Menu>
 
-                    <materialDesign:Chip
-                          VerticalAlignment="Top"
-                          Margin="175,43,2,0"
-                          Background="#aec3b0"
-                          Content="ADMIN LOGIN"
-                          IconBackground="#3AB19B"
-                          IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                          Click="Chip_Click" FontFamily="Dubai Medium" HorizontalAlignment="Stretch">
-                        <materialDesign:Chip.Icon>
-                            <materialDesign:PackIcon
-                                Height="25"
-                                Kind="Login">
-                            </materialDesign:PackIcon>
-                        </materialDesign:Chip.Icon>
-                    </materialDesign:Chip>
+                    
 
                 </Grid>
             </StackPanel>

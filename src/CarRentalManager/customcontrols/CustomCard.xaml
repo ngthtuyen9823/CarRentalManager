@@ -92,7 +92,7 @@
                     </TextBlock>
                     <materialDesign:Chip
                     HorizontalAlignment="Left"
-                    Width="100"
+                    Width="110"
                     FontWeight="SemiBold"
                     Background="#3AADA1" Height="25">
                         <TextBlock>
