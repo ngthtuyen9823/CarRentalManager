@@ -89,7 +89,7 @@
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top" >
                             <RadioButton Command="{Binding HomeCommand}" Style="{StaticResource menuRadioButton}" 
-                                         FontSize="18" IsChecked="True" Background="#3AA9AD" Foreground="#ffffff">
+                                         FontSize="18" IsChecked="True">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Home" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Home" FontWeight="SemiBold" FontSize="16"/>

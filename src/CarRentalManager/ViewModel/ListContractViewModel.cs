@@ -81,9 +81,9 @@ namespace CarRentalManager.ViewModel
         }
         public ObservableCollection<ExtraContract> getSupplierListObservableContract(string supplierId)
         {
-            List<int> orderIds = commonDAO.getOrderId(supplierId);
-            List<ExtraContract> contracts = contractDAO.getSupplierListContract(orderIds);
-            ObservableCollection<ExtraContract> contractList = contracts != null ? new ObservableCollection<ExtraContract>(contracts) : null;
+            List<int> orderId = commonDAO.getListOrderId(supplierId);
+            List<Contract> contracts = contractDAO.getListContractByOrderId(orderId);
+            ObservableCollection<Contract> contractList = contracts != null ? new ObservableCollection<Contract>(contracts) : null;
             return contractList;
         }
         private bool checkIsError()

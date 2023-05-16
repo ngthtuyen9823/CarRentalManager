@@ -203,8 +203,8 @@
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
                         <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"></GridViewColumn>
-                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
-                        <GridViewColumn Header="Brand" Width="220" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Name" Width="220" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Brand" Width="150" DisplayMemberBinding="{Binding Brand}"></GridViewColumn>
                         <GridViewColumn Header="Color" Width="120" DisplayMemberBinding="{Binding Color}"></GridViewColumn>
                         <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"></GridViewColumn>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"></GridViewColumn>

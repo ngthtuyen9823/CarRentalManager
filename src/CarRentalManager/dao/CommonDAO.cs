@@ -36,7 +36,7 @@ namespace CarRentalManager.dao
             int id = variableService.parseStringToInt(dataTable.Rows[0][0].ToString());
             return id;
         }
-        public List<int> getOrderId(string supplierId)
+        public List<int> getListOrderId(string supplierId)
         {
             List<int> orderId = new List<int>();
             string sqlStringGetTable = sqlService.getOrderId(supplierId, ETableName.CAR, ETableName.ORDER, ETableName.SUPPLIER);
