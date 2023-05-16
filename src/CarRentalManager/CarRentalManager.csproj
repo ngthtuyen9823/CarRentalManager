@@ -166,7 +166,9 @@
     </Compile>
     <Compile Include="models\Car.cs" />
     <Compile Include="models\Contract.cs" />
+    <Compile Include="models\ExtraContract.cs" />
     <Compile Include="models\Customer.cs" />
+    <Compile Include="models\ExtracOrder.cs" />
     <Compile Include="models\Order.cs" />
     <Compile Include="models\Receipt.cs" />
     <Compile Include="models\Supplier.cs" />

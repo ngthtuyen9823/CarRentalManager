@@ -16,7 +16,7 @@ using CarRentalManager.state;
 
 namespace CarRentalManager.ViewModel
 {
-    public class ListContractViewModel : BaseViewModel, IDataErrorInfo
+    public class ListContractViewModel : BaseViewModel
     {
         readonly VariableService variableService = new VariableService();
         readonly ContractDAO contractDAO = new ContractDAO();
@@ -25,8 +25,8 @@ namespace CarRentalManager.ViewModel
         readonly CommonDAO commonDAO = new CommonDAO();
         public string Error { get { return null; } }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
-        private ObservableCollection<Contract> list;
-        public ObservableCollection<Contract> List { get; set; }
+        private ObservableCollection<ExtraContract> list;
+        public ObservableCollection<ExtraContract> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand PayCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -48,6 +48,11 @@ namespace CarRentalManager.ViewModel
         private string returnCarStatus; public string ReturnCarStatus { get => returnCarStatus; set => SetProperty(ref returnCarStatus, value, nameof(ReturnCarStatus)); }
         private string feedback; public string Feedback { get => feedback; set => SetProperty(ref feedback, value, nameof(Feedback)); }
         private string note; public string Note { get => note; set => SetProperty(ref note, value, nameof(Note)); }
+        private string customerName; public string CustomerName { get => customerName; set => SetProperty(ref customerName, value, nameof(CustomerName)); }
+        private string customerIdCard; public string CustomerIdCard { get => customerIdCard; set => SetProperty(ref customerIdCard, value, nameof(CustomerIdCard)); }
+        private string customerPhone; public string CustomerPhone { get => customerPhone; set => SetProperty(ref customerPhone, value, nameof(CustomerPhone)); }
+
+
         public ListContractViewModel(bool isAdmin)
         {
             List = isAdmin ? getListObservableContract() : getSupplierListObservableContract(LoginInInforState.ID.ToString());
@@ -67,58 +72,18 @@ namespace CarRentalManager.ViewModel
             Status = null;
             Fee = 0;
         }
-        public string this[string columnName]
+       
+        public ObservableCollection<ExtraContract> getListObservableContract()
         {
-            get
-            {
-                string result = null;
-                switch (columnName)
-                {
-                    case nameof(ID):
-                        if (ID <= 0)
-                            result = "Invalid ID";
-                        break;
-                    case nameof(OrderId):
-                        if (OrderId <= 0)
-                            result = "Invalid order ID";
-                        break;
-                    case nameof(UserId):
-                        if (UserId <= 0)
-                            result = "Invalid user ID";
-                        break;
-                    case nameof(Fee):
-                        if (Fee <= 0)
-                            result = "Please enter fee to pay";
-                        break;
-                    default:
-                        if (string.IsNullOrEmpty(typeof(ListContractViewModel).GetProperty(columnName).GetValue(this)?.ToString()))
-                            result = string.Format("{0} can not be empty", columnName);
-                        break;
-                }
-                if (ErrorCollection.ContainsKey(columnName))
-                {
-                    ErrorCollection[columnName] = result;
-                    ErrorCollection.Remove(columnName);
-                }
-                else if (result != null)
-                    ErrorCollection.Add(columnName, result);
-
-                OnPropertyChanged(nameof(ErrorCollection));
-                return result;
-            }
-        }
-
-        public ObservableCollection<Contract> getListObservableContract()
-        {
-            List<Contract> contracts = contractDAO.getListContract();
-            ObservableCollection<Contract> contractList = new ObservableCollection<Contract>(contracts);
+            List<ExtraContract> contracts = contractDAO.getListExtraContract();
+            ObservableCollection<ExtraContract> contractList = new ObservableCollection<ExtraContract>(contracts);
             return contractList;
         }
-        public ObservableCollection<Contract> getSupplierListObservableContract(string supplierId)
+        public ObservableCollection<ExtraContract> getSupplierListObservableContract(string supplierId)
         {
-            List<int> orderId = commonDAO.getOrderId(supplierId);
-            List<Contract> contracts = contractDAO.getSupplierListContract(orderId);
-            ObservableCollection<Contract> contractList = contracts != null ? new ObservableCollection<Contract>(contracts) : null;
+            List<int> orderIds = commonDAO.getOrderId(supplierId);
+            List<ExtraContract> contracts = contractDAO.getSupplierListContract(orderIds);
+            ObservableCollection<ExtraContract> contractList = contracts != null ? new ObservableCollection<ExtraContract>(contracts) : null;
             return contractList;
         }
         private bool checkIsError()
@@ -162,6 +127,19 @@ namespace CarRentalManager.ViewModel
             contractDAO.removeContract(ID);
             updateListUI();
         }
+
+        private void updateContract(Contract currentContract)
+        {
+            currentContract.Paid += fee;
+            currentContract.Remain -= fee;
+            currentContract.ReceivedFee = (int)(currentContract.Paid / 2);
+            currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
+            currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
+            currentContract.Feedback = Feedback;
+            currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
+            currentContract.Note = Note;
+            contractDAO.updateContract(currentContract);
+        }
         private void handlePayCommand()
         {
             try
@@ -173,14 +151,7 @@ namespace CarRentalManager.ViewModel
                     Contract currentContract = contractDAO.getContractById(ID.ToString());
                     Order currentOrder = orderDAO.getOrderById(currentContract.OrderId.ToString());
                     Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
-                    currentContract.Paid += fee;
-                    currentContract.Remain -= fee;
-                    currentContract.ReceivedFee = commonDAO.getSupplierId(ID.ToString()) == 0 ? 0 : 70 * currentContract.Paid / 100;
-                    currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
-                    currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
-                    currentContract.Feedback = Feedback;
-                    currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
-                    currentContract.Note = Note;
+                    this.updateContract(currentContract);
                     if (currentContract.Status == EContractStatus.COMPLETE)
                         currentCar.Status = ECarStatus.AVAILABLE;
                     if (currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)

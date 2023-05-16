@@ -21,10 +21,7 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}] WHERE supplierId = '{1}'", tableName, supplierId);
         }
-        public string getListTableDataByOrderId(int orderId, ETableName tableName)
-        {
-            return string.Format("SELECT * FROM [{0}] WHERE orderId = '{1}'", tableName, orderId);
-        }
+        
         public string getValueById(string id, ETableName tableName)
         {
             return string.Format("SELECT * FROM [{0}] WHERE id='{1}'", tableName, id);
@@ -53,7 +50,7 @@ namespace CarRentalManager.services
         }
         public string getListByCondition(ETableName tableName, string condition)
         {
-            return string.Format("SELECT * FROM [{0}] where {1}", tableName, condition);
+            return string.Format("SELECT * FROM [{0}] WHERE {1}", tableName, condition);
         }
 
         public string getListFeedbackOfCustomer()
@@ -68,17 +65,17 @@ namespace CarRentalManager.services
         }
         public string getSupplierId(string contractId, ETableName carTable, ETableName orderTable, ETableName contractTable)
         {
-            return string.Format("Select [{1}].supplierId from (select [{2}].carId as" +
-                " carId from ([{3}] inner join [{2}] on [{3}].orderId = [{2}].id)" +
-                " where [{3}].id = '{0}') d inner join [{1}] on [d].carId = [{1}].id", contractId, carTable, orderTable, contractTable);
+            return string.Format("SELECT [{1}].supplierId from (SELECT [{2}].carId as" +
+                " carId from ([{3}] INNER JOIN [{2}] on [{3}].orderId = [{2}].id)" +
+                " WHERE [{3}].id = '{0}') d INNER JOIN [{1}] on [d].carId = [{1}].id", contractId, carTable, orderTable, contractTable);
         }
         public string getOrderId(string supplierId, ETableName carTable, ETableName orderTable, ETableName supplierTable)
         {
-            return string.Format("Select [{2}].id" +
+            return string.Format("SELECT [{2}].id" +
                 " from " +
-                " (select [{1}].id as id from" +
-                " ([{3}] inner join [{1}] on [{3}].id = [{1}].supplierId)" +
-                " where [{3}].id = {0}) d inner join [{2}]" +
+                " (SELECT [{1}].id as id from" +
+                " ([{3}] INNER JOIN [{1}] on [{3}].id = [{1}].supplierId)" +
+                " WHERE [{3}].id = {0}) d INNER JOIN [{2}]" +
                 " on [d].id = [{2}].carId ", supplierId, carTable, orderTable, supplierTable);
         }
         public string getCreadentialWithEmail(ETableName tableName, string email)
@@ -111,7 +108,7 @@ namespace CarRentalManager.services
         public string getListCarAvailable(DateTime Start, DateTime End)
         {
             string availbleCondition = $"SELECT carId FROM [{ETableName.ORDER}] WHERE startDate >= '{Start}' and endDate <= '{End}' and status <> '{EOrderStatus.CANCELBYADMIN}' and status <> '{EOrderStatus.CANCELBYUSER}'";
-            return $"SELECT [{ETableName.CAR}].* FROM [{ETableName.CAR}] LEFT JOIN ({availbleCondition})A on [{ETableName.CAR}].id = A.carId WHERE A.carId is null";
+            return $"SELECT [{ETableName.CAR}].* FROM [{ETableName.CAR}] LEFT JOIN ({availbleCondition})Available on [{ETableName.CAR}].id = Available.carId WHERE A.carId is null and [{ETableName.CAR}].status <> '{ECarStatus.UNAVAILABLE}'";
         }
 
         public string getListCarByCondition(string City, string Brand, int Seats, DateTime Start, DateTime End)
@@ -125,7 +122,7 @@ namespace CarRentalManager.services
 
         public string updateCar(Car updatedCar)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}' where id = '{14}'",
+            return string.Format("UPDATE [{0}] SET name = '{1}', brand = '{2}', color = '{3}', publishYear = '{4}', type = '{5}', status = '{6}', drivingType = '{7}', seats = '{8}', licensePlate = '{9}', price = '{10}', imagePath = '{11}', supplierId = '{12}', updatedAt = '{13}' WHERE id = '{14}'",
                 ETableName.CAR, updatedCar.Name,
                 updatedCar.Brand, updatedCar.Color,
                 updatedCar.PublishYear, updatedCar.Type,
@@ -156,7 +153,7 @@ namespace CarRentalManager.services
         }
         public string updateCustomer(Customer updatedCustomer)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' where id = '{9}'",
+            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' WHERE id = '{9}'",
                 ETableName.CUSTOMER,
                 updatedCustomer.Name, updatedCustomer.PhoneNumber,
                 updatedCustomer.Email, updatedCustomer.IDCard,
@@ -179,7 +176,7 @@ namespace CarRentalManager.services
 
         public string updateSupplier(Supplier updatedSupplier)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' where id = '{9}'",
+            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' WHERE id = '{9}'",
                 ETableName.SUPPLIER,
                 updatedSupplier.ID, updatedSupplier.PhoneNumber,
                 updatedSupplier.Name, updatedSupplier.Email,
@@ -209,7 +206,7 @@ namespace CarRentalManager.services
 
         public string updateContract(Contract updatedContract)
         {
-            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', feedback = '{7}', returnCarStatus = '{8}', note = '{9}',  updatedAt = '{10}' where id = '{11}'",
+            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', feedback = '{7}', returnCarStatus = '{8}', note = '{9}',  updatedAt = '{10}', receivedFee = '{11}' WHERE id = '{12}'",
             ETableName.CONTRACT,
             updatedContract.UserId,
             updatedContract.OrderId,
@@ -221,9 +218,21 @@ namespace CarRentalManager.services
             updatedContract.ReturnCarStatus,
             updatedContract.Note,
             DateTime.Now,
+            updatedContract.ReceivedFee,
             updatedContract.ID);
         }
 
+        public string getListExtraContract()
+        {
+            return $"SELECT [{ETableName.CONTRACT}].*, [{ETableName.CUSTOMER}].name as customerName, [{ETableName.CUSTOMER}].idCard as customerIdCard, [{ETableName.CUSTOMER}].phoneNumber as customerPhone" +
+                $" FROM [{ETableName.CONTRACT}]" +
+                $" JOIN [{ETableName.ORDER}] on [{ETableName.CONTRACT}].orderId = [{ETableName.ORDER}].id" +
+                $" JOIN [{ETableName.CUSTOMER}] on [{ETableName.ORDER}].customerId = [{ETableName.CUSTOMER}].id";
+        }
+        public string getListTableDataByOrderId(int orderId, ETableName tableName)
+        {
+            return $"{getListExtraContract()} WHERE orderId = '{orderId}'";
+        }
         //*INFO: ORDER
         public string getListOrder()
         {
@@ -232,7 +241,7 @@ namespace CarRentalManager.services
 
         public string updateOrder(Order newOrder)
         {
-            return string.Format("UPDATE [{0}] SET carId = '{1}', customerId = '{2}', bookingPlace = '{3}', startDate = '{4}', endDate = '{5}', totalFee = '{6}', status = '{7}', depositAmount = '{8}', imageEvidence = '{9}', notes = '{10}', updatedAt = '{11}' where id = '{12}' ",
+            return string.Format("UPDATE [{0}] SET carId = '{1}', customerId = '{2}', bookingPlace = '{3}', startDate = '{4}', endDate = '{5}', totalFee = '{6}', status = '{7}', depositAmount = '{8}', imageEvidence = '{9}', notes = '{10}', updatedAt = '{11}' WHERE id = '{12}' ",
                 ETableName.ORDER,
                     newOrder.CarId,
                     newOrder.CustomerId, newOrder.BookingPlace,
@@ -243,7 +252,7 @@ namespace CarRentalManager.services
         }
         public string updateStatusOfOrder(Order newOrder)
         {
-            return string.Format("UPDATE [{0}] SET status = '{1}', updatedAt = '{2}' where id = '{3}' ",
+            return string.Format("UPDATE [{0}] SET status = '{1}', updatedAt = '{2}' WHERE id = '{3}' ",
                 ETableName.ORDER,
                     EOrderStatus.COMPLETE,
                     DateTime.Now,
@@ -263,12 +272,20 @@ namespace CarRentalManager.services
                     newOrder.Notes, DateTime.Now, DateTime.Now);
         }
 
+        public string getListExtraOrder()
+        {
+            return $"SELECT [{ETableName.ORDER}].*, [{ETableName.CUSTOMER}].name as customerName, [{ETableName.CUSTOMER}].idCard as customerIdCard, [{ETableName.CAR}].name as CarName" +
+                $" FROM [{ETableName.ORDER}]" +
+                $" JOIN [{ETableName.CUSTOMER}] on [{ETableName.ORDER}].customerId = [{ETableName.CUSTOMER}].id" +
+                $" JOIN [{ETableName.CAR}] on [{ETableName.ORDER}].carId = [{ETableName.CAR}].id";
+        }
+
 
         //*INFO: RECEIPT
         public string updateReceipt(Receipt newReceipt)
         {
             //*TODO: UPDATE query later
-            return string.Format("UPDATE [{0}] SET contractId = '{1}', price = '{2}', updatedAt = '{3}' where id = '{4}' ",
+            return string.Format("UPDATE [{0}] SET contractId = '{1}', price = '{2}', updatedAt = '{3}' WHERE id = '{4}' ",
                 ETableName.ORDER, newReceipt.ContractId, newReceipt.Price, DateTime.Now, newReceipt.ID);
         }
 
@@ -283,21 +300,21 @@ namespace CarRentalManager.services
         //*INFO: STATISTIC
         public string countOnrentTimes()
         {
-            return "SELECT name, COUNT([Contract].id) as onrentTimes " +
-                    "FROM[Order] " +
-                    "JOIN[Contract] on[Order].id = [Contract].orderId " +
-                    "JOIN[Car] on[Order].carId = [Car].id " +
-                    "GROUP BY name";
+            return $"SELECT name, COUNT([{ETableName.CONTRACT}].id) as onrentTimes " +
+                    $"FROM [{ETableName.ORDER}] " +
+                    $"JOIN [{ETableName.CONTRACT}] on [{ETableName.ORDER}].id = [{ETableName.CONTRACT}].orderId " +
+                    $"JOIN [{ETableName.CAR}] on [{ETableName.ORDER}].carId = [{ETableName.CAR}].id " +
+                    $"GROUP BY name";
         }
 
         public string countBrokenTimes()
         {
-            return "SELECT name, COUNT([Contract].id) as brokenTimes " +
-                "FROM [Contract] " +
-                "JOIN [Order] ON[Contract].orderId = [Order].id " +
-                "JOIN [Car] on [Order].carId = [Car].id " +
-                "WHERE [Contract].returnCarStatus = 'BROKEN' " +
-                "GROUP BY name";
+            return $"SELECT name, COUNT([{ETableName.CONTRACT}].id) as brokenTimes " +
+                $"FROM [{ETableName.CONTRACT}] " +
+                $"JOIN [{ETableName.ORDER}] on [{ETableName.CONTRACT}].orderId = [{ETableName.ORDER}].id " +
+                $"JOIN [{ETableName.CAR}] on [{ETableName.ORDER}].carId = [{ETableName.CAR}].id " +
+                $"WHERE [{ETableName.CONTRACT}].returnCarStatus = 'BROKEN' " +
+                $"GROUP BY name";
         }
     }
 }

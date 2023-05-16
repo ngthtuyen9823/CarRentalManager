@@ -26,26 +26,27 @@ namespace CarRentalManager
         public SubContractView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] { "ID", "OrderId"};
+            FilterBy.ItemsSource = new string[] { "ID", "OrderId", "CustomerIdCard"};
         }
         private bool IDFilter(object obj)
         {
-            var Filterobj = obj as Contract;
+            var Filterobj = obj as ExtraContract;
             string filterobj = Filterobj.ID.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool OrderIdFilter(object obj)
         {
-            var Filterobj = obj as Contract;
+            var Filterobj = obj as ExtraContract;
             string filterobj = Filterobj.OrderId.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
-        private bool ReturnCarStatusFilter(object obj)
+        private bool CustomerIdCardFilter(object obj)
         {
-            var Filterobj = obj as Contract;
-            string filterobj = Filterobj.ReturnCarStatus.ToString().ToLower();
+            var Filterobj = obj as ExtraContract;
+            string filterobj = Filterobj.CustomerIdCard.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
+
 
         public Predicate<object> GetFilter()
         {
@@ -56,7 +57,7 @@ namespace CarRentalManager
                 case nameof(OrderId):
                     return OrderIdFilter;
             }
-            return ReturnCarStatusFilter;
+            return CustomerIdCardFilter;
         }
         private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -79,7 +80,7 @@ namespace CarRentalManager
             var item = sender as ListViewItem;
             if (item != null && item.IsSelected)
             {
-                var selectedContract = lsvContract.SelectedItems[0] as Contract;
+                var selectedContract = lsvContract.SelectedItems[0] as ExtraContract;
                 if (selectedContract == null)
                 {
                     return;
@@ -87,7 +88,10 @@ namespace CarRentalManager
                 OrderId.Text = selectedContract.OrderId.ToString();
                 Price.Text = selectedContract.Price.ToString();
                 ReceivedFee.Text = selectedContract.ReceivedFee.ToString(); 
-                Status.Text = selectedContract.Status.ToString();
+                Status.Text = selectedContract.Status.ToString(); 
+                CustomerName.Text = selectedContract.CustomerName.ToString();
+                CustomerIdCard.Text = selectedContract.CustomerIdCard.ToString();
+                CustomerPhone.Text = selectedContract.CustomerPhone.ToString();
             }
         }
     }

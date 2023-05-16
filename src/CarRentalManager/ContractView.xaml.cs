@@ -26,30 +26,42 @@ namespace CarRentalManager
         public ContractView()
         {
             InitializeComponent();
-            FilterBy.ItemsSource = new string[] {"ID", "OrderId", "ReturnCarStatus", "Note" };
+            FilterBy.ItemsSource = new string[] {"ID", "OrderId", "ReturnCarStatus", "Note", "CustomerIdCard", "CustomerPhone" };
         }
         private bool IDFilter(object obj)
         {
-            var Filterobj = obj as Contract;
+            var Filterobj = obj as ExtraContract;
             string filterobj = Filterobj.ID.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool OrderIdFilter(object obj)
         {
-            var Filterobj = obj as Contract;
+            var Filterobj = obj as ExtraContract;
             string filterobj = Filterobj.OrderId.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool NoteFilter(object obj)
         {
-            var Filterobj = obj as Contract;
+            var Filterobj = obj as ExtraContract;
             string filterobj = Filterobj.Note.ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         private bool ReturnCarStatusFilter(object obj)
         {
-            var Filterobj = obj as Contract;
+            var Filterobj = obj as ExtraContract;
             string filterobj = Filterobj.ReturnCarStatus.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool CustomerIdCardFilter(object obj)
+        {
+            var Filterobj = obj as ExtraContract;
+            string filterobj = Filterobj.CustomerIdCard.ToString().ToLower();
+            return filterobj.Contains(FilterTextBox.Text.ToLower());
+        }
+        private bool CustomerPhoneFilter(object obj)
+        {
+            var Filterobj = obj as ExtraContract;
+            string filterobj = Filterobj.CustomerPhone.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
 
@@ -65,6 +77,10 @@ namespace CarRentalManager
                     return ReturnCarStatusFilter;
                 case nameof(Note):
                     return NoteFilter;
+                case nameof(CustomerIdCard):
+                    return CustomerIdCardFilter;
+                case nameof(CustomerPhone):
+                    return CustomerPhoneFilter;
             }
             return ReturnCarStatusFilter;
         }
@@ -90,7 +106,7 @@ namespace CarRentalManager
             var item = sender as ListViewItem;
             if (item != null && item.IsSelected)
             {
-                var selectedContract = lsvContract.SelectedItems[0] as Contract;
+                var selectedContract = lsvContract.SelectedItems[0] as ExtraContract;
                 if (selectedContract == null)
                 {
                     return;
@@ -102,7 +118,10 @@ namespace CarRentalManager
                 Status.Text = selectedContract.Status.ToString();
                 ReturnCarStatus.Text = selectedContract.ReturnCarStatus.ToString();
                 Feedback.Text = selectedContract.Feedback.ToString();
-                Note.Text = selectedContract.Note.ToString();       
+                Note.Text = selectedContract.Note.ToString();  
+                CustomerName.Text = selectedContract.CustomerName.ToString();
+                CustomerIdCard.Text = selectedContract.CustomerIdCard.ToString();
+                CustomerPhone.Text = selectedContract.CustomerPhone.ToString();
             }
         }
     }

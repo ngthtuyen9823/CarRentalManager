@@ -28,7 +28,7 @@ namespace CarRentalManager.ViewModel
         readonly ContractDAO contractDao = new ContractDAO();
         readonly CommonDAO commonDAO = new CommonDAO();
         readonly CarDAO carDao = new CarDAO();  
-        public ObservableCollection<Order> List { get; set; }
+        public ObservableCollection<ExtraOrder> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
 
@@ -52,8 +52,10 @@ namespace CarRentalManager.ViewModel
         private int depositAmount; public int DepositAmount { get => depositAmount; set => SetProperty(ref depositAmount, value, nameof(DepositAmount)); }
         private string imageEvidence; public string ImageEvidence { get => imageEvidence; set => SetProperty(ref imageEvidence, value, nameof(ImageEvidence)); }
         private string notes; public string Notes { get => notes; set => SetProperty(ref notes, value, nameof(Notes)); }
-
-
+        private string customerName; public string CustomerName { get => customerName; set => SetProperty(ref customerName, value, nameof(CustomerName)); }
+        private string customerIdCard; public string CustomerIdCard { get => customerIdCard; set => SetProperty(ref customerIdCard, value, nameof(CustomerIdCard)); }
+        private string carName; public string CarName { get => carName; set => SetProperty(ref carName, value, nameof(CarName)); }
+        
         public ListOrderViewModel()
         {
             List = getListObservableOrder();
@@ -111,10 +113,10 @@ namespace CarRentalManager.ViewModel
                 return result;
             }
         }
-        public ObservableCollection<Order> getListObservableOrder()
+        public ObservableCollection<ExtraOrder> getListObservableOrder()
         {
-            List<Order> Orders = orderDao.getListOrder();
-            ObservableCollection<Order> OrderList = new ObservableCollection<Order>(Orders);
+            List<ExtraOrder> Orders = orderDao.getListExtraOrder();
+            ObservableCollection<ExtraOrder> OrderList = new ObservableCollection<ExtraOrder>(Orders);
             return OrderList;
         }
         
