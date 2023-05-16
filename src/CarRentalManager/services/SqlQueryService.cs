@@ -108,7 +108,7 @@ namespace CarRentalManager.services
         public string getListCarAvailable(DateTime Start, DateTime End)
         {
             string availbleCondition = $"SELECT carId FROM [{ETableName.ORDER}] WHERE startDate >= '{Start}' and endDate <= '{End}' and status <> '{EOrderStatus.CANCELBYADMIN}' and status <> '{EOrderStatus.CANCELBYUSER}'";
-            return $"SELECT [{ETableName.CAR}].* FROM [{ETableName.CAR}] LEFT JOIN ({availbleCondition})Available on [{ETableName.CAR}].id = Available.carId WHERE A.carId is null and [{ETableName.CAR}].status <> '{ECarStatus.UNAVAILABLE}'";
+            return $"SELECT [{ETableName.CAR}].* FROM [{ETableName.CAR}] LEFT JOIN ({availbleCondition})Available on [{ETableName.CAR}].id = Available.carId WHERE Available.carId is null and [{ETableName.CAR}].status <> '{ECarStatus.UNAVAILABLE}'";
         }
 
         public string getListCarByCondition(string City, string Brand, int Seats, DateTime Start, DateTime End)
