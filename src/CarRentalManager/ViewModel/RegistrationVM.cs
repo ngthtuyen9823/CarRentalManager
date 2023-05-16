@@ -81,15 +81,15 @@ namespace CarRentalManager.ViewModel
                         if (string.IsNullOrWhiteSpace(PhoneNumber))
                             result = "Phone Number cannot be empty";
                         else
-                        {
-                            Regex validatePhoneNumberRegex = new Regex(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$");
+                        { 
+                            Regex validatePhoneNumberRegex = new Regex(@"^(?:\+?84|0)(?:\d{9}|\d{10}|\d{8})$");
                             if (!validatePhoneNumberRegex.IsMatch(PhoneNumber))
-                                result = "not exist";
+                                result = "Not exist";
                         }
                         break;
                     case nameof(DepositAmount):
                         if (DepositAmount <= 0)
-                            result = "you must enter the deposit amount to rent this car";
+                            result = "You must enter the deposit amount to rent this car";
                         break;
                     default:
                         if (string.IsNullOrEmpty(typeof(RegistrationVM).GetProperty(columnName).GetValue(this)?.ToString()))

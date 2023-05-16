@@ -110,13 +110,30 @@
                                 BorderBrush="Gray"
                                 BorderThickness="2"
                                 CornerRadius="4">
+                                <Grid
+                                    >
+                                    <materialDesign:PackIcon Kind="IdCard" Width="50" Height="40" Foreground="Gray"/>
+                                    <TextBox 
+                            Text="{Binding IdCard,
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txtCmnd" Margin="50 0" materialDesign:HintAssist.Hint="ID Card" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" LostKeyboardFocus="txtCmnd_LostKeyboardFocus" />
+                                </Grid>
+
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10">
+                            <Border
+                                BorderBrush="Gray"
+                                BorderThickness="2"
+                                CornerRadius="4">
                                 <Grid>
                                     <materialDesign:PackIcon Kind="User" Width="50" Height="40" Foreground="Gray"/>
                                     <TextBox                           
                                         Text="{Binding Name, 
                                         ValidatesOnDataErrors=True,
                                         UpdateSourceTrigger=PropertyChanged}"
-                                        x:Name="txtTen" Margin="50 0" materialDesign:HintAssist.Hint="Họ tên" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" />
+                                        x:Name="txtTen" Margin="50 0" materialDesign:HintAssist.Hint="Name" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0"/>
                                 </Grid>
                             </Border>
                         </StackPanel>
@@ -131,7 +148,7 @@
                             Text="{Binding PhoneNumber,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtSdt" Margin="50 0" materialDesign:HintAssist.Hint="Số điện thoại" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0"  />
+                            x:Name="txtSdt" Margin="50 0" materialDesign:HintAssist.Hint="PhoneNumber" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0"  />
                                 </Grid>
                             </Border>
                         </StackPanel>
@@ -147,30 +164,10 @@
                             Text="{Binding BookingPlace,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtDiachi" Margin="50 0" materialDesign:HintAssist.Hint="Địa chỉ" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" />
+                            x:Name="txtDiachi" Margin="50 0" materialDesign:HintAssist.Hint="Address" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" />
                                 </Grid>
                             </Border>
                         </StackPanel>
-
-
-                        <StackPanel Orientation="Horizontal" Margin="10">
-                            <Border
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                CornerRadius="4">
-                                <Grid
-                                    >
-                                    <materialDesign:PackIcon Kind="IdCard" Width="50" Height="40" Foreground="Gray"/>
-                                    <TextBox 
-                            Text="{Binding IdCard,
-                            ValidatesOnDataErrors=True,
-                            UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtCmnd" Margin="50 0" materialDesign:HintAssist.Hint="CMND" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" />
-                                </Grid>
-
-                            </Border>
-                        </StackPanel>
-
 
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <Border
@@ -184,7 +181,7 @@
                             Text="{Binding ImageIdCardFront,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtTruocCmnd" Margin="50 0" materialDesign:HintAssist.Hint="Mặt trước CMND" FontSize="20" Foreground="Gray" Width="155" BorderBrush="Gray" BorderThickness="0" />
+                            x:Name="txtTruocCmnd" Margin="50 0" materialDesign:HintAssist.Hint="Front CARD" FontSize="20" Foreground="Gray" Width="155" BorderBrush="Gray" BorderThickness="0" />
                                     <ToggleButton
                                         Margin="200,0,0,0"
                                         Name="btnCMNDFront"
@@ -213,7 +210,7 @@
                             Text="{Binding ImageIdCardBack,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtSauCmnd" Margin="50 0" materialDesign:HintAssist.Hint="Mặt sau CMND" FontSize="20" Foreground="Gray" Width="200" BorderThickness="0" />
+                            x:Name="txtSauCmnd" Margin="50 0" materialDesign:HintAssist.Hint="Behind CARD" FontSize="20" Foreground="Gray" Width="200" BorderThickness="0" />
                                     <ToggleButton
                         Margin="200,0,0,0"
                         Name="btnCMNDBack"
@@ -242,7 +239,7 @@
                             Text="{Binding DepositAmount,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtTiencoc" Margin="50 0" materialDesign:HintAssist.Hint="Tiền đã cọc" FontSize="20" Foreground="Gray" Width="200" BorderBrush="Gray" BorderThickness="0" />
+                            x:Name="txtTiencoc" Margin="50 0" materialDesign:HintAssist.Hint="Deposit" FontSize="20" Foreground="Gray" Width="200" BorderBrush="Gray" BorderThickness="0" />
                                 </Grid>
                             </Border>
 
@@ -259,7 +256,7 @@
                             Text="{Binding ImageEvidence,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            materialDesign:HintAssist.Hint="Ảnh minh chứng"
+                            materialDesign:HintAssist.Hint="Proof"
                             x:Name="txtMinhchung" Margin="50 0" FontSize="20" Foreground="Gray" Width="205" BorderBrush="Gray"  BorderThickness="0" />
                                     <ToggleButton
                                     Margin="200,0,0,0"
@@ -295,7 +292,7 @@
                                         HorizontalAlignment="Left"
                                         FontSize="20"
                                         Foreground="Gray">
-                                        Bắt đầu
+                                        Start
                                     </TextBlock>
                                     <DatePicker
                             SelectedDate="{Binding StartDate,
@@ -319,7 +316,7 @@
                                         HorizontalAlignment="Left"
                                         FontSize="20"
                                         Foreground="Gray">
-                                        Kết thúc
+                                        End
                                     </TextBlock>
                                     <DatePicker 
                             SelectedDate="{Binding EndDate, 
@@ -342,7 +339,7 @@
                             Text="{Binding Notes,
                             ValidatesOnDataErrors=True,
                             UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtNotes" Margin="50 0" materialDesign:HintAssist.Hint="Ghi chú" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" />
+                            x:Name="txtNotes" Margin="50 0" materialDesign:HintAssist.Hint="Note" FontSize="20" Foreground="Gray" Width="450" BorderBrush="Gray" BorderThickness="0" />
                                 </Grid>
                             </Border>
                         </StackPanel>
@@ -360,11 +357,11 @@
                                         Style="{StaticResource MaterialDesignFlatButton}"
                                         ToolTip="MaterialDesignFlatButton"
                                         x:Name="btnTinhtien" 
-                            Content="Tính tiền"
+                            Content="Total Cost"
                             FontSize="20"
                             Foreground="Gray"
                             Height="35"
-                            Width="120"
+                            Width="125"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
                              Margin="50 0"
@@ -397,7 +394,7 @@
                             <Button
                             Command="{Binding RegisterCommand}"
                             Width="150" Height="35" FontSize="20"
-                            Background="#3AB19B" Foreground="White" x:Name="btnLogin" Content="Đặt xe" Click="btnLogin_Click">
+                            Background="#3AB19B" Foreground="White" x:Name="btnLogin" Content="Register" Click="btnLogin_Click">
                             </Button>
                         </StackPanel>
                     </StackPanel>

@@ -19,6 +19,7 @@ namespace CarRentalManager
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly CarDAO carDAO = new CarDAO();
         readonly OrderDAO orderDAO = new OrderDAO();
+        readonly CustomerDAO customerDAO = new CustomerDAO();
         readonly VariableService variableService = new VariableService();
 
         private int priceCar;
@@ -150,7 +151,7 @@ namespace CarRentalManager
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            lblTotalFee.Content = string.Empty;
+            lblTotalFee.Content = string.Empty;           
         }
 
         private double getDiscout(double price)
@@ -170,6 +171,19 @@ namespace CarRentalManager
             }
             else
                 return 0;
+        }      
+
+        private void txtCmnd_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Customer customer = customerDAO.getCustomerByIdCard(txtCmnd.Text);
+            if (customer != null)
+            {
+                txtTen.Text = customer.Name;
+                txtSdt.Text = customer.PhoneNumber.Remove(customer.PhoneNumber.Length-1);
+                txtDiachi.Text = customer.Address;
+                txtTruocCmnd.Text = customer.ImageIdCardFront;
+                txtSauCmnd.Text = customer.ImageIdCardBack;
+            }    
         }
     }
 }

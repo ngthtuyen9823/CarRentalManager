@@ -53,7 +53,7 @@ namespace CarRentalManager.dao
 
         public Customer getCustomerById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id, ETableName.CUSTOMER);
+            string sqlStringGetTable = sqlService.getValueById(id,ETableName.CUSTOMER);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Customer>(dataTable)?.First();
         }
@@ -62,6 +62,12 @@ namespace CarRentalManager.dao
         {
             string sqlString = sqlService.updateCustomer(customer);
             dbConnectionDAO.getDataTable(sqlString);
+        }
+        public Customer getCustomerByIdCard(string idCard)
+        {
+            string sqlStringGetTable = sqlService.getValueByIdCard(idCard,ETableName.CUSTOMER);
+            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
+            return commondDataService.dataTableToList<Customer>(dataTable)?.First();
         }
     }
 }

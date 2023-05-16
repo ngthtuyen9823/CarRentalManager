@@ -161,6 +161,10 @@ namespace CarRentalManager.services
                 updatedCustomer.ImageIdCardBack,
                 DateTime.Now, updatedCustomer.ID);
         }
+        public string getValueByIdCard(string idCard, ETableName tableName)
+        {
+            return string.Format("SELECT * FROM [{0}] WHERE idCard='{1}'", tableName, idCard);
+        }
 
         //*INFO: SUPPLIER
 
