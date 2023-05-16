@@ -65,18 +65,18 @@ namespace CarRentalManager.services
         }
         public string getSupplierId(string contractId, ETableName carTable, ETableName orderTable, ETableName contractTable)
         {
-            return string.Format("SELECT [{1}].supplierId from (SELECT [{2}].carId as" +
-                " carId from ([{3}] INNER JOIN [{2}] on [{3}].orderId = [{2}].id)" +
-                " WHERE [{3}].id = '{0}') d INNER JOIN [{1}] on [d].carId = [{1}].id", contractId, carTable, orderTable, contractTable);
+            return string.Format("SELECT [{1}].supplierId FROM (SELECT [{2}].carId AS" +
+                " carId FROM ([{3}] INNER JOIN [{2}] ON [{3}].orderId = [{2}].id)" +
+                " WHERE [{3}].id = '{0}') d INNER JOIN [{1}] ON [d].carId = [{1}].id", contractId, carTable, orderTable, contractTable);
         }
         public string getOrderId(string supplierId, ETableName carTable, ETableName orderTable, ETableName supplierTable)
         {
             return string.Format("SELECT [{2}].id" +
-                " from " +
-                " (SELECT [{1}].id as id from" +
-                " ([{3}] INNER JOIN [{1}] on [{3}].id = [{1}].supplierId)" +
+                " FROM " +
+                " (SELECT [{1}].id AS id FROM" +
+                " ([{3}] INNER JOIN [{1}] ON [{3}].id = [{1}].supplierId)" +
                 " WHERE [{3}].id = {0}) d INNER JOIN [{2}]" +
-                " on [d].id = [{2}].carId ", supplierId, carTable, orderTable, supplierTable);
+                " ON [d].id = [{2}].carId ", supplierId, carTable, orderTable, supplierTable);
         }
         public string getCreadentialWithEmail(ETableName tableName, string email)
         {
@@ -210,7 +210,7 @@ namespace CarRentalManager.services
 
         public string updateContract(Contract updatedContract)
         {
-            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', feedback = '{7}', returnCarStatus = '{8}', note = '{9}',  updatedAt = '{10}', receivedFee = '{11}' WHERE id = '{12}'",
+            return string.Format("UPDATE [{0}] SET userId = '{1}', orderId = '{2}', status = '{3}', price = '{4}', paid = '{5}', remain = '{6}', receivedFee = '{7}', feedback = '{8}', returnCarStatus = '{9}', note = '{10}',  updatedAt = '{11}' where id = '{12}'",
             ETableName.CONTRACT,
             updatedContract.UserId,
             updatedContract.OrderId,
@@ -218,11 +218,11 @@ namespace CarRentalManager.services
             updatedContract.Price,
             updatedContract.Paid,
             updatedContract.Remain,
+            updatedContract.ReceivedFee,
             updatedContract.Feedback,
             updatedContract.ReturnCarStatus,
             updatedContract.Note,
             DateTime.Now,
-            updatedContract.ReceivedFee,
             updatedContract.ID);
         }
 

@@ -47,7 +47,7 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Contract>(dataTable);
         }
-        public List<ExtraContract> getSupplierListContract(List<int> orderId)
+        public List<ExtraContract> getListContractByOrderId(List<int> orderId)
         {
             DataTable dataTable = new DataTable();  
             foreach (int id in orderId)
