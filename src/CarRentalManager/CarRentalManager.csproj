@@ -376,7 +376,6 @@
     <Resource Include="Assets\img_supplier.png" />
     <Resource Include="Assets\image_services.png" />
     <Resource Include="Assets\img_services_dropdown.png" />
-    <Resource Include="Assets\images\background\bannertitle.png" />
     <Resource Include="Assets\images\background\bannerdiscount.png" />
     <Resource Include="Assets\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
