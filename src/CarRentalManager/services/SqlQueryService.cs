@@ -180,11 +180,12 @@ namespace CarRentalManager.services
 
         public string updateSupplier(Supplier updatedSupplier)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' WHERE id = '{9}'",
+            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', password = '{4}', address = '{5}', updatedAt = '{6}' WHERE id = '{7}'",
                 ETableName.SUPPLIER,
-                updatedSupplier.ID, updatedSupplier.PhoneNumber,
-                updatedSupplier.Name, updatedSupplier.Email,
-                updatedSupplier.Address, DateTime.Now,
+                updatedSupplier.Name, updatedSupplier.PhoneNumber,
+                updatedSupplier.Email, updatedSupplier.Password,
+                updatedSupplier.Address,
+                DateTime.Now,
                 updatedSupplier.ID);
         }
 

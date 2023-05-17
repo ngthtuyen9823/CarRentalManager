@@ -44,8 +44,11 @@ namespace CarRentalManager
         {
             var myValue = ((Button)sender).Tag;
             Order order = orderDAO.getOrderById(myValue.ToString());
-            txtNameCustomer.Text = customerDAO.getCustomerById(order.CustomerId.ToString()).Name;
-            txtNameCar.Text = carDAO.getCarById(order.CarId.ToString()).Name;
+            if (order != null)
+            {
+                txtNameCustomer.Text = customerDAO.getCustomerById(order.CustomerId.ToString()).Name;   
+                txtNameCar.Text = carDAO.getCarById(order.CarId.ToString()).Name;
+            }
         }
     }
 }

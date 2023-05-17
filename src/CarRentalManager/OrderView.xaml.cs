@@ -64,7 +64,7 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "ID":
+                case nameof(ID):
                     return OrderIDFilter;
                 case nameof(CustomerIdCard):
                     return CustomerIdCardFilter;
@@ -104,6 +104,7 @@ namespace CarRentalManager
                 {
                     return;
                 }
+                ID.Text = selectedOrder.ID.ToString();
                 CarId.Text = selectedOrder.CarId.ToString();
                 BookingPlace.Text = selectedOrder.BookingPlace.ToString();
                 TotalFee.Text = selectedOrder.TotalFee.ToString();

@@ -69,6 +69,10 @@
                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <WrapPanel Grid.Column="0">
+                    <TextBox Name ="ID" Width="120" Margin="10 8 10 8" Text="{Binding ID ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã xe"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Name ="SupplierId" Width="120" Margin="10 8 10 8" Text="{Binding SupplierId ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mã nhà cung cấp"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name ="Name" Width="120" Margin="10 8 10 8" Text="{Binding Name ,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tên xe"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Name ="Brand" Width="120" Margin="10 8 10 8" Text="{Binding Brand, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hãng"

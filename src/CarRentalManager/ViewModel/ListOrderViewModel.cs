@@ -27,7 +27,7 @@ namespace CarRentalManager.ViewModel
         readonly OrderDAO orderDao = new OrderDAO();
         readonly ContractDAO contractDao = new ContractDAO();
         readonly CommonDAO commonDAO = new CommonDAO();
-        readonly CarDAO carDao = new CarDAO();  
+        readonly CarDAO carDao = new CarDAO();
         public ObservableCollection<ExtraOrder> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
@@ -55,11 +55,11 @@ namespace CarRentalManager.ViewModel
         private string customerName; public string CustomerName { get => customerName; set => SetProperty(ref customerName, value, nameof(CustomerName)); }
         private string customerIdCard; public string CustomerIdCard { get => customerIdCard; set => SetProperty(ref customerIdCard, value, nameof(CustomerIdCard)); }
         private string carName; public string CarName { get => carName; set => SetProperty(ref carName, value, nameof(CarName)); }
-        
+
         public ListOrderViewModel()
         {
             List = getListObservableOrder();
-            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand()); 
+            AddCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleAddCommand());
             EditCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleEditCommand());
             DeleteCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleDeleteCommand());
             ConfirmCommand = new RelayCommand<object>((p) => checkIsError(), (p) => handleConfirmCommand());
@@ -68,13 +68,13 @@ namespace CarRentalManager.ViewModel
         }
 
         private void reSetForm()
-        { 
+        {
             ID = 0;
-            CarId= 0;
-            CustomerId= 0;
+            CarId = 0;
+            CustomerId = 0;
             BookingPlace = null;
-            StartDate= DateTime.Now;
-            EndDate= DateTime.Now;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
             TotalFee = 0;
         }
         public string this[string columnName]
@@ -119,7 +119,7 @@ namespace CarRentalManager.ViewModel
             ObservableCollection<ExtraOrder> OrderList = new ObservableCollection<ExtraOrder>(Orders);
             return OrderList;
         }
-        
+
         private bool checkIsError()
         {
             if (ErrorCollection.Count > 0)
@@ -156,7 +156,7 @@ namespace CarRentalManager.ViewModel
                 orderDao.createOrder(order);
                 updateListUI();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -181,7 +181,7 @@ namespace CarRentalManager.ViewModel
                 orderDao.updateOrder(order);
                 updateListUI();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -195,10 +195,10 @@ namespace CarRentalManager.ViewModel
                 if (currentCar != null && currentCar.Status == ECarStatus.READYTORENT)
                 {
                     int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
-                    Contract contract = new Contract(lastContractID + 1, ID, 
-                        CustomerId, EContractStatus.UNPAID, 
-                        TotalFee, currentOrder.DepositAmount, 
-                        TotalFee - currentOrder.DepositAmount, currentOrder.DepositAmount * 70 / 100,  "" , 
+                    Contract contract = new Contract(lastContractID + 1, ID,
+                        CustomerId, EContractStatus.UNPAID,
+                        TotalFee, currentOrder.DepositAmount,
+                        TotalFee - currentOrder.DepositAmount, currentOrder.DepositAmount * 70 / 100, "",
                         EReturnCarStatus.ISNOTRETURN, "", DateTime.Now, DateTime.Now);
                     Order order = getOrder();
                     currentCar.Status = ECarStatus.ONRENT;
@@ -218,17 +218,17 @@ namespace CarRentalManager.ViewModel
                 MessageBox.Show("Cannot remove order");
             }
         }
-        private void handleSearchOrder ()
+        private void handleSearchOrder()
         {
             try
             {
                 Order order = orderDao.getOrderById(ID.ToString());
-                if(order != null)
+                if (order != null)
                 {
                     CarId = order.CarId;
                     BookingPlace = order.BookingPlace;
-                    StartDate= order.StartDate;
-                    EndDate= order.EndDate;
+                    StartDate = order.StartDate;
+                    EndDate = order.EndDate;
                 }
                 else
                 {
