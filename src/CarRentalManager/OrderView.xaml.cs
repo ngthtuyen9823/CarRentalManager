@@ -1,4 +1,5 @@
-﻿using CarRentalManager.enums;
+﻿using CarRentalManager.dao;
+using CarRentalManager.enums;
 using CarRentalManager.models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,9 @@ namespace CarRentalManager
     /// </summary>
     public partial class OrderView : UserControl
     {
+        readonly CustomerDAO customerDAO = new CustomerDAO();
+        readonly CarDAO carDAO = new CarDAO();
+
         public OrderView()
         {
             InitializeComponent();
@@ -115,6 +119,22 @@ namespace CarRentalManager
                 CarName.Text = selectedOrder?.CarName?.ToString() ?? "";
                 CustomerName.Text = selectedOrder?.CustomerName?.ToString() ?? "";
                 CustomerIdCard.Text = selectedOrder?.CustomerIdCard?.ToString() ?? "";
+            }
+        }
+        private void txtCmnd_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Customer customer = customerDAO.getCustomerByIdCard(CustomerIdCard.Text);
+            if (customer != null)
+            {
+                CustomerName.Text = customer.Name;
+            }
+        }
+        private void txtIDCard_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            Car car = carDAO.getCarById(CarId.Text);
+            if (car != null)
+            {
+                CarName.Text = car.Name;
             }
         }
     }
