@@ -18,6 +18,7 @@ using System.Xml.Linq;
 using CarRentalManager.services;
 using MaterialDesignThemes.Wpf;
 using System.Net;
+using CarRentalManager.state;
 
 namespace CarRentalManager.ViewModel
 {
@@ -28,6 +29,7 @@ namespace CarRentalManager.ViewModel
         readonly ContractDAO contractDao = new ContractDAO();
         readonly CommonDAO commonDAO = new CommonDAO();
         readonly CarDAO carDao = new CarDAO();
+        readonly CustomerDAO customerDAO = new CustomerDAO();    
         public ObservableCollection<ExtraOrder> List { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
@@ -138,7 +140,8 @@ namespace CarRentalManager.ViewModel
         private Order getOrder(bool isNewOrder)
         {
             int lastOrder = commonDAO.getLastId(ETableName.ORDER);
-            return new Order(isNewOrder ? lastOrder + 1 : ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
+            Customer currentCustomer = customerDAO.getCustomerByCondition($"idCard = '{CustomerIdCard}'");
+            return new Order(isNewOrder ? lastOrder + 1 : ID, CarId, currentCustomer.ID, BookingPlace, StartDate, EndDate, TotalFee,
                     variableService.parseStringToEnum<EOrderStatus>(Status.Substring(38)),
                     DepositAmount.ToString() != null ? DepositAmount : 0,
                     ImageEvidence != null ? ImageEvidence : "",
@@ -152,9 +155,16 @@ namespace CarRentalManager.ViewModel
             {
                 Order order = getOrder(true);
                 Car currentCar = carDao.getCarById(order.CarId.ToString());
-                currentCar.Status = ECarStatus.READYTORENT;
-                orderDao.createOrder(order);
-                updateListUI();
+                if(carDao.checkIsAvailable(order.StartDate, order.EndDate, currentCar.ID))
+                {
+                    currentCar.Status = ECarStatus.READYTORENT;
+                    orderDao.createOrder(order);
+                    updateListUI();
+                }
+                else
+                {
+                    MessageBox.Show("The car is not available at that time!");
+                }
             }
             catch (Exception ex)
             {
@@ -192,13 +202,13 @@ namespace CarRentalManager.ViewModel
             {
                 Car currentCar = carDao.getCarById(CarId.ToString());
                 Order currentOrder = orderDao.getOrderById(ID.ToString());
-                if (currentCar != null && currentCar.Status == ECarStatus.READYTORENT)
+                if (currentCar != null)
                 {
                     int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
                     Contract contract = new Contract(lastContractID + 1, ID,
-                        CustomerId, EContractStatus.UNPAID,
+                        LoginInInforState.ID, EContractStatus.UNPAID,
                         TotalFee, currentOrder.DepositAmount,
-                        TotalFee - currentOrder.DepositAmount, currentOrder.DepositAmount * 70 / 100, "",
+                        TotalFee - currentOrder.DepositAmount, (int)(currentOrder.DepositAmount / 2), "",
                         EReturnCarStatus.ISNOTRETURN, "", DateTime.Now, DateTime.Now);
                     Order order = getOrder(false);
                     currentCar.Status = ECarStatus.ONRENT;
