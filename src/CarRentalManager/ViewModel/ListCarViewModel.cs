@@ -147,11 +147,11 @@ namespace CarRentalManager.ViewModel
             OnPropertyChanged(nameof(List));
             reSetForm();
         }
-        private Car getCar()
+        private Car getCar(bool isNewCar)
         {
             string imagePath = imgService.getProjectImagePath(ImagePath, "cars", ID.ToString());
             int lastCarID = commonDAO.getLastId(ETableName.CAR);
-            return new Car(lastCarID + 1, Name,
+            return new Car(isNewCar ? lastCarID + 1: ID , Name,
                     Brand, PublishYear,
                     Color, Price,
                     variableService.parseStringToEnum<ECarStatus>(Status.Substring(38)),
@@ -163,15 +163,16 @@ namespace CarRentalManager.ViewModel
                     LoginInInforState.ID,
                     CreatedAt, UpdatedAt);
         }
+
         private void handleAddCommand(bool isAdmin, string supplierId)
         {
-            Car car = getCar();
+            Car car = getCar(true);
             carDAO.createCar(car);
             updateListUI(isAdmin, supplierId);
         }
         private void handleEditCommand(bool isAdmin, string supplierId)
         {
-            Car car = getCar();
+            Car car = getCar(false);
             carDAO.updateCar(car);
             updateListUI(isAdmin, supplierId);
         }
