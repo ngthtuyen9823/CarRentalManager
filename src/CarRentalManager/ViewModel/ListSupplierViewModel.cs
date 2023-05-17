@@ -131,10 +131,10 @@ namespace CarRentalManager.ViewModel
             else
                 return true;
         }
-        private Supplier getSupplier()
+        private Supplier getSupplier(bool isNewSupplier)
         {
             int lastSupplier = commonDAO.getLastId(ETableName.SUPPLIER);
-            return new Supplier(lastSupplier + 1, Email, Password, PhoneNumber, Name, Address, DateTime.Now, DateTime.Now);
+            return new Supplier(isNewSupplier ? lastSupplier + 1 : ID, Email, Password, PhoneNumber, Name, Address, DateTime.Now, DateTime.Now);
         }
         private void getaddCar()
         {
@@ -165,14 +165,14 @@ namespace CarRentalManager.ViewModel
 
         private void handleAddCommand()
         {
-            Supplier supplier = getSupplier();
+            Supplier supplier = getSupplier(true);
             supplierDAO.createSupplier(supplier);
             updateListUI();
         }
 
         private void handleEditCommand()
         {
-            Supplier supplier = getSupplier();
+            Supplier supplier = getSupplier(false);
             supplierDAO.updatSupplier(supplier);
             updateListUI();
         }
@@ -185,7 +185,7 @@ namespace CarRentalManager.ViewModel
         private void handleSupplierCommand()
         {
             int lastSupplierId = commonDAO.getLastId(ETableName.SUPPLIER);
-            Supplier supplier = getSupplier();
+            Supplier supplier = getSupplier(true);
             supplier.ID = lastSupplierId + 1;
             supplierDAO.createSupplier(supplier);
             getaddCar();

@@ -135,10 +135,10 @@ namespace CarRentalManager.ViewModel
             reSetForm();
         }
 
-        private Order getOrder()
+        private Order getOrder(bool isNewOrder)
         {
             int lastOrder = commonDAO.getLastId(ETableName.ORDER);
-            return new Order(lastOrder + 1, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
+            return new Order(isNewOrder ? lastOrder + 1 : ID, CarId, CustomerId, BookingPlace, StartDate, EndDate, TotalFee,
                     variableService.parseStringToEnum<EOrderStatus>(Status.Substring(38)),
                     DepositAmount.ToString() != null ? DepositAmount : 0,
                     ImageEvidence != null ? ImageEvidence : "",
@@ -150,7 +150,7 @@ namespace CarRentalManager.ViewModel
         {
             try
             {
-                Order order = getOrder();
+                Order order = getOrder(true);
                 Car currentCar = carDao.getCarById(order.CarId.ToString());
                 currentCar.Status = ECarStatus.READYTORENT;
                 orderDao.createOrder(order);
@@ -164,7 +164,7 @@ namespace CarRentalManager.ViewModel
 
         private void handleEditCommand()
         {
-            Order order = getOrder();
+            Order order = getOrder(false);
             orderDao.updateOrder(order);
             updateListUI();
         }
@@ -200,7 +200,7 @@ namespace CarRentalManager.ViewModel
                         TotalFee, currentOrder.DepositAmount,
                         TotalFee - currentOrder.DepositAmount, currentOrder.DepositAmount * 70 / 100, "",
                         EReturnCarStatus.ISNOTRETURN, "", DateTime.Now, DateTime.Now);
-                    Order order = getOrder();
+                    Order order = getOrder(false);
                     currentCar.Status = ECarStatus.ONRENT;
                     contractDao.createContract(contract);
                     orderDao.updateStatusOfOrder(order);

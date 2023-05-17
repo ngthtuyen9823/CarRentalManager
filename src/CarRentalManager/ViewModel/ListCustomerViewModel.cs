@@ -95,12 +95,12 @@ namespace CarRentalManager.ViewModel
             else
                 return true;
         }
-        private Customer getCustomer()
+        private Customer getCustomer(bool isNewCustomer)
         {
             int lastCustomer = commonDAO.getLastId(ETableName.CUSTOMER);
             ImageIdCardFront = imgService.getProjectImagePath(ImageIdCardFront ?? "", "customers", (lastCustomer + 1).ToString());
             ImageIdCardFront = imgService.getProjectImagePath(ImageIdCardBack ?? "", "customers", (lastCustomer + 1).ToString());
-            return new Customer(lastCustomer + 1, PhoneNumber, Name, Email, IdCard, Address,
+            return new Customer(isNewCustomer ? lastCustomer + 1 : ID, PhoneNumber, Name, Email, IdCard, Address,
                     ImageIdCardFront != null ? ImageIdCardFront : "",
                     ImageIdCardBack != null ? ImageIdCardBack : "",
                     DateTime.Now, DateTime.Now);
@@ -116,14 +116,14 @@ namespace CarRentalManager.ViewModel
 
         private void handleAddCommand()
         {
-            Customer customer = getCustomer();
+            Customer customer = getCustomer(true);
             customerDAO.createCustomer(customer);
             updateListUI();
         }
 
         private void handleEditCommand()
         {
-            Customer customer = getCustomer();
+            Customer customer = getCustomer(false);
             customerDAO.updateCustomer(customer);
             updateListUI();
         }
