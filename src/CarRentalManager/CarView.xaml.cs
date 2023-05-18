@@ -61,9 +61,9 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "ID":
+                case nameof(ID):
                     return IDFilter;
-                case "SupplierId":
+                case nameof(SupplierId):
                     return SupplierIdFilter;
                 case nameof(Name):
                     return NameFilter;
@@ -116,6 +116,8 @@ namespace CarRentalManager
                 {
                     return;
                 }
+                ID.Text = selectedCar.ID.ToString();
+                SupplierId.Text = selectedCar.SupplierId.ToString();
                 Name.Text = selectedCar.Name;
                 Brand.Text = selectedCar.Brand;
                 Color.Text = selectedCar.Color;

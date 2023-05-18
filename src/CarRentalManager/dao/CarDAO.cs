@@ -33,7 +33,6 @@ namespace CarRentalManager.dao
             string sqlString = sqlService.createNewCar(newCar);
             dbConnectionDAO.executing(sqlString, ETableName.CAR);
         }
-
         public void updateCar(Car updatedCar)
         {
             string sqlString = sqlService.updateCar(updatedCar);
@@ -72,7 +71,6 @@ namespace CarRentalManager.dao
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return commondDataService.dataTableToList<Car>(dataTable);
         }
-
         public List<string> getListCarBrand(string fieldName)
         {
             string sqlStringGetTable = sqlService.getDistinctValueFromTable(fieldName, ETableName.CAR);
@@ -97,7 +95,6 @@ namespace CarRentalManager.dao
                 return null;
             }
         }
-
         public bool checkIsAvailable(DateTime start, DateTime end, int carId)
         {
             string sqlStringGetTable = sqlService.checkIsAvailable(start, end, carId);

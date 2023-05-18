@@ -63,7 +63,7 @@ namespace CarRentalManager
         {
             switch (FilterBy.SelectedItem as string)
             {
-                case "ID":
+                case nameof(ID):
                     return IDFilter;
                 case nameof(Name):
                     return NameFilter;
@@ -103,6 +103,7 @@ namespace CarRentalManager
                 {
                     return;
                 }
+                ID.Text = selectedSupplier.ID.ToString();
                 Name.Text = selectedSupplier.Name;
                 Address.Text = selectedSupplier.Address;
                 PhoneNumber.Text = selectedSupplier.PhoneNumber;

@@ -165,6 +165,11 @@ namespace CarRentalManager.services
         {
             return string.Format("SELECT * FROM [{0}] WHERE idCard='{1}'", tableName, idCard);
         }
+        
+        public string getCustomerByCondition(string condition)
+        {
+            return $"SELECT * FROM [{ETableName.CUSTOMER}] WHERE {condition}";
+        }
 
         //*INFO: SUPPLIER
 
@@ -180,11 +185,12 @@ namespace CarRentalManager.services
 
         public string updateSupplier(Supplier updatedSupplier)
         {
-            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' WHERE id = '{9}'",
+            return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', password = '{4}', address = '{5}', updatedAt = '{6}' WHERE id = '{7}'",
                 ETableName.SUPPLIER,
-                updatedSupplier.ID, updatedSupplier.PhoneNumber,
-                updatedSupplier.Name, updatedSupplier.Email,
-                updatedSupplier.Address, DateTime.Now,
+                updatedSupplier.Name, updatedSupplier.PhoneNumber,
+                updatedSupplier.Email, updatedSupplier.Password,
+                updatedSupplier.Address,
+                DateTime.Now,
                 updatedSupplier.ID);
         }
 
@@ -192,7 +198,7 @@ namespace CarRentalManager.services
 
         public string createNewContract(Contract newContract)
         {
-            return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')",
+            return string.Format("INSERT INTO [{0}] VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}')",
                    ETableName.CONTRACT, 
                    newContract.ID, 
                    newContract.OrderId, 
@@ -201,6 +207,7 @@ namespace CarRentalManager.services
                    newContract.Price, 
                    newContract.Paid,
                    newContract.Remain,
+                   newContract.ReceivedFee,
                    newContract.Feedback,
                    newContract.ReturnCarStatus,
                    newContract.Note,
