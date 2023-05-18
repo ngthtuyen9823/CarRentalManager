@@ -56,7 +56,7 @@ namespace CarRentalManager.ViewModel
         private string type; public string Type { get => type; set => SetProperty(ref type, value, nameof(Type)); }
         private string status; public string Status { get => status; set => SetProperty(ref status, value, nameof(Status)); }
         private string licensePlate; public string LicensePlate { get => licensePlate; set => SetProperty(ref licensePlate, value, nameof(LicensePlate)); }
-        private int price; int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
+        private int price; public int Price { get => price; set => SetProperty(ref price, value, nameof(Price)); }
         public ListCarViewModel(bool isAdmin)
         {
             List = isAdmin? getListObservableCar() : getSupplierListObservableCar(LoginInInforState.ID.ToString());
