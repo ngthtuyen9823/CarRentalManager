@@ -9,27 +9,46 @@
 
 namespace CarRentalManager
 {
+    using CarRentalManager.enums;
     using System;
     using System.Collections.Generic;
     
     public partial class Car
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string brand { get; set; }
-        public string color { get; set; }
-        public string publishYear { get; set; }
-        public string type { get; set; }
-        public string status { get; set; }
-        public string drivingType { get; set; }
-        public Nullable<int> seats { get; set; }
-        public string licensePlate { get; set; }
-        public Nullable<int> price { get; set; }
-        public string imagePath { get; set; }
-        public string tutorialPath { get; set; }
-        public string city { get; set; }
-        public Nullable<int> supplierId { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<System.DateTime> updatedAt { get; set; }
+        private int id;
+        private string name;
+        private string brand;
+        private string color;
+        private string publishYear;
+        private string type;
+        private string status;
+        private string drivingType;
+        private Nullable<int> seats;
+        private string licensePlate;
+        private Nullable<int> price;
+        private string imagePath;
+        private string tutorialPath;
+        private string city;
+        private Nullable<int> supplierId;
+        private Nullable<System.DateTime> createdAt;
+        private Nullable<System.DateTime> updatedAt;
+
+        public int ID { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string Brand { get { return brand; } set { brand = value; } }
+        public string PublishYear { get { return publishYear; } set { publishYear = value; } }
+        public string Color { get { return color; } set { color = value; } }
+        public Nullable<int> Price { get { return price; } set { price = value; } }
+        public string Status { get { return status; } set { status = value; } }
+        public string Type { get { return type; } set { type = value; } }
+        public string DrivingType { get { return drivingType; } set { drivingType = value; } }
+        public string LicensePlate { get { return licensePlate; } set { licensePlate = value; } }
+        public string ImagePath { get { return imagePath; } set { imagePath = value; } }
+        public Nullable<int> Seats { get { return seats; } set { seats = value; } }
+        public string TutorialPath { get { return tutorialPath; } set { tutorialPath = value; } }
+        public string City { get { return city; } set { city = value; } }
+        public int? SupplierId { get { return supplierId; } set { supplierId = value; } }
+        public Nullable<System.DateTime> CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public Nullable<System.DateTime> UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
     }
 }

@@ -22,7 +22,7 @@ namespace CarRentalManager
         readonly CustomerDAO customerDAO = new CustomerDAO();
         readonly VariableService variableService = new VariableService();
 
-        private int priceCar;
+        private int? priceCar;
         public RegisterForm()
         {
             InitializeComponent();

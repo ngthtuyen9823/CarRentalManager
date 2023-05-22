@@ -24,5 +24,20 @@ namespace CarRentalManager
         public string imageIdCardBack { get; set; }
         public Nullable<System.DateTime> createdAt { get; set; }
         public Nullable<System.DateTime> updatedAt { get; set; }
+
+        public int ID { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+
+        public string Email { get { return email; } set { email = value; } }
+
+        public string IDCard { get { return idCard; } set { idCard = value; } }
+
+        public string Address { get { return address; } set { address = value; } }
+        public string ImageIdCardFront { get { return imageIdCardFront; } set { imageIdCardFront = value; } }
+        public string ImageIdCardBack { get { return imageIdCardBack; } set { imageIdCardBack = value; } }
+
+        public Nullable<System.DateTime> CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public Nullable<System.DateTime> UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
     }
 }

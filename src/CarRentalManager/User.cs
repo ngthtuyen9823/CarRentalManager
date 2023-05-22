@@ -9,18 +9,28 @@
 
 namespace CarRentalManager
 {
+    using CarRentalManager.enums;
     using System;
     using System.Collections.Generic;
     
     public partial class User
     {
-        public int id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string phoneNumber { get; set; }
-        public string name { get; set; }
-        public string role { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<System.DateTime> updatedAt { get; set; }
+        private int id;
+        private string email;
+        private string password;
+        private string phoneNumber;
+        private string name;
+        private string role;
+        private Nullable<System.DateTime> createdAt;
+        private Nullable<System.DateTime> updatedAt;
+
+        public int ID { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string Email { get { return email; } set { email = value; } }
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+        public string Password { get { return password; } set { password = value; } }
+        public string Role { get { return role; } set { role = value; } }
+        public Nullable<System.DateTime> CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public Nullable<System.DateTime> UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
     }
 }
