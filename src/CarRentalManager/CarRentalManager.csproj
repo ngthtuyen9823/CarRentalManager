@@ -92,6 +92,8 @@
     <Reference Include="System.Data.SqlClient, Version=4.6.1.5, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SqlClient.4.8.5\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -116,8 +118,14 @@
     <Compile Include="CancelForm.xaml.cs">
       <DependentUpon>CancelForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Car.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Contract.cs">
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="ContractView.xaml.cs">
       <DependentUpon>ContractView.xaml</DependentUpon>
@@ -127,6 +135,9 @@
     </Compile>
     <Compile Include="customcontrols\MenuBottons.xaml.cs">
       <DependentUpon>MenuBottons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
@@ -164,6 +175,21 @@
     <Compile Include="LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.edmx</DependentUpon>
+    </Compile>
     <Compile Include="models\Car.cs" />
     <Compile Include="models\Contract.cs" />
     <Compile Include="models\ExtraContract.cs" />
@@ -173,8 +199,14 @@
     <Compile Include="models\Receipt.cs" />
     <Compile Include="models\Supplier.cs" />
     <Compile Include="models\User.cs" />
+    <Compile Include="Order.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Receipt.cs">
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
@@ -192,6 +224,9 @@
     <Compile Include="SubContractView.xaml.cs">
       <DependentUpon>SubContractView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="SupplierDashBoard.xaml.cs">
       <DependentUpon>SupplierDashBoard.xaml</DependentUpon>
     </Compile>
@@ -200,6 +235,9 @@
     </Compile>
     <Compile Include="SupplierView.xaml.cs">
       <DependentUpon>SupplierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="UserControlCRM\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -322,6 +360,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Models.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models.edmx.diagram">
+      <DependentUpon>Models.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -371,6 +416,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="Models.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.cs</LastGenOutput>
+    </Content>
     <Resource Include="Assets\img_login.png" />
     <Resource Include="Assets\img_cancel.png" />
     <Resource Include="Assets\img_supplier.png" />
