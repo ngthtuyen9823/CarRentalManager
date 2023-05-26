@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace CarRentalManager.services
 {
@@ -58,8 +59,8 @@ namespace CarRentalManager.services
         }
         public int getTotalRevenueByMonth(int month)
         {
-            int currenYear = DateTime.Now.Year;
-            List<Contract> contractList = contractDAO.getListByCondition($"Month(updatedAt) = '{month}' and Year(updatedAt) = {currenYear}");
+            int currentYear = DateTime.Now.Year;
+            List<Contract> contractList = contractDAO.getTotalRevenueByMonth(month, currentYear);
             List<Order> orderList = orderDAO.getListOrderByCondition($"status = '{EOrderStatus.CANCELBYUSER}' and Month(updatedAt) = '{month}' and Year(updatedAt) = '{currenYear}'");
 
             return getTotalRevenueGiven(contractList, orderList);
@@ -67,7 +68,8 @@ namespace CarRentalManager.services
 
         public int getTotalRevenueByYear(int year)
         {
-            List<Contract> contractList = contractDAO.getListByCondition($"Year(updatedAt) = {year}");
+            int currentYear = DateTime.Now.Year;
+            List<Contract> contractList = contractDAO.getTotalRevenueByYear(currentYear);
             List<Order> orderList = orderDAO.getListOrderByCondition($"status = '{EOrderStatus.CANCELBYUSER}' and Year(updatedAt) = '{year}'");
 
             return getTotalRevenueGiven(contractList, orderList);
@@ -76,12 +78,8 @@ namespace CarRentalManager.services
         public int getTotalRevenueByPrecious(int preciouse)
         {
             int currenYear = DateTime.Now.Year;
-            string conditionByPrecious = $"Month(updatedAt) = {(preciouse - 1) * 3 + 1}" +
-                $"or Month(updatedAt) = {(preciouse - 1) * 3 + 2} " +
-                $"or Month(updatedAt) = {(preciouse - 1) * 3 + 3}";
-            List<Contract> contractList = contractDAO.getListByCondition($"({conditionByPrecious}) and Year(updatedAt) = {currenYear}");
+            List<Contract> contractList = contractDAO.getTotalRevenueByPrecious(preciouse, currenYear);
             List<Order> orderList = orderDAO.getListOrderByCondition($"status = '{EOrderStatus.CANCELBYUSER}' and ({conditionByPrecious}) and Year(updatedAt) = '{currenYear}'");
-
             return getTotalRevenueGiven(contractList, orderList);
         }
 
