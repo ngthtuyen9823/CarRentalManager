@@ -105,14 +105,12 @@ namespace CarRentalManager.services
         }
         public Dictionary<string, int> getDictOnrentTimes()
         {
-            DataTable dataTable = commonDAO.countOnrentTimes();
-            Dictionary<string, int> result = getDictionary(dataTable);
+            Dictionary<string, int> result = commonDAO.countOnrentTimes();
             return result;
         }
         public Dictionary<string, int> getDictBrokennTimes()
         {
-            DataTable dataTable = commonDAO.countBrokenTimes();
-            Dictionary<string, int> result = getDictionary(dataTable);
+            Dictionary<string, int> result = commonDAO.countBrokenTimes();
             return result;
         }
         public Dictionary<string, int> getDictionary(DataTable dataTable)

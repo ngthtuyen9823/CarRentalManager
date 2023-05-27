@@ -14,13 +14,12 @@ namespace CarRentalManager.dao
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly CommondDataService commondDataService = new CommondDataService();
         readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
+        readonly Context db = new Context();
         public UserDAO() { }
 
         public User getInforByEmail(string email)
         {
-            string sqlStringGetTable = sqlService.getCreadentialWithEmail(ETableName.USER, email);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<User>(dataTable)?.First();
+            return db.Users.SingleOrDefault(s => s.Email == email);
         } 
     }
 }
