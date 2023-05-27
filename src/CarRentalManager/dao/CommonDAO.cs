@@ -14,6 +14,10 @@ using System.Security.Policy;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Data.SqlTypes;
+using System.Data.Entity;
+using System.Collections;
+using System.Runtime.Remoting.Contexts;
+using System.Linq.Dynamic.Core;
 
 namespace CarRentalManager.dao
 {
@@ -23,61 +27,109 @@ namespace CarRentalManager.dao
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly VariableService variableService = new VariableService();
         readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
+        readonly Context db = new Context();
 
         public CommonDAO() { }
         public int getSupplierId(string contractId)
         {
-            string sqlStringGetTable = sqlService.getSupplierId(contractId, ETableName.CAR, ETableName.ORDER, ETableName.CONTRACT);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            if (dataTable.Rows.Count == 0)
-            {
-                return 0;
-            }
-            int id = variableService.parseStringToInt(dataTable.Rows[0][0].ToString());
-            return id;
+            return (from contract in db.Contracts
+                            join order in db.Orders on contract.OrderId equals order.ID
+                            join car in db.Cars on order.CarId equals car.ID
+                            where contract.ID.ToString() == contractId
+                            select car.SupplierId
+                        ).FirstOrDefault() ?? 0;
         }
         public List<int> getListOrderId(string supplierId)
         {
-            List<int> orderId = new List<int>();
-            string sqlStringGetTable = sqlService.getOrderId(supplierId, ETableName.CAR, ETableName.ORDER, ETableName.SUPPLIER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                orderId.Add(variableService.parseStringToInt(dataTable.Rows[i][0].ToString()));
-            }
-            return orderId;
+            var listOrderId = from carId in
+                     (from supplier in db.Suppliers
+                      join car in db.Cars on supplier.ID equals car.SupplierId
+                      where supplier.ID.ToString() == supplierId
+                      select new { car.ID })
+                       join order in db.Orders on carId.ID equals order.CarId
+                       select order.ID;
+
+            return listOrderId.ToList();
         }
         public int getLastId(ETableName eTableName)
         {
-            string sqlStringGetTable = sqlService.getLastId(eTableName);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            if (dataTable.Rows.Count == 0)
+            switch(eTableName)
             {
-                return 0;
+                case ETableName.CAR:
+                    return (from car in db.Cars
+                            orderby car.ID descending
+                            select car.ID).ToList().FirstOrDefault();
+
+                case ETableName.ORDER:
+                    return (from order in db.Orders
+                            orderby order.ID descending
+                            select order.ID).ToList().FirstOrDefault();
+
+                case ETableName.CONTRACT:
+                    return (from contracts in db.Contracts
+                            orderby contracts.ID descending
+                            select contracts.ID).ToList().FirstOrDefault();
+               
+                case ETableName.SUPPLIER:
+                    return (from suppliers in db.Suppliers
+                            orderby suppliers.ID descending
+                            select suppliers.ID).ToList().FirstOrDefault();
+
+                default: return 0;
             }
-            int id = variableService.parseStringToInt(dataTable.Rows[0][nameof(id)].ToString());
-            return id;
         }
 
-        public DataTable countOnrentTimes()
+        public Dictionary<string, int> countOnrentTimes()
         {
-            string sqlStringGetTable = sqlService.countOnrentTimes();
-            return dbConnectionDAO.getDataTable(sqlStringGetTable);
-            
+            return (from order in db.Orders
+                     join contract in db.Contracts on order.ID equals contract.OrderId
+                     join car in db.Cars on order.CarId equals car.ID
+                     group order by car.Name into groupedOrders
+                     select new
+                     {
+                         name = groupedOrders.Key,
+                         onrentTimes = (from order in db.Orders
+                                        join contract in db.Contracts on order.ID equals contract.OrderId
+                                        join car in db.Cars on order.CarId equals car.ID
+                                        where car.Name == groupedOrders.Key
+                                        select contract.ID).Count()
+                     }).ToDictionary(item => item.name, item => item.onrentTimes);
         }
 
-        public DataTable countBrokenTimes()
+        public Dictionary<string, int> countBrokenTimes()
         {
-            string sqlStringGetTable = sqlService.countBrokenTimes();
-            return dbConnectionDAO.getDataTable(sqlStringGetTable);
-           
+            return (from contract in db.Contracts
+                             join order in db.Orders on contract.OrderId equals order.ID
+                             join car in db.Cars on order.CarId equals car.ID
+                             where contract.ReturnCarStatus == EReturnCarStatus.BROKEN.ToString()
+                             group contract by car.Name into groupedContracts
+                             select new
+                             {
+                                 name = groupedContracts.Key,
+                                 brokenTimes = (from contract in db.Contracts
+                                                join order in db.Orders on contract.OrderId equals order.ID
+                                                join car in db.Cars on order.CarId equals car.ID
+                                                where contract.ReturnCarStatus == EReturnCarStatus.BROKEN.ToString()
+                                                && car.Name == groupedContracts.Key
+                                                select contract.ID).Count()
+                             }
+                        ).ToDictionary(item => item.name, item => item.brokenTimes);
         }
 
         public Dictionary<string, string> getListFeedbackOfCustomer()
         {
-            string sqlStringGetTable = sqlService.getListFeedbackOfCustomer();
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return getDictionary(dataTable);
+            return (from contract in db.Contracts
+                                join order in db.Orders on contract.OrderId equals order.ID
+                                join customer in db.Customers on order.CustomerId equals customer.ID
+                                where contract.ReturnCarStatus == EReturnCarStatus.INTACT.ToString() &&
+                                      contract.Feedback != null && contract.Feedback != ""
+                                group contract by customer.Name into groupedContracts
+                                select new
+                                {
+                                    name = groupedContracts.Key,
+                                    feedback = groupedContracts.Min(c => c.Feedback)
+                                }
+                            ).ToDictionary(item => item.name, item => item.feedback);
         }
 
         public Dictionary<string, string> getDictionary(DataTable dataTable)
