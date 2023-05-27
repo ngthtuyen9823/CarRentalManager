@@ -40,6 +40,7 @@ namespace CarRentalManager.dao
         public void updateCar(Car updatedCar)
         {
             Car foundCar = db.Cars.Single(car => car.ID == updatedCar.ID);
+            updatedCar.UpdatedAt = DateTime.Now;
             foundCar = updatedCar;
             db.SaveChanges();
         }
