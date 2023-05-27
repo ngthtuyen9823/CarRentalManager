@@ -67,18 +67,18 @@ namespace CarRentalManager.dao
             return (List<ExtraContract>)extraContracts;
         }
        
-        public List<Contract> getTotalRevenueByMonth(int month, int year) 
+        public List<Contract> getListContractByMonth(int month, int year) 
         {
             return db.Contracts.Where(p => p.UpdatedAt.Value.Month == month)
                     .Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
 
-        public List<Contract> getTotalRevenueByYear(int year)
+        public List<Contract> getListContractByYear(int year)
         {
             return db.Contracts.Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
 
-        public List<Contract> getTotalRevenueByPrecious(int preciouse, int year)
+        public List<Contract> getListContractByPreciouse(int preciouse, int year)
         {
             return db.Contracts.Where(p => p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 1 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 2 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 3)
                 .Where(p => p.UpdatedAt.Value.Year == year).ToList();
