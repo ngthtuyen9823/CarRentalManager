@@ -1,84 +1,77 @@
 using CarRentalManager.enums;
+using CarRentalManager.models;
 using CarRentalManager.services;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using CarRentalManager.models;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CarRentalManager.dao
 {
     public class OrderDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
-
+        readonly Context db = new Context();
         public OrderDAO() { }
-
         public List<Order> getListOrder()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.ORDER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Order>(dataTable);
+            return db.Orders.ToList();
         }
         public List<ExtraOrder> getListExtraOrder()
         {
-            string sqlStringGetTable = sqlService.getListExtraOrder();
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<ExtraOrder>(dataTable);
+            var extraOrders =
+                        from o in db.Orders
+                        join cus in db.Customers on o.CustomerId equals cus.ID
+                        join c in db.Cars on o.CarId equals c.ID
+                        select new { o, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CarName = c.Name };
+            return (List<ExtraOrder>)extraOrders;
         }
         public void createOrder(Order order)
         {
-            string sqlString = sqlService.createOrder(order);
-            dbConnectionDAO.getDataTable(sqlString);
+            db.Orders.Add(order);
+            db.SaveChanges();
         }
-
-        public List<Order> getListOrderByDescOrAsc(bool isDescrease, string fieldName)
-        {
-            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.ORDER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Order>(dataTable);
-        }
-
         public Order getOrderById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id, ETableName.ORDER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            if(dataTable.Rows.Count > 0)
-            {
-                return commondDataService.dataTableToList<Order>(dataTable)?.First();
-            }
-            return null;
-        }
-
-        public void removeOrder(int id)
-        {
-            try
-            {
-                string sqlString = sqlService.removeById(ETableName.ORDER, id);
-                dbConnectionDAO.executing(sqlString, ETableName.ORDER);
-            }
-            catch
-            {
-                throw new System.Exception();
-            }
+            return db.Orders.Find(id);
         }
         public void updateOrder(Order order)
         {
-            string sqlString = sqlService.updateOrder(order);
-            dbConnectionDAO.getDataTable(sqlString);
+            order.UpdatedAt = DateTime.Now;
+            db.Orders.AddOrUpdate(order);
+            db.SaveChanges();
         }
         public void updateStatusOfOrder(Order order)
         {
-            string sqlString = sqlService.updateStatusOfOrder(order);
-            dbConnectionDAO.getDataTable(sqlString);
+            order.Status = EOrderStatus.COMPLETE.ToString();
+            order.UpdatedAt = DateTime.Now;
+            db.Orders.AddOrUpdate(order);
+            db.SaveChanges();
         }
-
-        public List<Order> getListOrderByCondition(string condition) {
-            string sqlString = sqlService.getListByCondition(ETableName.ORDER, condition);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlString);
-            return commondDataService.dataTableToList<Order>(dataTable);
+        public List<Order> getListOrderCancelByUser()
+        {
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString()).ToList();
+        }
+        public List<Order> getListOrderByMonth(int month, int year)
+        {
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+                            .Where(p => p.UpdatedAt.Value.Month == month)
+                            .Where(p => p.UpdatedAt.Value.Year == year).ToList();
+        }
+        public List<Order> getListOrderByYear(int year)
+        {
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+                            .Where(p => p.UpdatedAt.Value.Year == year).ToList();
+        }
+        public List<Order> getListOrderByPreciouse(int preciouse, int year)
+        {
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+                            .Where(p => p.UpdatedAt.Value.Year == year)
+                            .Where(p => p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 1 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 2 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 3).ToList();
         }
     }
 }

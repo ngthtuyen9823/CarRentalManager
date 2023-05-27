@@ -9,23 +9,39 @@
 
 namespace CarRentalManager
 {
+    using CarRentalManager.enums;
     using System;
     using System.Collections.Generic;
     
     public partial class Contract
     {
-        public int id { get; set; }
-        public Nullable<int> orderId { get; set; }
-        public Nullable<int> userId { get; set; }
-        public string status { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<int> paid { get; set; }
-        public Nullable<int> remain { get; set; }
-        public Nullable<int> receivedFee { get; set; }
-        public string feedback { get; set; }
-        public string returnCarStatus { get; set; }
-        public string note { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<System.DateTime> updatedAt { get; set; }
+        private int id;
+        private Nullable<int> orderId;
+        private Nullable<int> userId;
+        private string status;
+        private Nullable<int> price;
+        private Nullable<int> paid;
+        private Nullable<int> remain;
+        private Nullable<int> receivedFee;
+        private string feedback;
+        private string returnCarStatus;
+        private string note;
+        private Nullable<System.DateTime> createdAt;
+        private Nullable<System.DateTime> updatedAt;
+
+        public int ID { get { return id; } set { id = value; } }
+        public Nullable<int> OrderId { get { return orderId; } set { orderId = value; } }
+        public Nullable<int> UserId { get { return userId; } set { userId = value; } }
+        public Nullable<int> Price { get { return price; } set { price = value; } }
+        public Nullable<int> Paid { get { return paid; } set { paid = value; } }
+        public Nullable<int> Remain { get { return remain; } set { remain = value; } }
+        public Nullable<int> ReceivedFee { get { return receivedFee; } set { receivedFee = value; } }
+        public string Feedback { get { return feedback; } set { feedback = value; } }
+        public string ReturnCarStatus { get { return returnCarStatus; } set { returnCarStatus = value; } }
+        public string Note { get { return note; } set { note = value; } }
+        public string Status { get { return status; } set { status = value; } }
+        public Nullable<System.DateTime> CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public Nullable<System.DateTime> UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
+
     }
 }

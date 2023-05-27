@@ -9,23 +9,38 @@
 
 namespace CarRentalManager
 {
+    using CarRentalManager.enums;
     using System;
     using System.Collections.Generic;
     
     public partial class Order
     {
-        public int id { get; set; }
-        public Nullable<int> carId { get; set; }
-        public Nullable<int> customerId { get; set; }
-        public string bookingPlace { get; set; }
-        public Nullable<System.DateTime> startDate { get; set; }
-        public Nullable<System.DateTime> endDate { get; set; }
-        public Nullable<int> totalFee { get; set; }
-        public string status { get; set; }
-        public Nullable<int> depositAmount { get; set; }
-        public string imageEvidence { get; set; }
-        public string notes { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<System.DateTime> updatedAt { get; set; }
+        private int id;
+        private Nullable<int> carId;
+        private Nullable<int> customerId;
+        private string bookingPlace;
+        private Nullable<System.DateTime> startDate;
+        private Nullable<System.DateTime> endDate;
+        private Nullable<int> totalFee;
+        private string status;
+        private Nullable<int> depositAmount;
+        private string imageEvidence;
+        private string notes;
+        private Nullable<System.DateTime> createdAt;
+        private Nullable<System.DateTime> updatedAt;
+
+        public int ID { get { return id; } set { id = value; } }
+        public Nullable<int> CarId { get { return carId; } set { carId = value; } }
+        public Nullable<int> CustomerId { get { return customerId; } set { customerId = value; } }
+        public string BookingPlace { get { return bookingPlace; } set { bookingPlace = value; } }
+        public Nullable<System.DateTime> StartDate { get { return startDate; } set { startDate = value; } }
+        public Nullable<System.DateTime> EndDate { get { return endDate; } set { endDate = value; } }
+        public Nullable<int> TotalFee { get { return totalFee; } set { totalFee = value; } }
+        public string Status { get { return status; } set { status = value; } }
+        public Nullable<int> DepositAmount { get { return depositAmount; } set { depositAmount = value; } }
+        public string ImageEvidence { get { return imageEvidence; } set { imageEvidence = value; } }
+        public string Notes { get { return notes; } set { notes = value; } }
+        public Nullable<System.DateTime> CreatedAt { get { return createdAt; } set { createdAt = value; } }
+        public Nullable<System.DateTime> UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
     }
 }

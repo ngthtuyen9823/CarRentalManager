@@ -1,5 +1,4 @@
 using CarRentalManager.enums;
-using CarRentalManager.models;
 using CarRentalManager.services;
 using System;
 using System.Collections.Generic;
@@ -7,76 +6,82 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows;
 using System.Linq;
+using System.Data.Entity.Migrations;
+using System.Linq.Dynamic.Core;
+using CarRentalManager.models;
+using System.Windows.Documents;
 
 namespace CarRentalManager.dao
 {
     public class ContractDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
+        readonly Context db = new Context();
         public ContractDAO() { }
 
         public Contract getContractById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id, ETableName.CONTRACT);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Contract>(dataTable)?.First();
-
+            return db.Contracts.Find(id);
         }
+
         public void createContract(Contract newContract)
         {
-            string sqlString = sqlService.createNewContract(newContract);
-            dbConnectionDAO.getDataTable(sqlString);
+            db.Contracts.Add(newContract);
+            db.SaveChanges();
         }
 
         public void removeContract(int id)
         {
-            string sqlString = sqlService.removeById(ETableName.CONTRACT, id);
-            dbConnectionDAO.getDataTable(sqlString);
+            var contract = db.Contracts.Find(id.ToString());
+            db.Contracts.Remove(contract);
+            db.SaveChanges();
         }
+
         public void updateContract(Contract updatedContract)
         {
-            string sqlString = sqlService.updateContract(updatedContract);
-            dbConnectionDAO.executing(sqlString, ETableName.CONTRACT);
+            db.Contracts.AddOrUpdate(updatedContract);
         }
 
         public List<Contract> getListContract()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.CONTRACT);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Contract>(dataTable);
+            return db.Contracts.ToList();
         }
+
         public List<ExtraContract> getListContractByOrderId(List<int> orderId)
         {
-            DataTable dataTable = new DataTable();  
-            foreach (int id in orderId)
-            {
-                string sqlStringGetTable = sqlService.getListTableDataByOrderId(id, ETableName.CONTRACT);
-                DataTable tempDatatable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-                dataTable.Merge(tempDatatable);
-            }
-            return commondDataService.dataTableToList<ExtraContract>(dataTable);
+            var extraContracts =
+                        from c in db.Contracts
+                        join o in db.Orders on c.OrderId equals o.ID
+                        join cus in db.Customers on o.CustomerId equals cus.ID
+                        where (orderId.Any(o => o == c.OrderId))
+                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CustomerPhone = cus.PhoneNumber };
+            return (List<ExtraContract>)extraContracts;
         }
 
         public List<ExtraContract> getListExtraContract()
         {
-            string sqlStringGetTable = sqlService.getListExtraContract();
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<ExtraContract>(dataTable);
+            var extraContracts =
+                        from c in db.Contracts
+                        join o in db.Orders on c.OrderId equals o.ID
+                        join cus in db.Customers on o.CustomerId equals cus.ID
+                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CustomerPhone = cus.PhoneNumber };
+            return (List<ExtraContract>)extraContracts;
+        }
+       
+        public List<Contract> getListContractByMonth(int month, int year) 
+        {
+            return db.Contracts.Where(p => p.UpdatedAt.Value.Month == month)
+                    .Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
 
-        public List<Contract> getListContractByDescOrAsc(bool isDescrease, string fieldName)
+        public List<Contract> getListContractByYear(int year)
         {
-            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CONTRACT);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Contract>(dataTable);
+            return db.Contracts.Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
-        public List<Contract> getListByCondition(string condition)
+
+        public List<Contract> getListContractByPreciouse(int preciouse, int year)
         {
-            string sqlString = sqlService.getListByCondition(ETableName.CONTRACT, condition);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlString);
-            return commondDataService.dataTableToList<Contract>(dataTable);
+            return db.Contracts.Where(p => p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 1 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 2 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 3)
+                .Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
     }
 }
