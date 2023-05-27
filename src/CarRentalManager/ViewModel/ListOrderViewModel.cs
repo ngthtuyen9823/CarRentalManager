@@ -140,7 +140,7 @@ namespace CarRentalManager.ViewModel
         private Order getOrder(bool isNewOrder)
         {
             int lastOrder = commonDAO.getLastId(ETableName.ORDER);
-            Customer currentCustomer = customerDAO.getCustomerByCondition($"idCard = '{CustomerIdCard}'");
+            Customer currentCustomer = customerDAO.getCustomerByIdCard(CustomerIdCard);
             return new Order(isNewOrder ? lastOrder + 1 : ID, CarId, currentCustomer.ID, BookingPlace, StartDate, EndDate, TotalFee,
                     variableService.parseStringToEnum<EOrderStatus>(Status.Substring(38)),
                     DepositAmount.ToString() != null ? DepositAmount : 0,

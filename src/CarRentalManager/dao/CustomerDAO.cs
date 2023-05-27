@@ -14,66 +14,47 @@ using MaterialDesignThemes.Wpf;
 using System.Net;
 using System.Xml.Linq;
 using System.Data.SqlTypes;
+using System.Data.Entity.Migrations;
 
 namespace CarRentalManager.dao
 {
     public class CustomerDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
+        readonly Context db = new Context();
 
         public CustomerDAO() { }
 
         public List<Customer> getListCustomer()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable);
+            return db.Customers.ToList();
         }
 
         public void createCustomer(Customer newCustomer)
         {
-            string sqlString = sqlService.createCustomer(newCustomer);
-            dbConnectionDAO.getDataTable(sqlString);
+            db.Customers.Add(newCustomer);
+            db.SaveChanges();
         }
 
         public void removeCustomer(int id)
         {
-            string sqlString = sqlService.removeById(ETableName.CUSTOMER, id);
-            dbConnectionDAO.getDataTable(sqlString);
-        }
-    
-        public List<Customer> getListCustomerByDescOrAsc(bool isDescrease, string fieldName)
-        {
-            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable);
+            var customer = db.Customers.FirstOrDefault(c => c.id == id);
+            db.Customers.Remove(customer);
+            db.SaveChanges();
         }
 
         public Customer getCustomerById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id,ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable)?.First();
+            return db.Customers.FirstOrDefault(customer => customer.id.ToString() == id);
         }
 
         public void updateCustomer(Customer customer)
         {
-            string sqlString = sqlService.updateCustomer(customer);
-            dbConnectionDAO.getDataTable(sqlString);
+            db.Customers.AddOrUpdate(customer);
+            db.SaveChanges();
         }
         public Customer getCustomerByIdCard(string idCard)
         {
-            string sqlStringGetTable = sqlService.getValueByIdCard(idCard,ETableName.CUSTOMER);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable)?.First();
-        }
-
-        public Customer getCustomerByCondition(string condition) {
-            string sqlStringGetTable = sqlService.getCustomerByCondition(condition);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Customer>(dataTable)?.First();
+            return db.Customers.FirstOrDefault(customer => customer.idCard.ToString() == idCard);
         }
     }
 }
