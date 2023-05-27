@@ -6,6 +6,10 @@ using CarRentalManager.models;
 using System.Linq;
 using System.Windows;
 using System;
+using System.Windows.Input;
+using System.Linq.Dynamic.Core;
+using MaterialDesignThemes.Wpf;
+using System.Data.Entity;
 
 namespace CarRentalManager.dao
 {
@@ -14,80 +18,85 @@ namespace CarRentalManager.dao
         readonly SqlQueryService sqlService = new SqlQueryService();
         readonly CommondDataService commondDataService = new CommondDataService();
         readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
+        readonly Context db = new Context();
         public CarDAO() { }
 
         public List<Car> getListCar()
         {
-            string sqlStringGetTable = sqlService.getListTableData(ETableName.CAR);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);   
-            return commondDataService.dataTableToList<Car>(dataTable);
+            return db.Cars.ToList();
         }
         public List<Car> getSupplierListCar(string supplierId)
         {
-            string sqlStringGetTable = sqlService.getListTableDataBySupplierId(supplierId, ETableName.CAR);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable);
+            var listCar = (from car in db.Cars
+                           where (car.SupplierId.ToString() == supplierId)
+                           select car).ToList();
+            return listCar;
         }
         public void createCar(Car newCar)
         {
-            string sqlString = sqlService.createNewCar(newCar);
-            dbConnectionDAO.executing(sqlString, ETableName.CAR);
+            db.Cars.Add(newCar);
+            db.SaveChanges();
         }
         public void updateCar(Car updatedCar)
         {
-            string sqlString = sqlService.updateCar(updatedCar);
-            dbConnectionDAO.executing(sqlString, ETableName.CAR);
+            Car foundCar = db.Cars.Single(car => car.ID == updatedCar.ID);
+            foundCar = updatedCar;
+            db.SaveChanges();
         }
 
         public void removeCar(int id)
         {
-            string sqlString = sqlService.removeById(ETableName.CAR, id);
-            dbConnectionDAO.executing(sqlString, ETableName.CAR);
+            Car foundCar = db.Cars.Single(car => car.ID == id);
+            db.Cars.Remove(foundCar);
+            db.SaveChanges();
         }
 
         public List<Car> getListCarByDescOrAsc(bool isDescrease, string fieldName)
         {
-            string sqlStringGetTable = sqlService.getSortByDescOrAsc(isDescrease, fieldName, ETableName.CAR);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable);
+            var orderByMethod = isDescrease ? "OrderByDescending" : "OrderBy";
+            return db.Cars.AsQueryable().OrderBy($"{fieldName} {orderByMethod}").ToList();
         }
 
         public Car getCarById(string id)
         {
-            string sqlStringGetTable = sqlService.getValueById(id, ETableName.CAR);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable)?.First();
+            return db.Cars.Single(car => car.ID.ToString() == id);
         }
 
         public List<Car> getListCarByType(ECarType eCarType)
         {
-            string sqlStringGetTable = sqlService.getListCarByType(eCarType);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable);
+            return db.Cars.Where(c => c.Type == eCarType.ToString()).ToList();
         }
         public List<Car> getListByRange(int fromPrice, int toPrice)
         {
-            string sqlStringGetTable = sqlService.getListByRange(fromPrice, toPrice);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return commondDataService.dataTableToList<Car>(dataTable);
+            return db.Cars.Where(c => c.Price >= fromPrice && c.Price < toPrice).ToList();
         }
         public List<string> getListCarBrand(string fieldName)
         {
-            string sqlStringGetTable = sqlService.getDistinctValueFromTable(fieldName, ETableName.CAR);
+            return db.Cars.Select(c => (string)c.GetType().GetProperty(fieldName).GetValue(c)).Distinct().ToList();
+            /*string sqlStringGetTable = sqlService.getDistinctValueFromTable(fieldName, ETableName.CAR);
             DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
             return dataTable.AsEnumerable()
                 .Select(row => row[fieldName].ToString())
-                .ToList();
+                .ToList();*/
         }
         public List<Car> getListCarByCondition(string City, string Brand, int Seats, DateTime Start, DateTime End)
         {
             try
             {
-                string sqlStringGetTable = sqlService.getListCarByCondition(City, Brand, Seats, Start, End);
-                DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-                if (dataTable?.Rows?.Count != 0)
-                    return commondDataService.dataTableToList<Car>(dataTable);
-                return null;
+                var listAvailable = db.Cars.GroupJoin(db.Orders.Where(o => o.StartDate >= Start && o.EndDate <= End && o.Status != EOrderStatus.CANCELBYADMIN.ToString() && o.Status != EOrderStatus.CANCELBYUSER.ToString()), car => car.ID, order => order.CarId, (car, orders) => new { Car = car, Orders = orders }).Where(x => !x.Orders.Any() && x.Car.Status != ECarStatus.UNAVAILABLE.ToString()).Select(x => x.Car);
+                Func<Car, bool> cityCondition = null;
+                if (City != null){ cityCondition = x => x.City == City; }
+                Func<Car, bool> brandCondition = null;
+                if (Brand != null) { brandCondition = x => x.Brand == Brand; }
+                Func<Car, bool> seatsCondition = null;
+                if (Seats != 0) { seatsCondition = x => x.Seats == Seats; }
+
+                var carPropCondition = cityCondition != null || brandCondition != null || seatsCondition != null
+                        ? listAvailable.Where(x => (cityCondition == null || (cityCondition != null && (cityCondition(x) ? true : false))) &&
+                                                  (brandCondition == null || (brandCondition != null && (brandCondition(x) ? true : false))) &&
+                                                  (seatsCondition == null || (seatsCondition != null && (seatsCondition(x) ? true : false))))
+                        : listAvailable;
+                return carPropCondition.ToList();
             }
             catch (Exception ex)
             {
@@ -97,9 +106,9 @@ namespace CarRentalManager.dao
         }
         public bool checkIsAvailable(DateTime start, DateTime end, int carId)
         {
-            string sqlStringGetTable = sqlService.checkIsAvailable(start, end, carId);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return (int)dataTable.Rows[0][0] == 1;
+            var listAvailable = db.Cars.GroupJoin(db.Orders.Where(o => o.StartDate >= start && o.EndDate <= end && o.Status != EOrderStatus.CANCELBYADMIN.ToString() && o.Status != EOrderStatus.CANCELBYUSER.ToString()), car => car.ID, order => order.CarId, (car, orders) => new { Car = car, Orders = orders }).Where(x => !x.Orders.Any() && x.Car.Status != ECarStatus.UNAVAILABLE.ToString()).Select(x => x.Car);
+            var isExist = listAvailable.Count(c => c.ID == carId);
+            return (int)isExist == 1;
         }
 
     }
