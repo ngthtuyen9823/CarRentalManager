@@ -21,12 +21,10 @@ namespace CarRentalManager.services
         readonly CommonDAO commonDAO = new CommonDAO(); 
         public StatisticsService() { } 
 
-
         public int getTotalRevenue()
         {
             List<Contract> contractList = contractDAO.getListContract();
-            List<Order> orderList = orderDAO.getListOrderByCondition(string.Format("status = {0}", EOrderStatus.CANCELBYUSER));
-
+            List<Order> orderList = orderDAO.getListOrderCancelByUser();
             return getTotalRevenueGiven(contractList, orderList);
         }
         public int getTotalOrder()
@@ -54,35 +52,29 @@ namespace CarRentalManager.services
             {
                 total += order?.DepositAmount ?? 0;
             });
-
             return total;
         }
         public int getTotalRevenueByMonth(int month)
         {
             int currentYear = DateTime.Now.Year;
-            List<Contract> contractList = contractDAO.getTotalRevenueByMonth(month, currentYear);
-            List<Order> orderList = orderDAO.getListOrderByCondition($"status = '{EOrderStatus.CANCELBYUSER}' and Month(updatedAt) = '{month}' and Year(updatedAt) = '{currenYear}'");
+            List<Contract> contractList = contractDAO.getListContractByMonth(month, currentYear);
+            List<Order> orderList = orderDAO.getListOrderByMonth(month, currentYear);
 
             return getTotalRevenueGiven(contractList, orderList);
         }
-
         public int getTotalRevenueByYear(int year)
         {
-            int currentYear = DateTime.Now.Year;
-            List<Contract> contractList = contractDAO.getTotalRevenueByYear(currentYear);
-            List<Order> orderList = orderDAO.getListOrderByCondition($"status = '{EOrderStatus.CANCELBYUSER}' and Year(updatedAt) = '{year}'");
-
+            List<Contract> contractList = contractDAO.getListContractByYear(year);
+            List<Order> orderList = orderDAO.getListOrderByYear(year);
             return getTotalRevenueGiven(contractList, orderList);
         }
-
         public int getTotalRevenueByPrecious(int preciouse)
         {
-            int currenYear = DateTime.Now.Year;
-            List<Contract> contractList = contractDAO.getTotalRevenueByPrecious(preciouse, currenYear);
-            List<Order> orderList = orderDAO.getListOrderByCondition($"status = '{EOrderStatus.CANCELBYUSER}' and ({conditionByPrecious}) and Year(updatedAt) = '{currenYear}'");
+            int currentYear = DateTime.Now.Year;
+            List<Contract> contractList = contractDAO.getListContractByPreciouse(preciouse, currentYear);
+            List<Order> orderList = orderDAO.getListOrderByPreciouse(preciouse, currentYear);
             return getTotalRevenueGiven(contractList, orderList);
         }
-
         public Dictionary<string, int> getDictTotalRevenueByMonth()
         {
             Dictionary<string, int> dict = new Dictionary<string, int>();
@@ -93,7 +85,6 @@ namespace CarRentalManager.services
             }
             return dict;
         }
-
         public Dictionary<string, int> getDictTotalRevenueByYear()
         {
             Dictionary<string, int> dict = new Dictionary<string, int>();
@@ -103,8 +94,6 @@ namespace CarRentalManager.services
             }
             return dict;
         }
-
-        // THEO QUY'
         public Dictionary<string, int> getDictTotalRevenueByPrecious()
         {
             Dictionary<string, int> dict = new Dictionary<string, int>();
@@ -114,21 +103,18 @@ namespace CarRentalManager.services
             }
             return dict;
         }
-
         public Dictionary<string, int> getDictOnrentTimes()
         {
             DataTable dataTable = commonDAO.countOnrentTimes();
             Dictionary<string, int> result = getDictionary(dataTable);
             return result;
         }
-
         public Dictionary<string, int> getDictBrokennTimes()
         {
             DataTable dataTable = commonDAO.countBrokenTimes();
             Dictionary<string, int> result = getDictionary(dataTable);
             return result;
         }
-
         public Dictionary<string, int> getDictionary(DataTable dataTable)
         {
             Dictionary<string, int> result = new Dictionary<string, int>();

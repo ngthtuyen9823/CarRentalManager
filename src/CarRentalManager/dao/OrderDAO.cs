@@ -9,6 +9,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CarRentalManager.dao
 {
@@ -16,12 +17,10 @@ namespace CarRentalManager.dao
     {
         readonly Context db = new Context();
         public OrderDAO() { }
-
         public List<Order> getListOrder()
         {
             return db.Orders.ToList();
         }
-
         public List<ExtraOrder> getListExtraOrder()
         {
             var extraOrders =
@@ -31,25 +30,21 @@ namespace CarRentalManager.dao
                         select new { o, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CarName = c.Name };
             return (List<ExtraOrder>)extraOrders;
         }
-
         public void createOrder(Order order)
         {
             db.Orders.Add(order);
             db.SaveChanges();
         }
-
         public Order getOrderById(string id)
         {
             return db.Orders.Find(id);
         }
-
         public void updateOrder(Order order)
         {
             order.UpdatedAt = DateTime.Now;
             db.Orders.AddOrUpdate(order);
             db.SaveChanges();
         }
-
         public void updateStatusOfOrder(Order order)
         {
             order.Status = EOrderStatus.COMPLETE.ToString();
@@ -57,18 +52,26 @@ namespace CarRentalManager.dao
             db.Orders.AddOrUpdate(order);
             db.SaveChanges();
         }
-
-        public List<Order> getListOrderByCondition(string condition)
+        public List<Order> getListOrderCancelByUser()
         {
-            return db.Orders.Where(condition).ToList();
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString()).ToList();
         }
-        public List<Order> getListOrderByCondition1(string condition)
+        public List<Order> getListOrderByMonth(int month, int year)
         {
-            return db.Orders.Where(condition).ToList();
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+                            .Where(p => p.UpdatedAt.Value.Month == month)
+                            .Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
-        public List<Order> getListOrderByCondition2(string condition)
+        public List<Order> getListOrderByYear(int year)
         {
-            return db.Orders.Where(condition).ToList();
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+                            .Where(p => p.UpdatedAt.Value.Year == year).ToList();
+        }
+        public List<Order> getListOrderByPreciouse(int preciouse, int year)
+        {
+            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+                            .Where(p => p.UpdatedAt.Value.Year == year)
+                            .Where(p => p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 1 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 2 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 3).ToList();
         }
     }
 }
