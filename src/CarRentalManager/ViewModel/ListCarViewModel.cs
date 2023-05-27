@@ -151,17 +151,26 @@ namespace CarRentalManager.ViewModel
         {
             string imagePath = imgService.getProjectImagePath(ImagePath, "cars", ID.ToString());
             int lastCarID = commonDAO.getLastId(ETableName.CAR);
-            return new Car(isNewCar ? lastCarID + 1: ID , Name,
-                    Brand, PublishYear,
-                    Color, Price,
-                    variableService.parseStringToEnum<ECarStatus>(Status.Substring(38)),
-                    variableService.parseStringToEnum<ECarType>(Type.Substring(38)),
-                    variableService.parseStringToEnum<EDrivingType>(DrivingType.Substring(38)),
-                    Seats, LicensePlate,
-                    ImagePath, imagePath,
-                    City != null ? variableService.parseStringToEnum<ECityName>(City.Substring(38)) : ECityName.HCM,
-                    LoginInInforState.ID,
-                    CreatedAt, UpdatedAt);
+            return new Car
+            {
+                ID = isNewCar ? lastCarID + 1 : ID,
+                Name = Name,
+                Brand = Brand,
+                Color = Color,
+                Price = Price,
+                Status = Status,
+                Type = Type,
+                DrivingType = DrivingType,
+                Seats = Seats,
+                LicensePlate = LicensePlate,
+                ImagePath = ImagePath,
+                TutorialPath = imagePath,
+                City = City != null ? City : ECityName.HCM.ToString(),
+                SupplierId = supplierId,
+                CreatedAt = CreatedAt,
+                UpdatedAt = UpdatedAt,
+
+            };
         }
 
         private void handleAddCommand(bool isAdmin, string supplierId)

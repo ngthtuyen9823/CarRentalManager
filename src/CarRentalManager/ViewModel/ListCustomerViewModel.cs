@@ -100,10 +100,20 @@ namespace CarRentalManager.ViewModel
             int lastCustomer = commonDAO.getLastId(ETableName.CUSTOMER);
             ImageIdCardFront = imgService.getProjectImagePath(ImageIdCardFront ?? "", "customers", (lastCustomer + 1).ToString());
             ImageIdCardFront = imgService.getProjectImagePath(ImageIdCardBack ?? "", "customers", (lastCustomer + 1).ToString());
-            return new Customer(isNewCustomer ? lastCustomer + 1 : ID, PhoneNumber, Name, Email, IdCard, Address,
-                    ImageIdCardFront != null ? ImageIdCardFront : "",
-                    ImageIdCardBack != null ? ImageIdCardBack : "",
-                    DateTime.Now, DateTime.Now);
+            return new Customer
+            {
+                ID = isNewCustomer ? lastCustomer + 1 : ID,
+                PhoneNumber = PhoneNumber,
+                Name = Name,
+                Email = Email,
+                IdCard = IdCard,
+                Address = Address,
+                ImageIdCardBack = ImageIdCardBack != null ? ImageIdCardBack : "",
+                imageIdCardBack = ImageIdCardBack != null ? ImageIdCardBack : "",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+
+            };
         }
 
         private void updateListUI()

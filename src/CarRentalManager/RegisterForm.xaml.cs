@@ -88,9 +88,9 @@ namespace CarRentalManager
             DateTime start = dpBatdau.SelectedDate.Value.Date;
             DateTime end = dpKetThuc.SelectedDate.Value.Date;
             TimeSpan timeSpan = end.Subtract(start);
-            string totalFee = ((timeSpan.TotalDays * priceCar) - getDiscout(timeSpan.TotalDays * priceCar)).ToString();
+            string totalFee = ((timeSpan.TotalDays * priceCar) - getDiscout(timeSpan.TotalDays * priceCar ?? 0)).ToString();
             lblTotalFee.Content = totalFee + "000 VNĐ";
-            yourDiscout.Text = "Đã áp dụng mã giảm " + getDiscout(timeSpan.TotalDays * priceCar).ToString() + ".000VND";
+            yourDiscout.Text = "Đã áp dụng mã giảm " + getDiscout(timeSpan.TotalDays * priceCar ?? 0).ToString() + ".000VND";
             ((dynamic)this.DataContext).TotalFee = variableService.parseStringToInt(totalFee);
         }
 

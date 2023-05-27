@@ -134,7 +134,18 @@ namespace CarRentalManager.ViewModel
         private Supplier getSupplier(bool isNewSupplier)
         {
             int lastSupplier = commonDAO.getLastId(ETableName.SUPPLIER);
-            return new Supplier(isNewSupplier ? lastSupplier + 1 : ID, Email, Password, PhoneNumber, Name, Address, DateTime.Now, DateTime.Now);
+            return new Supplier
+            {
+                ID = isNewSupplier ? lastSupplier + 1 : ID,
+                Email = Email,
+                Password = Password,
+                PhoneNumber = PhoneNumber,
+                Name = Name,
+                Address = Address,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+
+            };
         }
         private void getaddCar()
         {
@@ -152,7 +163,7 @@ namespace CarRentalManager.ViewModel
             car.ImagePath = ImageCar;
             car.TutorialPath = imagePath;
             car.Price = PriceCar;
-            car.Status = ECarStatus.UNAVAILABLE;
+            car.Status = ECarStatus.UNAVAILABLE.ToString();
             carDAO.createCar(car);
         }
         private void updateListUI()

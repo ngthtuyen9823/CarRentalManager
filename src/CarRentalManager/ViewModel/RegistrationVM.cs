@@ -119,27 +119,35 @@ namespace CarRentalManager.ViewModel
 
         private Customer getCustomer(int lastCustomerId)
         {
-            return new Customer(lastCustomerId + 1,
-                    PhoneNumber,
-                    Name,
-                    Email != null ? Email : "",
-                    IdCard,
-                    BookingPlace,
-                    ImageIdCardFront != null ? ImageIdCardFront : "",
-                    ImageIdCardBack != null ? ImageIdCardBack : "",
-                    DateTime.Now, DateTime.Now);
+            return new Customer {
+                ID = lastCustomerId + 1,
+                PhoneNumber = PhoneNumber,
+                Email = Email != null ? Email : "",
+                IdCard = IdCard,
+                Address = Address,
+                ImageIdCardFront = ImageIdCardFront != null ? ImageIdCardFront : "",
+                ImageIdCardBack = ImageIdCardBack != null ? ImageIdCardBack : "",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+
+            };
         }
         private Order getOrder(int lastOrderId, int lastCustomerId)
         {
-            return new Order(lastOrderId + 1,
-                    CarId,
-                    lastCustomerId + 1,
-                    BookingPlace, StartDate, EndDate, TotalFee, 
-                    EOrderStatus.PENDING,
-                    DepositAmount,
-                    ImageEvidence != null ? ImageEvidence : "",
-                    Notes != null ? Notes : "",
-                    DateTime.Now, DateTime.Now);
+            return new Order { 
+                ID = lastOrderId + 1,
+                CarId = CarId,
+                CustomerId = lastCustomerId + 1,
+                BookingPlace = BookingPlace,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                TotalFee = TotalFee,
+                Status = EOrderStatus.PENDING.ToString(),
+                ImageEvidence = ImageEvidence != null ? ImageEvidence : "",
+                Notes = Notes != null ? Notes : "",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
         }
 
         private void handleRegisterCommand()
@@ -163,7 +171,7 @@ namespace CarRentalManager.ViewModel
                     orderDAO.createOrder(Order);
 
                     int createdOrderID = commonDAO.getLastId(ETableName.ORDER);
-                    currentCar.Status = ECarStatus.READYTORENT;
+                    currentCar.Status = ECarStatus.READYTORENT.ToString();
                     carDao.updateCar(currentCar);
                     MessageBox.Show("Register Successfully!");
                     MessageBox.Show($"Your Order Id is {createdOrderID}");

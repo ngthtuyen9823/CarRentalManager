@@ -31,7 +31,7 @@ namespace CarRentalManager
 
         public string Email { get { return email; } set { email = value; } }
 
-        public string IDCard { get { return idCard; } set { idCard = value; } }
+        public string IdCard { get { return idCard; } set { idCard = value; } }
 
         public string Address { get { return address; } set { address = value; } }
         public string ImageIdCardFront { get { return imageIdCardFront; } set { imageIdCardFront = value; } }

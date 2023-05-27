@@ -53,7 +53,7 @@ namespace CarRentalManager.dao
                         join o in db.Orders on c.OrderId equals o.ID
                         join cus in db.Customers on o.CustomerId equals cus.ID
                         where (orderId.Any(o => o == c.OrderId))
-                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CustomerPhone = cus.PhoneNumber };
+                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IdCard, CustomerPhone = cus.PhoneNumber };
             return (List<ExtraContract>)extraContracts;
         }
 
@@ -63,7 +63,7 @@ namespace CarRentalManager.dao
                         from c in db.Contracts
                         join o in db.Orders on c.OrderId equals o.ID
                         join cus in db.Customers on o.CustomerId equals cus.ID
-                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CustomerPhone = cus.PhoneNumber };
+                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IdCard, CustomerPhone = cus.PhoneNumber };
             return (List<ExtraContract>)extraContracts;
         }
        

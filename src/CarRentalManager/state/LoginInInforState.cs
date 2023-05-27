@@ -11,10 +11,10 @@ namespace CarRentalManager.state
     {
         public static int ID { get; set; }
         public static string Name { get; set; }
-        public static EUserRole Role { get; set; }
+        public static string Role { get; set; }
         public static bool isLogin;
 
-        public static void setState(int id, string name, EUserRole role)
+        public static void setState(int id, string name, string role)
         {
             ID = id;
             Name = name;

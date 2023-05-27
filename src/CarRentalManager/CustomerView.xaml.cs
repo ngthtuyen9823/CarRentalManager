@@ -61,7 +61,7 @@ namespace CarRentalManager
         private bool IdCardFilter(object obj)
         {
             var Filterobj = obj as Customer;
-            string filterobj = Filterobj.IDCard.ToString().ToLower();
+            string filterobj = Filterobj.IdCard.ToString().ToLower();
             return filterobj.Contains(FilterTextBox.Text.ToLower());
         }
         public Predicate<object> GetFilter()
@@ -115,7 +115,7 @@ namespace CarRentalManager
                 Address.Text = selectedCustomer.Address;
                 PhoneNumber.Text = selectedCustomer.PhoneNumber;
                 Email.Text = selectedCustomer.Email;
-                IdCard.Text = selectedCustomer.IDCard;
+                IdCard.Text = selectedCustomer.IdCard;
             }
         }
     }

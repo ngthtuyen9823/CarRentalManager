@@ -44,7 +44,7 @@ namespace CarRentalManager
         private void rbStar_Loaded(object sender, RoutedEventArgs e)
         {
             var myValue = rbStar.Tag;
-            List<Order> orders = orderDAO.getListOrderByCondition(string.Format("carId = {0}", myValue?.ToString() ?? "0"));
+            List<Order> orders = orderDAO.getListOrderByCarId(myValue?.ToString() ?? "0");
             if (orders != null)
                 rbStar.Value = getRating(orders.Count());
             else

@@ -148,7 +148,6 @@
     <Compile Include="dao\DbConnectionDAO.cs" />
     <Compile Include="dao\CommonDAO.cs" />
     <Compile Include="dao\OrderDAO.cs" />
-    <Compile Include="dao\ReceiptDAO.cs" />
     <Compile Include="dao\CustomerDAO.cs" />
     <Compile Include="dao\CarDAO.cs" />
     <Compile Include="dao\ContractDAO.cs" />

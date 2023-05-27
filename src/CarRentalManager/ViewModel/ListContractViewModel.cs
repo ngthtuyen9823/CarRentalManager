@@ -95,11 +95,21 @@ namespace CarRentalManager.ViewModel
         }
         private Contract getContract()
         {
-            return new Contract(ID, OrderId, UserId,
-                    variableService.parseStringToEnum<EContractStatus>(Status.Substring(38)),
-                    Price, Paid, Remain, ReceivedFee,
-                    Feedback, variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38)), Note,
-                    DateTime.Now, DateTime.Now);
+            return new Contract
+            {
+                ID = id,
+                OrderId = OrderId,
+                UserId = UserId,
+                Status = Status,
+                Price = Price,
+                Paid = Paid,
+                Remain = Remain,
+                ReceivedFee = ReceivedFee,
+                Feedback = Feedback,
+                ReturnCarStatus = ReturnCarStatus,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
         }
         private void updateListUI()
         {
@@ -134,9 +144,9 @@ namespace CarRentalManager.ViewModel
             currentContract.Remain -= fee;
             currentContract.ReceivedFee = (int)(currentContract.Paid / 2);
             currentContract.Remain = currentContract.Remain < 0 ? 0 : currentContract.Remain;
-            currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE : EContractStatus.PAID;
+            currentContract.Status = currentContract.Remain == 0 ? EContractStatus.COMPLETE.ToString() : EContractStatus.PAID.ToString();
             currentContract.Feedback = Feedback;
-            currentContract.ReturnCarStatus = variableService.parseStringToEnum<EReturnCarStatus>(ReturnCarStatus.Substring(38));
+            currentContract.ReturnCarStatus = ReturnCarStatus;
             currentContract.Note = Note;
             contractDAO.updateContract(currentContract);
         }
@@ -152,10 +162,10 @@ namespace CarRentalManager.ViewModel
                     Order currentOrder = orderDAO.getOrderById(currentContract.OrderId.ToString());
                     Car currentCar = carDAO.getCarById(currentOrder.CarId.ToString());
                     this.updateContract(currentContract);
-                    if (currentContract.Status == EContractStatus.COMPLETE)
-                        currentCar.Status = ECarStatus.AVAILABLE;
-                    if (currentContract.ReturnCarStatus == EReturnCarStatus.BROKEN)
-                        currentCar.Status = ECarStatus.UNAVAILABLE;
+                    if (currentContract.Status.Trim() == EContractStatus.COMPLETE.ToString())
+                        currentCar.Status = ECarStatus.AVAILABLE.ToString();
+                    if (currentContract.ReturnCarStatus.Trim() == EReturnCarStatus.BROKEN.ToString())
+                        currentCar.Status = ECarStatus.UNAVAILABLE.ToString();
                     carDAO.updateCar(currentCar);
                     contractDAO.updateContract(currentContract);
                     updateListUI();

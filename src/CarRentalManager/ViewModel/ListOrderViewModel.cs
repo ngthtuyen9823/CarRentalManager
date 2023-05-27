@@ -141,12 +141,20 @@ namespace CarRentalManager.ViewModel
         {
             int lastOrder = commonDAO.getLastId(ETableName.ORDER);
             Customer currentCustomer = customerDAO.getCustomerByIdCard(CustomerIdCard);
-            return new Order(isNewOrder ? lastOrder + 1 : ID, CarId, currentCustomer.ID, BookingPlace, StartDate, EndDate, TotalFee,
-                    variableService.parseStringToEnum<EOrderStatus>(Status.Substring(38)),
-                    DepositAmount.ToString() != null ? DepositAmount : 0,
-                    ImageEvidence != null ? ImageEvidence : "",
-                    Notes != null ? Notes : "",
-                    DateTime.Now, DateTime.Now);
+            return new Order
+            {
+                ID = isNewOrder ? lastOrder + 1 : ID,
+                CarId = CarId,
+                CustomerId = currentCustomer.ID,
+                BookingPlace = BookingPlace,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                TotalFee = TotalFee,
+                DepositAmount = DepositAmount.ToString() != null ? DepositAmount : 0,
+                Notes = Notes,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            };
         }
 
         private void handleAddCommand()
@@ -155,9 +163,9 @@ namespace CarRentalManager.ViewModel
             {
                 Order order = getOrder(true);
                 Car currentCar = carDao.getCarById(order.CarId.ToString());
-                if(carDao.checkIsAvailable(order.StartDate, order.EndDate, currentCar.ID))
+                if(carDao.checkIsAvailable(order.StartDate ?? DateTime.Now, order.EndDate ?? DateTime.Now, currentCar.ID))
                 {
-                    currentCar.Status = ECarStatus.READYTORENT;
+                    currentCar.Status = ECarStatus.READYTORENT.ToString();
                     orderDao.createOrder(order);
                     updateListUI();
                 }
@@ -185,8 +193,8 @@ namespace CarRentalManager.ViewModel
             {
                 Order order = orderDao.getOrderById(ID.ToString());
                 Car currentCar = carDao.getCarById(order.CarId.ToString());
-                currentCar.Status = ECarStatus.AVAILABLE;
-                order.Status = EOrderStatus.CANCELBYADMIN;
+                currentCar.Status = ECarStatus.AVAILABLE.ToString();
+                order.Status = EOrderStatus.CANCELBYADMIN.ToString();
                 carDao.updateCar(currentCar);
                 orderDao.updateOrder(order);
                 updateListUI();
@@ -205,13 +213,24 @@ namespace CarRentalManager.ViewModel
                 if (currentCar != null)
                 {
                     int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
-                    Contract contract = new Contract(lastContractID + 1, ID,
-                        LoginInInforState.ID, EContractStatus.UNPAID,
-                        TotalFee, currentOrder.DepositAmount,
-                        TotalFee - currentOrder.DepositAmount, (int)(currentOrder.DepositAmount / 2), "",
-                        EReturnCarStatus.ISNOTRETURN, "", DateTime.Now, DateTime.Now);
+                    Contract contract = new Contract
+                    {
+                        ID = lastContractID + 1,
+                        OrderId = ID,
+                        UserId = LoginInInforState.ID,
+                        Status = EContractStatus.UNPAID.ToString(),
+                        Price = TotalFee,
+                        Paid = currentOrder.DepositAmount,
+                        Remain = TotalFee - currentOrder.DepositAmount,
+                        ReceivedFee = (int)(currentOrder.DepositAmount / 2),
+                        Feedback = "",
+                        ReturnCarStatus = EReturnCarStatus.ISNOTRETURN.ToString(),
+                        Note = "",
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
+                    };
                     Order order = getOrder(false);
-                    currentCar.Status = ECarStatus.ONRENT;
+                    currentCar.Status = ECarStatus.ONRENT.ToString();
                     contractDao.createContract(contract);
                     orderDao.updateStatusOfOrder(order);
                     carDao.updateCar(currentCar);
@@ -235,10 +254,10 @@ namespace CarRentalManager.ViewModel
                 Order order = orderDao.getOrderById(ID.ToString());
                 if (order != null)
                 {
-                    CarId = order.CarId;
-                    BookingPlace = order.BookingPlace;
-                    StartDate = order.StartDate;
-                    EndDate = order.EndDate;
+                    CarId = order.CarId ?? 0;
+                    BookingPlace = order.BookingPlace ?? "";
+                    StartDate = order.StartDate ?? DateTime.Now;
+                    EndDate = order.EndDate ?? DateTime.Now;
                 }
                 else
                 {
@@ -256,10 +275,10 @@ namespace CarRentalManager.ViewModel
             try
             {
                 Order order = orderDao.getOrderById(ID.ToString());
-                order.Status = EOrderStatus.CANCELBYUSER;
+                order.Status = EOrderStatus.CANCELBYUSER.ToString();
 
                 Car currentCar = carDao.getCarById(order.CarId.ToString());
-                currentCar.Status = ECarStatus.AVAILABLE;
+                currentCar.Status = ECarStatus.AVAILABLE.ToString();
 
                 carDao.updateCar(currentCar);
                 orderDao.updateOrder(order);
