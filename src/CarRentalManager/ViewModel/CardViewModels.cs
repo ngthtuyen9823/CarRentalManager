@@ -16,7 +16,6 @@ namespace CarRentalManager.ViewModel
     {
         readonly ResourceDictionary dictionary = Application.LoadComponent(new Uri("/CarRentalManager;component/Assets/icons.xaml", 
             UriKind.RelativeOrAbsolute)) as ResourceDictionary;
-        //        ResourceDictionary dictionary = new ResourceDictionary();
         
         readonly CarDAO carDao = new CarDAO();
 
@@ -53,11 +52,11 @@ namespace CarRentalManager.ViewModel
             this.initializeValue();
             SortByAscCommand = new RelayCommand<object>((p) => {
                 return true;
-            }, (p) => getListCarSortByDescOrAsc(true, "price"));
+            }, (p) => getListCarSortByDescOrAsc(true));
 
             SortByDscCommand = new RelayCommand<object>((p) => {
                 return true;
-            }, (p) => getListCarSortByDescOrAsc(false, "price"));
+            }, (p) => getListCarSortByDescOrAsc(false));
 
             SortByCarCommand = new RelayCommand<object>((p) => {
                 return true;
@@ -125,7 +124,19 @@ namespace CarRentalManager.ViewModel
         {
             try
             {
-                List<string> data = carDao.getListCarBrand(fieldName);
+                List<string> data = new List<string>();
+                switch (fieldName)
+                {
+                    case nameof(brand):
+                        data = carDao.gitDistintByBrand();
+                        break;
+                    case nameof(city):
+                        data = carDao.gitDistintByCity();
+                        break;
+                    case nameof(seats):
+                        data = carDao.gitDistintBySeats();
+                        break;
+                }
                 if (data[0] == "") data.RemoveAt(0);
                 data.Insert(0, null);
                 ObservableCollection<string> carBrandList = new ObservableCollection<string>(data);
@@ -138,11 +149,11 @@ namespace CarRentalManager.ViewModel
             }
         }
 
-        public void getListCarSortByDescOrAsc(bool isDescrease, string fieldName)
+        public void getListCarSortByDescOrAsc(bool isDescrease)
         {
             try
             {
-                List<Car> cars = carDao.getListCarByDescOrAsc(isDescrease, fieldName);
+                List<Car> cars = carDao.getListCarByDescOrAsc(isDescrease);
                 CarList = new ObservableCollection<Car>(cars);
                 OnPropertyChanged(nameof(CarList));
             }

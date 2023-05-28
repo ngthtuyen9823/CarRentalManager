@@ -145,7 +145,6 @@
     <Compile Include="CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="dao\DbConnectionDAO.cs" />
     <Compile Include="dao\CommonDAO.cs" />
     <Compile Include="dao\OrderDAO.cs" />
     <Compile Include="dao\CustomerDAO.cs" />

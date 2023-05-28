@@ -10,14 +10,13 @@ using System.Windows.Input;
 using System.Linq.Dynamic.Core;
 using MaterialDesignThemes.Wpf;
 using System.Data.Entity;
+using System.Windows.Controls;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace CarRentalManager.dao
 {
     public class CarDAO
     {
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly CommondDataService commondDataService = new CommondDataService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
         readonly Context db = new Context();
         public CarDAO() { }
 
@@ -52,10 +51,13 @@ namespace CarRentalManager.dao
             db.SaveChanges();
         }
 
-        public List<Car> getListCarByDescOrAsc(bool isDescrease, string fieldName)
+        public List<Car> getListCarByDescOrAsc(bool isDescrease)
         {
-            var orderByMethod = isDescrease ? "OrderByDescending" : "OrderBy";
-            return db.Cars.AsQueryable().OrderBy($"{fieldName} {orderByMethod}").ToList();
+            return isDescrease ? (from car in db.Cars
+                                  orderby car.Price descending
+                                  select car).ToList() : (from car in db.Cars
+                                                          orderby car.Price
+                                                          select car).ToList();
         }
 
         public Car getCarById(string id)
@@ -71,33 +73,42 @@ namespace CarRentalManager.dao
         {
             return db.Cars.Where(c => c.Price >= fromPrice && c.Price < toPrice).ToList();
         }
-        public List<string> getListCarBrand(string fieldName)
+        public List<string> gitDistintByBrand()
         {
-            return db.Cars.Select(c => (string)c.GetType().GetProperty(fieldName).GetValue(c)).Distinct().ToList();
-            /*string sqlStringGetTable = sqlService.getDistinctValueFromTable(fieldName, ETableName.CAR);
-            DataTable dataTable = dbConnectionDAO.getDataTable(sqlStringGetTable);
-            return dataTable.AsEnumerable()
-                .Select(row => row[fieldName].ToString())
-                .ToList();*/
+            return db.Cars.Select(car => car.Brand).Distinct().ToList();
+
+        }
+        public List<string> gitDistintBySeats()
+        {
+            return db.Cars.Select(car => car.Seats.ToString()).Distinct().ToList();
+
+        }
+        public List<string> gitDistintByCity()
+        {
+            return db.Cars.Select(car => car.City).Distinct().ToList();
+
         }
         public List<Car> getListCarByCondition(string City, string Brand, int Seats, DateTime Start, DateTime End)
         {
             try
             {
-                var listAvailable = db.Cars.GroupJoin(db.Orders.Where(o => o.StartDate >= Start && o.EndDate <= End && o.Status != EOrderStatus.CANCELBYADMIN.ToString() && o.Status != EOrderStatus.CANCELBYUSER.ToString()), car => car.ID, order => order.CarId, (car, orders) => new { Car = car, Orders = orders }).Where(x => !x.Orders.Any() && x.Car.Status != ECarStatus.UNAVAILABLE.ToString()).Select(x => x.Car);
-                Func<Car, bool> cityCondition = null;
-                if (City != null){ cityCondition = x => x.City == City; }
-                Func<Car, bool> brandCondition = null;
-                if (Brand != null) { brandCondition = x => x.Brand == Brand; }
-                Func<Car, bool> seatsCondition = null;
-                if (Seats != 0) { seatsCondition = x => x.Seats == Seats; }
+                var listAvailable = getListCarsAvailable(Start, End);
 
-                var carPropCondition = cityCondition != null || brandCondition != null || seatsCondition != null
-                        ? listAvailable.Where(x => (cityCondition == null || (cityCondition != null && (cityCondition(x) ? true : false))) &&
-                                                  (brandCondition == null || (brandCondition != null && (brandCondition(x) ? true : false))) &&
-                                                  (seatsCondition == null || (seatsCondition != null && (seatsCondition(x) ? true : false))))
-                        : listAvailable;
-                return carPropCondition.ToList();
+                if (City != "" && City != null)
+                    listAvailable = from car in listAvailable
+                                    where car.City == City
+                                    select car;
+                if (Brand != "" && Brand != null)
+                {
+                    listAvailable = from car in listAvailable
+                                    where car.Brand == Brand.Trim()
+                                    select car;
+                }
+                if (Seats != 0 && Seats.ToString() != null)
+                    listAvailable = from car in listAvailable
+                                    where car.Seats == Seats
+                                    select car;
+                return listAvailable.ToList();
             }
             catch (Exception ex)
             {
@@ -107,10 +118,20 @@ namespace CarRentalManager.dao
         }
         public bool checkIsAvailable(DateTime start, DateTime end, int carId)
         {
-            var listAvailable = db.Cars.GroupJoin(db.Orders.Where(o => o.StartDate >= start && o.EndDate <= end && o.Status != EOrderStatus.CANCELBYADMIN.ToString() && o.Status != EOrderStatus.CANCELBYUSER.ToString()), car => car.ID, order => order.CarId, (car, orders) => new { Car = car, Orders = orders }).Where(x => !x.Orders.Any() && x.Car.Status != ECarStatus.UNAVAILABLE.ToString()).Select(x => x.Car);
+            var listAvailable = getListCarsAvailable(start, end);
             var isExist = listAvailable.Count(c => c.ID == carId);
             return (int)isExist == 1;
         }
 
+        public IQueryable<Car> getListCarsAvailable(DateTime start, DateTime end)
+        {
+            return db.Cars.GroupJoin(db.Orders
+                .Where(o => (o.StartDate <= start && o.EndDate >= start || o.StartDate <= end && o.EndDate >= end)
+                    && o.Status != EOrderStatus.CANCELBYADMIN.ToString()
+                    && o.Status != EOrderStatus.CANCELBYUSER.ToString()), car => car.ID, order => order.CarId,
+                    (car, orders) => new { Car = car, Orders = orders })
+                    .Where(x => !x.Orders.Any() && x.Car.Status != ECarStatus.UNAVAILABLE.ToString())
+                    .Select(x => x.Car);
+        }
     }
 }
