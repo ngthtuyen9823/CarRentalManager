@@ -29,7 +29,7 @@ namespace CarRentalManager.dao
                          join cus in db.Customers on o.CustomerId equals cus.ID
                          join c in db.Cars on o.CarId equals c.ID
                          select new{ order = o, CustomerName = cus.Name, CustomerIdCard = cus.IdCard, CarName = c.Name }).ToList();
-            return extraOrders;
+            return  new List<ExtraOrder>();
         }
         public void createOrder(Order order)
         {
@@ -48,29 +48,29 @@ namespace CarRentalManager.dao
         }
         public void updateStatusOfOrder(Order order)
         {
-            order.Status = EOrderStatus.COMPLETE.ToString();
+            order.Status = EOrderStatus.COMPLETE.ToString().Trim();
             order.UpdatedAt = DateTime.Now;
             db.Orders.AddOrUpdate(order);
             db.SaveChanges();
         }
         public List<Order> getListOrderCancelByUser()
         {
-            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString()).ToList();
+            return db.Orders.Where(p => p.Status.Trim() == EOrderStatus.CANCELBYUSER.ToString().Trim()).ToList();
         }
         public List<Order> getListOrderByMonth(int month, int year)
         {
-            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+            return db.Orders.Where(p => p.Status.Trim() == EOrderStatus.CANCELBYUSER.ToString().Trim())
                             .Where(p => p.UpdatedAt.Value.Month == month)
                             .Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
         public List<Order> getListOrderByYear(int year)
         {
-            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+            return db.Orders.Where(p => p.Status.Trim() == EOrderStatus.CANCELBYUSER.ToString().Trim())
                             .Where(p => p.UpdatedAt.Value.Year == year).ToList();
         }
         public List<Order> getListOrderByPreciouse(int preciouse, int year)
         {
-            return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
+            return db.Orders.Where(p => p.Status.Trim() == EOrderStatus.CANCELBYUSER.ToString().Trim())
                             .Where(p => p.UpdatedAt.Value.Year == year)
                             .Where(p => p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 1 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 2 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 3).ToList();
         }
