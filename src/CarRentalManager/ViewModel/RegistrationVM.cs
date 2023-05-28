@@ -121,15 +121,15 @@ namespace CarRentalManager.ViewModel
         {
             return new Customer {
                 ID = lastCustomerId + 1,
+                Name = Name,
                 PhoneNumber = PhoneNumber,
                 Email = Email != null ? Email : "",
                 IdCard = IdCard,
-                Address = Address,
+                Address = BookingPlace,
                 ImageIdCardFront = ImageIdCardFront != null ? ImageIdCardFront : "",
                 ImageIdCardBack = ImageIdCardBack != null ? ImageIdCardBack : "",
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-
             };
         }
         private Order getOrder(int lastOrderId, int lastCustomerId)

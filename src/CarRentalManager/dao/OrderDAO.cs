@@ -72,7 +72,7 @@ namespace CarRentalManager.dao
         }
         public Order getOrderById(string id)
         {
-            return db.Orders.Find(id);
+            return db.Orders.SingleOrDefault(order => order.ID.ToString().Trim() == id);
         }
         public void updateOrder(Order order)
         {

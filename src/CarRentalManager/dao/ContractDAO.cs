@@ -49,12 +49,41 @@ namespace CarRentalManager.dao
         public List<ExtraContract> getListContractByOrderId(List<int> orderId)
         {
             var extraContracts =
-                        from c in db.Contracts
+                        (from c in db.Contracts
                         join o in db.Orders on c.OrderId equals o.ID
                         join cus in db.Customers on o.CustomerId equals cus.ID
                         where (orderId.Any(o => o == c.OrderId))
-                        select new { c, CustomerName = cus.Name, CustomerIdCard = cus.IdCard, CustomerPhone = cus.PhoneNumber };
-            return (List<ExtraContract>)extraContracts;
+                        select new
+                        {
+                            Contract = c,
+                            CustomerName = cus.Name,
+                            CustomerIdCard = cus.IdCard,
+                            CustomerPhone = cus.PhoneNumber
+                        })
+                        .ToList();
+            List<ExtraContract> result = new List<ExtraContract>();
+            foreach (var item in extraContracts)
+            {
+                var extraContract = new ExtraContract
+                {
+                    ID = item.Contract.ID,
+                    OrderId = item.Contract.OrderId,
+                    UserId = item.Contract.UserId,
+                    ReceivedFee = item.Contract.ReceivedFee,
+                    Price = item.Contract.Price,
+                    Paid = item.Contract.Paid,
+                    Remain = item.Contract.Remain,
+                    Status = item.Contract.Status,
+                    Feedback = item.Contract.Feedback,
+                    ReturnCarStatus = item.Contract.ReturnCarStatus,
+                    Note = item.Contract.Note,
+                    CustomerName = item.CustomerName.ToString().Trim(),
+                    CustomerIdCard = item.CustomerIdCard,
+                    CustomerPhone = item.CustomerPhone
+                };
+                result.Add(extraContract);
+            }
+            return result;
         }
 
         public List<ExtraContract> getListExtraContract()
@@ -88,7 +117,7 @@ namespace CarRentalManager.dao
                     Feedback = item.Contract.Feedback,
                     ReturnCarStatus = item.Contract.ReturnCarStatus,
                     Note = item.Contract.Note,
-                    CustomerName = item.CustomerName,
+                    CustomerName = item.CustomerName.ToString().Trim(),
                     CustomerIdCard = item.CustomerIdCard,
                     CustomerPhone = item.CustomerPhone
                 };
