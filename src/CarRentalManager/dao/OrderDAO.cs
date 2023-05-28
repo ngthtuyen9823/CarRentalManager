@@ -24,13 +24,47 @@ namespace CarRentalManager.dao
         }
         public List<ExtraOrder> getListExtraOrder()
         {
-            var extraOrders =
-                        (from o in db.Orders
-                         join cus in db.Customers on o.CustomerId equals cus.ID
-                         join c in db.Cars on o.CarId equals c.ID
-                         select new{ order = o, CustomerName = cus.Name, CustomerIdCard = cus.IdCard, CarName = c.Name }).ToList();
-            return  new List<ExtraOrder>();
+            var extraOrders = (
+                from o in db.Orders
+                join cus in db.Customers on o.CustomerId equals cus.ID
+                join c in db.Cars on o.CarId equals c.ID
+                select new
+                {
+                    Order = o,
+                    CustomerName = cus.Name,
+                    CustomerIdCard = cus.IdCard,
+                    CarName = c.Name
+                })
+                .ToList();
+
+            List<ExtraOrder> result = new List<ExtraOrder>();
+            foreach (var item in extraOrders)
+            {
+                var extraOrder = new ExtraOrder
+                {
+                    ID = item.Order.ID,
+                    CarId = item.Order.CarId,
+                    CustomerId = item.Order.CustomerId,
+                    BookingPlace = item.Order.BookingPlace,
+                    StartDate = item.Order.StartDate,
+                    EndDate = item.Order.EndDate,
+                    TotalFee = item.Order.TotalFee,
+                    Status = item.Order.Status,
+                    DepositAmount = item.Order.DepositAmount,
+                    ImageEvidence = item.Order.ImageEvidence,
+                    Notes = item.Order.Notes,
+                    CreatedAt = item.Order.CreatedAt,
+                    UpdatedAt = item.Order.UpdatedAt,
+                    CustomerName = item.CustomerName,
+                    CustomerIdCard = item.CustomerIdCard,
+                    CarName = item.CarName
+                };
+                result.Add(extraOrder);
+            }
+
+            return result;
         }
+
         public void createOrder(Order order)
         {
             db.Orders.Add(order);
@@ -38,7 +72,7 @@ namespace CarRentalManager.dao
         }
         public Order getOrderById(string id)
         {
-            return db.Orders.Single(car => car.ID.ToString() == id);
+            return db.Orders.Find(id);
         }
         public void updateOrder(Order order)
         {
