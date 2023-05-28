@@ -26,7 +26,7 @@ namespace CarRentalManager.dao
         }
         public void removeSupplier(int id)
         {
-            var supplier = db.Suppliers.FirstOrDefault(s => s.id == id);
+            var supplier = db.Suppliers.FirstOrDefault(s => s.ID == id);
             db.Suppliers.Remove(supplier);
             db.SaveChanges();
         }
@@ -37,7 +37,7 @@ namespace CarRentalManager.dao
         }
         public Supplier getInforByEmail(string email)
         {
-            return db.Suppliers.FirstOrDefault(supplier => supplier.email == email);
+            return db.Suppliers.FirstOrDefault(supplier => supplier.Email == email);
         }
     }
 }

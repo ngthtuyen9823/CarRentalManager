@@ -1,6 +1,7 @@
 using CarRentalManager.enums;
 using CarRentalManager.models;
 using CarRentalManager.services;
+using LiveCharts.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,11 +25,11 @@ namespace CarRentalManager.dao
         public List<ExtraOrder> getListExtraOrder()
         {
             var extraOrders =
-                        from o in db.Orders
-                        join cus in db.Customers on o.CustomerId equals cus.ID
-                        join c in db.Cars on o.CarId equals c.ID
-                        select new { o, CustomerName = cus.Name, CustomerIdCard = cus.IDCard, CarName = c.Name };
-            return (List<ExtraOrder>)extraOrders;
+                        (from o in db.Orders
+                         join cus in db.Customers on o.CustomerId equals cus.ID
+                         join c in db.Cars on o.CarId equals c.ID
+                         select new{ order = o, CustomerName = cus.Name, CustomerIdCard = cus.IdCard, CarName = c.Name }).ToList();
+            return extraOrders;
         }
         public void createOrder(Order order)
         {
@@ -72,6 +73,13 @@ namespace CarRentalManager.dao
             return db.Orders.Where(p => p.Status == EOrderStatus.CANCELBYUSER.ToString())
                             .Where(p => p.UpdatedAt.Value.Year == year)
                             .Where(p => p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 1 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 2 || p.UpdatedAt.Value.Month == (preciouse - 1) * 3 + 3).ToList();
+        }
+
+        public List<Order> getListOrderByCarId(string carId)
+        {
+            return (from order in db.Orders
+                    where order.CarId.ToString() == carId
+                    select order).ToList();
         }
     }
 }

@@ -67,7 +67,7 @@ namespace CarRentalManager.ViewModel
                 }
                 else if (comparePassword(Password, currentSupplier?.Password?.Trim()))
                 {
-                    LoginInInforState.setState(currentSupplier.ID, currentSupplier.Name, EUserRole.SUPPLIER);
+                    LoginInInforState.setState(currentSupplier.ID, currentSupplier.Name, EUserRole.SUPPLIER.ToString());
                     closeLoginWindowAndOpenSubDashboard(p);
                 }
                 else

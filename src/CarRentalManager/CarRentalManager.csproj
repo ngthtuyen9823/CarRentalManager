@@ -148,7 +148,6 @@
     <Compile Include="dao\DbConnectionDAO.cs" />
     <Compile Include="dao\CommonDAO.cs" />
     <Compile Include="dao\OrderDAO.cs" />
-    <Compile Include="dao\ReceiptDAO.cs" />
     <Compile Include="dao\CustomerDAO.cs" />
     <Compile Include="dao\CarDAO.cs" />
     <Compile Include="dao\ContractDAO.cs" />
@@ -193,15 +192,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
-    <Compile Include="models\Car.cs" />
-    <Compile Include="models\Contract.cs" />
     <Compile Include="models\ExtraContract.cs" />
-    <Compile Include="models\Customer.cs" />
     <Compile Include="models\ExtracOrder.cs" />
-    <Compile Include="models\Order.cs" />
-    <Compile Include="models\Receipt.cs" />
-    <Compile Include="models\Supplier.cs" />
-    <Compile Include="models\User.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>

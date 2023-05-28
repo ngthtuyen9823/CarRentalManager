@@ -37,14 +37,14 @@ namespace CarRentalManager.dao
 
         public void removeCustomer(int id)
         {
-            var customer = db.Customers.FirstOrDefault(c => c.id == id);
+            var customer = db.Customers.FirstOrDefault(c => c.ID == id);
             db.Customers.Remove(customer);
             db.SaveChanges();
         }
 
         public Customer getCustomerById(string id)
         {
-            return db.Customers.FirstOrDefault(customer => customer.id.ToString() == id);
+            return db.Customers.FirstOrDefault(customer => customer.ID.ToString() == id);
         }
 
         public void updateCustomer(Customer customer)
@@ -54,7 +54,7 @@ namespace CarRentalManager.dao
         }
         public Customer getCustomerByIdCard(string idCard)
         {
-            return db.Customers.FirstOrDefault(customer => customer.idCard.ToString() == idCard);
+            return db.Customers.FirstOrDefault(customer => customer.IdCard.ToString() == idCard);
         }
     }
 }

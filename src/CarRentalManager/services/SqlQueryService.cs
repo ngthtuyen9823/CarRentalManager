@@ -147,7 +147,7 @@ namespace CarRentalManager.services
                     ETableName.CUSTOMER,
                     newCustomer.ID, newCustomer.PhoneNumber,
                     newCustomer.Name, newCustomer.Email,
-                    newCustomer.IDCard, newCustomer.Address,
+                    newCustomer.IdCard, newCustomer.Address,
                     newCustomer.ImageIdCardFront, newCustomer.ImageIdCardBack,
                     DateTime.Now, DateTime.Now);
         }
@@ -156,7 +156,7 @@ namespace CarRentalManager.services
             return string.Format("UPDATE [{0}] SET name = '{1}', phoneNumber = '{2}', email = '{3}', idCard = '{4}', address = '{5}', imageIdCardFront = '{6}', imageIdCardBack = '{7}', updatedAt = '{8}' WHERE id = '{9}'",
                 ETableName.CUSTOMER,
                 updatedCustomer.Name, updatedCustomer.PhoneNumber,
-                updatedCustomer.Email, updatedCustomer.IDCard,
+                updatedCustomer.Email, updatedCustomer.IdCard,
                 updatedCustomer.Address, updatedCustomer.ImageIdCardFront,
                 updatedCustomer.ImageIdCardBack,
                 DateTime.Now, updatedCustomer.ID);
@@ -291,21 +291,6 @@ namespace CarRentalManager.services
                 $" JOIN [{ETableName.CAR}] on [{ETableName.ORDER}].carId = [{ETableName.CAR}].id";
         }
 
-
-        //*INFO: RECEIPT
-        public string updateReceipt(Receipt newReceipt)
-        {
-            //*TODO: UPDATE query later
-            return string.Format("UPDATE [{0}] SET contractId = '{1}', price = '{2}', updatedAt = '{3}' WHERE id = '{4}' ",
-                ETableName.ORDER, newReceipt.ContractId, newReceipt.Price, DateTime.Now, newReceipt.ID);
-        }
-
-        public string createReceipt(Receipt newReceipt)
-        {
-            return string.Format("INSERT INTO [{0}]" +
-                    "VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
-                    ETableName.ORDER, newReceipt.ID, newReceipt.ContractId, newReceipt.Price, DateTime.Now, DateTime.Now);
-        }
 
 
         //*INFO: STATISTIC
