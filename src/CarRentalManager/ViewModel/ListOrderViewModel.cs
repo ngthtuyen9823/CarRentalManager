@@ -213,6 +213,7 @@ namespace CarRentalManager.ViewModel
                 if (currentCar != null)
                 {
                     int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
+                    MessageBox.Show(LoginInInforState.ID.ToString());
                     Contract contract = new Contract
                     {
                         ID = lastContractID + 1,
@@ -244,7 +245,7 @@ namespace CarRentalManager.ViewModel
             }
             catch
             {
-                MessageBox.Show("Cannot remove order");
+                MessageBox.Show("Cannot confirm order");
             }
         }
         private void handleSearchOrder()

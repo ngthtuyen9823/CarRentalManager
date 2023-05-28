@@ -12,6 +12,7 @@ using MaterialDesignThemes.Wpf;
 using System.Data.Entity;
 using System.Windows.Controls;
 using System.Runtime.InteropServices.ComTypes;
+using System.Data.Entity.Migrations;
 
 namespace CarRentalManager.dao
 {
@@ -38,9 +39,8 @@ namespace CarRentalManager.dao
         }
         public void updateCar(Car updatedCar)
         {
-            Car foundCar = db.Cars.Single(car => car.ID == updatedCar.ID);
             updatedCar.UpdatedAt = DateTime.Now;
-            foundCar = updatedCar;
+            db.Cars.AddOrUpdate(updatedCar);
             db.SaveChanges();
         }
 
