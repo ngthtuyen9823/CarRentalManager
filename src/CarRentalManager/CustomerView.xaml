@@ -154,7 +154,7 @@
                         <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
                         <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}"></GridViewColumn>
                         <GridViewColumn Header="Email" Width="200" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                        <GridViewColumn Header="Id Card" DisplayMemberBinding="{Binding IDCard}"></GridViewColumn>
+                        <GridViewColumn Header="Id Card" DisplayMemberBinding="{Binding IdCard}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>
