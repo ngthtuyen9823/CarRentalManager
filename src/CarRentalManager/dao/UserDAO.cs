@@ -10,7 +10,9 @@ namespace CarRentalManager.dao
 
         public User getInforByEmail(string email)
         {
-            return db.Users.SingleOrDefault(s => s.Email == email);
+            return (from user in db.Users
+                    where user.Email == email
+                    select user).First();
         } 
     }
 }

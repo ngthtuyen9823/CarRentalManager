@@ -14,10 +14,10 @@ namespace CarRentalManager
     
     public partial class Receipt
     {
-        public int id { get; set; }
-        public Nullable<int> contractId { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<System.DateTime> updatedAt { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> ContractId { get; set; }
+        public Nullable<int> Urice { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

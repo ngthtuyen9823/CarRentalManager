@@ -14,30 +14,15 @@ namespace CarRentalManager
     
     public partial class Customer
     {
-        public int id { get; set; }
-        public string phoneNumber { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string idCard { get; set; }
-        public string address { get; set; }
-        public string imageIdCardFront { get; set; }
-        public string imageIdCardBack { get; set; }
-        public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<System.DateTime> updatedAt { get; set; }
-
-        public int ID { get { return id; } set { id = value; } }
-        public string Name { get { return name; } set { name = value; } }
-        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
-
-        public string Email { get { return email; } set { email = value; } }
-
-        public string IdCard { get { return idCard; } set { idCard = value; } }
-
-        public string Address { get { return address; } set { address = value; } }
-        public string ImageIdCardFront { get { return imageIdCardFront; } set { imageIdCardFront = value; } }
-        public string ImageIdCardBack { get { return imageIdCardBack; } set { imageIdCardBack = value; } }
-
-        public Nullable<System.DateTime> CreatedAt { get { return createdAt; } set { createdAt = value; } }
-        public Nullable<System.DateTime> UpdatedAt { get { return updatedAt; } set { updatedAt = value; } }
+        public int ID { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string IdCard { get; set; }
+        public string Address { get; set; }
+        public string ImageIdCardFront { get; set; }
+        public string ImageIdCardBack { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

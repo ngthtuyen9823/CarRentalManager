@@ -192,15 +192,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
-    <Compile Include="models\Car.cs" />
-    <Compile Include="models\Contract.cs" />
     <Compile Include="models\ExtraContract.cs" />
-    <Compile Include="models\Customer.cs" />
     <Compile Include="models\ExtracOrder.cs" />
-    <Compile Include="models\Order.cs" />
-    <Compile Include="models\Receipt.cs" />
-    <Compile Include="models\Supplier.cs" />
-    <Compile Include="models\User.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>

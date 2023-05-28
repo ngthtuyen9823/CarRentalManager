@@ -108,8 +108,8 @@ namespace CarRentalManager.ViewModel
                 Email = Email,
                 IdCard = IdCard,
                 Address = Address,
+                ImageIdCardFront = ImageIdCardFront != null ? ImageIdCardFront : "",
                 ImageIdCardBack = ImageIdCardBack != null ? ImageIdCardBack : "",
-                imageIdCardBack = ImageIdCardBack != null ? ImageIdCardBack : "",
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
 
