@@ -5,28 +5,12 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using CarRentalManager.models;
-using System.Diagnostics;
-using System.Security.Policy;
-using System.Windows.Media;
-using System.Xml.Linq;
-using System.Data.SqlTypes;
-using System.Data.Entity;
-using System.Collections;
-using System.Runtime.Remoting.Contexts;
 using System.Linq.Dynamic.Core;
 
 namespace CarRentalManager.dao
 {
     public class CommonDAO
     {
-        private SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
-        readonly SqlQueryService sqlService = new SqlQueryService();
-        readonly VariableService variableService = new VariableService();
-        readonly DbConnectionDAO dbConnectionDAO = new DbConnectionDAO();
         readonly Context db = new Context();
 
         public CommonDAO() { }
@@ -74,6 +58,11 @@ namespace CarRentalManager.dao
                     return (from suppliers in db.Suppliers
                             orderby suppliers.ID descending
                             select suppliers.ID).ToList().FirstOrDefault();
+
+                case ETableName.CUSTOMER:
+                    return (from customer in db.Customers
+                            orderby customer.ID descending
+                            select customer.ID).ToList().FirstOrDefault();
 
                 default: return 0;
             }
