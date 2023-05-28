@@ -90,15 +90,15 @@ namespace CarRentalManager.dao
             return (from contract in db.Contracts
                              join order in db.Orders on contract.OrderId equals order.ID
                              join car in db.Cars on order.CarId equals car.ID
-                             where contract.ReturnCarStatus == EReturnCarStatus.BROKEN.ToString()
-                             group contract by car.Name into groupedContracts
+                             where contract.ReturnCarStatus.Trim() == EReturnCarStatus.BROKEN.ToString().Trim()
+                    group contract by car.Name into groupedContracts
                              select new
                              {
                                  name = groupedContracts.Key,
                                  brokenTimes = (from contract in db.Contracts
                                                 join order in db.Orders on contract.OrderId equals order.ID
                                                 join car in db.Cars on order.CarId equals car.ID
-                                                where contract.ReturnCarStatus == EReturnCarStatus.BROKEN.ToString()
+                                                where contract.ReturnCarStatus.Trim() == EReturnCarStatus.BROKEN.ToString().Trim()
                                                 && car.Name == groupedContracts.Key
                                                 select contract.ID).Count()
                              }
@@ -110,7 +110,7 @@ namespace CarRentalManager.dao
             return (from contract in db.Contracts
                                 join order in db.Orders on contract.OrderId equals order.ID
                                 join customer in db.Customers on order.CustomerId equals customer.ID
-                                where contract.ReturnCarStatus == EReturnCarStatus.INTACT.ToString() &&
+                                where contract.ReturnCarStatus.Trim() == EReturnCarStatus.INTACT.ToString().Trim() &&
                                       contract.Feedback != null && contract.Feedback != ""
                                 group contract by customer.Name into groupedContracts
                                 select new

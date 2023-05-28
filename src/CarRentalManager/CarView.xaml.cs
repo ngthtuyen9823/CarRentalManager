@@ -121,10 +121,10 @@ namespace CarRentalManager
                 Name.Text = selectedCar.Name;
                 Brand.Text = selectedCar.Brand;
                 Color.Text = selectedCar.Color;
-                PublishYear.Text = selectedCar.PublishYear.ToString();
-                Type.Text = selectedCar.Type.ToString();
-                Status.Text = selectedCar.Status.ToString();
-                DrivingType.Text = selectedCar.DrivingType.ToString();
+                PublishYear.Text = selectedCar?.PublishYear?.ToString() ?? "";
+                Type.Text = selectedCar.Type.ToString().Trim();
+                Status.Text = selectedCar.Status.ToString().Trim();
+                DrivingType.Text = selectedCar.DrivingType.ToString().Trim();
                 Seats.Text = selectedCar.Seats.ToString();
                 LicensePlate.Text = selectedCar.LicensePlate;
                 Price.Text = selectedCar.Price.ToString();

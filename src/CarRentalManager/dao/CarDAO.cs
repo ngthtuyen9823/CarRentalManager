@@ -67,7 +67,7 @@ namespace CarRentalManager.dao
 
         public List<Car> getListCarByType(ECarType eCarType)
         {
-            return db.Cars.Where(c => c.Type == eCarType.ToString()).ToList();
+            return db.Cars.Where(c => c.Type.Trim() == eCarType.ToString().Trim()).ToList();
         }
         public List<Car> getListByRange(int fromPrice, int toPrice)
         {
@@ -96,12 +96,12 @@ namespace CarRentalManager.dao
 
                 if (City != "" && City != null)
                     listAvailable = from car in listAvailable
-                                    where car.City == City
+                                    where car.City.Trim() == City.Trim()
                                     select car;
                 if (Brand != "" && Brand != null)
                 {
                     listAvailable = from car in listAvailable
-                                    where car.Brand == Brand.Trim()
+                                    where car.Brand.Trim() == Brand.Trim()
                                     select car;
                 }
                 if (Seats != 0 && Seats.ToString() != null)
@@ -127,10 +127,10 @@ namespace CarRentalManager.dao
         {
             return db.Cars.GroupJoin(db.Orders
                 .Where(o => (o.StartDate <= start && o.EndDate >= start || o.StartDate <= end && o.EndDate >= end)
-                    && o.Status != EOrderStatus.CANCELBYADMIN.ToString()
-                    && o.Status != EOrderStatus.CANCELBYUSER.ToString()), car => car.ID, order => order.CarId,
+                    && o.Status.Trim() != EOrderStatus.CANCELBYADMIN.ToString().Trim()
+                    && o.Status.Trim() != EOrderStatus.CANCELBYUSER.ToString().Trim()), car => car.ID, order => order.CarId,
                     (car, orders) => new { Car = car, Orders = orders })
-                    .Where(x => !x.Orders.Any() && x.Car.Status != ECarStatus.UNAVAILABLE.ToString())
+                    .Where(x => !x.Orders.Any() && x.Car.Status.Trim() != ECarStatus.UNAVAILABLE.ToString().Trim())
                     .Select(x => x.Car);
         }
     }

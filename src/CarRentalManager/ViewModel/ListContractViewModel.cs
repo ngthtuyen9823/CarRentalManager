@@ -100,13 +100,13 @@ namespace CarRentalManager.ViewModel
                 ID = id,
                 OrderId = OrderId,
                 UserId = UserId,
-                Status = Status,
+                Status = Status.Substring(38),
                 Price = Price,
                 Paid = Paid,
                 Remain = Remain,
                 ReceivedFee = ReceivedFee,
                 Feedback = Feedback,
-                ReturnCarStatus = ReturnCarStatus,
+                ReturnCarStatus = ReturnCarStatus.Substring(38),
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };

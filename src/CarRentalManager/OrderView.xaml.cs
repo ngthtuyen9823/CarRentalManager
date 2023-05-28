@@ -113,7 +113,7 @@ namespace CarRentalManager
                 BookingPlace.Text = selectedOrder.BookingPlace.ToString();
                 TotalFee.Text = selectedOrder.TotalFee.ToString();
                 CarId.Text = selectedOrder.CarId.ToString();
-                Status.Text = selectedOrder.Status.ToString();
+                Status.Text = selectedOrder.Status.ToString().Trim();
                 StartDate.SelectedDate = selectedOrder.StartDate;
                 EndDate.SelectedDate = selectedOrder.EndDate; 
                 CarName.Text = selectedOrder?.CarName?.ToString() ?? "";

@@ -88,7 +88,7 @@ namespace CarRentalManager
                 OrderId.Text = selectedContract.OrderId.ToString();
                 Price.Text = selectedContract.Price.ToString();
                 ReceivedFee.Text = selectedContract.ReceivedFee.ToString(); 
-                Status.Text = selectedContract.Status.ToString(); 
+                Status.Text = selectedContract.Status.ToString().Trim(); 
                 CustomerName.Text = selectedContract.CustomerName.ToString();
                 CustomerIdCard.Text = selectedContract.CustomerIdCard.ToString();
                 CustomerPhone.Text = selectedContract.CustomerPhone.ToString();
