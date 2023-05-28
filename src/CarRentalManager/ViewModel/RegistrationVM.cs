@@ -142,6 +142,7 @@ namespace CarRentalManager.ViewModel
                 StartDate = StartDate,
                 EndDate = EndDate,
                 TotalFee = TotalFee,
+                DepositAmount = DepositAmount,
                 Status = EOrderStatus.PENDING.ToString(),
                 ImageEvidence = ImageEvidence != null ? ImageEvidence : "",
                 Notes = Notes != null ? Notes : "",

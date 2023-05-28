@@ -213,7 +213,6 @@ namespace CarRentalManager.ViewModel
                 if (currentCar != null)
                 {
                     int lastContractID = commonDAO.getLastId(ETableName.CONTRACT);
-                    MessageBox.Show(LoginInInforState.ID.ToString());
                     Contract contract = new Contract
                     {
                         ID = lastContractID + 1,
@@ -221,9 +220,9 @@ namespace CarRentalManager.ViewModel
                         UserId = LoginInInforState.ID,
                         Status = EContractStatus.UNPAID.ToString(),
                         Price = TotalFee,
-                        Paid = currentOrder.DepositAmount,
-                        Remain = TotalFee - currentOrder.DepositAmount,
-                        ReceivedFee = (int)(currentOrder.DepositAmount / 2),
+                        Paid = currentOrder?.DepositAmount ?? 0,
+                        Remain = TotalFee - currentOrder?.DepositAmount ?? 0,
+                        ReceivedFee = (int)(currentOrder?.DepositAmount ?? 0 / 2),
                         Feedback = "",
                         ReturnCarStatus = EReturnCarStatus.ISNOTRETURN.ToString(),
                         Note = "",
